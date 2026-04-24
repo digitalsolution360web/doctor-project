@@ -56,10 +56,10 @@ const Header = () => {
       <header
         className={`fixed left-0 w-full z-50 transition-all duration-700 ${scrolled
           ? "top-0 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)] py-5"
-          : "top-0 lg:top-12 bg-transparent py-6 lg:py-0"
+          : "top-4 lg:top-12 bg-transparent py-0"
           }`}
       >
-        <div className={`container mx-auto px-4 md:px-6 transition-all duration-700 ${!scrolled && "lg:bg-white lg:backdrop-blur-xl lg:rounded-2xl lg:border lg:border-white/10 lg:py-3 shadow-2xl"}`}>
+        <div className={`container mx-auto px-4 md:px-6 transition-all duration-700 ${!scrolled ? "bg-white backdrop-blur-xl rounded-2xl border border-white/10 py-3 shadow-2xl w-[calc(100%-2rem)] lg:w-full" : ""}`}>
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center group">
@@ -105,8 +105,7 @@ const Header = () => {
 
             {/* Mobile Menu Toggle */}
             <button
-              className={`lg:hidden p-2 rounded-xl transition-all ${scrolled || isOpen ? "text-slate-900 bg-slate-100" : "text-white bg-white/10 backdrop-blur-md"
-                }`}
+              className="lg:hidden p-2 rounded-xl transition-all text-slate-900 bg-slate-100 hover:bg-slate-200"
               onClick={() => setIsOpen(!isOpen)}
             >
               {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
