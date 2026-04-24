@@ -160,14 +160,12 @@ export default function TexturesPage() {
               >
                 {/* Visual */}
                 <RevealOnScroll direction={index % 2 === 0 ? "left" : "right"} className="flex-1 w-full">
-                  <div className="relative aspect-video rounded-[48px] overflow-hidden shadow-2xl group border border-slate-100">
-                    <Image 
+                  <div className="rounded-[48px] overflow-hidden shadow-2xl group border border-slate-100 bg-white">
+                    <img 
                       src={item.image} 
                       alt={item.title} 
-                      fill 
-                      className="object-cover group-hover:scale-110 transition-transform duration-[2000ms]" 
+                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" 
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
                   </div>
                 </RevealOnScroll>
 

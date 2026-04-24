@@ -121,7 +121,7 @@ const Header = () => {
           <div className="flex flex-col h-full">
             <div className="p-4 flex items-center justify-between border-b border-slate-50">
               <div className="relative h-10 w-40">
-                <Image src="/logo.webp" alt="Logo" fill className="object-contain" />
+                <Image src="/logo.webp" alt="Logo" fill className="object-contain" sizes="(max-width: 768px) 160px, 160px" />
               </div>
               <button onClick={() => setIsOpen(false)} className="p-2 bg-slate-100 rounded-xl text-slate-900">
                 <X className="w-7 h-7" />

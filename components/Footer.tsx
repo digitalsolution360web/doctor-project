@@ -24,6 +24,7 @@ const Footer = () => {
                   alt="Dr Expert Formulation"
                   fill
                   className="object-contain px-2"
+                  sizes="(max-width: 768px) 256px, 256px"
                 />
               </div>
             </Link>
