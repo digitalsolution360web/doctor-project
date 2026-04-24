@@ -106,10 +106,10 @@ export default function AboutPage() {
               <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority sizes="(max-width: 768px) 100vw, 320px" />
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-none tracking-tighter uppercase">
-              Pioneering <span className="text-teal-600">Health</span> <br /> Since 2004.
+              Pioneering <span className="text-teal-600">Beauty</span> <br /> Since 2004.
             </h1>
             <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
-              Dr Expert Formulation Pvt Ltd is built on two decades of manufacturing excellence and a relentless pursuit of scientific perfection.
+              Midflora Herbal is built on two decades of manufacturing excellence and a relentless pursuit of cosmetic and herbal perfection.
             </p>
           </RevealOnScroll>
         </div>
@@ -125,7 +125,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter">Our Mission</h2>
               <p className="text-slate-700 text-lg font-bold leading-relaxed">
-                To provide high-quality, affordable healthcare solutions through advanced manufacturing technology and rigorous scientific research, making wellness accessible to every corner of the globe.
+                To provide high-quality, premium cosmetic and herbal solutions through advanced manufacturing technology and rigorous R&D, making premium beauty accessible to every brand.
               </p>
             </RevealOnScroll>
             <RevealOnScroll direction="right" className="p-12 bg-slate-900 rounded-[48px] text-white space-y-6 relative overflow-hidden">
@@ -135,7 +135,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">Our Vision</h2>
               <p className="text-slate-400 text-lg font-bold leading-relaxed">
-                To become a global benchmark in pharmaceutical engineering, recognized for our commitment to quality, innovation, and ethical leadership in the life sciences industry.
+                To become a global benchmark in cosmetic engineering, recognized for our commitment to quality, innovation, and ethical leadership in the herbal beauty industry.
               </p>
             </RevealOnScroll>
           </div>
@@ -155,13 +155,13 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 text-slate-700 text-lg font-bold leading-relaxed">
                 <p>
-                  Founded in 2004, Dr Expert Formulation started with a simple goal: to manufacture medicines that meet international standards of purity and efficacy.
+                  Founded in 2004, Midflora Herbal started with a simple goal: to manufacture personal care products that meet international standards of purity and efficacy.
                 </p>
                 <p>
-                  Today, we operate a state-of-the-art facility in Noida, India, serving over 100 global clients and manufacturing a diverse portfolio of over 500+ formulations.
+                  Today, we operate a state-of-the-art facility in Noida, India, serving over 1000+ formulations and helping brands dominate the skincare and haircare markets.
                 </p>
                 <p>
-                  Our growth is fueled by our people—a team of dedicated scientists, engineers, and quality experts who believe that health is the ultimate wealth.
+                  Our growth is fueled by our people—a team of dedicated scientists, engineers, and R&D experts who believe that quality is the ultimate foundation of beauty.
                 </p>
               </div>
             </RevealOnScroll>

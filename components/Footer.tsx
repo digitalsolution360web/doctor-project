@@ -21,7 +21,7 @@ const Footer = () => {
               <div className="relative h-16 w-64 transition-all duration-700 transform group-hover:scale-105 bg-white p-4 rounded-2xl shadow-[0_20px_50px_-15px_rgba(20,184,166,0.3)]">
                 <Image
                   src="/logo.webp"
-                  alt="Dr Expert Formulation"
+                  alt="Midflora Herbal"
                   fill
                   className="object-contain px-2"
                   sizes="(max-width: 768px) 256px, 256px"
@@ -29,7 +29,7 @@ const Footer = () => {
               </div>
             </Link>
             <p className="text-slate-400 leading-relaxed text-lg font-medium max-w-sm">
-              Global benchmarks in pharmaceutical engineering and herbal excellence. Delivering health through precision science.
+              India's trusted third-party cosmetic manufacturer. Premium herbal & dermatologically tested products delivered from concept to market.
             </p>
             <div className="flex items-center space-x-4">
               {[
@@ -58,11 +58,12 @@ const Footer = () => {
             </h4>
             <ul className="space-y-5">
               {[
-                { name: "Pharma Expertise", href: "/services" },
+                { name: "Home", href: "/" },
+                { name: "Manufacturing", href: "/services" },
                 { name: "Research Lab", href: "/lab" },
-                { name: "Quality Assurance", href: "#" },
+                { name: "Infrastructure", href: "/infrastructure" },
                 { name: "Certifications", href: "/certifications" },
-                { name: "Global Presence", href: "/about" },
+                { name: "Our Blog", href: "/blog" },
                 { name: "Contact Center", href: "/quote" }
               ].map((link, i) => (
                 <li key={i}>
@@ -109,7 +110,7 @@ const Footer = () => {
                   <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
                     <Mail className="w-5 h-5 text-teal-500 group-hover:text-white" />
                   </div>
-                  <p className="text-slate-300 text-sm font-bold truncate">sales@drexpert.com</p>
+                  <p className="text-slate-300 text-sm font-bold truncate">info@midfloraherbal.com</p>
                 </div>
                 <div className="flex items-start space-x-5 group">
                   <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
@@ -129,7 +130,7 @@ const Footer = () => {
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
           <div className="flex items-center space-x-3 group">
             <Shield className="w-5 h-5 text-teal-500/40 group-hover:text-teal-500 transition-colors" />
-            <p>© {new Date().getFullYear()} Dr Expert Formulation. Premium Pharmaceutical Care.</p>
+            <p>© {new Date().getFullYear()} Midflora Herbal. Premium Cosmetic Manufacturing.</p>
           </div>
           <div className="flex items-center space-x-10">
             <Link href="#" className="hover:text-teal-400 transition-colors flex items-center">

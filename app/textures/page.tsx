@@ -11,7 +11,10 @@ import {
   Droplets, 
   CircleDot, 
   Sparkles,
-  ClipboardList
+  ClipboardList,
+  Wind,
+  Zap,
+  Smile
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -62,39 +65,39 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 export default function TexturesPage() {
   const textures = [
     {
-      id: "tablets",
-      title: "Tablets & Bolus",
-      subtitle: "Solid Dosage Excellence",
-      desc: "Our high-speed compression technology produces tablets with precise active ingredient distribution and optimized dissolution rates. We offer film-coated, enteric-coated, and sustained-release variants.",
+      id: "serums",
+      title: "Active Serums",
+      subtitle: "High-Penetration Formats",
+      desc: "Lightweight, water or oil-based formulations designed for deep skin penetration. Perfect for high-concentration active ingredients like Vitamin C, Niacinamide, and Hyaluronic Acid.",
       image: "/9.webp",
-      specs: ["Uncoated / Coated", "Dispersible", "Effervescent", "Multi-layer"],
-      icon: CircleDot
-    },
-    {
-      id: "capsules",
-      title: "Hard & Soft Capsules",
-      subtitle: "Encapsulation Technology",
-      desc: "Advanced encapsulation services for both hard-shell and soft-gelatin formats. Ensuring maximum bioavailability and stability for sensitive chemical and herbal compounds.",
-      image: "/2.webp",
-      specs: ["HPMC Hard Shell", "Soft-gelatin", "Liquid Filled", "Band Sealed"],
-      icon: Layers
-    },
-    {
-      id: "liquids",
-      title: "Liquid Orals",
-      subtitle: "Homogeneous Solutions",
-      desc: "Precision formulated syrups, suspensions, and elixirs. Our automated mixing tanks ensure 100% homogeneity and stable pH levels across every batch.",
-      image: "/10.webp",
-      specs: ["Syrups", "Suspensions", "Dry Syrups", "Drops"],
+      specs: ["Water-based", "Oil-based", "Bi-phasic", "Silicone-free"],
       icon: Droplets
     },
     {
-      id: "topicals",
-      title: "Topical Formats",
-      subtitle: "Dermatological Mastery",
-      desc: "Developing high-absorption creams, ointments, and gels. Our cold-process manufacturing maintains the integrity of heat-sensitive active ingredients.",
+      id: "creams",
+      title: "Luxurious Creams",
+      subtitle: "Emulsion Excellence",
+      desc: "Rich, velvety emulsions that provide hydration and protection. We master the art of stable oil-in-water and water-in-oil emulsions for various skin types.",
+      image: "/2.webp",
+      specs: ["Day Creams", "Night Repairs", "Moisturizers", "Anti-aging"],
+      icon: Layers
+    },
+    {
+      id: "lotions",
+      title: "Fluid Lotions",
+      subtitle: "Daily Hydration",
+      desc: "Lightweight fluid textures for daily body and face care. Formulated for quick absorption and long-lasting moisture without a greasy feel.",
+      image: "/10.webp",
+      specs: ["Body Lotions", "Face Milks", "Cleansing Lotions", "Sun Protection"],
+      icon: Wind
+    },
+    {
+      id: "gels",
+      title: "Soothing Gels",
+      subtitle: "Cooling & Transparent",
+      desc: "Crystal-clear gel formulations that provide an instant cooling effect. Ideal for aloe-based products, eye gels, and lightweight face treatments.",
       image: "/6.webp",
-      specs: ["Gels", "Creams", "Ointments", "Lotions"],
+      specs: ["Face Gels", "Eye Gels", "Hair Gels", "Exfoliating Gels"],
       icon: Sparkles
     }
   ];
@@ -108,7 +111,7 @@ export default function TexturesPage() {
             src="/banner.webp" 
             alt="Product Textures" 
             fill 
-            className="object-cover opacity-30 object-[center_30%]"
+            className="object-cover opacity-30 object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/40 to-transparent"></div>
@@ -117,14 +120,14 @@ export default function TexturesPage() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-widest mb-4">
-              Advanced Delivery Formats
+              Advanced Cosmetic Formats
             </div>
             <h1 className="text-4xl md:text-5xl font-black leading-[1.1] tracking-tighter uppercase">
               Precision <span className="text-teal-400">Textures</span> <br />
-              & Formats.
+              & Sensory Appeal.
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
-              From high-compression tablets to micro-emulsion liquids, we master every physical format of medicine delivery.
+              From ultra-light serums to rich, velvety creams, we master the sensory science of cosmetic delivery.
             </p>
           </RevealOnScroll>
         </div>
@@ -160,12 +163,14 @@ export default function TexturesPage() {
               >
                 {/* Visual */}
                 <RevealOnScroll direction={index % 2 === 0 ? "left" : "right"} className="flex-1 w-full">
-                  <div className="rounded-[48px] overflow-hidden shadow-2xl group border border-slate-100 bg-white">
-                    <img 
+                  <div className="rounded-[48px] overflow-hidden shadow-2xl group border border-slate-100 bg-white aspect-[4/3] relative">
+                    <Image 
                       src={item.image} 
                       alt={item.title} 
-                      className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-[2000ms]" 
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-[2000ms]" 
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
                   </div>
                 </RevealOnScroll>
 
@@ -187,7 +192,7 @@ export default function TexturesPage() {
                   </div>
 
                   <button className="flex items-center space-x-4 px-8 py-4 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-teal-600 transition-all shadow-xl group">
-                    <span>Technical Compliance</span>
+                    <span>Explore Formats</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                   </button>
                 </RevealOnScroll>
@@ -203,13 +208,13 @@ export default function TexturesPage() {
           <div className="bg-[#05080f] rounded-[48px] p-10 md:p-16 relative overflow-hidden text-white text-center">
             <RevealOnScroll className="max-w-3xl mx-auto space-y-8">
               <h2 className="text-3xl md:text-4xl font-black tracking-tighter uppercase leading-tight">
-                Need a <span className="text-teal-400">Custom Texture</span> for your product?
+                Need a <span className="text-teal-400">Custom Texture</span> for your brand?
               </h2>
               <p className="text-slate-400 text-lg font-bold">
-                Our R&D team can develop unique delivery formats tailored to your specific active ingredient and target market requirements.
+                Our sensory experts can develop unique textures and feels tailored to your brand's unique market positioning.
               </p>
               <div className="pt-4">
-                <Link href="/about" className="px-10 py-5 bg-teal-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-teal-500 transition-all inline-block shadow-2xl">
+                <Link href="/#contact" className="px-10 py-5 bg-teal-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-teal-500 transition-all inline-block shadow-2xl">
                   Contact R&D Team
                 </Link>
               </div>

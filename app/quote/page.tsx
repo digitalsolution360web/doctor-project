@@ -4,17 +4,14 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { 
-  Send, 
-  CheckCircle2, 
-  User, 
-  Mail, 
   Phone, 
-  Building2, 
+  Mail, 
+  MapPin, 
+  Send, 
+  ChevronRight, 
   MessageSquare,
-  Package,
-  Layers,
-  ArrowRight,
-  ShieldCheck
+  Clock,
+  ArrowRight
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -63,174 +60,155 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 };
 
 export default function QuotePage() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-  };
-
-  if (isSubmitted) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center pt-20 px-4">
-        <RevealOnScroll className="max-w-xl w-full text-center space-y-8 p-12 bg-slate-50 rounded-[48px] border border-slate-100 shadow-2xl">
-          <div className="w-24 h-24 bg-teal-600 rounded-full flex items-center justify-center mx-auto shadow-xl">
-            <CheckCircle2 className="w-12 h-12 text-white" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Inquiry Received</h1>
-          <p className="text-slate-600 text-lg font-bold">
-            Thank you for reaching out. Our technical team will analyze your requirements and contact you within 24 business hours.
-          </p>
-          <Link href="/" className="inline-block px-10 py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-teal-600 transition-all">
-            Return to Home
-          </Link>
-        </RevealOnScroll>
-      </div>
-    );
-  }
-
   return (
-    <div className="flex flex-col min-h-screen bg-white pt-20">
-      {/* Background Decor */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-teal-50 rounded-full blur-[120px] opacity-60"></div>
-        <div className="absolute top-1/2 -right-48 w-[600px] h-[600px] bg-slate-50 rounded-full blur-[160px] opacity-40"></div>
-      </div>
-
-      <section className="relative z-10 py-16">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row gap-20">
-            {/* Left Content */}
-            <RevealOnScroll direction="left" className="flex-1 space-y-10">
-              <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-xs uppercase tracking-widest">
-                Manufacturing Inquiry
-              </div>
-              <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-none tracking-tighter uppercase">
-                Get a <span className="text-teal-600">Technical</span> <br />
-                Proposal.
-              </h1>
-              <p className="text-xl text-slate-700 font-bold leading-relaxed max-w-lg">
-                Fill out the form to request a detailed manufacturing quote, MOQ analysis, and technical feasibility report.
-              </p>
-
-              <div className="space-y-8 pt-6">
-                {[
-                  { icon: ShieldCheck, title: "Confidentiality Guaranteed", desc: "All formulation data is protected under NDA." },
-                  { icon: Package, title: "MOQ Flexibility", desc: "Solutions for both pilot batches and large-scale runs." },
-                  { icon: Layers, title: "End-to-End Support", desc: "From lab testing to final packaging design." }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-start space-x-5">
-                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-slate-100 shrink-0">
-                      <item.icon className="w-6 h-6 text-teal-600" />
-                    </div>
-                    <div className="space-y-1">
-                      <h4 className="text-lg font-black text-slate-900 uppercase tracking-tight">{item.title}</h4>
-                      <p className="text-slate-500 font-bold text-sm leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </RevealOnScroll>
-
-            {/* Quote Form */}
-            <RevealOnScroll direction="right" className="flex-1">
-              <div className="bg-white rounded-[48px] p-8 md:p-12 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-slate-100">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Full Name</label>
-                      <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input 
-                          required
-                          type="text" 
-                          placeholder="John Doe"
-                          className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold text-slate-900 placeholder:text-slate-300"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Email Address</label>
-                      <div className="relative">
-                        <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input 
-                          required
-                          type="email" 
-                          placeholder="john@company.com"
-                          className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold text-slate-900 placeholder:text-slate-300"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Phone Number</label>
-                      <div className="relative">
-                        <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input 
-                          required
-                          type="tel" 
-                          placeholder="+91-0000000000"
-                          className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold text-slate-900 placeholder:text-slate-300"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Company Name</label>
-                      <div className="relative">
-                        <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                        <input 
-                          type="text" 
-                          placeholder="HealthCare Ltd."
-                          className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold text-slate-900 placeholder:text-slate-300"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Interested Product Segment</label>
-                    <select className="w-full px-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold text-slate-900 appearance-none">
-                      <option>Pharmaceutical Formulations</option>
-                      <option>Herbal & Ayurvedic</option>
-                      <option>Nutraceuticals</option>
-                      <option>Cosmeceuticals</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 px-1">Message / Technical Requirements</label>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-4 top-5 w-4 h-4 text-slate-400" />
-                      <textarea 
-                        rows={4}
-                        placeholder="Describe your formulation, required dosage form, and estimated monthly volume..."
-                        className="w-full pl-12 pr-6 py-4 bg-slate-50 border border-slate-100 rounded-2xl focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all font-bold text-slate-900 placeholder:text-slate-300 resize-none"
-                      ></textarea>
-                    </div>
-                  </div>
-
-                  <button 
-                    type="submit"
-                    className="w-full py-5 bg-teal-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-slate-900 transition-all shadow-xl hover:-translate-y-1 active:scale-95 flex items-center justify-center space-x-3 group"
-                  >
-                    <span>Submit Inquiry</span>
-                    <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
-                </form>
-              </div>
-            </RevealOnScroll>
-          </div>
+    <div className="flex flex-col min-h-screen bg-slate-50 pt-20">
+      {/* Hero Section */}
+      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-slate-950 text-white">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/banner.webp" 
+            alt="Contact Us" 
+            fill 
+            className="object-cover opacity-20"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <RevealOnScroll className="max-w-3xl space-y-6">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
+              Get A <span className="text-teal-400">Quote.</span>
+            </h1>
+            <p className="text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
+              Ready to start your brand? Fill out the form below and our experts will get back to you within 24 hours.
+            </p>
+          </RevealOnScroll>
         </div>
       </section>
 
-      {/* Footer Info */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-400 font-bold text-sm uppercase tracking-widest">
-            Average Response Time: <span className="text-teal-600">Less than 24 Hours</span>
-          </p>
+      {/* Main Content Grid */}
+      <section className="py-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col lg:flex-row gap-16">
+            
+            {/* Form Section */}
+            <div className="flex-[1.5]">
+              <RevealOnScroll className="bg-white rounded-[48px] p-8 md:p-16 shadow-2xl border border-slate-100">
+                <form className="space-y-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Your Name</label>
+                      <input type="text" placeholder="Full Name" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Brand Name</label>
+                      <input type="text" placeholder="Company / Brand" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Phone Number</label>
+                      <input type="tel" placeholder="+91" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Email Address</label>
+                      <input type="email" placeholder="example@email.com" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Product Type</label>
+                      <select className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold appearance-none">
+                        <option>Skincare</option>
+                        <option>Haircare</option>
+                        <option>Herbal</option>
+                        <option>Men's Grooming</option>
+                        <option>Custom Formulation</option>
+                      </select>
+                    </div>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Expected Quantity</label>
+                      <input type="number" placeholder="MOQ (e.g. 5000)" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Message / Requirements</label>
+                    <textarea rows={5} placeholder="Describe your brand vision..." className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold resize-none"></textarea>
+                  </div>
+
+                  <button className="w-full py-6 bg-slate-950 text-white rounded-[24px] font-black text-xs uppercase tracking-[0.3em] hover:bg-teal-600 transition-all shadow-2xl flex items-center justify-center space-x-3">
+                    <span>Submit Requirement</span>
+                    <Send className="w-4 h-4" />
+                  </button>
+                </form>
+              </RevealOnScroll>
+            </div>
+
+            {/* Contact Info Sidebar */}
+            <div className="flex-1 space-y-10">
+              <RevealOnScroll className="bg-slate-900 rounded-[48px] p-10 text-white space-y-12">
+                <h3 className="text-3xl font-black uppercase tracking-tighter">Contact <span className="text-teal-400">Details.</span></h3>
+                
+                <div className="space-y-8">
+                   <div className="flex items-start space-x-6 group cursor-pointer">
+                      <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                        <Phone className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Call Us</p>
+                        <p className="font-bold text-lg">+91-8826862154</p>
+                      </div>
+                   </div>
+
+                   <div className="flex items-start space-x-6 group cursor-pointer">
+                      <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                        <Mail className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Email Us</p>
+                        <p className="font-bold text-lg">sales@drexpert.com</p>
+                      </div>
+                   </div>
+
+                   <div className="flex items-start space-x-6 group cursor-pointer">
+                      <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                        <MapPin className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Visit Factory</p>
+                        <p className="font-bold text-lg leading-tight">Noida, Uttar Pradesh, <br />India</p>
+                      </div>
+                   </div>
+                </div>
+
+                <div className="pt-8 border-t border-white/10 space-y-6">
+                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Live Support</p>
+                   <Link href="https://wa.me/918826862154" className="flex items-center justify-between p-6 bg-teal-600 rounded-[32px] group hover:bg-white hover:text-slate-950 transition-all">
+                      <div className="flex items-center space-x-4">
+                        <MessageSquare className="w-6 h-6" />
+                        <span className="font-black uppercase tracking-widest text-sm">WhatsApp Chat</span>
+                      </div>
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                   </Link>
+                </div>
+              </RevealOnScroll>
+
+              <RevealOnScroll direction="up" className="bg-white rounded-[40px] p-10 border border-slate-100 flex items-center space-x-6">
+                 <div className="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-teal-600">
+                    <Clock className="w-8 h-8" />
+                 </div>
+                 <div>
+                    <p className="font-black text-slate-900 uppercase tracking-tight">Business Hours</p>
+                    <p className="text-slate-500 font-bold text-sm uppercase">Mon - Sat: 9:00 AM - 6:00 PM</p>
+                 </div>
+              </RevealOnScroll>
+            </div>
+
+          </div>
         </div>
       </section>
     </div>

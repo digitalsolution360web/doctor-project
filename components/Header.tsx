@@ -20,9 +20,11 @@ const Header = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Services", href: "/services" },
-    { name: "Textures", href: "/textures" },
-    { name: "Our Lab", href: "/lab" },
+    { name: "Categories", href: "/categories" },
+    { name: "Infrastructure", href: "/infrastructure" },
+    { name: "R&D Lab", href: "/lab" },
     { name: "Certifications", href: "/certifications" },
+    { name: "Blog", href: "/blog" },
     { name: "About Us", href: "/about" },
   ];
 
@@ -42,7 +44,7 @@ const Header = () => {
               <div className="w-6 h-6 rounded-full bg-teal-500/10 flex items-center justify-center mr-2 group-hover:bg-teal-500 transition-colors">
                 <Mail className="w-3 h-3 text-teal-400 group-hover:text-white" />
               </div>
-              sales@drexpertformulation.com
+              sales@midfloraherbal.com
             </a>
           </div>
           <div className="flex items-center opacity-90">
@@ -66,7 +68,7 @@ const Header = () => {
               <div className="relative h-14 w-56 transition-transform group-hover:scale-105 duration-500">
                 <Image
                   src="/logo.webp"
-                  alt="Dr Expert Formulation Logo"
+                  alt="Midflora Herbal Logo"
                   fill
                   className="object-contain"
                   priority
@@ -76,16 +78,16 @@ const Header = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center space-x-2">
+            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-6 py-3 font-black text-[15px] uppercase tracking-tighter transition-all relative group ${scrolled ? "text-slate-950" : "text-black"
+                  className={`px-3 py-3 font-black text-[13px] xl:text-[14px] uppercase tracking-tighter whitespace-nowrap transition-all relative group ${scrolled ? "text-slate-950" : "text-black"
                     }`}
                 >
                   {link.name}
-                  <span className="absolute bottom-1 left-6 right-6 h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+                  <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
                 </Link>
               ))}
             </nav>
@@ -152,7 +154,7 @@ const Header = () => {
                     <Phone className="w-4 h-4 mr-3 text-teal-500" /> +91-8826862154
                   </p>
                   <p className="flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
-                    <Mail className="w-4 h-4 mr-3 text-teal-500" /> sales@drexpert.com
+                    <Mail className="w-4 h-4 mr-3 text-teal-500" /> info@midfloraherbal.com
                   </p>
                 </div>
               </div>
