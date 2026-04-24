@@ -5,12 +5,18 @@ import Link from "next/link";
 import { CheckCircle, ArrowRight, ShieldCheck, Zap, Users, Microscope, Trophy, Globe, ChevronRight } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 
-const Counter = ({ end, duration = 2000, suffix = "" }) => {
+interface CounterProps {
+  end: number;
+  duration?: number;
+  suffix?: string;
+}
+
+const Counter: React.FC<CounterProps> = ({ end, duration = 2000, suffix = "" }) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    let startTimestamp = null;
-    const step = (timestamp) => {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       setCount(Math.floor(progress * end));
@@ -24,13 +30,20 @@ const Counter = ({ end, duration = 2000, suffix = "" }) => {
   return <span>{count}{suffix}</span>;
 };
 
-const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
+interface RevealOnScrollProps {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "left" | "right";
+  style?: React.CSSProperties;
+}
+
+const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "", direction = "up", style }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      ([entry]: IntersectionObserverEntry[]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.unobserve(entry.target);
@@ -57,7 +70,7 @@ const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
     : "opacity-0";
 
   return (
-    <div ref={ref} className={`${className} ${animationClass}`}>
+    <div ref={ref} className={`${className} ${animationClass}`} style={style}>
       {children}
     </div>
   );

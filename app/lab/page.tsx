@@ -15,13 +15,20 @@ import {
   ArrowRight
 } from "lucide-react";
 
-const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
+interface RevealOnScrollProps {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "left" | "right";
+  style?: React.CSSProperties;
+}
+
+const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "", direction = "up", style }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      ([entry]: IntersectionObserverEntry[]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.unobserve(entry.target);
@@ -48,7 +55,7 @@ const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
     : "opacity-0";
 
   return (
-    <div ref={ref} className={`${className} ${animationClass}`}>
+    <div ref={ref} className={`${className} ${animationClass}`} style={style}>
       {children}
     </div>
   );

@@ -17,13 +17,19 @@ import {
   ShieldCheck
 } from "lucide-react";
 
-const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
+interface RevealOnScrollProps {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "left" | "right";
+}
+
+const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "", direction = "up" }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      ([entry]: IntersectionObserverEntry[]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.unobserve(entry.target);
@@ -59,7 +65,7 @@ const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
 export default function QuotePage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitted(true);
   };

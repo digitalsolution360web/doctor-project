@@ -70,6 +70,7 @@ const Header = () => {
                   fill
                   className="object-contain"
                   priority
+                  sizes="(max-width: 768px) 100vw, 224px"
                 />
               </div>
             </Link>

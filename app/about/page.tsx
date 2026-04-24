@@ -15,13 +15,20 @@ import {
   ShieldCheck
 } from "lucide-react";
 
-const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
+interface RevealOnScrollProps {
+  children: React.ReactNode;
+  className?: string;
+  direction?: "up" | "left" | "right";
+  style?: React.CSSProperties;
+}
+
+const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "", direction = "up", style }) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
+      ([entry]: IntersectionObserverEntry[]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           observer.unobserve(entry.target);
@@ -48,7 +55,7 @@ const RevealOnScroll = ({ children, className = "", direction = "up" }) => {
     : "opacity-0";
 
   return (
-    <div ref={ref} className={`${className} ${animationClass}`}>
+    <div ref={ref} className={`${className} ${animationClass}`} style={style}>
       {children}
     </div>
   );
@@ -96,7 +103,7 @@ export default function AboutPage() {
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-10">
             <div className="relative h-20 w-80 mx-auto mb-12">
-              <Image src="/logo.webp" alt="Logo" fill className="object-contain" />
+              <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority sizes="(max-width: 768px) 100vw, 320px" />
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-none tracking-tighter uppercase">
               Pioneering <span className="text-teal-600">Health</span> <br /> Since 2004.
