@@ -63,19 +63,19 @@ export default function InfrastructurePage() {
   const facilityFeatures = [
     {
       title: "Advanced Machinery",
-      desc: "High-speed automated production lines including vacuum emulsifiers, tube filling machines, and multi-track sachet packing units.",
+      desc: "Our facility is equipped with state-of-the-art automated machinery, including vacuum emulsifiers, high-speed tube filling, and multi-track packaging units for precision manufacturing.",
       icon: Settings,
       image: "/8.webp"
     },
     {
       title: "Production Capacity",
-      desc: "Scaling your brand from small batches to millions of units per month with zero compromise on precision.",
+      desc: "We boast a massive production capacity, capable of scaling from small startup batches to large-scale millions of units per month with consistent quality and fast turnaround.",
       icon: Zap,
       image: "/9.webp"
     },
     {
       title: "Hygiene Standards",
-      desc: "ISO & GMP certified cleanrooms with HEPA filtration and strict sanitation protocols to ensure zero-contamination environments.",
+      desc: "Maintaining strict hygiene standards is our priority. Our facility features ISO Class cleanrooms with HEPA filtration and rigorous sanitation protocols to ensure zero-contamination.",
       icon: ShieldCheck,
       image: "/10.webp"
     }
@@ -90,6 +90,7 @@ export default function InfrastructurePage() {
             src="/banner.webp" 
             alt="Factory Infrastructure" 
             fill 
+            sizes="100vw"
             className="object-cover opacity-20"
             priority
           />
@@ -119,7 +120,7 @@ export default function InfrastructurePage() {
             {facilityFeatures.map((f, i) => (
               <RevealOnScroll key={i} className="group">
                 <div className="relative aspect-square rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100">
-                  <Image src={f.image} alt={f.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <Image src={f.image} alt={f.title} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
                   <div className="absolute bottom-8 left-8">
                     <f.icon className="w-10 h-10 text-white" />
@@ -184,7 +185,7 @@ export default function InfrastructurePage() {
             
             <RevealOnScroll direction="right" className="flex-1 relative">
               <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl">
-                <Image src="/logo.webp" alt="Hygiene Process" fill className="object-contain bg-slate-50 p-20 opacity-20" />
+                <Image src="/logo.webp" alt="Hygiene Process" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain bg-slate-50 p-20 opacity-20" />
                 <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                    <div className="bg-white/90 backdrop-blur-md p-10 rounded-[40px] border border-white shadow-2xl text-center space-y-4">

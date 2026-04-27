@@ -66,37 +66,37 @@ export default function CertificationsPage() {
     {
       title: "ISO 22716:2007",
       body: "Cosmetic GMP Standard",
-      desc: "The international standard for Good Manufacturing Practices (GMP) specifically for the cosmetics industry, ensuring safety and quality through all stages.",
+      desc: "The premier international standard for Good Manufacturing Practices (GMP) specifically for the cosmetics industry. It provides guidance for production, control, storage, and shipment, ensuring that Midflora products are manufactured to the highest safety and quality benchmarks.",
       icon: Award
     },
     {
-      title: "GMP Certified",
+      title: "WHO-GMP Certified",
       body: "Good Manufacturing Practices",
-      desc: "Our production facility strictly adheres to GMP guidelines, ensuring that products are consistently produced and controlled according to quality standards.",
+      desc: "Our production facility strictly adheres to WHO-GMP guidelines. This certification ensures that our products are consistently produced and controlled according to quality standards appropriate for their intended use and as required by the regulatory authorities.",
       icon: ShieldCheck
     },
     {
       title: "ISO 9001:2015",
       body: "Quality Management System",
-      desc: "Certification for our ability to consistently provide products that meet customer and applicable statutory and regulatory requirements.",
+      desc: "This certification demonstrates our ability to consistently provide products and services that meet customer and applicable statutory and regulatory requirements. It focuses on enhancing customer satisfaction through effective application of the system.",
       icon: Medal
     },
     {
       title: "Dermatologically Tested",
-      body: "Safety First Excellence",
-      desc: "We follow rigorous clinical protocols to ensure every formulation is safe for skin and meets international safety benchmarks.",
+      body: "Consumer Safety Excellence",
+      desc: "Every formulation we develop undergoes rigorous clinical testing and dermatological evaluation. We ensure that our products are non-irritating, safe for skin, and meet the highest international safety standards for consumer health.",
       icon: CheckCircle2
     },
     {
       title: "HALAL Certified",
-      body: "Ethical Manufacturing",
-      desc: "Compliance with Halal standards, ensuring that our ingredients and manufacturing processes are ethically and religiously compliant.",
+      body: "Ethical Manufacturing Standards",
+      desc: "We maintain compliance with Halal standards, ensuring that our raw materials, ingredients, and entire manufacturing process are ethically sourced and religiously compliant, opening your brand to a global audience.",
       icon: Globe
     },
     {
       title: "FDA Compliant",
-      body: "Regulatory Authority",
-      desc: "Our formulations and facility maintain strict compliance with FDA guidelines for cosmetic manufacturing and labeling.",
+      body: "Strict Regulatory Adherence",
+      desc: "Midflora Herbal maintains strict compliance with FDA guidelines for cosmetic manufacturing. From labeling requirements to ingredient safety, we ensure your products are fully compliant with the latest global regulatory frameworks.",
       icon: FileCheck
     }
   ];

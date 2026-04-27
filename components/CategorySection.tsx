@@ -41,7 +41,7 @@ const categories: Category[] = [
     img: "/6.webp"
   },
   { 
-    title: "Herbal Range", 
+    title: "Herbal Products", 
     items: "Natural Formulations", 
     icon: Sprout, 
     img: "/7.webp"
@@ -51,12 +51,6 @@ const categories: Category[] = [
     items: "Beard Oils, Face Wash", 
     icon: Users, 
     img: "/10.webp"
-  },
-  { 
-    title: "Color Cosmetics", 
-    items: "Lipsticks, Foundations", 
-    icon: Palette, 
-    img: "/8.webp"
   }
 ];
 
@@ -115,99 +109,102 @@ const CategorySection = () => {
   };
 
   return (
-    <section id="categories" className="py-24 bg-white relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 px-4">
-          <div className="max-w-2xl">
-            <h3 className="text-4xl md:text-[56px] font-black text-slate-900 tracking-tight leading-tight mb-4">
-              Premium Product <br />
-              <span className="text-teal-600">Categories</span>
+    <section id="categories" className="py-16 bg-slate-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-xs font-black text-teal-600 tracking-[0.3em] uppercase mb-4">Our Expertise</h2>
+            <h3 className="text-4xl md:text-[56px] font-black text-slate-900 tracking-tight leading-tight">
+              Premium Product <br className="hidden md:block" />
+              <span className="text-slate-400">Categories</span>
             </h3>
-            <p className="text-slate-500 text-lg font-medium">Explore our specialized range of cosmetic formulations.</p>
           </div>
-          
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={() => scroll("left")}
-              disabled={!canScrollLeft}
-              className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${
-                canScrollLeft 
-                ? "bg-white border-slate-200 text-slate-900 hover:bg-teal-600 hover:text-white shadow-lg" 
-                : "bg-slate-50 text-slate-300 cursor-not-allowed"
-              }`}
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-            <button 
-              onClick={() => scroll("right")}
-              disabled={!canScrollRight}
-              className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all ${
-                canScrollRight 
-                ? "bg-white border-slate-200 text-slate-900 hover:bg-teal-600 hover:text-white shadow-lg" 
-                : "bg-slate-50 text-slate-300 cursor-not-allowed"
-              }`}
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
 
-        {/* Professional Category Slider */}
-        <div 
-          ref={scrollRef}
-          className="flex overflow-x-auto gap-8 pb-16 no-scrollbar snap-x snap-mandatory"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {categories.map((cat, i) => (
-            <div 
-              key={i} 
-              className="group relative min-w-[300px] md:min-w-[380px] shrink-0 snap-start"
-            >
-              {/* Category Image */}
-              <div className="relative aspect-[4/3] rounded-[40px] overflow-hidden shadow-xl z-0">
-                <Image 
-                  src={cat.img} 
-                  alt={cat.title} 
-                  fill
-                  sizes="(max-width: 768px) 100vw, 400px"
-                  className="object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
-              </div>
+          {/* Professional Category Slider */}
+          <div 
+            ref={scrollRef}
+            className="flex overflow-x-auto gap-8 pb-10 no-scrollbar snap-x snap-mandatory px-4"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            {categories.map((cat, i) => (
+              <div 
+                key={i} 
+                className="group relative min-w-[300px] md:min-w-[380px] shrink-0 snap-start bg-white rounded-[48px] shadow-[0_15px_60px_-20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(20,184,166,0.15)] hover:border-teal-100 mb-10 cursor-pointer"
+              >
+                {/* Image Container (Top) */}
+                <div className="relative h-[280px] overflow-hidden">
+                  <Image 
+                    src={cat.img} 
+                    alt={cat.title} 
+                    fill
+                    sizes="(max-width: 768px) 100vw, 400px"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-700"></div>
+                  
+                  {/* Category Title Overlay */}
+                  <div className="absolute top-8 left-8">
+                     <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
+                        <cat.icon className="w-6 h-6" />
+                     </div>
+                  </div>
+                </div>
 
-              {/* Overlapping Icon */}
-              <div className="absolute left-1/2 -translate-x-1/2 bottom-[140px] w-16 h-16 rounded-2xl bg-white shadow-2xl flex items-center justify-center z-20 group-hover:-translate-y-2 transition-transform duration-500">
-                <div className="w-12 h-12 rounded-xl bg-slate-950 flex items-center justify-center text-white group-hover:bg-teal-600 transition-colors">
-                  <cat.icon className="w-6 h-6" />
+                {/* Category Details */}
+                <div className="px-10 pt-10 pb-12">
+                  <h4 className="text-3xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">
+                    {cat.title}
+                  </h4>
+                  <p className="text-slate-500 text-[11px] font-black uppercase tracking-[0.2em] mb-8 opacity-60">
+                    {cat.items}
+                  </p>
+                  
+                  <Link 
+                    href={`/category/${cat.title.toLowerCase()}`}
+                    className="w-full py-5 bg-slate-950 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest flex items-center justify-center group-hover:bg-teal-600 transition-all shadow-xl shadow-slate-900/10"
+                  >
+                    View Range 
+                    <ArrowRight className="ml-2 w-3.5 h-3.5 group-hover:translate-x-2 transition-transform" />
+                  </Link>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Category Details */}
-              <div className="mt-[-60px] relative z-10 bg-white rounded-[40px] p-8 pt-16 text-center border border-slate-50 shadow-[0_20px_40px_-20px_rgba(0,0,0,0.1)] transition-all mx-4">
-                <h4 className="text-2xl font-black text-slate-900 mb-2">{cat.title}</h4>
-                <p className="text-slate-500 text-sm font-bold mb-8">{cat.items}</p>
-                <Link 
-                  href={`/category/${cat.title.toLowerCase()}`}
-                  className="inline-flex items-center text-xs font-black text-teal-600 tracking-widest group/link"
-                >
-                  Read More 
-                  <span className="mx-3 w-10 h-[2px] bg-teal-600 group-hover/link:w-14 transition-all"></span>
-                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
-                </Link>
-              </div>
+          {/* Navigation Arrows at Bottom Center */}
+          <div className="flex flex-col items-center justify-center gap-8 mt-12">
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => scroll("left")}
+                className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
+              >
+                <ArrowLeft className="w-6 h-6" />
+              </button>
+              <button 
+                onClick={() => scroll("right")}
+                className="w-14 h-14 rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
+              >
+                <ArrowRight className="w-6 h-6" />
+              </button>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <style jsx global>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+            <Link 
+              href="/categories"
+              className="px-10 py-4 bg-teal-600 text-white rounded-full font-black text-sm tracking-widest hover:bg-slate-950 transition-all shadow-xl shadow-teal-600/20 uppercase"
+            >
+              View All Products
+            </Link>
+          </div>
+        </div>
+
+        <style jsx global>{`
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
     </section>
   );
 };

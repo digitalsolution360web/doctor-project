@@ -5,6 +5,14 @@ import { Star, Quote, ChevronLeft, ChevronRight, CheckCircle2 } from "lucide-rea
 
 const testimonials = [
   {
+    name: "Sunita Kapoor",
+    role: "Founder, Bloom Cosmetics",
+    content: "Midflora helped us launch our skincare brand in just 45 days. Their efficiency and quality are truly impressive.",
+    rating: 5,
+    initials: "SK",
+    color: "bg-[#A3E635] text-slate-900"
+  },
+  {
     name: "Aman Sharma",
     role: "Founder, Glow & Co",
     content: "The quality of formulations and the speed of manufacturing is simply unmatched. They helped us scale our brand from 100 to 10,000 units seamlessly.",
@@ -47,13 +55,13 @@ const TestimonialsSection = () => {
   }, [nextSlide]);
 
   return (
-    <section className="py-16 bg-[#fafafa] relative overflow-hidden">
+    <section className="py-12 bg-[#fafafa] relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 opacity-40"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 font-bold text-xs tracking-widest mb-4">
+        <div className="text-center max-w-3xl mx-auto mb-8">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 font-bold text-xs tracking-widest mb-3">
             <Star className="w-3.5 h-3.5 mr-2 fill-teal-600" />
             Client Success Stories
           </div>
@@ -70,7 +78,7 @@ const TestimonialsSection = () => {
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {testimonials.map((t, i) => (
-                <div key={i} className="w-full shrink-0 p-8 lg:p-16">
+                <div key={i} className="w-full shrink-0 p-6 lg:p-10">
                   <div className="flex flex-col lg:flex-row items-center gap-12">
                     {/* Left Side: Avatar & Info */}
                     <div className="lg:w-1/3 flex flex-col items-center text-center">

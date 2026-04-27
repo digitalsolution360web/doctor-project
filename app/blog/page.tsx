@@ -62,21 +62,21 @@ export default function BlogPage() {
   const posts = [
     {
       title: "How to Start a Cosmetic Brand in India",
-      excerpt: "A comprehensive guide on legal requirements, formulation, and manufacturing for your beauty brand launch.",
+      excerpt: "A step-by-step roadmap for entrepreneurs looking to launch a successful skincare or haircare brand. Learn about legal requirements, formulations, and choosing the right manufacturing partner.",
       image: "/8.webp",
       date: "April 20, 2026",
       category: "Business Guide"
     },
     {
       title: "Top Trending Skincare Ingredients for 2026",
-      excerpt: "Explore the power of Niacinamide, Peptides, and botanical extracts that are dominating the skincare market.",
+      excerpt: "Discover the high-demand ingredients driving consumer interest this year. From Niacinamide and Kojic Acid to Botanical Extracts, learn what formulations are winning the market.",
       image: "/3.webp",
       date: "April 15, 2026",
       category: "Ingredients"
     },
     {
       title: "Private Label vs Custom Manufacturing",
-      excerpt: "Choosing the right path for your brand: Quick launch or unique exclusivity? We break down the differences.",
+      excerpt: "Not sure which path to choose? We break down the pros and cons of Private Labeling for speed-to-market versus Custom Formulations for unique brand exclusivity.",
       image: "/9.webp",
       date: "April 10, 2026",
       category: "Manufacturing"
@@ -92,6 +92,7 @@ export default function BlogPage() {
             src="/banner.webp" 
             alt="Blog & Resources" 
             fill 
+            sizes="100vw"
             className="object-cover opacity-20"
             priority
           />
@@ -117,7 +118,7 @@ export default function BlogPage() {
             {posts.map((post, i) => (
               <RevealOnScroll key={i} className="group cursor-pointer">
                 <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100">
-                  <Image src={post.image} alt={post.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                  <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute top-6 left-6 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
                      <span className="text-white font-black text-[10px] uppercase tracking-widest">{post.category}</span>
                   </div>

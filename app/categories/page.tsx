@@ -56,6 +56,9 @@ interface CategoryCard {
   description?: string;
   count?: number;
   image?: string;
+  benefits?: string[];
+  ingredients?: string[];
+  moq?: string;
 }
 
 interface CategorySection {
@@ -71,12 +74,30 @@ const categoriesData: CategorySection[] = [
     title: "Skincare",
     description: "Premium skincare formulations including serums, creams, gels, and face washes designed for various skin types and concerns.",
     cards: [
-      { title: "Skin Care Range", description: "Premium formulations for comprehensive skin care solutions", count: 43, image: "/cate.webp" },
-      { title: "Anti Aging", description: "Advanced formulations to combat signs of aging", count: 18, image: "/cate1.webp" },
-      { title: "Body Butter", description: "Rich, nourishing body butters for deep hydration", count: 8, image: "/cate2.webp" },
-      { title: "Facial Care", description: "Specialized facial treatments and serums", count: 31, image: "/cate3.webp" },
-      { title: "Makeup & Beauty Care", description: "Premium Makeup & Beauty Care products for professional and retail use", count: 37, image: "/cate4.webp" },
-      { title: "Foot Care", description: "Premium Foot Care products for professional and retail use", count: 7, image: "/cate5.webp" },
+      { 
+        title: "Advanced Face Serums", 
+        description: "High-performance serums with rapid absorption.", 
+        image: "/cate.webp",
+        benefits: ["Deep Hydration", "Brightening", "Anti-Aging"],
+        ingredients: ["Niacinamide", "Hyaluronic Acid", "Vitamin C"],
+        moq: "500 Units"
+      },
+      { 
+        title: "Herbal Face Wash", 
+        description: "Gentle cleansing with botanical extracts.", 
+        image: "/cate3.webp",
+        benefits: ["pH Balanced", "Deep Cleansing", "Non-Drying"],
+        ingredients: ["Aloe Vera", "Neem", "Tea Tree Oil"],
+        moq: "1000 Units"
+      },
+      { 
+        title: "Moisturizing Creams", 
+        description: "Rich textures for all-day skin nourishment.", 
+        image: "/cate1.webp",
+        benefits: ["24h Moisture", "Barrier Repair", "Skin Softening"],
+        ingredients: ["Ceramides", "Shea Butter", "Kojic Acid"],
+        moq: "500 Units"
+      },
     ],
     buttonText: "View All Skincare"
   },
@@ -84,45 +105,24 @@ const categoriesData: CategorySection[] = [
     title: "Haircare",
     description: "Professional haircare products including shampoos, conditioners, hair oils, and treatment serums for healthy, beautiful hair.",
     cards: [
-      { title: "Hair Care Range", description: "Professional hair care products for all hair types", count: 38 },
-      { title: "Shampoo", description: "Cleansing shampoos for healthy hair", count: 31, image: "/cate6.webp" },
-      { title: "Conditioner", description: "Nourishing conditioners for smooth, manageable hair", count: 21 },
-      { title: "Hair Serum", description: "Intensive hair serums for repair and shine", count: 8 },
+      { 
+        title: "Onion Hair Oil", 
+        description: "Natural hair growth and strength formula.", 
+        image: "/cate6.webp",
+        benefits: ["Hair Growth", "Dandruff Control", "Root Strength"],
+        ingredients: ["Red Onion Oil", "Bhringraj", "Black Seed"],
+        moq: "1000 Units"
+      },
+      { 
+        title: "Biotin Shampoo", 
+        description: "Volumizing treatment for thinning hair.", 
+        image: "/cate2.webp",
+        benefits: ["Volume Boost", "Scalp Health", "Shine Enhancement"],
+        ingredients: ["Biotin", "Argan Oil", "Keratin"],
+        moq: "1000 Units"
+      },
     ],
     buttonText: "View All Haircare"
-  },
-  {
-    title: "Personal Care",
-    description: "Essential personal care products including deodorants, intimate care, and daily hygiene solutions.",
-    cards: [
-      { title: "Lip Care", description: "Nourishing lip balms and treatments", count: 8, image: "/cate7.webp" },
-      { title: "Intimate Care", description: "Premium Intimate Care products for professional and retail use", count: 14 },
-      { title: "Oral Care", description: "Premium Oral Care products for professional and retail use", count: 16 },
-      { title: "Hygiene", description: "Premium Hygiene products for professional and retail use", count: 28 },
-    ],
-    buttonText: "View All Personal Care"
-  },
-  {
-    title: "Men's Grooming",
-    description: "Specialized grooming products for men including beard oils, shaving care, face washes, and styling products.",
-    isProductSection: true,
-    cards: [
-      { title: "Beard Balm", image: "/cate8.webp" },
-      { title: "Beard Cream", image: "/cate9.webp" },
-      { title: "Beard Oil", image: "/cate10.webp" },
-    ],
-    buttonText: "View All Men's Grooming"
-  },
-  {
-    title: "Baby Care",
-    description: "Premium Baby Care products for professional and retail use",
-    isProductSection: true,
-    cards: [
-      { title: "Anti Itch Baby Lotion", image: "/cate11.webp" },
-      { title: "Baby Balm", image: "/cate12.webp" },
-      { title: "Baby Barrier Cream", image: "/cate13.webp" },
-    ],
-    buttonText: "View All Baby Care"
   }
 ];
 
@@ -162,67 +162,71 @@ export default function CategoriesPage() {
               </div>
             </RevealOnScroll>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {section.cards.map((card: CategoryCard, cardIdx) => (
                 <RevealOnScroll key={cardIdx} delay={cardIdx * 100}>
-                  {section.isProductSection ? (
-                    <div className="bg-white rounded-[24px] border border-slate-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden group hover:shadow-[0_20px_40px_rgb(20,184,166,0.08)] hover:border-teal-100 transition-all duration-500 flex flex-col h-full cursor-pointer relative top-0 hover:-top-2">
-                      <div className="p-8 flex-1 flex items-center justify-center bg-white">
-                        {card.image ? (
-                          <div className="relative w-full aspect-square max-w-[220px] mx-auto">
+                  <Link 
+                    href={`/product/${card.title.toLowerCase().replace(/ /g, "-")}`}
+                    className="bg-white rounded-[48px] border border-slate-100 shadow-[0_2px_15px_rgb(0,0,0,0.02)] p-8 flex flex-col h-full hover:shadow-[0_30px_60px_rgb(20,184,166,0.1)] hover:border-teal-100 transition-all duration-700 group cursor-pointer relative top-0 hover:-top-3 block"
+                  >
+                        {card.image && (
+                          <div className="relative w-full aspect-square rounded-[32px] overflow-hidden mb-8 bg-slate-50 flex items-center justify-center p-8">
                             <Image 
                               src={card.image} 
                               alt={card.title} 
-                              fill
+                              fill 
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-contain mix-blend-multiply group-hover:scale-110 transition-transform duration-700 ease-out" 
+                              className="object-contain group-hover:scale-110 transition-transform duration-1000 ease-out mix-blend-multiply" 
                             />
                           </div>
-                        ) : (
-                          <div className="w-full aspect-square max-w-[220px] mx-auto bg-slate-50 rounded-2xl"></div>
                         )}
-                      </div>
-                      <div className="p-6 bg-white flex flex-col mt-auto">
-                        <h3 className="text-sm font-bold text-slate-900">{card.title}</h3>
-                        <div className="w-full h-px bg-slate-100 my-4"></div>
-                        <span className="inline-flex items-center text-xs font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
-                          View Details <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
-                        </span>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="bg-white rounded-[24px] border border-slate-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)] p-6 flex flex-col h-full hover:shadow-[0_20px_40px_rgb(20,184,166,0.08)] hover:border-teal-100 transition-all duration-500 group cursor-pointer relative top-0 hover:-top-2">
-                      {card.image && (
-                        <div className="relative w-full aspect-[4/3] rounded-[16px] overflow-hidden mb-6 bg-slate-50">
-                          <Image 
-                            src={card.image} 
-                            alt={card.title} 
-                            fill 
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
-                          />
-                        </div>
-                      )}
+                    
+                    <div className="flex-1 flex flex-col">
+                      <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-teal-600 transition-colors tracking-tight uppercase leading-none">{card.title}</h3>
+                      <p className="text-slate-500 text-sm mb-8 leading-relaxed font-bold">{card.description}</p>
                       
-                      <div className={`flex-1 flex flex-col ${!card.image ? 'pt-4' : ''}`}>
-                        <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-teal-600 transition-colors">{card.title}</h3>
-                        {card.description && (
-                          <p className="text-slate-500 text-sm mb-6 leading-relaxed flex-1">{card.description}</p>
-                        )}
-                        
-                        <div className="mt-auto pt-4 flex flex-col gap-3">
-                          {card.count !== undefined && (
-                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                              {card.count} PRODUCTS AVAILABLE
-                            </p>
-                          )}
-                          <span className="inline-flex items-center text-xs font-bold text-slate-900 group-hover:text-teal-600 transition-colors">
-                            Explore Collection <ArrowRight className="ml-1.5 w-3.5 h-3.5" />
-                          </span>
+                      {/* Benefits & Ingredients */}
+                      <div className="grid grid-cols-2 gap-6 mb-8">
+                        <div className="space-y-3">
+                          <p className="text-[10px] font-black text-teal-600 uppercase tracking-widest">Benefits</p>
+                          <ul className="space-y-1">
+                            {card.benefits?.map((benefit, i) => (
+                              <li key={i} className="text-[11px] font-bold text-slate-700 flex items-center">
+                                <div className="w-1 h-1 bg-teal-400 rounded-full mr-2"></div>
+                                {benefit}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="space-y-3">
+                          <p className="text-[10px] font-black text-teal-600 uppercase tracking-widest">Ingredients</p>
+                          <ul className="space-y-1">
+                            {card.ingredients?.map((ing, i) => (
+                              <li key={i} className="text-[11px] font-bold text-slate-700 flex items-center">
+                                <div className="w-1 h-1 bg-teal-400 rounded-full mr-2"></div>
+                                {ing}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* MOQ Info */}
+                      <div className="p-4 bg-slate-50 rounded-2xl mb-8 flex items-center justify-between border border-slate-100">
+                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Minimum Order</span>
+                        <span className="text-xs font-black text-slate-900">{card.moq}</span>
+                      </div>
+                      
+                      <div className="mt-auto">
+                        <div 
+                          className="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest flex items-center justify-center group-hover:bg-teal-600 transition-all shadow-xl"
+                        >
+                          Customize This Product
+                          <ArrowRight className="ml-2 w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                         </div>
                       </div>
                     </div>
-                  )}
+                  </Link>
                 </RevealOnScroll>
               ))}
             </div>

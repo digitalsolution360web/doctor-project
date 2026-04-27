@@ -98,12 +98,12 @@ export default function QuotePage() {
                 <form className="space-y-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Your Name</label>
-                      <input type="text" placeholder="Full Name" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Full Name</label>
+                      <input type="text" placeholder="Your Name" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
                     </div>
                     <div className="space-y-3">
                       <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Brand Name</label>
-                      <input type="text" placeholder="Company / Brand" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <input type="text" placeholder="Your Brand / Company" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
                     </div>
                   </div>
 
@@ -122,22 +122,22 @@ export default function QuotePage() {
                     <div className="space-y-3">
                       <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Product Type</label>
                       <select className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold appearance-none">
-                        <option>Skincare</option>
-                        <option>Haircare</option>
-                        <option>Herbal</option>
+                        <option>Skincare (Serums, Face Wash)</option>
+                        <option>Haircare (Oils, Shampoos)</option>
+                        <option>Herbal Products</option>
                         <option>Men's Grooming</option>
-                        <option>Custom Formulation</option>
+                        <option>Bath & Body</option>
                       </select>
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Expected Quantity</label>
-                      <input type="number" placeholder="MOQ (e.g. 5000)" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Quantity Required</label>
+                      <input type="number" placeholder="Expected MOQ" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Message / Requirements</label>
-                    <textarea rows={5} placeholder="Describe your brand vision..." className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold resize-none"></textarea>
+                    <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Message / Brand Vision</label>
+                    <textarea rows={5} placeholder="Tell us about your product requirements..." className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold resize-none"></textarea>
                   </div>
 
                   <button className="w-full py-6 bg-slate-950 text-white rounded-[24px] font-black text-xs uppercase tracking-[0.3em] hover:bg-teal-600 transition-all shadow-2xl flex items-center justify-center space-x-3">

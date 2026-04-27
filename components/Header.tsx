@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, X, Phone, Mail, MapPin, Search, Globe } from "lucide-react";
+import { ChevronDown, Menu, X, Phone, Mail, MapPin, Search, Globe, MessageSquare } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,11 +39,11 @@ const Header = () => {
               </div>
               +91-8826862154
             </a>
-            <a href="mailto:sales@drexpertformulation.com" className="flex items-center hover:text-teal-400 transition-all opacity-90 hover:opacity-100 group">
+            <a href="mailto:info@midfloraherbal.com" className="flex items-center hover:text-teal-400 transition-all opacity-90 hover:opacity-100 group">
               <div className="w-6 h-6 rounded-full bg-teal-500/10 flex items-center justify-center mr-2 group-hover:bg-teal-500 transition-colors">
                 <Mail className="w-3 h-3 text-teal-400 group-hover:text-white" />
               </div>
-              sales@midfloraherbal.com
+              info@midfloraherbal.com
             </a>
           </div>
           <div className="flex items-center opacity-90">
@@ -92,6 +92,13 @@ const Header = () => {
 
             {/* Actions */}
             <div className="hidden lg:flex items-center space-x-5">
+              <Link 
+                href="https://wa.me/918826862154" 
+                target="_blank"
+                className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-500 shadow-sm"
+              >
+                <MessageSquare className="w-5 h-5" />
+              </Link>
               <button className="p-2 transition-colors text-slate-900 hover:text-teal-600">
                 <Search className="w-5 h-5" />
               </button>

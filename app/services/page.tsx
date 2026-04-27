@@ -89,7 +89,7 @@ export default function ServicesPage() {
       id: "custom-formulation",
       title: "Custom Formulation",
       subtitle: "Unique & Exclusive Recipes",
-      desc: "Unique formulations tailored to your brand vision. Our R&D team works closely with you to create products that stand out.",
+      desc: "Unique formulations tailored to your brand vision. Our R&D team works closely with you to create products that stand out in the competitive market.",
       image: "/3.webp",
       features: [
         { icon: Beaker, text: "Active ingredients" },
@@ -102,7 +102,7 @@ export default function ServicesPage() {
       id: "contract-manufacturing",
       title: "Contract Manufacturing",
       subtitle: "Scalable Production Excellence",
-      desc: "Large-scale production with consistent quality. Leverage our state-of-the-art facility for high-volume manufacturing needs.",
+      desc: "Large-scale production with consistent quality. Leverage our state-of-the-art facility for high-volume manufacturing needs with precision.",
       image: "/6.webp",
       features: [
         { icon: Settings, text: "Mass production" },

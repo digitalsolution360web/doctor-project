@@ -68,7 +68,8 @@ export default function RDPage() {
           <Image 
             src="/banner.webp" 
             alt="R&D Lab" 
-            fill 
+            fill
+            sizes="100vw"
             className="object-cover opacity-10 grayscale scale-110"
             priority
           />
@@ -113,7 +114,7 @@ export default function RDPage() {
             </RevealOnScroll>
             <RevealOnScroll direction="right">
               <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border border-slate-100">
-                <Image src="/8.webp" alt="In-house chemists" fill className="object-cover" />
+                <Image src="/8.webp" alt="In-house chemists" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
               </div>
             </RevealOnScroll>
           </div>
@@ -139,7 +140,7 @@ export default function RDPage() {
             </RevealOnScroll>
             <RevealOnScroll direction="left" className="lg:order-1">
               <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border border-slate-100">
-                <Image src="/3.webp" alt="Global Sourcing" fill className="object-cover" />
+                <Image src="/3.webp" alt="Global Sourcing" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
               </div>
             </RevealOnScroll>
           </div>

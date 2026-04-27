@@ -7,7 +7,7 @@ import { CheckCircle, FlaskConical, FileText } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[100svh] flex items-center pt-20 overflow-hidden bg-slate-950">
+    <section className="relative min-h-[90svh] flex items-center pt-14 overflow-hidden bg-slate-950">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -24,40 +24,29 @@ const Hero = () => {
       </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 w-full">
-        <div className="max-w-4xl animate-reveal-left mt-10 md:mt-0">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 tracking-tight">
-            India’s <span className="text-[#A3E635]">1st</span> Doctor-Led Ai <br className="hidden md:block" />
-            Cosmetic Manufacturers
+        <div className="max-w-4xl animate-reveal-left mt-6 md:mt-0">
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-3 tracking-tight">
+            India’s Trusted Third-Party <br className="hidden md:block" />
+            <span className="text-[#A3E635]">Cosmetic Manufacturer</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-[#A3E635] mb-8 font-semibold tracking-wide">
-            Trusted by 100+ D2C & FMCG Brands Globally
+          <p className="text-lg md:text-2xl text-slate-200 mb-8 font-medium tracking-wide max-w-3xl leading-snug">
+            Premium Herbal & Dermatologically Tested Products – <br className="md:hidden" />
+            <span className="text-[#A3E635]">From Concept to Market</span>
           </p>
-
-          {/* Trust Signals Badges */}
-          <div className="flex flex-wrap gap-4 mb-10">
-            {["Low Moq", "Free Sampling", "R&d Driven"].map((signal, i) => (
-              <div key={i} className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white font-bold text-[11px] md:text-xs tracking-widest backdrop-blur-md">
-                <CheckCircle className="w-4 h-4 mr-2 text-[#A3E635]" />
-                {signal}
-              </div>
-            ))}
-          </div>
 
           <div className="flex flex-col sm:flex-row gap-5">
             <Link
-              href="#formulator"
-              className="px-8 py-4 bg-white text-slate-950 rounded-xl font-bold text-sm flex items-center justify-center hover:bg-slate-200 transition-all shadow-[0_0_30_rgba(255,255,255,0.15)] hover:-translate-y-1"
+              href="#contact"
+              className="px-10 py-5 bg-[#A3E635] text-slate-950 rounded-2xl font-black text-sm tracking-widest flex items-center justify-center hover:bg-white transition-all shadow-[0_10px_40px_-10px_rgba(163,230,53,0.5)] hover:-translate-y-1"
             >
-              <FlaskConical className="mr-3 w-5 h-5" />
-              Free Ai Formulator
+              Get Free Quote
             </Link>
             <Link
-              href="#estimate"
-              className="px-8 py-4 bg-white text-slate-950 rounded-xl font-bold text-sm flex items-center justify-center hover:bg-slate-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] hover:-translate-y-1"
+              href="#categories"
+              className="px-10 py-5 bg-white text-slate-950 rounded-2xl font-black text-sm tracking-widest flex items-center justify-center hover:bg-slate-200 transition-all shadow-xl hover:-translate-y-1"
             >
-              <FileText className="mr-3 w-5 h-5" />
-              Request Estimate
+              Start Your Brand
             </Link>
           </div>
         </div>

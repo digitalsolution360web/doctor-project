@@ -1,21 +1,22 @@
 "use client";
 
 import Hero from "@/components/Hero";
+import TrustSignals from "@/components/TrustSignals";
 import ServicesSection from "@/components/ServicesSection";
 import CategorySection from "@/components/CategorySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  Zap, 
-  Microscope, 
-  Settings, 
-  Palette, 
-  Clock, 
-  Award, 
-  Heart, 
+import {
+  ArrowRight,
+  ShieldCheck,
+  Zap,
+  Microscope,
+  Settings,
+  Palette,
+  Clock,
+  Award,
+  Heart,
   Sparkles,
   Droplets,
   Wind,
@@ -56,11 +57,11 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : direction === "scale" ? "animate-scale-up"
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : direction === "scale" ? "animate-scale-up"
+          : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -74,7 +75,8 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800">
       <Hero />
-      
+      <TrustSignals />
+
       {/* Integrated Premium Services Section */}
       <RevealOnScroll>
         <ServicesSection />
@@ -86,34 +88,34 @@ export default function Home() {
       </RevealOnScroll>
 
       {/* Premium Dark Section (Why Choose Us) - Refined */}
-      <section className="py-24 lg:py-32 bg-slate-950 text-white relative overflow-hidden">
+      <section className="py-12 lg:py-16 bg-slate-950 text-white relative overflow-hidden">
         {/* Animated background glows */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-900/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#A3E635]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3"></div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <RevealOnScroll className="max-w-3xl mb-20">
-            <h2 className="text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-4 flex items-center">
+          <RevealOnScroll className="max-w-3xl mb-8">
+            <h2 className="text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-4 flex items-center uppercase">
               <span className="w-8 h-[2px] bg-[#A3E635] mr-3"></span>
-              Why Partner With Us
+              Why Choose Midflora Herbal
             </h2>
             <h3 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.1]">
-              Excellence, Speed, <br />
-              <span className="text-white/60">& Reliability.</span>
+              Where Quality Meets <br />
+              <span className="text-white/60">Affordability.</span>
             </h3>
           </RevealOnScroll>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { icon: Zap, title: "Low Moq", desc: "Perfect for startups to launch their brand with minimal initial investment." },
-              { icon: Award, title: "Premium Quality", desc: "International standard formulations at competitive pricing structures." },
+              { icon: Award, title: "Affordable Pricing", desc: "Competitive pricing structures with premium international quality standards." },
               { icon: Microscope, title: "In-house R&d Experts", desc: "Innovative formulation development led by experienced scientific professionals." },
-              { icon: Clock, title: "Fast Turnaround", desc: "Optimized production and dispatch to keep your supply chain moving." },
-              { icon: Palette, title: "Custom Branding", desc: "End-to-end professional design support for packaging that converts." },
+              { icon: Clock, title: "Fast Turnaround Time", desc: "Optimized production and dispatch to keep your supply chain moving." },
+              { icon: Palette, title: "Custom Branding Support", desc: "End-to-end professional design and branding support for packaging." },
               { icon: ShieldCheck, title: "Regulatory Compliance", desc: "Complete support for licensing, certifications, and quality audits." }
             ].map((item, i) => (
-              <RevealOnScroll key={i} className="p-10 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-500 group">
-                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-8 group-hover:bg-[#A3E635] group-hover:text-slate-900 transition-all duration-500">
+              <RevealOnScroll key={i} className="p-8 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-500 group">
+                <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#A3E635] group-hover:text-slate-900 transition-all duration-500">
                   <item.icon className="w-7 h-7" />
                 </div>
                 <h4 className="text-2xl font-bold mb-4 text-white tracking-tight">{item.title}</h4>
@@ -124,30 +126,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Elegant Manufacturing Process - Refined */}
-      <section className="py-24 lg:py-32 bg-white relative">
+      <section className="py-12 lg:py-16 bg-white relative">
         <div className="container mx-auto px-4 md:px-6">
-          <RevealOnScroll className="text-center max-w-3xl mx-auto mb-24">
-            <h2 className="text-xs font-bold text-teal-600 tracking-[0.3em] mb-4">Our Process</h2>
+          <RevealOnScroll className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-xs font-bold text-teal-600 tracking-[0.3em] mb-4 uppercase">Manufacturing Process</h2>
             <h3 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              A Systematic <span className="text-slate-400">Approach.</span>
+              Our Professional <span className="text-slate-400">Workflow.</span>
             </h3>
           </RevealOnScroll>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20 relative">
             {/* Connecting lines for desktop */}
             <div className="hidden lg:block absolute top-10 left-0 w-full h-px bg-slate-100 -z-10"></div>
-            
+
             {[
               { step: "01", title: "Requirement Analysis", desc: "Deeply understanding your brand vision, audience, and product requirements." },
               { step: "02", title: "Product Formulation", desc: "Developing innovative and stable formulations tailored to your exact specifications." },
               { step: "03", title: "Sampling & Testing", desc: "Rigorous testing of physical properties, stability, and efficacy." },
-              { step: "04", title: "Client Approval", desc: "Refining the product based on your feedback until you are completely satisfied." },
+              { step: "04", title: "Approval", desc: "Refining the product based on your feedback until you are completely satisfied." },
               { step: "05", title: "Bulk Production", desc: "State-of-the-art manufacturing facilities ensuring consistent quality at scale." },
               { step: "06", title: "Packaging & Dispatch", desc: "Final products are securely packaged and dispatched with all documentation." }
             ].map((item, i) => (
               <RevealOnScroll key={i} className="relative flex flex-col group" style={{ animationDelay: `${i * 100}ms` }}>
-                <div className="w-20 h-20 rounded-3xl bg-slate-50 text-slate-900 font-black text-2xl flex items-center justify-center mb-8 border border-slate-200 group-hover:bg-teal-600 group-hover:text-white group-hover:border-teal-600 transition-all duration-500 shadow-sm">
+                <div className="w-16 h-16 rounded-2xl bg-slate-50 text-slate-900 font-black text-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:bg-teal-600 group-hover:text-white group-hover:border-teal-600 transition-all duration-500 shadow-sm">
                   {item.step}
                 </div>
                 <h4 className="text-2xl font-bold text-slate-900 tracking-tight mb-4">{item.title}</h4>
@@ -159,14 +160,14 @@ export default function Home() {
       </section>
 
       {/* Certifications (Clean, Minimal) */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
+      <section className="py-12 bg-slate-50 border-y border-slate-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <RevealOnScroll>
-              <h3 className="text-xl font-bold text-slate-900 tracking-tight">Manufactured under strict<br/>quality standards.</h3>
+              <h3 className="text-xl font-bold text-slate-900 tracking-tight uppercase">Manufactured under strict<br />quality and safety standards.</h3>
             </RevealOnScroll>
             <RevealOnScroll className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
-              {["Iso Certified", "Gmp Approved", "Fda Compliant"].map((cert, i) => (
+              {["ISO", "GMP", "FDA"].map((cert, i) => (
                 <div key={i} className="flex items-center gap-4 group cursor-default">
                   <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform">
                     <ShieldCheck className="w-6 h-6 text-teal-600" />
@@ -189,46 +190,51 @@ export default function Home() {
         <FAQSection />
       </RevealOnScroll>
 
+      {/* Re-emphasize trust before the final CTA */}
+      <div className="bg-slate-50 py-4">
+         <TrustSignals />
+      </div>
+
       {/* Premium CTA / Contact Form - Refined */}
-      <section id="contact" className="py-24 lg:py-32 bg-slate-950 text-white relative overflow-hidden">
+      <section id="contact" className="py-12 lg:py-16 bg-slate-950 text-white relative overflow-hidden">
         {/* Dynamic background lighting */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-teal-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-[#A3E635]/5 rounded-full blur-[120px]"></div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <RevealOnScroll direction="left">
-              <h2 className="text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-6 flex items-center">
+              <h2 className="text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-6 flex items-center uppercase">
                 <span className="w-8 h-[2px] bg-[#A3E635] mr-3"></span>
                 Start Your Project
               </h2>
               <h3 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] mb-8">
                 Launch Your <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">Cosmetic Brand</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 uppercase text-6xl">Cosmetic Brand</span> <br />
                 Today.
               </h3>
               <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-md">
                 Connect with our expert formulators and business consultants to discuss your requirements and get a customized pricing plan.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <button className="group px-10 py-5 bg-white text-slate-950 rounded-2xl font-black text-sm tracking-widest hover:bg-[#A3E635] transition-all flex items-center justify-center">
+                <button className="group px-10 py-5 bg-[#A3E635] text-slate-950 rounded-2xl font-black text-sm tracking-widest hover:bg-white transition-all flex items-center justify-center">
                   Request Pricing
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="px-10 py-5 bg-transparent border border-white/20 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-white/5 transition-all text-center">
-                  Talk to an Expert
+                  Talk to Expert
                 </button>
               </div>
             </RevealOnScroll>
 
-            <RevealOnScroll direction="right" className="bg-white p-10 md:p-14 rounded-[40px] shadow-2xl relative">
-              <form className="space-y-8">
+            <RevealOnScroll direction="right" className="bg-white p-8 md:p-10 rounded-[40px] shadow-2xl relative">
+              <form className="space-y-6">
                 <div className="mb-4">
                   <h4 className="text-3xl font-black text-slate-900 tracking-tight">Project Inquiry</h4>
                   <p className="text-slate-500 text-sm font-medium mt-1">Fill the form and we'll get back to you within 24 hours.</p>
                 </div>
-                
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Full Name</label>
@@ -239,7 +245,7 @@ export default function Home() {
                     <input type="email" placeholder="john@example.com" className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all font-bold placeholder:text-slate-300" />
                   </div>
                 </div>
-                
+
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Product Category</label>
                   <div className="relative">
@@ -254,14 +260,14 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="space-y-3">
                   <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Message</label>
                   <textarea placeholder="Describe your vision..." rows={3} className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all resize-none font-bold placeholder:text-slate-300"></textarea>
                 </div>
-                
+
                 <button type="submit" className="w-full py-6 bg-slate-900 text-white rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-teal-600 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center group">
-                  Submit Requirement 
+                  Submit Requirement
                   <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
