@@ -52,7 +52,7 @@ const Footer = () => {
 
           {/* Corporate Links */}
           <div className="lg:col-span-3">
-            <h4 className="text-xs font-black mb-12 uppercase tracking-[0.4em] text-teal-500 flex items-center">
+            <h4 className="text-xs font-black mb-12 tracking-[0.4em] text-teal-500 flex items-center">
               <div className="w-2 h-2 rounded-full bg-teal-500 mr-4"></div>
               Corporate
             </h4>
@@ -63,11 +63,12 @@ const Footer = () => {
                 { name: "Research Lab", href: "/lab" },
                 { name: "Infrastructure", href: "/infrastructure" },
                 { name: "Certifications", href: "/certifications" },
-                { name: "Our Blog", href: "/blog" },
+                { name: "Blog", href: "/blog" },
+                { name: "About Us", href: "/about" },
                 { name: "Contact Center", href: "/quote" }
               ].map((link, i) => (
                 <li key={i}>
-                  <Link href={link.href} className="text-slate-400 hover:text-white transition-all flex items-center group text-xs font-bold uppercase tracking-[0.15em]">
+                  <Link href={link.href} className="text-slate-200 hover:text-teal-400 transition-all flex items-center group text-sm font-bold tracking-[0.1em]">
                     <span className="w-0 group-hover:w-5 h-px bg-teal-500 mr-0 group-hover:mr-3 transition-all duration-500"></span>
                     {link.name}
                   </Link>
@@ -78,7 +79,7 @@ const Footer = () => {
 
           {/* Contact Details */}
           <div className="lg:col-span-5">
-            <h4 className="text-xs font-black mb-12 uppercase tracking-[0.4em] text-teal-500 flex items-center">
+            <h4 className="text-xs font-black mb-12 tracking-[0.4em] text-teal-500 flex items-center">
               <div className="w-2 h-2 rounded-full bg-teal-500 mr-4"></div>
               Global Headquarters
             </h4>
@@ -100,7 +101,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-8826862154</p>
-                    <p className="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">24/7 Priority Support</p>
+                    <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
                   </div>
                 </div>
               </div>
@@ -118,7 +119,7 @@ const Footer = () => {
                   </div>
                   <div>
                     <p className="text-slate-300 text-sm font-bold">10:00 - 05:30</p>
-                    <p className="text-slate-500 text-[10px] uppercase font-black tracking-widest mt-1">Mon - Sat Working</p>
+                    <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">Mon - Sat Working</p>
                   </div>
                 </div>
               </div>
@@ -127,7 +128,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-slate-500 text-[10px] font-black uppercase tracking-[0.3em]">
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-slate-500 text-[10px] font-black tracking-[0.3em]">
           <div className="flex items-center space-x-3 group">
             <Shield className="w-5 h-5 text-teal-500/40 group-hover:text-teal-500 transition-colors" />
             <p>© {new Date().getFullYear()} Midflora Herbal. Premium Cosmetic Manufacturing.</p>

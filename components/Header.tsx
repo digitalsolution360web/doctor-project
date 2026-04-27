@@ -25,14 +25,13 @@ const Header = () => {
     { name: "R&D Lab", href: "/lab" },
     { name: "Certifications", href: "/certifications" },
     { name: "Blog", href: "/blog" },
-    { name: "About Us", href: "/about" },
   ];
 
   return (
     <>
       {/* Top Bar */}
-      <div className={`hidden lg:block bg-slate-950 text-white transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "py-2.5"}`}>
-        <div className="container mx-auto px-4 md:px-6 flex items-center justify-between text-xs font-bold uppercase tracking-widest">
+      <div className={`hidden lg:block bg-slate-950 text-white transition-all duration-500 ${scrolled ? "h-0 opacity-0 overflow-hidden" : "py-3"}`}>
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-between text-[13px] font-bold tracking-widest">
           <div className="flex items-center space-x-10">
             <a href="tel:+918826862154" className="flex items-center hover:text-teal-400 transition-all opacity-90 hover:opacity-100 group">
               <div className="w-6 h-6 rounded-full bg-teal-500/10 flex items-center justify-center mr-2 group-hover:bg-teal-500 transition-colors">
@@ -78,30 +77,29 @@ const Header = () => {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
+            <nav className="hidden lg:flex items-center space-x-2 xl:space-x-4">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`px-3 py-3 font-black text-[13px] xl:text-[14px] uppercase tracking-tighter whitespace-nowrap transition-all relative group ${scrolled ? "text-slate-950" : "text-black"
-                    }`}
+                  className={`px-4 py-3 font-black text-[15px] xl:text-[16px] tracking-tight whitespace-nowrap transition-all relative group text-slate-950 hover:text-teal-600`}
                 >
                   {link.name}
-                  <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
                 </Link>
               ))}
             </nav>
 
             {/* Actions */}
             <div className="hidden lg:flex items-center space-x-5">
-              <button className={`p-2 transition-colors ${scrolled ? "text-slate-900" : "text-white opacity-80 hover:opacity-100"}`}>
+              <button className="p-2 transition-colors text-slate-900 hover:text-teal-600">
                 <Search className="w-5 h-5" />
               </button>
               <Link
                 href="/quote"
-                className="px-8 py-3 bg-teal-600 text-white font-black text-xs uppercase tracking-widest rounded-xl hover:bg-slate-950 transition-all duration-500 shadow-xl hover:-translate-y-1 active:scale-95"
+                className="px-10 py-3.5 font-black text-[13px] tracking-widest rounded-full transition-all duration-500 hover:-translate-y-1 active:scale-95 bg-teal-600 text-white shadow-[0_10px_30px_-10px_rgba(20,184,166,0.5)] hover:bg-slate-950 hover:shadow-slate-900/20"
               >
-                Get a Quote
+                Enquire Now
               </Link>
             </div>
 
@@ -134,7 +132,7 @@ const Header = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-2xl font-black text-slate-900 py-4 flex items-center justify-between uppercase tracking-tighter border-b border-slate-50 last:border-0"
+                  className="text-2xl font-black text-slate-900 py-4 flex items-center justify-between tracking-tighter border-b border-slate-50 last:border-0"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
@@ -144,16 +142,16 @@ const Header = () => {
               <div className="pt-10 space-y-6">
                 <Link
                   href="/quote"
-                  className="w-full py-5 text-center bg-teal-600 text-white rounded-2xl font-black text-base uppercase tracking-widest shadow-2xl block"
+                  className="w-full py-5 text-center bg-teal-600 text-white rounded-2xl font-black text-base tracking-widest block"
                   onClick={() => setIsOpen(false)}
                 >
                   Start Consultation
                 </Link>
                 <div className="grid grid-cols-1 gap-4 pt-6">
-                  <p className="flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
+                  <p className="flex items-center text-xs font-bold tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
                     <Phone className="w-4 h-4 mr-3 text-teal-500" /> +91-8826862154
                   </p>
-                  <p className="flex items-center text-xs font-bold uppercase tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
+                  <p className="flex items-center text-xs font-bold tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
                     <Mail className="w-4 h-4 mr-3 text-teal-500" /> info@midfloraherbal.com
                   </p>
                 </div>
