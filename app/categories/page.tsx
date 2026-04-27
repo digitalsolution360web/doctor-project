@@ -51,7 +51,22 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
   );
 };
 
-const categoriesData = [
+interface CategoryCard {
+  title: string;
+  description?: string;
+  count?: number;
+  image?: string;
+}
+
+interface CategorySection {
+  title: string;
+  description: string;
+  cards: CategoryCard[];
+  buttonText: string;
+  isProductSection?: boolean;
+}
+
+const categoriesData: CategorySection[] = [
   {
     title: "Skincare",
     description: "Premium skincare formulations including serums, creams, gels, and face washes designed for various skin types and concerns.",
@@ -137,7 +152,7 @@ export default function CategoriesPage() {
 
       {/* Categories Sections */}
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-24">
-        {categoriesData.map((section, sectionIdx) => (
+        {categoriesData.map((section: CategorySection, sectionIdx) => (
           <section key={sectionIdx} className="w-full">
             <RevealOnScroll>
               <div className="mb-12 max-w-4xl relative">
@@ -148,7 +163,7 @@ export default function CategoriesPage() {
             </RevealOnScroll>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {section.cards.map((card, cardIdx) => (
+              {section.cards.map((card: CategoryCard, cardIdx) => (
                 <RevealOnScroll key={cardIdx} delay={cardIdx * 100}>
                   {section.isProductSection ? (
                     <div className="bg-white rounded-[24px] border border-slate-100 shadow-[0_2px_10px_rgb(0,0,0,0.02)] overflow-hidden group hover:shadow-[0_20px_40px_rgb(20,184,166,0.08)] hover:border-teal-100 transition-all duration-500 flex flex-col h-full cursor-pointer relative top-0 hover:-top-2">

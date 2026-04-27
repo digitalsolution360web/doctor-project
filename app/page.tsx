@@ -26,7 +26,7 @@ import React, { useState, useEffect, useRef } from "react";
 interface RevealOnScrollProps {
   children: React.ReactNode;
   className?: string;
-  direction?: "up" | "left" | "right";
+  direction?: "up" | "left" | "right" | "scale";
   style?: React.CSSProperties;
 }
 
