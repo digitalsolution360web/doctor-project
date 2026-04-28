@@ -77,7 +77,7 @@ export default function QuotePage() {
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
               Get A <span className="text-teal-400">Quote.</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
@@ -151,7 +151,7 @@ export default function QuotePage() {
             {/* Contact Info Sidebar */}
             <div className="flex-1 space-y-10">
               <RevealOnScroll className="bg-slate-900 rounded-[48px] p-10 text-white space-y-12">
-                <h3 className="text-3xl font-black uppercase tracking-tighter">Contact <span className="text-teal-400">Details.</span></h3>
+                <h3 className="text-2xl font-semibold uppercase tracking-tighter">Contact <span className="text-teal-400">Details.</span></h3>
                 
                 <div className="space-y-8">
                    <div className="flex items-start space-x-6 group cursor-pointer">
@@ -160,7 +160,7 @@ export default function QuotePage() {
                       </div>
                       <div>
                         <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Call Us</p>
-                        <p className="font-bold text-lg">+91-8826862154</p>
+                        <p className="font-bold text-lg">+91-81307 08357</p>
                       </div>
                    </div>
 
@@ -170,7 +170,7 @@ export default function QuotePage() {
                       </div>
                       <div>
                         <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Email Us</p>
-                        <p className="font-bold text-lg">sales@drexpert.com</p>
+                        <p className="font-bold text-lg">midfloraherbal@gmail.com</p>
                       </div>
                    </div>
 
@@ -180,7 +180,7 @@ export default function QuotePage() {
                       </div>
                       <div>
                         <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Visit Factory</p>
-                        <p className="font-bold text-lg leading-tight">Noida, Uttar Pradesh, <br />India</p>
+                        <p className="font-bold text-lg leading-tight">Plot No. 517, Udyog Kendra 2,<br />Ecotech III, Greater Noida,<br />UP 201306</p>
                       </div>
                    </div>
                 </div>

@@ -99,9 +99,9 @@ export default function Home() {
               <span className="w-8 h-[2px] bg-[#A3E635] mr-3"></span>
               Why Choose Midflora Herbal
             </h2>
-            <h3 className="text-4xl md:text-6xl font-black text-white tracking-tight leading-[1.1]">
+            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1]">
               Where Quality Meets <br />
-              <span className="text-white/60">Affordability.</span>
+              <span className="text-white/60 font-semibold">Affordability.</span>
             </h3>
           </RevealOnScroll>
 
@@ -118,7 +118,7 @@ export default function Home() {
                 <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#A3E635] group-hover:text-slate-900 transition-all duration-500">
                   <item.icon className="w-7 h-7" />
                 </div>
-                <h4 className="text-2xl font-bold mb-4 text-white tracking-tight">{item.title}</h4>
+                <h4 className="text-xl font-semibold mb-4 text-white tracking-tight">{item.title}</h4>
                 <p className="text-slate-400 text-sm leading-relaxed font-medium">{item.desc}</p>
               </RevealOnScroll>
             ))}
@@ -130,8 +130,8 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6">
           <RevealOnScroll className="text-center max-w-3xl mx-auto mb-12">
             <h2 className="text-xs font-bold text-teal-600 tracking-[0.3em] mb-4 uppercase">Manufacturing Process</h2>
-            <h3 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.1]">
-              Our Professional <span className="text-slate-400">Workflow.</span>
+            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1]">
+              Our Professional <span className="text-slate-400 font-semibold">Workflow.</span>
             </h3>
           </RevealOnScroll>
 
@@ -151,7 +151,7 @@ export default function Home() {
                 <div className="w-16 h-16 rounded-2xl bg-slate-50 text-slate-900 font-black text-xl flex items-center justify-center mb-6 border border-slate-200 group-hover:bg-teal-600 group-hover:text-white group-hover:border-teal-600 transition-all duration-500 shadow-sm">
                   {item.step}
                 </div>
-                <h4 className="text-2xl font-bold text-slate-900 tracking-tight mb-4">{item.title}</h4>
+                <h4 className="text-xl font-semibold text-slate-900 tracking-tight mb-4">{item.title}</h4>
                 <p className="text-slate-500 text-sm leading-relaxed font-medium">{item.desc}</p>
               </RevealOnScroll>
             ))}

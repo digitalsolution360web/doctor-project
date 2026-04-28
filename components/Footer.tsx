@@ -91,8 +91,9 @@ const Footer = () => {
                     <MapPin className="w-5 h-5 text-teal-500 group-hover:text-white" />
                   </div>
                   <p className="text-slate-300 text-sm font-bold leading-relaxed">
-                    G-56, Sector-6, Noida,<br />
-                    UP, India 201301
+                    Plot No. 517, Udyog Kendra 2,<br />
+                    Ecotech III, Greater Noida,<br />
+                    Uttar Pradesh 201306
                   </p>
                 </div>
                 <div className="flex items-start space-x-5 group">
@@ -100,7 +101,7 @@ const Footer = () => {
                     <Phone className="w-5 h-5 text-teal-500 group-hover:text-white" />
                   </div>
                   <div>
-                    <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-8826862154</p>
+                    <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-81307 08357</p>
                     <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
                   </div>
                 </div>
@@ -111,7 +112,7 @@ const Footer = () => {
                   <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
                     <Mail className="w-5 h-5 text-teal-500 group-hover:text-white" />
                   </div>
-                  <p className="text-slate-300 text-sm font-bold truncate">info@midfloraherbal.com</p>
+                  <p className="text-slate-300 text-sm font-bold truncate">midfloraherbal@gmail.com</p>
                 </div>
                 <div className="flex items-start space-x-5 group">
                   <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">

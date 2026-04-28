@@ -112,10 +112,10 @@ const CategorySection = () => {
     <section id="categories" className="py-16 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-xs font-black text-teal-600 tracking-[0.3em] uppercase mb-4">Our Expertise</h2>
-            <h3 className="text-4xl md:text-[56px] font-black text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">Our Expertise</h2>
+            <h3 className="text-4xl md:text-[52px] font-bold text-slate-900 tracking-tight leading-tight">
               Premium Product <br className="hidden md:block" />
-              <span className="text-slate-400">Categories</span>
+              <span className="text-slate-400 font-semibold">Categories</span>
             </h3>
           </div>
 
@@ -151,10 +151,10 @@ const CategorySection = () => {
 
                 {/* Category Details */}
                 <div className="px-10 pt-10 pb-12">
-                  <h4 className="text-3xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">
+                  <h4 className="text-2xl font-semibold text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">
                     {cat.title}
                   </h4>
-                  <p className="text-slate-500 text-[11px] font-black uppercase tracking-[0.2em] mb-8 opacity-60">
+                  <p className="text-slate-500 text-[11px] font-medium uppercase tracking-[0.2em] mb-8 opacity-60">
                     {cat.items}
                   </p>
                   

@@ -38,10 +38,10 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-8">
           <div className="max-w-2xl text-left">
-            <h2 className="text-xs font-black text-teal-600 tracking-[0.3em] uppercase mb-4">Our Expertise</h2>
-            <h3 className="text-4xl md:text-[56px] font-black text-slate-900 leading-[1.1] tracking-tighter">
+            <h2 className="text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">Our Expertise</h2>
+            <h3 className="text-4xl md:text-[52px] font-bold text-slate-900 leading-[1.1] tracking-tighter">
               End-to-End Manufacturing <br />
-              <span className="text-slate-400">Solutions.</span>
+              <span className="text-slate-400 font-semibold">Solutions.</span>
             </h3>
           </div>
           <p className="text-slate-500 text-lg font-bold max-w-md text-left lg:text-right leading-relaxed mb-2">
@@ -59,7 +59,7 @@ const ServicesSection = () => {
                 <div className="w-16 h-16 rounded-[24px] bg-slate-50 border border-slate-100 flex items-center justify-center mb-8 group-hover:bg-teal-600 group-hover:border-teal-600 transition-all duration-500 group-hover:scale-110 group-hover:shadow-[0_10px_30px_-10px_rgba(20,184,166,0.5)]">
                   <service.icon className="w-8 h-8 text-slate-900 group-hover:text-white transition-colors" />
                 </div>
-                <h4 className="text-2xl font-black text-slate-900 mb-4 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">{service.title}</h4>
+                <h4 className="text-xl font-semibold text-slate-900 mb-4 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">{service.title}</h4>
                 <p className="text-slate-500 text-sm leading-relaxed font-bold opacity-80 group-hover:opacity-100 transition-opacity">{service.desc}</p>
               </div>
 

@@ -55,7 +55,7 @@ const TestimonialsSection = () => {
   }, [nextSlide]);
 
   return (
-    <section className="py-12 bg-[#fafafa] relative overflow-hidden">
+    <section className="py-12 bg-white relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 opacity-40"></div>
       
@@ -65,7 +65,7 @@ const TestimonialsSection = () => {
             <Star className="w-3.5 h-3.5 mr-2 fill-teal-600" />
             Client Success Stories
           </div>
-          <h3 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tight">
+          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
             Trusted By The <span className="text-teal-600">Industry Leaders</span>
           </h3>
         </div>
@@ -86,7 +86,7 @@ const TestimonialsSection = () => {
                         {t.initials}
                       </div>
                       <div className="flex items-center gap-2 mb-2">
-                        <p className="text-slate-900 font-black text-xl lg:text-2xl tracking-tight">{t.name}</p>
+                        <p className="text-slate-900 font-semibold text-lg lg:text-xl tracking-tight">{t.name}</p>
                         <CheckCircle2 className="w-5 h-5 text-teal-500" />
                       </div>
                       <p className="text-slate-500 font-bold tracking-tight uppercase text-xs">{t.role}</p>

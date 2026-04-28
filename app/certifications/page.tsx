@@ -115,7 +115,7 @@ export default function CertificationsPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-xs uppercase tracking-widest mb-4">
               Uncompromising Quality
             </div>
-            <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tighter uppercase">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-[1.1] tracking-tighter uppercase">
               Global <span className="text-teal-600">Certifications.</span>
             </h1>
             <p className="text-xl text-slate-700 max-w-2xl mx-auto font-bold leading-relaxed">
@@ -138,7 +138,7 @@ export default function CertificationsPage() {
                     <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-teal-600 transition-all shadow-sm">
                       <cert.icon className="w-8 h-8 text-teal-600 group-hover:text-white" />
                     </div>
-                    <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tight mb-2">{cert.title}</h3>
+                    <h3 className="text-xl font-semibold text-slate-900 uppercase tracking-tight mb-2">{cert.title}</h3>
                     <p className="text-teal-600 font-black text-xs uppercase tracking-[0.2em] mb-6">{cert.body}</p>
                     <p className="text-slate-600 text-lg font-bold leading-relaxed">{cert.desc}</p>
                   </div>
@@ -158,7 +158,7 @@ export default function CertificationsPage() {
       <section className="py-24 bg-slate-50 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
               Certification <span className="text-teal-600">Badges.</span>
             </h2>
             <p className="text-slate-600 text-xl font-bold uppercase tracking-widest text-xs">Our Commitment in Seals</p>
@@ -182,7 +182,7 @@ export default function CertificationsPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-10">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase leading-tight">
               Safety is <span className="text-teal-400">Non-Negotiable.</span>
             </h2>
             <p className="text-slate-400 text-xl font-bold leading-relaxed">

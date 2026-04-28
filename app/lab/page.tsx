@@ -81,7 +81,7 @@ export default function RDPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-xs uppercase tracking-widest mb-4">
               Science-Driven Innovation
             </div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none text-slate-900">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none text-slate-900">
               R&D & <br />
               <span className="text-teal-600">Formulation Hub.</span>
             </h1>
@@ -97,7 +97,7 @@ export default function RDPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
             <RevealOnScroll direction="left" className="space-y-8">
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
                 In-House <span className="text-teal-600">Chemists.</span>
               </h2>
               <p className="text-slate-700 text-lg font-bold leading-relaxed">
@@ -121,7 +121,7 @@ export default function RDPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <RevealOnScroll direction="right" className="lg:order-2 space-y-8">
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
                 Global <span className="text-teal-600">Sourcing.</span>
               </h2>
               <p className="text-slate-700 text-lg font-bold leading-relaxed">
@@ -152,7 +152,7 @@ export default function RDPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
+            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
               Trend-Based <span className="text-teal-400">Formulations.</span>
             </h2>
             <p className="text-xl text-slate-400 font-bold max-w-2xl mx-auto">
@@ -167,7 +167,7 @@ export default function RDPage() {
               ].map((trend, i) => (
                 <div key={i} className="p-10 bg-white/5 border border-white/10 rounded-[40px] hover:bg-white hover:text-slate-900 transition-all duration-700 group text-left">
                   <trend.icon className="w-12 h-12 text-teal-400 mb-6 group-hover:text-teal-600" />
-                  <h4 className="text-2xl font-black uppercase tracking-tight mb-4">{trend.title}</h4>
+                  <h4 className="text-xl font-bold uppercase tracking-tight mb-4">{trend.title}</h4>
                   <p className="text-slate-400 group-hover:text-slate-600 font-bold text-sm leading-relaxed">{trend.desc}</p>
                 </div>
               ))}
@@ -180,7 +180,7 @@ export default function RDPage() {
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-10">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 uppercase tracking-tighter leading-tight">
               Create Your Unique <br /><span className="text-teal-600">Formulation Today.</span>
             </h2>
             <p className="text-slate-600 text-xl font-bold">Talk to our lead chemists about developing a custom product that belongs only to your brand.</p>

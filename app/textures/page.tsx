@@ -122,7 +122,7 @@ export default function TexturesPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-widest mb-4">
               Advanced Cosmetic Formats
             </div>
-            <h1 className="text-4xl md:text-5xl font-black leading-[1.1] tracking-tighter uppercase">
+            <h1 className="text-4xl md:text-5xl font-bold leading-[1.1] tracking-tighter uppercase">
               Precision <span className="text-teal-400">Textures</span> <br />
               & Sensory Appeal.
             </h1>
@@ -143,7 +143,7 @@ export default function TexturesPage() {
                   <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center shadow-lg mb-6 group-hover:bg-teal-600 transition-all">
                     <item.icon className="w-7 h-7 text-teal-600 group-hover:text-white" />
                   </div>
-                  <h4 className="text-xl font-black text-slate-900 uppercase tracking-tight mb-2">{item.title}</h4>
+                  <h4 className="text-lg font-semibold text-slate-900 uppercase tracking-tight mb-2">{item.title}</h4>
                   <p className="text-slate-500 text-xs font-black uppercase tracking-widest">{item.subtitle}</p>
                 </div>
               </RevealOnScroll>
@@ -178,7 +178,7 @@ export default function TexturesPage() {
                 <RevealOnScroll direction={index % 2 === 0 ? "right" : "left"} className="flex-1 space-y-6">
                   <div className="space-y-4">
                     <p className="text-teal-600 font-black text-xs uppercase tracking-[0.4em] mb-4">{item.subtitle}</p>
-                    <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">{item.title}</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">{item.title}</h2>
                     <p className="text-slate-700 text-lg font-bold leading-relaxed">{item.desc}</p>
                   </div>
 
@@ -207,7 +207,7 @@ export default function TexturesPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="bg-[#05080f] rounded-[48px] p-10 md:p-16 relative overflow-hidden text-white text-center">
             <RevealOnScroll className="max-w-3xl mx-auto space-y-8">
-              <h2 className="text-3xl md:text-4xl font-black tracking-tighter uppercase leading-tight">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase leading-tight">
                 Need a <span className="text-teal-400">Custom Texture</span> for your brand?
               </h2>
               <p className="text-slate-400 text-lg font-bold">

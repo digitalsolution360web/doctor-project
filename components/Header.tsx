@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Menu, X, Phone, Mail, MapPin, Search, Globe, MessageSquare } from "lucide-react";
+import { ChevronDown, Menu, X, Phone, Mail, MapPin } from "lucide-react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,38 +76,30 @@ const Header = () => {
               </div>
             </Link>
 
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center space-x-2 xl:space-x-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`px-4 py-3 font-black text-[15px] xl:text-[16px] tracking-tight whitespace-nowrap transition-all relative group text-slate-950 hover:text-teal-600`}
-                >
-                  {link.name}
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
-                </Link>
-              ))}
-            </nav>
+            <div className="hidden lg:flex items-center space-x-8">
+              {/* Desktop Nav */}
+              <nav className="flex items-center space-x-1">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={`px-3 py-3 font-bold text-[15px] tracking-normal whitespace-nowrap transition-all relative group text-slate-700 hover:text-teal-600`}
+                  >
+                    {link.name}
+                    <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500"></span>
+                  </Link>
+                ))}
+              </nav>
 
-            {/* Actions */}
-            <div className="hidden lg:flex items-center space-x-5">
-              <Link 
-                href="https://wa.me/918826862154" 
-                target="_blank"
-                className="w-12 h-12 rounded-full bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all duration-500 shadow-sm"
-              >
-                <MessageSquare className="w-5 h-5" />
-              </Link>
-              <button className="p-2 transition-colors text-slate-900 hover:text-teal-600">
-                <Search className="w-5 h-5" />
-              </button>
-              <Link
-                href="/quote"
-                className="px-10 py-3.5 font-black text-[13px] tracking-widest rounded-full transition-all duration-500 hover:-translate-y-1 active:scale-95 bg-teal-600 text-white shadow-[0_10px_30px_-10px_rgba(20,184,166,0.5)] hover:bg-slate-950 hover:shadow-slate-900/20"
-              >
-                Enquire Now
-              </Link>
+              {/* Actions */}
+              <div className="flex items-center space-x-4 border-l border-slate-200 pl-6">
+                <Link
+                  href="/quote"
+                  className="px-8 py-3 font-semibold text-[13px] tracking-wide rounded-full transition-all duration-500 hover:-translate-y-1 active:scale-95 bg-teal-600 text-white shadow-[0_10px_30px_-10px_rgba(20,184,166,0.5)] hover:bg-slate-950 hover:shadow-slate-900/20"
+                >
+                  Enquire Now
+                </Link>
+              </div>
             </div>
 
             {/* Mobile Menu Toggle */}

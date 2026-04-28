@@ -36,7 +36,7 @@ const FAQSection = () => {
               <HelpCircle className="w-3.5 h-3.5 mr-2" />
               Information Hub
             </div>
-            <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-4">
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight mb-4">
               Common <span className="text-teal-600">Questions</span>
             </h3>
             <p className="text-slate-500 text-base font-medium leading-relaxed mb-8">

@@ -130,7 +130,7 @@ export default function ServicesPage() {
         
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
               Manufacturing <span className="text-teal-400">Services</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
@@ -171,7 +171,7 @@ export default function ServicesPage() {
                 <RevealOnScroll direction={index % 2 === 0 ? "right" : "left"} className="flex-1 space-y-8">
                   <div className="space-y-4">
                     <p className="text-teal-600 font-black text-xs uppercase tracking-[0.4em]">{service.subtitle}</p>
-                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">{service.title}</h2>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">{service.title}</h2>
                     <p className="text-slate-700 text-xl font-bold leading-relaxed">{service.desc}</p>
                   </div>
 
@@ -204,7 +204,7 @@ export default function ServicesPage() {
       <section className="py-24 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-4 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
               Ready to Build Your <span className="text-teal-600">Dream Brand?</span>
             </h2>
             <p className="text-slate-600 text-xl font-bold">

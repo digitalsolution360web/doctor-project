@@ -47,7 +47,7 @@ const TrustSignals = () => {
                 
                 <div className="space-y-1.5">
                   <span className="text-[9px] font-black text-teal-500 tracking-[0.3em] uppercase block">{item.value}</span>
-                  <h4 className="text-lg font-black text-white tracking-tight group-hover/item:text-teal-400 transition-colors">{item.title}</h4>
+                  <h4 className="text-base font-semibold text-white tracking-tight group-hover/item:text-teal-400 transition-colors">{item.title}</h4>
                   <p className="text-slate-500 text-[11px] font-bold leading-tight group-hover/item:text-slate-400 transition-colors">{item.desc}</p>
                 </div>
               </div>

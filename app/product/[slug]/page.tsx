@@ -119,7 +119,7 @@ export default function ProductDetails() {
               {product.badge}
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-6 tracking-tight">
+            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">
               {product.title}
             </h1>
 
@@ -269,7 +269,7 @@ export default function ProductDetails() {
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div>
               <h2 className="text-xs font-black text-teal-600 tracking-[0.3em] uppercase mb-4">Recommended</h2>
-              <h3 className="text-4xl font-black text-slate-900 tracking-tight">Related <span className="text-slate-400">Products</span></h3>
+              <h3 className="text-3xl font-bold text-slate-900 tracking-tight">Related <span className="text-slate-400">Products</span></h3>
             </div>
             <Link href="/categories" className="px-8 py-3 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-xl font-bold text-sm transition-all border border-slate-100">
               View All Products

@@ -101,7 +101,7 @@ export default function BlogPage() {
         
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-6">
-            <h1 className="text-4xl md:text-7xl font-black tracking-tighter uppercase leading-none">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
               Insights & <span className="text-teal-400">Trends.</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto font-bold leading-relaxed">
@@ -129,7 +129,7 @@ export default function BlogPage() {
                     <span className="flex items-center"><Calendar className="w-3 h-3 mr-2" /> {post.date}</span>
                     <span className="flex items-center"><User className="w-3 h-3 mr-2" /> Expert R&D Team</span>
                   </div>
-                  <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter leading-tight group-hover:text-teal-600 transition-colors">
+                  <h3 className="text-xl font-semibold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-slate-600 font-bold leading-relaxed">{post.excerpt}</p>
@@ -153,7 +153,7 @@ export default function BlogPage() {
           <div className="bg-teal-600 rounded-[60px] p-12 md:p-24 text-white text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent_70%)]"></div>
             <RevealOnScroll className="max-w-2xl mx-auto space-y-10 relative z-10">
-              <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-none">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase leading-none">
                 Subscribe to <br /> <span className="text-teal-100">Industry News.</span>
               </h2>
               <p className="text-teal-50 text-xl font-bold opacity-90">

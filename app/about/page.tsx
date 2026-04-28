@@ -105,7 +105,7 @@ export default function AboutPage() {
             <div className="relative h-20 w-80 mx-auto mb-12">
               <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority sizes="(max-width: 768px) 100vw, 320px" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-slate-900 leading-none tracking-tighter uppercase">
+            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-none tracking-tighter uppercase">
               Pioneering <span className="text-teal-600">Beauty</span> <br /> Since 2004.
             </h1>
             <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
@@ -123,7 +123,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-teal-50 rounded-2xl flex items-center justify-center text-teal-600">
                 <Target className="w-8 h-8" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter">Our Mission</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 uppercase tracking-tighter">Our Mission</h2>
               <p className="text-slate-700 text-lg font-bold leading-relaxed">
                 To provide high-quality, premium cosmetic and herbal solutions through advanced manufacturing technology and rigorous R&D, making premium beauty accessible to every brand.
               </p>
@@ -133,7 +133,7 @@ export default function AboutPage() {
               <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-teal-400">
                 <Eye className="w-8 h-8" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter">Our Vision</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tighter">Our Vision</h2>
               <p className="text-slate-400 text-lg font-bold leading-relaxed">
                 To become a global benchmark in cosmetic engineering, recognized for our commitment to quality, innovation, and ethical leadership in the herbal beauty industry.
               </p>
@@ -150,7 +150,7 @@ export default function AboutPage() {
               <div className="inline-flex items-center px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-black text-xs uppercase tracking-widest">
                 <History className="w-4 h-4 mr-2" /> OUR JOURNEY
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tighter uppercase leading-tight">
                 Two Decades of <br /> <span className="text-teal-600">Pure Dedication.</span>
               </h2>
               <div className="space-y-6 text-slate-700 text-lg font-bold leading-relaxed">
@@ -180,7 +180,7 @@ export default function AboutPage() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/5 rounded-full blur-[120px] translate-x-1/3 -translate-y-1/2"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="text-center max-w-3xl mx-auto mb-20 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
               Our Core <span className="text-teal-600">Values</span>
             </h2>
             <p className="text-slate-600 text-lg font-bold">The fundamental principles that guide every decision we make.</p>
@@ -193,7 +193,7 @@ export default function AboutPage() {
                   <div className="w-20 h-20 bg-teal-50 rounded-3xl flex items-center justify-center mx-auto text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-all duration-500 transform group-hover:rotate-6 shadow-sm">
                     <v.icon className="w-10 h-10" />
                   </div>
-                  <h4 className="text-2xl font-black text-slate-900 uppercase tracking-tight">{v.title}</h4>
+                  <h4 className="text-xl font-semibold text-slate-900 uppercase tracking-tight">{v.title}</h4>
                   <p className="text-slate-600 text-base font-bold leading-relaxed">{v.desc}</p>
                 </div>
               </RevealOnScroll>
@@ -210,7 +210,7 @@ export default function AboutPage() {
               <Image src="/globe.svg" alt="Globe" fill className="object-contain scale-150 grayscale invert" />
             </div>
             <RevealOnScroll className="relative z-10 max-w-3xl mx-auto space-y-10">
-              <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase leading-[1.1]">
+              <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter uppercase leading-[1.1]">
                 Health has no <br /> <span className="text-teal-400">Boundaries.</span>
               </h2>
               <p className="text-slate-400 text-xl font-bold leading-relaxed">

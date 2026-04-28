@@ -167,21 +167,21 @@ export default function CategoriesPage() {
                 <RevealOnScroll key={cardIdx} delay={cardIdx * 100}>
                   <Link 
                     href={`/product/${card.title.toLowerCase().replace(/ /g, "-")}`}
-                    className="bg-white rounded-[48px] border border-slate-100 shadow-[0_2px_15px_rgb(0,0,0,0.02)] p-8 flex flex-col h-full hover:shadow-[0_30px_60px_rgb(20,184,166,0.1)] hover:border-teal-100 transition-all duration-700 group cursor-pointer relative top-0 hover:-top-3 block"
+                    className="bg-white rounded-[48px] border border-slate-100 shadow-[0_2px_15px_rgb(0,0,0,0.02)] flex flex-col h-full hover:shadow-[0_30px_60px_rgb(20,184,166,0.1)] hover:border-teal-100 transition-all duration-700 group cursor-pointer relative top-0 hover:-top-3 block overflow-hidden"
                   >
                         {card.image && (
-                          <div className="relative w-full aspect-square rounded-[32px] overflow-hidden mb-8 bg-slate-50 flex items-center justify-center p-8">
+                          <div className="relative w-full aspect-[4/3] bg-slate-50 flex items-center justify-center overflow-hidden">
                             <Image 
                               src={card.image} 
                               alt={card.title} 
                               fill 
                               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                              className="object-contain group-hover:scale-110 transition-transform duration-1000 ease-out mix-blend-multiply" 
+                              className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out" 
                             />
                           </div>
                         )}
                     
-                    <div className="flex-1 flex flex-col">
+                    <div className="p-8 flex-1 flex flex-col">
                       <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-teal-600 transition-colors tracking-tight uppercase leading-none">{card.title}</h3>
                       <p className="text-slate-500 text-sm mb-8 leading-relaxed font-bold">{card.description}</p>
                       
