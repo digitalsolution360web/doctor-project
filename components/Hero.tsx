@@ -25,7 +25,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 md:px-6 relative z-10 w-full">
         <div className="max-w-4xl animate-reveal-left mt-6 md:mt-0">
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white leading-[1.1] mb-3 tracking-tight">
+          <h1 className="text-3xl md:text-4xl lg:text-6xl font-extrabold text-white leading-[1.1] mb-3 tracking-tight">
             India’s Trusted Third-Party <br className="hidden md:block" />
             <span className="text-[#A3E635]">Cosmetic Manufacturer</span>
           </h1>

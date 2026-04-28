@@ -3,13 +3,13 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ChevronRight, 
-  Star, 
-  CheckCircle2, 
-  Clock, 
-  ShieldCheck, 
-  MessageSquare, 
+import {
+  ChevronRight,
+  Star,
+  CheckCircle2,
+  Clock,
+  ShieldCheck,
+  MessageSquare,
   ArrowRight,
   Droplets,
   FlaskConical,
@@ -18,9 +18,11 @@ import {
   Share2,
   Info
 } from "lucide-react";
+import QuotePopup from "@/components/QuotePopup";
 
 export default function ProductDetails() {
   const [activeTab, setActiveTab] = useState("description");
+  const [isQuotePopupOpen, setIsQuotePopupOpen] = useState(false);
 
   const product = {
     title: "Rosemary & Peppermint Stimulating Hair Oil",
@@ -60,7 +62,7 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="bg-white min-h-screen pt-28 pb-20">
+    <div className="bg-white min-h-screen pt-24 pb-16">
       {/* Breadcrumbs & Back Button */}
       <div className="container mx-auto px-4 md:px-6 mb-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -74,8 +76,8 @@ export default function ProductDetails() {
               </React.Fragment>
             ))}
           </nav>
-          
-          <button 
+
+          <button
             onClick={() => window.history.back()}
             className="flex items-center space-x-2 text-slate-900 font-black text-[10px] uppercase tracking-widest group w-fit"
           >
@@ -88,15 +90,15 @@ export default function ProductDetails() {
       </div>
 
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
+
           {/* Product Image Gallery */}
           <div className="lg:col-span-6 space-y-4">
             <div className="relative aspect-square rounded-[40px] overflow-hidden bg-slate-50 border border-slate-100 group">
-              <Image 
-                src={product.mainImage} 
-                alt={product.title} 
-                fill 
+              <Image
+                src={product.mainImage}
+                alt={product.title}
+                fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 className="object-contain p-12 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
                 priority
@@ -133,20 +135,23 @@ export default function ProductDetails() {
             </p>
 
             {/* Feature Availability */}
-            <div className="grid grid-cols-2 gap-6 mb-12 p-6 rounded-3xl bg-slate-50 border border-slate-100">
+            <div className="grid grid-cols-2 gap-4 mb-8 p-6 rounded-3xl bg-slate-50 border border-slate-200">
               {product.features.map((feature, i) => (
                 <div key={i} className="flex flex-col gap-2">
-                  <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{feature.name}</span>
+                  <span className="text-xs font-black text-slate-500 tracking-widest uppercase">{feature.name}</span>
                   <div className="flex items-center gap-2 text-teal-600 font-bold text-sm">
-                    <CheckCircle2 className="w-4 h-4" />
-                    Available
+                    <CheckCircle2 className="w-5 h-5" />
+                    <span className="text-base text-slate-800">Available</span>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-5">
-              <button className="flex-1 py-5 bg-slate-950 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-teal-600 transition-all shadow-xl shadow-slate-950/10 flex items-center justify-center group">
+              <button
+                onClick={() => setIsQuotePopupOpen(true)}
+                className="flex-1 py-5 bg-slate-950 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-teal-600 transition-all shadow-xl shadow-slate-950/10 flex items-center justify-center group"
+              >
                 Get a Quote
                 <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -160,13 +165,13 @@ export default function ProductDetails() {
         </div>
 
         {/* Content Tabs/Details Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8 space-y-8">
-            
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-8 space-y-6">
+
             {/* Detailed Cards Instead of Tabs for modern feel (Matches Screenshot better) */}
-            
+
             {/* Description */}
-            <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
+            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
               <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
                   <Info className="w-5 h-5" />
@@ -179,7 +184,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Key Ingredients */}
-            <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
+            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
               <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
                   <FlaskConical className="w-5 h-5" />
@@ -196,7 +201,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Benefits */}
-            <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
+            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
               <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
                   <Droplets className="w-5 h-5" />
@@ -214,7 +219,7 @@ export default function ProductDetails() {
             </div>
 
             {/* How to Use */}
-            <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
+            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
               <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
                   <Clock className="w-5 h-5" />
@@ -228,9 +233,9 @@ export default function ProductDetails() {
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-4 space-y-8">
+          <div className="lg:col-span-4 space-y-6">
             {/* Why Choose Us */}
-            <div className="bg-slate-950 p-10 rounded-[40px] text-white overflow-hidden relative">
+            <div className="bg-slate-950 p-8 rounded-[40px] text-white overflow-hidden relative">
               <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
               <h3 className="text-xl font-black mb-8 relative z-10">Why Choose Us</h3>
               <ul className="space-y-5 relative z-10">
@@ -246,7 +251,7 @@ export default function ProductDetails() {
             </div>
 
             {/* Need Help? */}
-            <div className="bg-teal-600 p-10 rounded-[40px] text-white text-center">
+            <div className="bg-teal-600 p-8 rounded-[40px] text-white text-center">
               <div className="w-16 h-16 rounded-3xl bg-white/10 flex items-center justify-center mx-auto mb-6">
                 <MessageSquare className="w-8 h-8" />
               </div>
@@ -254,7 +259,7 @@ export default function ProductDetails() {
               <p className="text-teal-50 font-medium mb-8 text-sm leading-relaxed">
                 Our expert team is ready to assist you with your custom manufacturing requirements.
               </p>
-              <Link 
+              <Link
                 href="/quote"
                 className="block w-full py-5 bg-white text-teal-700 rounded-2xl font-black text-sm tracking-widest hover:bg-slate-950 hover:text-white transition-all shadow-xl shadow-teal-700/20"
               >
@@ -265,8 +270,8 @@ export default function ProductDetails() {
         </div>
 
         {/* Related Products Section */}
-        <div className="mt-32">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="mt-24">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
             <div>
               <h2 className="text-xs font-black text-teal-600 tracking-[0.3em] uppercase mb-4">Recommended</h2>
               <h3 className="text-3xl font-bold text-slate-900 tracking-tight">Related <span className="text-slate-400">Products</span></h3>
@@ -276,19 +281,19 @@ export default function ProductDetails() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-8">
             {product.relatedProducts.map((p, i) => (
               <Link key={i} href="#" className="group">
-                <div className="relative aspect-[3/4] rounded-[32px] overflow-hidden bg-slate-50 border border-slate-100 mb-6 flex items-center justify-center p-8">
+                <div className="relative aspect-[3/2] rounded-[32px] overflow-hidden bg-slate-50 border border-slate-100 mb-6 flex items-center justify-center">
                   {/* Subtle background circle like in some premium shops */}
                   <div className="absolute w-[80%] h-[80%] bg-teal-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative h-full w-full">
-                    <Image 
-                      src={p.img} 
-                      alt={p.title} 
-                      fill 
+                  <div className="relative h-60 w-full">
+                    <Image
+                      src={p.img}
+                      alt={p.title}
+                      fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 20vw"
-                      className="object-contain transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -302,6 +307,12 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+
+      <QuotePopup
+        isOpen={isQuotePopupOpen}
+        onClose={() => setIsQuotePopupOpen(false)}
+        productName={product.title}
+      />
     </div>
   );
 }

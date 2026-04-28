@@ -3,13 +3,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Users, 
-  History, 
-  Target, 
-  Eye, 
-  Heart, 
-  Globe, 
+import {
+  Users,
+  History,
+  Target,
+  Eye,
+  Heart,
+  Globe,
   Award,
   ArrowRight,
   ShieldCheck
@@ -48,10 +48,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -90,16 +90,16 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] flex items-center overflow-hidden bg-white">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/banner.webp" 
-            alt="About Our Heritage" 
-            fill 
+          <Image
+            src="/banner1.webp"
+            alt="About Our Heritage"
+            fill
             className="object-cover opacity-10"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-10">
             <div className="relative h-20 w-80 mx-auto mb-12">

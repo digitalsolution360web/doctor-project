@@ -48,7 +48,7 @@ const Header = () => {
           </div>
           <div className="flex items-center opacity-90">
             <MapPin className="w-3 h-3 mr-2 text-teal-400" />
-            Noida, Uttar Pradesh
+            Greater Noida, Uttar Pradesh
           </div>
         </div>
       </div>

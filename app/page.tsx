@@ -160,7 +160,7 @@ export default function Home() {
       </section>
 
       {/* Certifications (Clean, Minimal) */}
-      <section className="py-12 bg-slate-50 border-y border-slate-100">
+      <section className="py-12 bg-slate-100 border-y border-slate-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <RevealOnScroll>
@@ -191,12 +191,12 @@ export default function Home() {
       </RevealOnScroll>
 
       {/* Re-emphasize trust before the final CTA */}
-      <div className="bg-slate-50 py-4">
-         <TrustSignals />
-      </div>
+      {/* <div className="bg-slate-50 py-4">
+        <TrustSignals />
+      </div> */}
 
       {/* Premium CTA / Contact Form - Refined */}
-      <section id="contact" className="py-12 lg:py-16 bg-slate-950 text-white relative overflow-hidden">
+      <section id="contact" className="py-12 lg:py-16 bg-slate-100 text-black relative overflow-hidden">
         {/* Dynamic background lighting */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-teal-600/10 rounded-full blur-[120px]"></div>
@@ -209,20 +209,20 @@ export default function Home() {
                 <span className="w-8 h-[2px] bg-[#A3E635] mr-3"></span>
                 Start Your Project
               </h2>
-              <h3 className="text-5xl md:text-7xl font-black tracking-tight leading-[1.05] mb-8">
+              <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.02] mb-8">
                 Launch Your <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 uppercase text-6xl">Cosmetic Brand</span> <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-black/40  text-6xl">Cosmetic Brand</span> <br />
                 Today.
               </h3>
               <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-md">
                 Connect with our expert formulators and business consultants to discuss your requirements and get a customized pricing plan.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <button className="group px-10 py-5 bg-[#A3E635] text-slate-950 rounded-2xl font-black text-sm tracking-widest hover:bg-white transition-all flex items-center justify-center">
+                <button className="group px-10 py-5 bg-[#A3E635] text-slate-950 rounded-2xl font-black text-sm tracking-widest hover:bg-yellow-400 transition-all flex items-center justify-center">
                   Request Pricing
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="px-10 py-5 bg-transparent border border-white/20 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-white/5 transition-all text-center">
+                <button className="px-10 py-5 bg-transparent border border-black/20 text-black rounded-2xl font-black text-sm tracking-widest hover:bg-gray-300 duration-200 transition-all text-center">
                   Talk to Expert
                 </button>
               </div>

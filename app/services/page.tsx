@@ -3,18 +3,18 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Microscope, 
-  FlaskConical, 
-  ShieldCheck, 
-  Zap, 
-  Trophy, 
-  Globe, 
-  ChevronRight, 
-  ArrowRight, 
-  Beaker, 
-  ClipboardCheck, 
-  Truck, 
+import {
+  Microscope,
+  FlaskConical,
+  ShieldCheck,
+  Zap,
+  Trophy,
+  Globe,
+  ChevronRight,
+  ArrowRight,
+  Beaker,
+  ClipboardCheck,
+  Truck,
   Dna,
   Settings,
   Package,
@@ -57,10 +57,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -118,16 +118,16 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center pt-24 overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/banner.webp" 
-            alt="Manufacturing Services" 
-            fill 
+          <Image
+            src="/banner1.webp"
+            alt="Manufacturing Services"
+            fill
             className="object-cover opacity-30 object-center"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
@@ -141,59 +141,59 @@ export default function ServicesPage() {
       </section>
 
       {/* Services List */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="space-y-32">
+          <div className="space-y-16">
             {services.map((service, index) => {
               const PrimaryIcon = service.features[0].icon;
               return (
-              <div 
-                key={service.id} 
-                className={`flex flex-col lg:flex-row items-center gap-16 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
-              >
-                {/* Visual */}
-                <RevealOnScroll direction={index % 2 === 0 ? "left" : "right"} className="flex-1 w-full">
-                  <div className="relative aspect-[4/3] rounded-[60px] overflow-hidden shadow-2xl group border border-slate-100">
-                    <Image 
-                      src={service.image} 
-                      alt={service.title} 
-                      fill 
-                      className="object-cover group-hover:scale-110 transition-transform duration-[2000ms]" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
-                    <div className="absolute top-10 right-10 w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl flex items-center justify-center">
-                      <PrimaryIcon className="w-10 h-10 text-white" />
-                    </div>
-                  </div>
-                </RevealOnScroll>
-
-                {/* Content */}
-                <RevealOnScroll direction={index % 2 === 0 ? "right" : "left"} className="flex-1 space-y-8">
-                  <div className="space-y-4">
-                    <p className="text-teal-600 font-black text-xs uppercase tracking-[0.4em]">{service.subtitle}</p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">{service.title}</h2>
-                    <p className="text-slate-700 text-xl font-bold leading-relaxed">{service.desc}</p>
-                  </div>
-
-                  <div className="space-y-4">
-                    {service.features.map((feature, i) => (
-                      <div key={i} className="flex items-center space-x-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-teal-200 hover:bg-white hover:shadow-xl transition-all duration-500 group">
-                        <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-600 transition-colors">
-                          <feature.icon className="w-5 h-5 text-teal-600 group-hover:text-white" />
-                        </div>
-                        <span className="text-slate-800 font-black text-sm uppercase tracking-tight">{feature.text}</span>
+                <div
+                  key={service.id}
+                  className={`flex flex-col lg:flex-row items-center gap-16 ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+                >
+                  {/* Visual */}
+                  <RevealOnScroll direction={index % 2 === 0 ? "left" : "right"} className="flex-1 w-full">
+                    <div className="relative aspect-[4/3] rounded-[60px] overflow-hidden shadow-2xl group border border-slate-100">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent"></div>
+                      <div className="absolute top-10 right-10 w-20 h-20 bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl flex items-center justify-center">
+                        <PrimaryIcon className="w-10 h-10 text-white" />
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  </RevealOnScroll>
 
-                  <div className="pt-4">
-                    <Link href="/#contact" className="inline-flex items-center space-x-4 px-10 py-5 bg-slate-950 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-teal-600 transition-all shadow-2xl group">
-                      <span>Start Your Project</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-                    </Link>
-                  </div>
-                </RevealOnScroll>
-              </div>
+                  {/* Content */}
+                  <RevealOnScroll direction={index % 2 === 0 ? "right" : "left"} className="flex-1 space-y-8">
+                    <div className="space-y-4">
+                      <p className="text-teal-600 font-black text-xs uppercase tracking-[0.4em]">{service.subtitle}</p>
+                      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">{service.title}</h2>
+                      <p className="text-slate-700 text-xl font-bold leading-relaxed">{service.desc}</p>
+                    </div>
+
+                    <div className="space-y-4">
+                      {service.features.map((feature, i) => (
+                        <div key={i} className="flex items-center space-x-4 p-5 bg-slate-50 rounded-2xl border border-slate-100 hover:border-teal-200 hover:bg-white hover:shadow-xl transition-all duration-500 group">
+                          <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center group-hover:bg-teal-600 transition-colors">
+                            <feature.icon className="w-5 h-5 text-teal-600 group-hover:text-white" />
+                          </div>
+                          <span className="text-slate-800 font-black text-sm uppercase tracking-tight">{feature.text}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-4">
+                      <Link href="/#contact" className="inline-flex items-center space-x-4 px-10 py-5 bg-slate-950 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-teal-600 transition-all shadow-2xl group">
+                        <span>Start Your Project</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                      </Link>
+                    </div>
+                  </RevealOnScroll>
+                </div>
               );
             })}
           </div>
@@ -201,7 +201,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-slate-50 border-y border-slate-200">
+      <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-4 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-8">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">

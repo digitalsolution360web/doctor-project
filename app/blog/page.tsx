@@ -3,11 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  BookOpen, 
-  ChevronRight, 
-  Calendar, 
-  User, 
+import {
+  BookOpen,
+  ChevronRight,
+  Calendar,
+  User,
   ArrowRight,
   Search,
   Tag
@@ -45,10 +45,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -88,17 +88,17 @@ export default function BlogPage() {
       {/* Hero Section */}
       <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-slate-900 text-white">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/banner.webp" 
-            alt="Blog & Resources" 
-            fill 
+          <Image
+            src="/banner1.webp"
+            alt="Blog & Resources"
+            fill
             sizes="100vw"
             className="object-cover opacity-20"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/60 to-transparent"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
@@ -112,19 +112,19 @@ export default function BlogPage() {
       </section>
 
       {/* Featured Posts Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {posts.map((post, i) => (
-              <RevealOnScroll key={i} className="group cursor-pointer">
-                <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100">
+              <RevealOnScroll key={i} className="group cursor-pointer h-full flex flex-col">
+                <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100 shrink-0">
                   <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                   <div className="absolute top-6 left-6 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
-                     <span className="text-white font-black text-[10px] uppercase tracking-widest">{post.category}</span>
+                    <span className="text-white font-black text-[10px] uppercase tracking-widest">{post.category}</span>
                   </div>
                 </div>
-                
-                <div className="space-y-4">
+
+                <div className="flex flex-col flex-1 space-y-4">
                   <div className="flex items-center space-x-4 text-slate-400 text-xs font-bold uppercase tracking-widest">
                     <span className="flex items-center"><Calendar className="w-3 h-3 mr-2" /> {post.date}</span>
                     <span className="flex items-center"><User className="w-3 h-3 mr-2" /> Expert R&D Team</span>
@@ -133,8 +133,8 @@ export default function BlogPage() {
                     {post.title}
                   </h3>
                   <p className="text-slate-600 font-bold leading-relaxed">{post.excerpt}</p>
-                  
-                  <div className="pt-4">
+
+                  <div className="pt-4 mt-auto">
                     <button className="flex items-center space-x-3 text-slate-950 font-black text-xs uppercase tracking-[0.2em] group/btn">
                       <span>Read Full Article</span>
                       <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
@@ -148,9 +148,9 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-24 bg-slate-50 border-y border-slate-200">
+      <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="bg-teal-600 rounded-[60px] p-12 md:p-24 text-white text-center relative overflow-hidden">
+          <div className="bg-teal-600 rounded-[60px] p-10 md:p-16 text-white text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent_70%)]"></div>
             <RevealOnScroll className="max-w-2xl mx-auto space-y-10 relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase leading-none">

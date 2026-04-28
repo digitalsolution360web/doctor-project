@@ -3,12 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ShieldCheck, 
-  Award, 
-  CheckCircle, 
-  Globe, 
-  ChevronRight, 
+import {
+  ShieldCheck,
+  Award,
+  CheckCircle,
+  Globe,
+  ChevronRight,
   Trophy,
   ClipboardCheck,
   FileCheck,
@@ -48,10 +48,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -109,7 +109,7 @@ export default function CertificationsPage() {
           <div className="absolute top-10 left-10 w-64 h-64 border border-teal-500 rounded-full"></div>
           <div className="absolute bottom-10 right-10 w-96 h-96 border border-teal-500 rounded-full"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-xs uppercase tracking-widest mb-4">
@@ -126,14 +126,14 @@ export default function CertificationsPage() {
       </section>
 
       {/* Main Certs Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {certs.map((cert, i) => (
               <RevealOnScroll key={i} className="h-full">
                 <div className="p-10 bg-white border border-slate-100 rounded-[40px] shadow-sm hover:shadow-2xl transition-all duration-700 group relative overflow-hidden h-full flex flex-col">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 rounded-full translate-x-1/2 -translate-y-1/2 group-hover:scale-150 transition-transform duration-1000"></div>
-                  
+
                   <div className="relative z-10 flex-1">
                     <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-8 group-hover:bg-teal-600 transition-all shadow-sm">
                       <cert.icon className="w-8 h-8 text-teal-600 group-hover:text-white" />
@@ -155,7 +155,7 @@ export default function CertificationsPage() {
       </section>
 
       {/* Image Gallery Section */}
-      <section className="py-24 bg-slate-50 overflow-hidden">
+      <section className="py-16 bg-gray-200 overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16 space-y-4">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
@@ -163,13 +163,13 @@ export default function CertificationsPage() {
             </h2>
             <p className="text-slate-600 text-xl font-bold uppercase tracking-widest text-xs">Our Commitment in Seals</p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[1, 2, 3, 4].map((i) => (
               <RevealOnScroll key={i} className="relative aspect-square bg-white rounded-3xl border border-slate-200 p-10 flex items-center justify-center hover:shadow-2xl transition-all duration-500 group">
-                <ShieldCheck className="w-16 h-16 text-slate-100 group-hover:text-teal-500 transition-colors" />
+                <ShieldCheck className="w-16 h-16 text-black group-hover:text-teal-500 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center p-6 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                   <p className="text-slate-900 font-black text-xs uppercase tracking-widest leading-tight">ISO 22716 Certified Process</p>
+                  <p className="text-slate-900 font-black text-xs uppercase tracking-widest leading-tight">ISO 22716 Certified Process</p>
                 </div>
               </RevealOnScroll>
             ))}
@@ -178,7 +178,7 @@ export default function CertificationsPage() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+      <section className="py-16 bg-slate-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-10">

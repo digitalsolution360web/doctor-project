@@ -3,12 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ShieldCheck, 
-  Settings, 
-  Factory, 
-  Zap, 
-  ChevronRight, 
+import {
+  ShieldCheck,
+  Settings,
+  Factory,
+  Zap,
+  ChevronRight,
   Layers,
   Thermometer,
   Wind
@@ -46,10 +46,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -84,29 +84,29 @@ export default function InfrastructurePage() {
   return (
     <div className="flex flex-col min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-slate-950 text-white">
+      <section className="relative min-h-[50vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/banner.webp" 
-            alt="Factory Infrastructure" 
-            fill 
+          <Image
+            src="/banner1.webp"
+            alt="Factory Infrastructure"
+            fill
             sizes="100vw"
             className="object-cover opacity-20"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-widest mb-4">
               Our Manufacturing Strength
             </div>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none">
+            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-none">
               State-of-the-Art <br />
               <span className="text-teal-400">Infrastructure.</span>
             </h1>
-            <p className="text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
+            <p className="text-lg md:text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
               Equipped with global technology and high-precision machinery to deliver pharmaceutical-grade cosmetic manufacturing at scale.
             </p>
           </RevealOnScroll>
@@ -114,9 +114,9 @@ export default function InfrastructurePage() {
       </section>
 
       {/* Grid Features */}
-      <section className="py-24 bg-white">
+      <section className="py-12 md:py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {facilityFeatures.map((f, i) => (
               <RevealOnScroll key={i} className="group">
                 <div className="relative aspect-square rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100">
@@ -135,10 +135,10 @@ export default function InfrastructurePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-slate-50 relative overflow-hidden">
+      <section className="py-12 md:py-16 bg-slate-50 relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="bg-slate-900 rounded-[60px] p-12 md:p-24 text-white">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
+          <div className="bg-slate-900 rounded-[40px] p-10 md:p-16 text-white">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
               {[
                 { val: "50,000+", label: "Sq. Ft. Facility" },
                 { val: "100k+", label: "Daily Capacity" },
@@ -156,10 +156,10 @@ export default function InfrastructurePage() {
       </section>
 
       {/* Hygiene Section */}
-      <section className="py-24 bg-white overflow-hidden">
+      <section className="py-12 md:py-16 bg-white overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-20">
-            <RevealOnScroll direction="left" className="flex-1 space-y-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <RevealOnScroll direction="left" className="flex-1 space-y-6">
               <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
                 Pure Environment. <br />
                 <span className="text-teal-600">Pure Products.</span>
@@ -182,17 +182,17 @@ export default function InfrastructurePage() {
                 ))}
               </div>
             </RevealOnScroll>
-            
+
             <RevealOnScroll direction="right" className="flex-1 relative">
               <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl">
                 <Image src="/logo.webp" alt="Hygiene Process" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain bg-slate-50 p-20 opacity-20" />
                 <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="bg-white/90 backdrop-blur-md p-10 rounded-[40px] border border-white shadow-2xl text-center space-y-4">
-                      <ShieldCheck className="w-16 h-16 text-teal-600 mx-auto" />
-                      <p className="font-black text-slate-900 uppercase tracking-widest text-lg">GMP Certified</p>
-                      <p className="text-slate-500 font-bold text-xs uppercase">Safe & Sterile</p>
-                   </div>
+                  <div className="bg-white/90 backdrop-blur-md p-10 rounded-[40px] border border-white shadow-2xl text-center space-y-4">
+                    <ShieldCheck className="w-16 h-16 text-teal-600 mx-auto" />
+                    <p className="font-black text-slate-900 uppercase tracking-widest text-lg">GMP Certified</p>
+                    <p className="text-slate-500 font-bold text-xs uppercase">Safe & Sterile</p>
+                  </div>
                 </div>
               </div>
             </RevealOnScroll>
@@ -201,9 +201,9 @@ export default function InfrastructurePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4 text-center">
-          <RevealOnScroll className="max-w-2xl mx-auto space-y-10">
+          <RevealOnScroll className="max-w-2xl mx-auto space-y-8">
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">Visit Our Facility</h2>
             <p className="text-slate-600 text-xl font-bold">We welcome brand owners for physical tours of our state-of-the-art production floors.</p>
             <Link href="/#contact" className="px-12 py-6 bg-slate-950 text-white rounded-[24px] font-black text-sm uppercase tracking-widest hover:bg-teal-600 transition-all shadow-2xl inline-block">

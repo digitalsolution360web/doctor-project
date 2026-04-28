@@ -3,12 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Beaker, 
-  Microscope, 
-  FlaskConical, 
-  Sparkles, 
-  ShieldCheck, 
+import {
+  Beaker,
+  Microscope,
+  FlaskConical,
+  Sparkles,
+  ShieldCheck,
   Globe,
   Smile,
   Leaf
@@ -46,10 +46,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -65,9 +65,9 @@ export default function RDPage() {
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-white border-b border-slate-100">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/banner.webp" 
-            alt="R&D Lab" 
+          <Image
+            src="/banner1.webp"
+            alt="R&D Lab"
             fill
             sizes="100vw"
             className="object-cover opacity-10 grayscale scale-110"
@@ -75,7 +75,7 @@ export default function RDPage() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-xl bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-xs uppercase tracking-widest mb-4">
@@ -93,9 +93,9 @@ export default function RDPage() {
       </section>
 
       {/* Expertise Sections */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-16">
             <RevealOnScroll direction="left" className="space-y-8">
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
                 In-House <span className="text-teal-600">Chemists.</span>
@@ -128,14 +128,14 @@ export default function RDPage() {
                 We ethically source premium active ingredients from certified suppliers worldwide. From Swiss peptides to Amazonian clays, we ensure your brand uses only the highest purity materials.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                 <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <Globe className="w-8 h-8 text-teal-600 mb-3" />
-                    <p className="font-black text-slate-900 uppercase tracking-tight text-xs">Certified Global Suppliers</p>
-                 </div>
-                 <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                    <Leaf className="w-8 h-8 text-teal-600 mb-3" />
-                    <p className="font-black text-slate-900 uppercase tracking-tight text-xs">Ethically Sourced Extracts</p>
-                 </div>
+                <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                  <Globe className="w-8 h-8 text-teal-600 mb-3" />
+                  <p className="font-black text-slate-900 uppercase tracking-tight text-xs">Certified Global Suppliers</p>
+                </div>
+                <div className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
+                  <Leaf className="w-8 h-8 text-teal-600 mb-3" />
+                  <p className="font-black text-slate-900 uppercase tracking-tight text-xs">Ethically Sourced Extracts</p>
+                </div>
               </div>
             </RevealOnScroll>
             <RevealOnScroll direction="left" className="lg:order-1">
@@ -148,7 +148,7 @@ export default function RDPage() {
       </section>
 
       {/* Trend-based formulations */}
-      <section className="py-24 bg-slate-950 text-white overflow-hidden relative">
+      <section className="py-16 bg-slate-950 text-white overflow-hidden relative">
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-12">
@@ -158,7 +158,7 @@ export default function RDPage() {
             <p className="text-xl text-slate-400 font-bold max-w-2xl mx-auto">
               Stay ahead of the market with our trend-focused R&D capabilities. We specialize in modern global beauty movements.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 { title: "K-Beauty Inspired", icon: Sparkles, desc: "Glass skin finishes, essence-driven textures, and high-hydration formats." },
@@ -177,7 +177,7 @@ export default function RDPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-16 bg-slate-50">
         <div className="container mx-auto px-4 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-10">
             <h2 className="text-3xl md:text-4xl font-bold text-slate-900 uppercase tracking-tighter leading-tight">
