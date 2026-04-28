@@ -30,8 +30,9 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
       data-scroll-behavior="smooth"
+      suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-white">
+      <body className="min-h-screen flex flex-col bg-white" suppressHydrationWarning>
         <Header />
         <main className="flex-grow">
           {children}

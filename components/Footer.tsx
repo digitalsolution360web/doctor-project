@@ -65,7 +65,7 @@ const Footer = () => {
                 { name: "Certifications", href: "/certifications" },
                 { name: "Blog", href: "/blog" },
                 { name: "About Us", href: "/about" },
-                { name: "Contact Center", href: "/quote" }
+                { name: "Contact Center", href: "/contact" }
               ].map((link, i) => (
                 <li key={i}>
                   <Link href={link.href} className="text-slate-200 hover:text-teal-400 transition-all flex items-center group text-sm font-bold tracking-[0.1em]">
@@ -84,8 +84,7 @@ const Footer = () => {
               Global Headquarters
             </h4>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
-              <div className="space-y-8">
+            <div className="space-y-8">
                 <div className="flex items-start space-x-5 group">
                   <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
                     <MapPin className="w-5 h-5 text-teal-500 group-hover:text-white" />
@@ -105,9 +104,6 @@ const Footer = () => {
                     <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
                   </div>
                 </div>
-              </div>
-
-              <div className="space-y-8">
                 <div className="flex items-start space-x-5 group">
                   <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
                     <Mail className="w-5 h-5 text-teal-500 group-hover:text-white" />
@@ -123,7 +119,6 @@ const Footer = () => {
                     <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">Mon - Sat Working</p>
                   </div>
                 </div>
-              </div>
             </div>
           </div>
         </div>

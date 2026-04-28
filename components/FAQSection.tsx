@@ -54,7 +54,7 @@ const FAQSection = () => {
                 </div>
               </div>
               <Link 
-                href="/quote"
+                href="/contact"
                 className="w-full py-4 bg-slate-900 text-white rounded-2xl font-black text-xs tracking-widest flex items-center justify-center hover:bg-teal-600 transition-all group uppercase"
               >
                 Contact Us

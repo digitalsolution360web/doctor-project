@@ -12,15 +12,9 @@ import {
   ShieldCheck,
   Zap,
   Microscope,
-  Settings,
-  Palette,
   Clock,
   Award,
-  Heart,
-  Sparkles,
-  Droplets,
-  Wind,
-  Smile
+  Palette
 } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
 

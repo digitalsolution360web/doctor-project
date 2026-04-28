@@ -3,12 +3,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Send, 
-  ChevronRight, 
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Send,
   MessageSquare,
   Clock,
   ArrowRight
@@ -46,10 +45,10 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
     };
   }, []);
 
-  const animationClass = isVisible 
-    ? direction === "left" ? "animate-reveal-left" 
-    : direction === "right" ? "animate-reveal-right" 
-    : "animate-fade-up"
+  const animationClass = isVisible
+    ? direction === "left" ? "animate-reveal-left"
+      : direction === "right" ? "animate-reveal-right"
+        : "animate-fade-up"
     : "opacity-0";
 
   return (
@@ -59,26 +58,26 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
   );
 };
 
-export default function QuotePage() {
+export default function ContactPage() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 pt-20">
       {/* Hero Section */}
       <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="/banner.webp" 
-            alt="Contact Us" 
-            fill 
+          <Image
+            src="/banner1.webp"
+            alt="Contact Us"
+            fill
             className="object-cover opacity-20"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-3xl space-y-6">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
-              Get A <span className="text-teal-400">Quote.</span>
+              Contact <span className="text-teal-400">Us.</span>
             </h1>
             <p className="text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
               Ready to start your brand? Fill out the form below and our experts will get back to you within 24 hours.
@@ -91,7 +90,7 @@ export default function QuotePage() {
       <section className="py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col lg:flex-row gap-16">
-            
+
             {/* Form Section */}
             <div className="flex-[1.5]">
               <RevealOnScroll className="bg-white rounded-[48px] p-8 md:p-16 shadow-2xl border border-slate-100">
@@ -152,59 +151,70 @@ export default function QuotePage() {
             <div className="flex-1 space-y-10">
               <RevealOnScroll className="bg-slate-900 rounded-[48px] p-10 text-white space-y-12">
                 <h3 className="text-2xl font-semibold uppercase tracking-tighter">Contact <span className="text-teal-400">Details.</span></h3>
-                
+
                 <div className="space-y-8">
-                   <div className="flex items-start space-x-6 group cursor-pointer">
-                      <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
-                        <Phone className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Call Us</p>
-                        <p className="font-bold text-lg">+91-81307 08357</p>
-                      </div>
-                   </div>
+                  <div className="flex items-start space-x-6 group cursor-pointer">
+                    <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                      <Phone className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Call Us</p>
+                      <p className="font-bold text-lg">+91-81307 08357</p>
+                    </div>
+                  </div>
 
-                   <div className="flex items-start space-x-6 group cursor-pointer">
-                      <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
-                        <Mail className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Email Us</p>
-                        <p className="font-bold text-lg">midfloraherbal@gmail.com</p>
-                      </div>
-                   </div>
+                  <div className="flex items-start space-x-6 group cursor-pointer">
+                    <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Email Us</p>
+                      <p className="font-bold text-lg">midfloraherbal@gmail.com</p>
+                    </div>
+                  </div>
 
-                   <div className="flex items-start space-x-6 group cursor-pointer">
-                      <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
-                        <MapPin className="w-5 h-5" />
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Visit Factory</p>
-                        <p className="font-bold text-lg leading-tight">Plot No. 517, Udyog Kendra 2,<br />Ecotech III, Greater Noida,<br />UP 201306</p>
-                      </div>
-                   </div>
+                  <div className="flex items-start space-x-6 group cursor-pointer">
+                    <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Visit Factory</p>
+                      <p className="font-bold text-lg leading-tight">Plot No. 517, Udyog Kendra 2,<br />Ecotech III, Greater Noida,<br />UP 201306</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-6 group cursor-pointer">
+                    <div className="w-12 h-12 bg-teal-500/10 border border-teal-500/20 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                      <Clock className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Working Hours</p>
+                      <p className="font-bold text-lg">10:00 – 05:30</p>
+                      <p className="text-slate-400 text-sm font-bold">Mon – Sat Working</p>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-8 border-t border-white/10 space-y-6">
-                   <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Live Support</p>
-                   <Link href="https://wa.me/918826862154" className="flex items-center justify-between p-6 bg-teal-600 rounded-[32px] group hover:bg-white hover:text-slate-950 transition-all">
-                      <div className="flex items-center space-x-4">
-                        <MessageSquare className="w-6 h-6" />
-                        <span className="font-black uppercase tracking-widest text-sm">WhatsApp Chat</span>
-                      </div>
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                   </Link>
+                  <p className="text-[10px] font-black uppercase tracking-widest text-slate-500">Live Support</p>
+                  <Link href="https://wa.me/918826862154" className="flex items-center justify-between p-6 bg-teal-600 rounded-[32px] group hover:bg-white hover:text-slate-950 transition-all">
+                    <div className="flex items-center space-x-4">
+                      <MessageSquare className="w-6 h-6" />
+                      <span className="font-black uppercase tracking-widest text-sm">WhatsApp Chat</span>
+                    </div>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                  </Link>
                 </div>
               </RevealOnScroll>
 
-              <RevealOnScroll direction="up" className="bg-white rounded-[40px] p-10 border border-slate-100 flex items-center space-x-6">
-                 <div className="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-teal-600">
-                    <Clock className="w-8 h-8" />
-                 </div>
-                 <div>
-                    <p className="font-black text-slate-900 uppercase tracking-tight">Business Hours</p>
-                    <p className="text-slate-500 font-bold text-sm uppercase">Mon - Sat: 9:00 AM - 6:00 PM</p>
-                 </div>
+              <RevealOnScroll direction="up" className="bg-teal-600 rounded-[40px] p-10 flex items-center space-x-6 text-white">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                  <MapPin className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <p className="font-black uppercase tracking-tight">Factory Location</p>
+                  <p className="text-teal-100 font-bold text-sm">Greater Noida, Uttar Pradesh</p>
+                </div>
               </RevealOnScroll>
             </div>
 

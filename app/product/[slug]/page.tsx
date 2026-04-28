@@ -260,7 +260,7 @@ export default function ProductDetails() {
                 Our expert team is ready to assist you with your custom manufacturing requirements.
               </p>
               <Link
-                href="/quote"
+                href="/contact"
                 className="block w-full py-5 bg-white text-teal-700 rounded-2xl font-black text-sm tracking-widest hover:bg-slate-950 hover:text-white transition-all shadow-xl shadow-teal-700/20"
               >
                 Contact Us

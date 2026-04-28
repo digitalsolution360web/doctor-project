@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { CheckCircle, FlaskConical, FileText } from "lucide-react";
+
 
 const Hero = () => {
   return (

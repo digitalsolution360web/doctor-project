@@ -94,7 +94,7 @@ const Header = () => {
               {/* Actions */}
               <div className="flex items-center space-x-4 border-l border-slate-200 pl-6">
                 <Link
-                  href="/quote"
+                  href="/contact"
                   className="px-8 py-3 font-semibold text-[13px] tracking-wide rounded-full transition-all duration-500 hover:-translate-y-1 active:scale-95 bg-teal-600 text-white shadow-[0_10px_30px_-10px_rgba(20,184,166,0.5)] hover:bg-slate-950 hover:shadow-slate-900/20"
                 >
                   Enquire Now
@@ -140,7 +140,7 @@ const Header = () => {
               ))}
               <div className="pt-10 space-y-6">
                 <Link
-                  href="/quote"
+                  href="/contact"
                   className="w-full py-5 text-center bg-teal-600 text-white rounded-2xl font-black text-base tracking-widest block"
                   onClick={() => setIsOpen(false)}
                 >

@@ -4,13 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
-  BookOpen,
-  ChevronRight,
   Calendar,
   User,
-  ArrowRight,
-  Search,
-  Tag
+  ArrowRight
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -61,6 +57,7 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 export default function BlogPage() {
   const posts = [
     {
+      slug: "Product-details-1",
       title: "How to Start a Cosmetic Brand in India",
       excerpt: "A step-by-step roadmap for entrepreneurs looking to launch a successful skincare or haircare brand. Learn about legal requirements, formulations, and choosing the right manufacturing partner.",
       image: "/8.webp",
@@ -68,13 +65,15 @@ export default function BlogPage() {
       category: "Business Guide"
     },
     {
+      slug: "Product-details-2",
       title: "Top Trending Skincare Ingredients for 2026",
       excerpt: "Discover the high-demand ingredients driving consumer interest this year. From Niacinamide and Kojic Acid to Botanical Extracts, learn what formulations are winning the market.",
-      image: "/3.webp",
+      image: "/banner1.webp",
       date: "April 15, 2026",
       category: "Ingredients"
     },
     {
+      slug: "Product-details-3",
       title: "Private Label vs Custom Manufacturing",
       excerpt: "Not sure which path to choose? We break down the pros and cons of Private Labeling for speed-to-market versus Custom Formulations for unique brand exclusivity.",
       image: "/9.webp",
@@ -117,30 +116,32 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {posts.map((post, i) => (
               <RevealOnScroll key={i} className="group cursor-pointer h-full flex flex-col">
-                <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100 shrink-0">
-                  <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                  <div className="absolute top-6 left-6 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
-                    <span className="text-white font-black text-[10px] uppercase tracking-widest">{post.category}</span>
+                <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
+                  <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100 shrink-0">
+                    <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    <div className="absolute top-6 left-6 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
+                      <span className="text-white font-black text-[10px] uppercase tracking-widest">{post.category}</span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex flex-col flex-1 space-y-4">
-                  <div className="flex items-center space-x-4 text-slate-400 text-xs font-bold uppercase tracking-widest">
-                    <span className="flex items-center"><Calendar className="w-3 h-3 mr-2" /> {post.date}</span>
-                    <span className="flex items-center"><User className="w-3 h-3 mr-2" /> Expert R&D Team</span>
-                  </div>
-                  <h3 className="text-xl font-semibold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-slate-600 font-bold leading-relaxed">{post.excerpt}</p>
+                  <div className="flex flex-col flex-1 space-y-4">
+                    <div className="flex items-center space-x-4 text-slate-400 text-xs font-bold uppercase tracking-widest">
+                      <span className="flex items-center"><Calendar className="w-3 h-3 mr-2" /> {post.date}</span>
+                      <span className="flex items-center"><User className="w-3 h-3 mr-2" /> Expert R&D Team</span>
+                    </div>
+                    <h3 className="text-xl font-semibold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-slate-600 font-bold leading-relaxed">{post.excerpt}</p>
 
-                  <div className="pt-4 mt-auto">
-                    <button className="flex items-center space-x-3 text-slate-950 font-black text-xs uppercase tracking-[0.2em] group/btn">
-                      <span>Read Full Article</span>
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-2 transition-transform" />
-                    </button>
+                    <div className="pt-4 mt-auto">
+                      <span className="flex items-center space-x-3 text-slate-950 font-black text-xs uppercase tracking-[0.2em] group/btn">
+                        <span>Read Full Article</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </RevealOnScroll>
             ))}
           </div>
