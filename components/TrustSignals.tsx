@@ -41,8 +41,8 @@ const TrustSignals = () => {
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/5 relative z-10">
             {signals.map((item, i) => (
               <div key={i} className="p-6 lg:p-8 flex flex-col items-center text-center group/item hover:bg-white/5 transition-all duration-500">
-                <div className="w-14 h-14 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-5 border border-teal-500/20 group-hover/item:bg-teal-500 group-hover/item:border-teal-500 transition-all duration-500 group-hover/item:scale-110 group-hover/item:shadow-[0_0_30px_rgba(20,184,166,0.3)]">
-                  <item.icon className="w-7 h-7 text-teal-400 group-hover/item:text-slate-950 transition-colors" />
+                <div className="w-16 h-16 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-5 border border-teal-500/20 group-hover/item:bg-teal-600 group-hover/item:border-teal-600 transition-all duration-500 group-hover/item:scale-110 group-hover/item:shadow-[0_0_40px_rgba(20,184,166,0.4)]">
+                  <item.icon className="w-8 h-8 text-teal-400 group-hover/item:text-white transition-colors stroke-[2px]" />
                 </div>
 
                 <div className="space-y-1.5">

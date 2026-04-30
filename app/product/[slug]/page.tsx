@@ -5,308 +5,247 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ChevronRight,
-  Star,
   CheckCircle2,
-  Clock,
-  ShieldCheck,
-  MessageSquare,
   ArrowRight,
   Droplets,
   FlaskConical,
   Package,
-  Heart,
-  Share2,
-  Info
+  Info,
+  Phone,
+  ShieldCheck,
+  Zap,
+  Globe
 } from "lucide-react";
 import QuotePopup from "@/components/QuotePopup";
 
 export default function ProductDetails() {
-  const [activeTab, setActiveTab] = useState("description");
   const [isQuotePopupOpen, setIsQuotePopupOpen] = useState(false);
 
   const product = {
-    title: "Rosemary & Peppermint Stimulating Hair Oil",
-    category: "Natural Oils",
-    breadcrumbs: ["Home", "Personal Care", "Men's Grooming", "Hair Care Range", "Home Care", "Natural Oils"],
-    price: "88.00",
-    badge: "Fast Selling Essentials",
-    shortDesc: "A refreshing hair oil blend that energizes the scalp and nourishes hair roots.",
-    mainImage: "/cate6.webp",
-    features: [
-      { name: "Private Label", available: true },
-      { name: "Custom Formula", available: true }
+    title: "Aloe-Based Hair Cream Third-Party Manufacturer",
+    mainImage: "/cate6.webp", // Using existing image for placeholder
+    specs: [
+      { label: "MOQ", value: "3000 Units" },
+      { label: "Packaging Size", value: "As per brand recommendation" },
+      { label: "Packaging Type", value: "Jar or Tube" },
+      { label: "Customized Formulations", value: "Available" },
+      { label: "Private Labeling", value: "Available" },
+      { label: "Turnkey Solutions", value: "Available" },
+      { label: "Benefits", value: "Hydrates deeply, tames frizz, improves hair texture" },
     ],
-    detailedDescription: "This stimulating hair oil combines rosemary and peppermint oils to help invigorate the scalp and support healthier hair. The nourishing oil base helps improve hair softness and shine while offering a refreshing scalp experience. Suitable for regular oiling routines.",
-    ingredients: ["Rosemary Oil", "Peppermint Oil", "Carrier Oils", "Vitamin E"],
-    benefits: [
-      "Energizes and refreshes scalp",
-      "Nourishes hair roots",
-      "Improves hair softness",
-      "Adds natural shine",
-      "Stimulates blood circulation"
-    ],
-    howToUse: "Apply a small amount to scalp and hair, massage gently with fingertips for 5-10 minutes. Leave on for at least 30 minutes or overnight before washing with a mild shampoo.",
-    whyChooseUs: [
-      "Private Label Manufacturing",
-      "Custom Formulation Available",
-      "Quality Assured Products",
-      "Expert Formulation Team",
-      "GMP Compliant Facility"
+    detailedDescription: "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.",
+    extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
+    callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
+    ingredients: [
+      { name: "Aloe Vera Extract", img: "/cate2.webp" },
+      { name: "Coconut Oil", img: "/cate10.webp" },
+      { name: "Shea Butter", img: "/cate12.webp" },
     ],
     relatedProducts: [
-      { title: "Aloe Vera Shampoo", category: "Hair Care", img: "/cate2.webp" },
-      { title: "Beard Shampoo", category: "Grooming", img: "/cate8.webp" },
-      { title: "Sidemont Complex Shampoo", category: "Hair Care", img: "/cate1.webp" },
-      { title: "Biotin & Complex Shampoo", category: "Hair Care", img: "/cate.webp" }
+      { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/cate1.webp" },
+      { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/cate8.webp" },
+      { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/cate.webp" }
     ]
   };
 
   return (
-    <div className="bg-white min-h-screen pt-24 pb-16">
-      {/* Breadcrumbs & Back Button */}
-      <div className="container mx-auto px-4 md:px-6 mb-8">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <nav className="flex items-center space-x-3 text-[10px] font-black tracking-[0.2em] text-slate-400 uppercase">
-            {product.breadcrumbs.map((crumb, i) => (
-              <React.Fragment key={i}>
-                <Link href="#" className="hover:text-teal-600 transition-colors">
-                  {crumb}
-                </Link>
-                {i < product.breadcrumbs.length - 1 && <span className="text-slate-300 font-normal">|</span>}
-              </React.Fragment>
-            ))}
-          </nav>
-
-          <button
-            onClick={() => window.history.back()}
-            className="flex items-center space-x-2 text-slate-900 font-black text-[10px] uppercase tracking-widest group w-fit"
-          >
-            <div className="w-8 h-8 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all">
-              <ArrowRight className="w-3.5 h-3.5 rotate-180" />
-            </div>
-            <span>Back to Products</span>
-          </button>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16">
-
-          {/* Product Image Gallery */}
-          <div className="lg:col-span-6 space-y-4">
-            <div className="relative aspect-square rounded-[40px] overflow-hidden bg-slate-50 border border-slate-100 group">
-              <Image
-                src={product.mainImage}
-                alt={product.title}
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                className="object-contain p-12 transition-transform duration-700 group-hover:scale-105 mix-blend-multiply"
-                priority
-              />
-              <div className="absolute top-6 right-6 space-y-3">
-                <button className="w-12 h-12 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center text-slate-900 hover:bg-teal-600 hover:text-white transition-all">
-                  <Heart className="w-5 h-5" />
+    <div className="bg-white min-h-screen pt-32 pb-0">
+      {/* Product Hero Section */}
+      <section className="container mx-auto px-4 md:px-6 mb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          <div className="lg:col-span-5 relative group">
+             <div className="aspect-[4/5] bg-white rounded-3xl border border-teal-800/30 flex items-center justify-center p-2 overflow-hidden relative shadow-sm">
+                <img
+                  src={product.mainImage}
+                  alt={product.title}
+                  className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
+                />
+                <button className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center text-slate-400 hover:text-teal-600 transition-colors">
+                  <Package className="w-5 h-5" />
                 </button>
-                <button className="w-12 h-12 rounded-2xl bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center text-slate-900 hover:bg-teal-600 hover:text-white transition-all">
-                  <Share2 className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
+             </div>
           </div>
 
-          {/* Product Info */}
-          <div className="lg:col-span-6 flex flex-col">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#A3E635]/10 border border-[#A3E635]/20 text-slate-800 font-bold text-[10px] tracking-[0.2em] uppercase mb-6 w-fit">
-              <Star className="w-3.5 h-3.5 mr-2 fill-[#A3E635] text-[#A3E635]" />
-              {product.badge}
-            </div>
-
-            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+          {/* Right: Product Basic Details */}
+          <div className="lg:col-span-7 flex flex-col">
+            <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-8 tracking-tight">
               {product.title}
             </h1>
 
-            <div className="flex items-center gap-4 mb-8">
-              <p className="text-3xl font-black text-slate-900">₹{product.price}</p>
-              <span className="text-slate-400 font-medium text-sm">/ per unit (Starting price)</span>
-            </div>
+            <button
+              onClick={() => setIsQuotePopupOpen(true)}
+              className="w-fit px-10 py-4 bg-teal-800 text-white rounded-xl font-bold text-base tracking-wide hover:bg-slate-900 transition-all mb-10 shadow-lg shadow-teal-900/10"
+            >
+              Get a Quote
+            </button>
 
-            <p className="text-slate-500 text-lg leading-relaxed font-medium mb-10 max-w-xl">
-              {product.shortDesc}
-            </p>
-
-            {/* Feature Availability */}
-            <div className="grid grid-cols-2 gap-4 mb-8 p-6 rounded-3xl bg-slate-50 border border-slate-200">
-              {product.features.map((feature, i) => (
-                <div key={i} className="flex flex-col gap-2">
-                  <span className="text-xs font-black text-slate-500 tracking-widest uppercase">{feature.name}</span>
-                  <div className="flex items-center gap-2 text-teal-600 font-bold text-sm">
-                    <CheckCircle2 className="w-5 h-5" />
-                    <span className="text-base text-slate-800">Available</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-5">
-              <button
-                onClick={() => setIsQuotePopupOpen(true)}
-                className="flex-1 py-5 bg-slate-950 text-white rounded-2xl font-black text-sm tracking-widest hover:bg-teal-600 transition-all shadow-xl shadow-slate-950/10 flex items-center justify-center group"
-              >
-                Get a Quote
-                <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="flex-1 py-5 bg-white text-slate-950 border-2 border-slate-950 rounded-2xl font-black text-sm tracking-widest hover:bg-slate-50 transition-all flex items-center justify-center">
-                Contact For Customization
-              </button>
-            </div>
-
-            <p className="mt-6 text-slate-400 text-xs text-center font-medium">Contact us for bulk pricing and customization options</p>
-          </div>
-        </div>
-
-        {/* Content Tabs/Details Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-8 space-y-6">
-
-            {/* Detailed Cards Instead of Tabs for modern feel (Matches Screenshot better) */}
-
-            {/* Description */}
-            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
-              <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
-                  <Info className="w-5 h-5" />
-                </div>
-                Product Description
-              </h3>
-              <p className="text-slate-500 leading-relaxed font-medium">
-                {product.detailedDescription}
-              </p>
-            </div>
-
-            {/* Key Ingredients */}
-            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
-              <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
-                  <FlaskConical className="w-5 h-5" />
-                </div>
-                Key Ingredients
-              </h3>
-              <div className="flex flex-wrap gap-3">
-                {product.ingredients.map((ing, i) => (
-                  <span key={i} className="px-5 py-3 bg-slate-50 border border-slate-100 rounded-2xl text-slate-700 font-bold text-sm">
-                    {ing}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Benefits */}
-            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
-              <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
-                  <Droplets className="w-5 h-5" />
-                </div>
-                Benefits
-              </h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {product.benefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-teal-600 mt-1 shrink-0" />
-                    <span className="text-slate-600 font-medium">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* How to Use */}
-            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.05)]">
-              <h3 className="text-xl font-black text-slate-900 mb-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600">
-                  <Clock className="w-5 h-5" />
-                </div>
-                How to Use
-              </h3>
-              <p className="text-slate-500 leading-relaxed font-medium">
-                {product.howToUse}
-              </p>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-4 space-y-6">
-            {/* Why Choose Us */}
-            <div className="bg-slate-950 p-8 rounded-[40px] text-white overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-              <h3 className="text-xl font-black mb-8 relative z-10">Why Choose Us</h3>
-              <ul className="space-y-5 relative z-10">
-                {product.whyChooseUs.map((item, i) => (
-                  <li key={i} className="flex items-center gap-4 group">
-                    <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-teal-500 group-hover:text-white transition-all">
-                      <CheckCircle2 className="w-4 h-4" />
-                    </div>
-                    <span className="text-sm font-bold text-slate-300 group-hover:text-white transition-colors">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Need Help? */}
-            <div className="bg-teal-600 p-8 rounded-[40px] text-white text-center">
-              <div className="w-16 h-16 rounded-3xl bg-white/10 flex items-center justify-center mx-auto mb-6">
-                <MessageSquare className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-black mb-4">Need Help?</h3>
-              <p className="text-teal-50 font-medium mb-8 text-sm leading-relaxed">
-                Our expert team is ready to assist you with your custom manufacturing requirements.
-              </p>
-              <Link
-                href="/contact"
-                className="block w-full py-5 bg-white text-teal-700 rounded-2xl font-black text-sm tracking-widest hover:bg-slate-950 hover:text-white transition-all shadow-xl shadow-teal-700/20"
-              >
-                Contact Us
-              </Link>
+            {/* Specifications Table */}
+            <div className="overflow-hidden rounded-2xl border border-slate-100 shadow-sm">
+              <table className="w-full text-left border-collapse">
+                <tbody>
+                  {product.specs.map((spec, i) => (
+                    <tr key={i} className="border-b border-slate-50 last:border-0 hover:bg-slate-50 transition-colors">
+                      <td className="py-4 px-6 text-sm font-black text-slate-900 w-1/3 uppercase tracking-wider">{spec.label}</td>
+                      <td className="py-4 px-6 text-sm font-medium text-slate-600">: {spec.value}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Related Products Section */}
-        <div className="mt-24">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
-            <div>
-              <h2 className="text-xs font-black text-teal-600 tracking-[0.3em] uppercase mb-4">Recommended</h2>
-              <h3 className="text-3xl font-bold text-slate-900 tracking-tight">Related <span className="text-slate-400">Products</span></h3>
+      {/* Product Details Text Section */}
+      <section className="bg-slate-50/50 py-12 border-y border-slate-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-5xl">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-1.5 h-8 bg-teal-600 rounded-full"></div>
+              <h2 className="text-3xl font-black text-slate-900 tracking-tight">Product Details</h2>
             </div>
-            <Link href="/categories" className="px-8 py-3 bg-slate-50 hover:bg-slate-100 text-slate-900 rounded-xl font-bold text-sm transition-all border border-slate-100">
-              View All Products
-            </Link>
-          </div>
+            
+            <div className="space-y-8 text-lg leading-relaxed text-slate-700 font-medium">
+              <p>{product.detailedDescription}</p>
+              <p>{product.extraInfo}</p>
+              <p className="italic text-teal-800 font-bold">{product.callToAction}</p>
+            </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  gap-8">
-            {product.relatedProducts.map((p, i) => (
-              <Link key={i} href="#" className="group">
-                <div className="relative aspect-[3/2] rounded-[32px] overflow-hidden bg-slate-50 border border-slate-100 mb-6 flex items-center justify-center">
-                  {/* Subtle background circle like in some premium shops */}
-                  <div className="absolute w-[80%] h-[80%] bg-teal-50 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <div className="relative h-60 w-full">
-                    <Image
-                      src={p.img}
-                      alt={p.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 20vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            {/* Turnkey Solution Section */}
+            <div className="mt-16">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-1.5 h-8 bg-[#A3E635] rounded-full"></div>
+                <h2 className="text-3xl font-black text-slate-900 tracking-tight">Turnkey Solution — Hassle-Free Product Launch</h2>
+              </div>
+              <p className="text-lg leading-relaxed text-slate-700 font-medium">
+                From raw material sourcing to high-volume production, <span className="font-bold text-slate-950">Midflora Herbal</span> offers a fully integrated <span className="font-bold text-slate-950">turnkey solution</span> for your haircare brand. Whether you're targeting <span className="font-bold text-slate-950">salon-grade treatments</span> or <span className="font-bold text-slate-950">everyday essentials</span>, our R&D team will develop a formula that fits your promise—and we'll handle <span className="font-bold text-slate-950">formulation, testing, packaging, and compliance</span> under certified facilities.
+              </p>
+              <p className="mt-6 text-lg font-bold text-slate-900">Let's create a standout formulation that strengthens your brand's presence in the natural hair care market.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ingredients Showcase */}
+      <section className="py-12 bg-teal-900 text-white relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
+          <h3 className="text-xs font-black tracking-[0.4em] uppercase text-teal-400 mb-10">Key Ingredients Kit</h3>
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16">
+            {product.ingredients.map((ing, i) => (
+              <div key={i} className="flex flex-col items-center group">
+                <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl border-2 border-teal-500/30 p-1.5 mb-6 group-hover:border-teal-400 transition-all duration-500 relative bg-white/5">
+                   <div className="w-full h-full rounded-[0.85rem] overflow-hidden relative shadow-2xl bg-white flex items-center justify-center">
+                      <img 
+                        src={ing.img} 
+                        alt={ing.name} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      />
+                   </div>
+                   <div className="absolute -bottom-3 -right-3 bg-teal-500 w-12 h-12 rounded-xl flex items-center justify-center border-4 border-teal-900 shadow-lg transform group-hover:-translate-y-1 transition-transform duration-500">
+                      <Droplets className="w-5 h-5 text-white" />
+                   </div>
                 </div>
-                <div className="px-2 text-center md:text-left">
-                  <h4 className="text-sm font-black text-slate-900 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-tight mb-1">{p.title}</h4>
-                  <p className="text-[10px] font-black text-slate-400 tracking-widest uppercase">{p.category}</p>
-                </div>
-              </Link>
+                <span className="text-sm font-black tracking-widest uppercase">{ing.name}</span>
+              </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Related Products */}
+      <section className="py-12 bg-slate-50/30">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-10">
+            <h3 className="text-teal-600 font-black text-[10px] tracking-[0.4em] uppercase mb-4">Recommended For You</h3>
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">Related <span className="text-slate-400">Products</span></h2>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-5xl mx-auto">
+            {product.relatedProducts.map((p, i) => (
+              <div key={i} className="group cursor-pointer flex flex-col">
+                <div className="aspect-[4/5] bg-white rounded-lg border border-teal-800/30 flex items-center justify-center p-0 mb-6 transition-all duration-700 group-hover:border-teal-500 group-hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.15)] overflow-hidden relative">
+                  {/* Subtle inner glow on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"></div>
+                  
+                  <img 
+                    src={p.img} 
+                    alt={p.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                </div>
+                <div className="text-center px-4">
+                  <h4 className="text-[13px] font-black text-slate-900 uppercase tracking-widest leading-tight group-hover:text-teal-600 transition-colors duration-300 mb-1">{p.title}</h4>
+                  <div className="w-10 h-0.5 bg-teal-500/20 mx-auto group-hover:w-20 group-hover:bg-teal-500 transition-all duration-500"></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Manufacturing Contact Form Section */}
+      <section className="relative py-12 overflow-hidden bg-teal-50">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.05]"></div>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-4xl mx-auto bg-white rounded-2xl p-6 md:p-10 border border-teal-100 shadow-[0_15px_60px_-15px_rgba(20,184,166,0.3)] relative overflow-hidden">
+            {/* Subtle decorations */}
+            <div className="absolute -top-32 -right-32 w-64 h-64 bg-teal-100/50 rounded-full blur-[80px]"></div>
+            <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-green-100/50 rounded-full blur-[80px]"></div>
+
+            <div className="text-center mb-8 relative z-10">
+              <h3 className="text-teal-600 font-bold text-xs tracking-widest uppercase mb-2">Partner With Us</h3>
+              <h2 className="text-2xl md:text-3xl font-black text-slate-900 leading-tight mb-4">Contact Us For <br className="hidden md:block" /><span className="text-teal-600">Third Party Manufacturing</span></h2>
+              <p className="text-slate-500 text-sm max-w-xl mx-auto">Have questions? Our expert team is ready to assist you. Kindly share your details, and our experts will get in touch to understand your requirements.</p>
+            </div>
+
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-10">
+              <input type="text" placeholder="First Name*" className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-600 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none font-medium" required />
+              <input type="text" placeholder="Last Name*" className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-600 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none font-medium" required />
+              <input type="email" placeholder="Email*" className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-600 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none font-medium" required />
+              <input type="tel" placeholder="Phone*" className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-600 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none font-medium" required />
+              <input type="text" placeholder="Company" className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-600 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none font-medium col-span-1 md:col-span-2" />
+              
+              <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
+                <div className="relative">
+                  <select className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-medium focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
+                    <option value="" disabled selected className="text-slate-600">Select Product</option>
+                    <option value="Hair Cream">Hair Cream</option>
+                    <option value="Face Wash">Face Wash</option>
+                    <option value="Serum">Serum</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-600">
+                    <ChevronRight className="w-4 h-4 rotate-90" />
+                  </div>
+                </div>
+                <div className="relative">
+                  <select className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-medium focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
+                    <option value="" disabled selected className="text-slate-600">Select Category</option>
+                    <option value="Skincare">Skincare</option>
+                    <option value="Haircare">Haircare</option>
+                    <option value="Wellness">Wellness</option>
+                  </select>
+                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-600">
+                    <ChevronRight className="w-4 h-4 rotate-90" />
+                  </div>
+                </div>
+              </div>
+
+              <textarea placeholder="Enquiry" rows={3} className="w-full px-4 py-3 text-sm bg-slate-50 border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-600 font-medium focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none col-span-1 md:col-span-2 resize-none"></textarea>
+              
+              <div className="col-span-1 md:col-span-2 text-center mt-2">
+                <button type="submit" className="px-8 py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm tracking-wider rounded-lg transition-all shadow-lg hover:shadow-teal-500/25 active:scale-95 w-full md:w-auto">
+                  Submit Request
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
 
       <QuotePopup
         isOpen={isQuotePopupOpen}

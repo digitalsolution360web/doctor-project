@@ -160,13 +160,13 @@ export default function Home() {
             <RevealOnScroll>
               <h3 className="text-xl font-bold text-slate-900 tracking-tight uppercase">Manufactured under strict<br />quality and safety standards.</h3>
             </RevealOnScroll>
-            <RevealOnScroll className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
+            <RevealOnScroll className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
               {["ISO", "GMP", "FDA"].map((cert, i) => (
-                <div key={i} className="flex items-center gap-4 group cursor-default">
-                  <div className="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <ShieldCheck className="w-6 h-6 text-teal-600" />
+                <div key={i} className="flex items-center gap-5 group cursor-default">
+                  <div className="w-20 h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)]">
+                    <ShieldCheck className="w-10 h-10 text-teal-600 stroke-[2.5px]" />
                   </div>
-                  <span className="text-xs font-bold tracking-[0.2em] text-slate-500 group-hover:text-slate-900 transition-colors">{cert}</span>
+                  <span className="text-sm font-black tracking-[0.25em] text-slate-900 group-hover:text-teal-600 transition-colors">{cert}</span>
                 </div>
               ))}
             </RevealOnScroll>
