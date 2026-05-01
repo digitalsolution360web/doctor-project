@@ -56,15 +56,15 @@ const Header = () => {
       {/* Main Navbar */}
       <header
         className={`fixed left-0 w-full z-50 transition-all duration-700 ${scrolled
-          ? "top-0 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)] py-5"
-          : "top-4 lg:top-12 bg-transparent py-0"
+          ? "top-0 bg-white shadow-[0_20px_50px_-20px_rgba(0,0,0,0.1)] py-2 lg:py-5"
+          : "top-2 lg:top-12 bg-transparent py-0"
           }`}
       >
-        <div className={`container mx-auto px-4 md:px-6 transition-all duration-700 ${!scrolled ? "bg-white backdrop-blur-xl rounded-2xl border border-white/10 py-3 shadow-2xl w-[calc(100%-2rem)] lg:w-full" : ""}`}>
+        <div className={`container mx-auto px-4 md:px-6 transition-all duration-700 ${!scrolled ? "bg-white backdrop-blur-xl rounded-2xl border border-white/10 py-1.5 lg:py-3 shadow-2xl w-[calc(100%-1rem)] lg:w-full" : ""}`}>
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center group">
-              <div className="relative h-14 w-56 transition-transform group-hover:scale-105 duration-500">
+              <div className="relative h-10 w-40 lg:h-14 lg:w-56 transition-transform group-hover:scale-105 duration-500">
                 <Image
                   src="/logo.webp"
                   alt="Midflora Herbal Logo"

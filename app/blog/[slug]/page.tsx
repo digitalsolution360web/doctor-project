@@ -193,17 +193,11 @@ export default function BlogDetailPage({ params }: PageProps) {
                   <RevealOnScroll key={i}>
                     <div id={`section-${i}`} className="group">
                       <div className="space-y-4">
-                        {/* Heading */}
-                        <div className="flex items-center gap-3">
-                          <span className="text-[10px] font-black text-teal-600 uppercase tracking-[0.3em]">Section {String(i + 1).padStart(2, '0')}</span>
-                          <div className="h-px flex-1 bg-slate-100 group-hover:bg-teal-600/20 transition-all duration-700" />
-                        </div>
-                        
-                        <h2 className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-tight transition-colors">
                           {section.heading}
                         </h2>
                         
-                        <p className="text-slate-600 leading-[1.9] text-lg">
+                        <p className="text-slate-600 leading-[1.8] text-lg font-medium">
                           {section.body}
                         </p>
                       </div>
@@ -259,39 +253,7 @@ export default function BlogDetailPage({ params }: PageProps) {
             {/* Sidebar */}
             <aside className="flex-1 space-y-8 lg:max-w-xs xl:max-w-sm">
 
-              {/* Table of Contents */}
-              <RevealOnScroll direction="right">
-                <div className="bg-slate-50 rounded-[32px] p-8 border border-slate-100 sticky top-24">
-                  <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 mb-6 flex items-center">
-                    <BookOpen className="w-3.5 h-3.5 mr-2 text-teal-500" />Table of Contents
-                  </h4>
-                  <nav className="space-y-1">
-                    {post.content.map((section, i) => (
-                      <a key={i} href={`#section-${i}`} className="flex items-start gap-3 px-4 py-3 rounded-xl text-sm font-semibold text-slate-500 hover:bg-white hover:text-teal-600 hover:shadow-sm transition-all group">
-                        <span className="text-[10px] font-black text-slate-300 group-hover:text-teal-500 mt-0.5">{String(i + 1).padStart(2, '0')}</span>
-                        <span className="leading-tight line-clamp-2">{section.heading}</span>
-                      </a>
-                    ))}
-                  </nav>
-                </div>
-              </RevealOnScroll>
 
-              {/* CTA Card */}
-              <RevealOnScroll direction="right">
-                <div className="bg-gradient-to-br from-teal-600 to-teal-700 rounded-[32px] p-8 text-white space-y-6 relative overflow-hidden">
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
-                  <div className="relative z-10">
-                    <h3 className="text-xl font-bold tracking-tight leading-tight">Ready to Launch Your Brand?</h3>
-                    <p className="text-teal-100 mt-3 text-sm leading-relaxed">
-                      Get a free consultation with our experts today.
-                    </p>
-                  </div>
-                  <Link href="/contact" className="flex items-center justify-between w-full px-6 py-4 bg-white text-teal-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-950 hover:text-white transition-all group relative z-10">
-                    <span>Get Free Quote</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </div>
-              </RevealOnScroll>
 
               {/* Related Posts */}
               <RevealOnScroll direction="right">
