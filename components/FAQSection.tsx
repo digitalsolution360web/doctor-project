@@ -32,11 +32,11 @@ const FAQSection = () => {
         <div className="flex flex-col lg:flex-row gap-8 items-start">
           {/* Left Side: Header */}
           <div className="lg:w-1/3">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 font-bold text-xs tracking-widest mb-4">
-              <HelpCircle className="w-3.5 h-3.5 mr-2" />
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 font-bold text-[10px] md:text-xs tracking-widest mb-3 md:mb-4">
+              <HelpCircle className="w-3 md:w-3.5 h-3 md:h-3.5 mr-2" />
               Information Hub
             </div>
-            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight mb-4">
+            <h3 className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight mb-3 md:mb-4">
               Common <span className="text-teal-600">Questions</span>
             </h3>
             <p className="text-slate-500 text-base font-medium leading-relaxed mb-8">
@@ -76,25 +76,25 @@ const FAQSection = () => {
               >
                 <button 
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className={`w-full px-5 py-4 flex items-center justify-between text-left transition-all duration-500 ${
-                    openIndex === i ? "border-l-4 border-teal-600 pl-4" : ""
+                  className={`w-full px-4 md:px-5 py-3 md:py-4 flex items-center justify-between text-left transition-all duration-500 ${
+                    openIndex === i ? "border-l-4 border-teal-600 pl-3 md:pl-4" : ""
                   }`}
                 >
-                  <span className={`text-lg font-bold tracking-tight transition-colors duration-300 ${
+                  <span className={`text-base md:text-lg font-bold tracking-tight transition-colors duration-300 ${
                     openIndex === i ? "text-teal-600" : "text-slate-900"
                   }`}>
                     {faq.question}
                   </span>
-                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-500 shrink-0 ${
+                  <div className={`w-7 h-7 md:w-8 md:h-8 rounded-lg flex items-center justify-center transition-all duration-500 shrink-0 ${
                     openIndex === i ? "bg-teal-600 text-white rotate-180" : "bg-slate-100 text-slate-400"
                   }`}>
-                    {openIndex === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    {openIndex === i ? <Minus className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                   </div>
                 </button>
                 
                 <div 
-                  className={`transition-all duration-500 ease-in-out px-6 overflow-hidden ${
-                    openIndex === i ? "max-h-60 pb-6 opacity-100" : "max-h-0 opacity-0"
+                  className={`transition-all duration-500 ease-in-out px-4 md:px-6 overflow-hidden ${
+                    openIndex === i ? "max-h-60 pb-5 md:pb-6 opacity-100" : "max-h-0 opacity-0"
                   }`}
                 >
                   <p className="text-slate-500 text-base font-medium leading-relaxed">

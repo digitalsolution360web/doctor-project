@@ -82,19 +82,19 @@ export default function Home() {
       </RevealOnScroll>
 
       {/* Premium Dark Section (Why Choose Us) - Refined */}
-      <section className="py-12 lg:py-16 bg-slate-950 text-white relative overflow-hidden">
+      <section className="py-8 lg:py-16 bg-slate-950 text-white relative overflow-hidden">
         {/* Animated background glows */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-900/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3"></div>
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#A3E635]/5 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/3"></div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <RevealOnScroll className="max-w-3xl mb-8">
-            <h2 className="text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-4 flex items-center uppercase">
-              <span className="w-8 h-[2px] bg-[#A3E635] mr-3"></span>
+          <RevealOnScroll className="max-w-3xl mb-6 md:mb-8">
+            <h2 className="text-[10px] md:text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-3 md:mb-4 flex items-center uppercase">
+              <span className="w-6 md:w-8 h-[2px] bg-[#A3E635] mr-3"></span>
               Why Choose Midflora Herbal
             </h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1]">
-              Where Quality Meets <br />
+            <h3 className="text-2xl md:text-5xl font-bold text-white tracking-tight leading-[1.2] md:leading-[1.1]">
+              Where Quality Meets <br className="hidden md:block" />
               <span className="text-white/60 font-semibold">Affordability.</span>
             </h3>
           </RevealOnScroll>
@@ -120,11 +120,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-12 lg:py-16 bg-white relative">
+      <section className="py-8 lg:py-16 bg-white relative">
         <div className="container mx-auto px-4 md:px-6">
-          <RevealOnScroll className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-xs font-bold text-teal-600 tracking-[0.3em] mb-4 uppercase">Manufacturing Process</h2>
-            <h3 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.1]">
+          <RevealOnScroll className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
+            <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] mb-3 md:mb-4 uppercase">Manufacturing Process</h2>
+            <h3 className="text-2xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2] md:leading-[1.1]">
               Our Professional <span className="text-slate-400 font-semibold">Workflow.</span>
             </h3>
           </RevealOnScroll>
@@ -154,11 +154,11 @@ export default function Home() {
       </section>
 
       {/* Certifications (Clean, Minimal) */}
-      <section className="py-12 bg-slate-100 border-y border-slate-100">
+      <section className="py-8 md:py-12 bg-slate-100 border-y border-slate-100">
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <RevealOnScroll>
-              <h3 className="text-xl font-bold text-slate-900 tracking-tight uppercase">Manufactured under strict<br />quality and safety standards.</h3>
+              <h3 className="text-lg md:text-xl font-bold text-slate-900 tracking-tight uppercase text-center md:text-left">Manufactured under strict<br className="hidden md:block" />quality and safety standards.</h3>
             </RevealOnScroll>
             <RevealOnScroll className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
               {["ISO", "GMP", "FDA"].map((cert, i) => (
@@ -190,7 +190,7 @@ export default function Home() {
       </div> */}
 
       {/* Premium CTA / Contact Form - Refined */}
-      <section id="contact" className="py-12 lg:py-16 bg-slate-100 text-black relative overflow-hidden">
+      <section id="contact" className="py-8 lg:py-16 bg-slate-100 text-black relative overflow-hidden">
         {/* Dynamic background lighting */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-teal-600/10 rounded-full blur-[120px]"></div>
@@ -199,22 +199,22 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <RevealOnScroll direction="left">
-              <h2 className="text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-6 flex items-center uppercase">
-                <span className="w-8 h-[2px] bg-[#A3E635] mr-3"></span>
+              <h2 className="text-[10px] md:text-xs font-bold text-[#A3E635] tracking-[0.3em] mb-4 md:mb-6 flex items-center uppercase">
+                <span className="w-6 md:w-8 h-[2px] bg-[#A3E635] mr-3"></span>
                 Start Your Project
               </h2>
-              <h3 className="text-3xl md:text-5xl font-black tracking-tight leading-[1.02] mb-8">
-                Launch Your <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-black/40  text-6xl">Cosmetic Brand</span> <br />
+              <h3 className="text-2xl md:text-5xl font-black tracking-tight leading-[1.1] md:leading-[1.02] mb-6 md:mb-8">
+                Launch Your <br className="hidden md:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-black to-black/40 text-4xl md:text-6xl">Cosmetic Brand</span> <br className="hidden md:block" />
                 Today.
               </h3>
               <p className="text-slate-400 text-lg md:text-xl font-medium leading-relaxed mb-12 max-w-md">
                 Connect with our expert formulators and business consultants to discuss your requirements and get a customized pricing plan.
               </p>
               <div className="flex flex-col sm:flex-row gap-6">
-                <button className="group px-10 py-5 bg-[#A3E635] text-slate-950 rounded-2xl font-black text-sm tracking-widest hover:bg-yellow-400 transition-all flex items-center justify-center">
+                <button className="group px-7 md:px-10 py-3.5 md:py-5 bg-[#A3E635] text-slate-950 rounded-xl md:rounded-2xl font-black text-xs md:text-sm tracking-widest hover:bg-yellow-400 transition-all flex items-center justify-center">
                   Request Pricing
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-1.5 md:ml-2 w-3.5 md:w-4 h-3.5 md:h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="px-10 py-5 bg-transparent border border-black/20 text-black rounded-2xl font-black text-sm tracking-widest hover:bg-gray-300 duration-200 transition-all text-center">
                   Talk to Expert
@@ -260,9 +260,9 @@ export default function Home() {
                   <textarea placeholder="Describe your vision..." rows={3} className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all resize-none font-bold placeholder:text-slate-300"></textarea>
                 </div>
 
-                <button type="submit" className="w-full py-6 bg-slate-900 text-white rounded-2xl font-black text-sm tracking-[0.2em] hover:bg-teal-600 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center group">
+                <button type="submit" className="w-full py-4 md:py-6 bg-slate-900 text-white rounded-xl md:rounded-2xl font-black text-xs md:text-sm tracking-[0.2em] hover:bg-teal-600 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center group">
                   Submit Requirement
-                  <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 ml-1.5 md:ml-3 group-hover:translate-x-1 transition-transform" />
                 </button>
               </form>
             </RevealOnScroll>

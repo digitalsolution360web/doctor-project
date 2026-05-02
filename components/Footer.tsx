@@ -124,18 +124,34 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-8 text-slate-500 text-[10px] font-black tracking-[0.3em]">
-          <div className="flex items-center space-x-3 group">
-            <Shield className="w-5 h-5 text-teal-500/40 group-hover:text-teal-500 transition-colors" />
-            <p>© {new Date().getFullYear()} Midflora Herbal. Premium Cosmetic Manufacturing.</p>
+        <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-slate-500 text-[10px] font-black tracking-[0.3em]">
+          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center space-x-3 group">
+              <Shield className="w-4 h-4 text-teal-500/40 group-hover:text-teal-500 transition-colors" />
+              <p>© {new Date().getFullYear()} Midflora Herbal. Premium Cosmetic Manufacturing.</p>
+            </div>
+            <div className="flex items-center space-x-8">
+              <Link href="#" className="hover:text-teal-400 transition-colors">Privacy Policy</Link>
+              <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+            </div>
           </div>
-          <div className="flex items-center space-x-10">
-            <Link href="#" className="hover:text-teal-400 transition-colors flex items-center">
-              <Star className="w-3 h-3 mr-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-              Privacy Policy
-            </Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-          </div>
+
+          {/* Designed By */}
+          <a
+            href="https://www.digitalsolution360.in/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.03] hover:bg-teal-500/10 hover:border-teal-500/30 transition-all duration-500"
+          >
+            <span className="text-slate-600 text-[10px] tracking-[0.2em] font-bold">DESIGNED &amp; DEVELOPED BY</span>
+            <span className="relative">
+              <span className="text-teal-400 font-black text-[11px] tracking-wider group-hover:text-teal-300 transition-colors">
+                Digital Solution 360
+              </span>
+              <span className="absolute -bottom-0.5 left-0 w-0 group-hover:w-full h-px bg-teal-400/50 transition-all duration-500"></span>
+            </span>
+            <Globe className="w-3 h-3 text-teal-500/50 group-hover:text-teal-400 transition-colors" />
+          </a>
         </div>
       </div>
     </footer>

@@ -55,17 +55,17 @@ const TestimonialsSection = () => {
   }, [nextSlide]);
 
   return (
-    <section className="py-12 bg-white relative overflow-hidden">
+    <section className="py-8 lg:py-12 bg-white relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-50 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/4 opacity-40"></div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-8">
-          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 font-bold text-xs tracking-widest mb-3">
-            <Star className="w-3.5 h-3.5 mr-2 fill-teal-600" />
+        <div className="text-center max-w-3xl mx-auto mb-6 md:mb-8">
+          <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 font-bold text-[10px] md:text-xs tracking-widest mb-3">
+            <Star className="w-3 md:w-3.5 h-3 md:h-3.5 mr-2 fill-teal-600" />
             Client Success Stories
           </div>
-          <h3 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
+          <h3 className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tight">
             Trusted By The <span className="text-teal-600">Industry Leaders</span>
           </h3>
         </div>
@@ -78,11 +78,11 @@ const TestimonialsSection = () => {
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
               {testimonials.map((t, i) => (
-                <div key={i} className="w-full shrink-0 p-6 lg:p-10">
-                  <div className="flex flex-col lg:flex-row items-center gap-12">
+                <div key={i} className="w-full shrink-0 p-4 md:p-6 lg:p-10">
+                  <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-12">
                     {/* Left Side: Avatar & Info */}
                     <div className="lg:w-1/3 flex flex-col items-center text-center">
-                      <div className={`w-24 h-24 lg:w-32 lg:h-32 rounded-[32px] ${t.color} flex items-center justify-center text-white font-black text-3xl lg:text-4xl shadow-2xl mb-6 transform group-hover:scale-105 transition-transform duration-500`}>
+                      <div className={`w-20 h-20 md:w-24 md:h-24 lg:w-32 lg:h-32 rounded-[24px] md:rounded-[32px] ${t.color} flex items-center justify-center text-white font-black text-2xl md:text-3xl lg:text-4xl shadow-2xl mb-4 md:mb-6 transform group-hover:scale-105 transition-transform duration-500`}>
                         {t.initials}
                       </div>
                       <div className="flex items-center gap-2 mb-2">

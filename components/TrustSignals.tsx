@@ -32,7 +32,7 @@ const signals = [
 
 const TrustSignals = () => {
   return (
-    <section className="relative z-20 -mt-10 lg:-mt-14 pb-12">
+    <section className="relative z-20 -mt-6 md:-mt-10 lg:-mt-14 pb-8 md:pb-12">
       <div className="container mx-auto px-4 md:px-6">
         <div className="bg-slate-900 border border-white/5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.4)] rounded-[40px] p-2 lg:p-3 backdrop-blur-3xl overflow-hidden group">
           {/* Subtle background glow */}
@@ -40,9 +40,9 @@ const TrustSignals = () => {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-white/5 relative z-10">
             {signals.map((item, i) => (
-              <div key={i} className="p-6 lg:p-8 flex flex-col items-center text-center group/item hover:bg-white/5 transition-all duration-500">
-                <div className="w-16 h-16 rounded-2xl bg-teal-500/10 flex items-center justify-center mb-5 border border-teal-500/20 group-hover/item:bg-teal-600 group-hover/item:border-teal-600 transition-all duration-500 group-hover/item:scale-110 group-hover/item:shadow-[0_0_40px_rgba(20,184,166,0.4)]">
-                  <item.icon className="w-8 h-8 text-teal-400 group-hover/item:text-white transition-colors stroke-[2px]" />
+              <div key={i} className="p-4 md:p-6 lg:p-8 flex flex-col items-center text-center group/item hover:bg-white/5 transition-all duration-500">
+                <div className="w-12 md:w-16 h-12 md:h-16 rounded-xl md:rounded-2xl bg-teal-500/10 flex items-center justify-center mb-4 md:mb-5 border border-teal-500/20 group-hover/item:bg-teal-600 group-hover/item:border-teal-600 transition-all duration-500 group-hover/item:scale-110 group-hover/item:shadow-[0_0_40px_rgba(20,184,166,0.4)]">
+                  <item.icon className="w-6 md:w-8 h-6 md:h-8 text-teal-400 group-hover/item:text-white transition-colors stroke-[2px]" />
                 </div>
 
                 <div className="space-y-1.5">

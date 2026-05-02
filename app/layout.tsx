@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MobileContactBar from "@/components/MobileContactBar";
 
 export default function RootLayout({
   children,
@@ -33,13 +34,14 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-white" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col bg-white pb-16 lg:pb-0" suppressHydrationWarning>
         <Header />
         <main className="flex-grow">
           {children}
         </main>
         <Footer />
         <WhatsAppButton />
+        <MobileContactBar />
       </body>
     </html>
   );

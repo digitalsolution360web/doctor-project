@@ -60,18 +60,18 @@ const Header = () => {
           : "top-2 lg:top-12 bg-transparent py-0"
           }`}
       >
-        <div className={`container mx-auto px-4 md:px-6 transition-all duration-700 ${!scrolled ? "bg-white backdrop-blur-xl rounded-2xl border border-white/10 py-1.5 lg:py-3 shadow-2xl w-[calc(100%-1rem)] lg:w-full" : ""}`}>
+        <div className={`container mx-auto px-3 md:px-6 transition-all duration-700 ${!scrolled ? "bg-white backdrop-blur-xl rounded-xl md:rounded-2xl border border-white/10 py-1.5 lg:py-3 shadow-2xl w-[calc(100%-0.75rem)] lg:w-full" : ""}`}>
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center group">
-              <div className="relative h-10 w-40 lg:h-14 lg:w-56 transition-transform group-hover:scale-105 duration-500">
+              <div className="relative h-9 w-32 md:h-10 md:w-40 lg:h-14 lg:w-56 transition-transform group-hover:scale-105 duration-500">
                 <Image
                   src="/logo.webp"
                   alt="Midflora Herbal Logo"
                   fill
                   className="object-contain"
                   priority
-                  sizes="(max-width: 768px) 100vw, 224px"
+                  sizes="(max-width: 768px) 112px, (max-width: 1024px) 160px, 224px"
                 />
               </div>
             </Link>
@@ -104,10 +104,10 @@ const Header = () => {
 
             {/* Mobile Menu Toggle */}
             <button
-              className="lg:hidden p-2 rounded-xl transition-all text-slate-900 bg-slate-100 hover:bg-slate-200"
+              className="lg:hidden p-2 rounded-lg transition-all text-slate-900 bg-slate-100 hover:bg-slate-200"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -126,32 +126,31 @@ const Header = () => {
                 <X className="w-7 h-7" />
               </button>
             </div>
-            <nav className="flex flex-col p-8 space-y-2 overflow-y-auto">
+            <nav className="flex flex-col px-4 py-2 space-y-1 overflow-y-auto">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-2xl font-black text-slate-900 py-4 flex items-center justify-between tracking-tighter border-b border-slate-50 last:border-0"
+                  className="text-base font-semibold text-slate-800 py-3 px-2 flex items-center justify-between tracking-normal border-b border-slate-100 last:border-0 hover:text-teal-600 transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.name}
-                  <ChevronDown className="w-6 h-6 -rotate-90 text-teal-500" />
                 </Link>
               ))}
-              <div className="pt-10 space-y-6">
+              <div className="pt-4 space-y-3">
                 <Link
                   href="/contact"
-                  className="w-full py-5 text-center bg-teal-600 text-white rounded-2xl font-black text-base tracking-widest block"
+                  className="w-full py-3 text-center bg-teal-600 text-white rounded-xl font-bold text-sm tracking-wide block hover:bg-teal-700 transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
                   Start Consultation
                 </Link>
-                <div className="grid grid-cols-1 gap-4 pt-6">
-                  <p className="flex items-center text-xs font-bold tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
-                    <Phone className="w-4 h-4 mr-3 text-teal-500" /> +91-8826862154
+                <div className="grid grid-cols-1 gap-2 pt-2">
+                  <p className="flex items-center text-xs font-medium text-slate-500 bg-slate-50 p-3 rounded-lg">
+                    <Phone className="w-3.5 h-3.5 mr-2 text-teal-500 shrink-0" /> +91-8826862154
                   </p>
-                  <p className="flex items-center text-xs font-bold tracking-widest text-slate-500 bg-slate-50 p-4 rounded-xl">
-                    <Mail className="w-4 h-4 mr-3 text-teal-500" /> info@midfloraherbal.com
+                  <p className="flex items-center text-xs font-medium text-slate-500 bg-slate-50 p-3 rounded-lg">
+                    <Mail className="w-3.5 h-3.5 mr-2 text-teal-500 shrink-0" /> info@midfloraherbal.com
                   </p>
                 </div>
               </div>
