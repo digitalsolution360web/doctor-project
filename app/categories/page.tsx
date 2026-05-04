@@ -72,7 +72,7 @@ const categoriesData = [
   { title: "Skin Care", image: "/cate.webp", features: ["Face Serums", "Moisturizers", "Cleansers"] },
   { title: "Body Care", image: "/cate3.webp", features: ["Body Lotions", "Body Wash", "Scrubs"] },
   { title: "Face Makeup", image: "/cate1.webp", features: ["Foundations", "Primers", "Setting Sprays"] },
-  { title: "Lip Care", image: "/cate6.webp", features: ["Lip Balms", "Lip Scrubs", "Lip Masks"] },
+  { title: "Lip Care", image: "/lip.webp", features: ["Lip Balms", "Lip Scrubs", "Lip Masks"] },
   { title: "Mother & Baby Care", image: "/cate2.webp", features: ["Baby Oils", "Stretch Mark Creams", "Gentle Washes"] },
   { title: "Ayurvedic", image: "/cate4.webp", features: ["Herbal Oils", "Ubtans", "Natural Pastes"] },
   { title: "Depilation Range", image: "/cate5.webp", features: ["Wax Strips", "Hair Removal Creams", "Post-Wax Oils"] },
@@ -103,7 +103,7 @@ export default function CategoriesPage() {
           {categoriesData.map((category, idx) => (
             <RevealOnScroll key={idx} delay={idx * 100}>
               <Link
-                href={`/product/${category.title.toLowerCase().replace(/ /g, "-")}`}
+                href={`/category/${category.title.toLowerCase().replace(/ /g, "-")}`}
                 className="flex flex-col h-full bg-white rounded-[32px] border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,0.08)] overflow-hidden hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 group"
               >
                 {/* Header Bar */}
