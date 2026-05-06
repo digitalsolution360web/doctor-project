@@ -112,86 +112,68 @@ const CategorySection = () => {
     <section id="categories" className="py-8 lg:py-16 bg-gray-200 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-3 md:mb-4">Our Expertise</h2>
+          <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-3 md:mb-4">Product Categories</h2>
           <h3 className="text-2xl md:text-[52px] font-bold text-slate-900 tracking-tight leading-tight">
             Premium Product <br className="hidden md:block" />
             <span className="text-slate-400 font-semibold">Categories</span>
           </h3>
         </div>
 
-        {/* Professional Category Slider */}
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto gap-8 pb-10 no-scrollbar snap-x snap-mandatory px-4"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
+        {/* Premium Category Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
           {categories.map((cat, i) => (
             <div
               key={i}
-              className="group relative min-w-[280px] md:min-w-[380px] shrink-0 snap-start bg-white rounded-[24px] shadow-[0_15px_60px_-20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(20,184,166,0.15)] hover:border-teal-100 mb-6 md:mb-10 cursor-pointer"
+              className="group relative bg-white rounded-[24px] shadow-[0_15px_40px_-20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(20,184,166,0.15)] hover:border-teal-100 cursor-pointer flex flex-col h-full"
             >
               {/* Image Container (Top) */}
-              <div className="relative h-[280px] overflow-hidden">
+              <div className="relative h-[240px] md:h-[280px] overflow-hidden">
                 <Image
                   src={cat.img}
                   alt={cat.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 400px"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700"></div>
 
-                {/* Category Title Overlay */}
-                <div className="absolute top-8 left-8">
-                  <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
-                    <cat.icon className="w-6 h-6" />
+                {/* Category Icon Overlay */}
+                <div className="absolute top-6 left-6">
+                  <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
+                    <cat.icon className="w-5 h-5" />
                   </div>
                 </div>
               </div>
 
               {/* Category Details */}
-              <div className="p-4 md:p-6">
-                <h4 className="text-2xl font-semibold text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">
+              <div className="p-5 flex flex-col flex-grow">
+                <h4 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">
                   {cat.title}
                 </h4>
-                <p className="text-slate-500 text-[10px] md:text-[11px] font-medium uppercase tracking-[0.2em] mb-4 md:mb-5 opacity-60 leading-tight">
+                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.15em] mb-6 opacity-80 leading-snug min-h-[2.5rem]">
                   {cat.items}
                 </p>
 
                 <Link
-                  href={`/category/${cat.title.toLowerCase()}`}
-                  className="w-full py-3.5 md:py-5 bg-slate-950 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest flex items-center justify-center group-hover:bg-teal-600 transition-all shadow-xl shadow-slate-900/10"
+                  href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  className="mt-auto w-full py-4 bg-slate-950 text-white rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center group-hover:bg-teal-600 transition-all shadow-lg"
                 >
-                  View Range
-                  <ArrowRight className="ml-1.5 md:ml-2 w-3.5 h-3.5 group-hover:translate-x-2 transition-transform" />
+                  Explore Range
+                  <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Navigation Arrows at Bottom Center */}
-        <div className="flex flex-col items-center justify-center gap-4 md:gap-8">
-          <div className="flex items-center gap-3 md:gap-4">
-            <button
-              onClick={() => scroll("left")}
-              className="w-11 h-11 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
-            >
-              <ArrowLeft className="w-5 h-5 md:w-6 md:h-6" />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-11 h-11 md:w-14 md:h-14 rounded-xl md:rounded-2xl  bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
-            >
-              <ArrowRight className="w-5 h-5 md:w-6 md:h-6" />
-            </button>
-          </div>
-
+        {/* View All Button */}
+        <div className="flex justify-center">
           <Link
             href="/categories"
-            className="px-8 py-3 md:px-10 md:py-4 bg-teal-600  text-white rounded-full font-black text-xs md:text-sm tracking-widest hover:bg-slate-950 transition-all shadow-xl shadow-teal-600/20 uppercase"
+            className="group px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-full font-black text-sm tracking-widest hover:bg-slate-950 hover:text-white transition-all shadow-xl flex items-center gap-3"
           >
             View All Products
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>

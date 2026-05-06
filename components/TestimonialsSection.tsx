@@ -138,6 +138,20 @@ const TestimonialsSection = () => {
           </button>
         </div>
       </div>
+      {/* Trusted Brands / Client Logos */}
+      <div className="container mx-auto px-4 md:px-6 pt-12 md:pt-16 border-t border-slate-50">
+        <div className="flex flex-col items-center">
+          <p className="text-[10px] font-black text-slate-400 tracking-[0.3em] uppercase mb-8">Partnering with Visionary Brands</p>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
+            {/* These would be actual logos, using text placeholders for now */}
+            {["Brand A", "Brand B", "Brand C", "Brand D", "Brand E"].map((brand, i) => (
+              <div key={i} className="text-xl md:text-2xl font-black text-slate-900 tracking-tighter">
+                {brand}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

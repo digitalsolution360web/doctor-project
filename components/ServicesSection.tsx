@@ -17,12 +17,12 @@ const services = [
   },
   {
     icon: ShieldCheck,
-    title: "Private Label Manufacturing",
+    title: "Private Labeling",
     desc: "Start your own cosmetic brand without owning a factory. We handle everything from concept to market."
   },
   {
     icon: Settings,
-    title: "Contract Manufacturing",
+    title: "Bulk Manufacturing",
     desc: "Large-scale production with consistent quality using our state-of-the-art facilities."
   },
   {
@@ -38,9 +38,9 @@ const ServicesSection = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col mb-8 md:mb-16 gap-3 md:gap-4">
           <div className="max-w-2xl text-left">
-            <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-3 md:mb-4">Our Expertise</h2>
+            <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-3 md:mb-4">What You Offer</h2>
             <h3 className="text-2xl md:text-[52px] font-bold text-slate-900 leading-[1.2] md:leading-[1.1] tracking-tighter">
-              End-to-End Manufacturing <br className="hidden md:block" />
+              End-to-End Cosmetic Manufacturing <br className="hidden md:block" />
               <span className="text-slate-400 font-semibold">Solutions.</span>
             </h3>
           </div>

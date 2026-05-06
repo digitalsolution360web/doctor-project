@@ -99,11 +99,11 @@ export default function BlogPage() {
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <RevealOnScroll className="max-w-3xl mx-auto space-y-6">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
+          <RevealOnScroll className="max-w-4xl mx-auto space-y-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9]">
               Insights & <span className="text-teal-400">Trends.</span>
             </h1>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto font-bold leading-relaxed">
+            <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
               Expert advice on manufacturing, brand growth, and the future of cosmetic science.
             </p>
           </RevealOnScroll>
@@ -113,31 +113,31 @@ export default function BlogPage() {
       {/* Featured Posts Grid */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {posts.map((post, i) => (
               <RevealOnScroll key={i} className="group cursor-pointer h-full flex flex-col">
                 <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
-                  <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl border border-slate-100 shrink-0">
+                  <div className="relative aspect-[16/10] rounded-[32px] md:rounded-[40px] overflow-hidden mb-6 md:mb-8 shadow-2xl border border-slate-100 shrink-0">
                     <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                    <div className="absolute top-6 left-6 px-4 py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
-                      <span className="text-white font-black text-[10px] uppercase tracking-widest">{post.category}</span>
+                    <div className="absolute top-4 left-4 md:top-6 md:left-6 px-3 py-1.5 md:px-4 md:py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
+                      <span className="text-white font-black text-[8px] md:text-[10px] uppercase tracking-widest">{post.category}</span>
                     </div>
                   </div>
 
-                  <div className="flex flex-col flex-1 space-y-4">
-                    <div className="flex items-center space-x-4 text-slate-400 text-xs font-bold uppercase tracking-widest">
-                      <span className="flex items-center"><Calendar className="w-3 h-3 mr-2" /> {post.date}</span>
-                      <span className="flex items-center"><User className="w-3 h-3 mr-2" /> Expert R&D Team</span>
+                  <div className="flex flex-col flex-1 space-y-3 md:space-y-4">
+                    <div className="flex items-center space-x-4 text-slate-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                      <span className="flex items-center"><Calendar className="w-3 h-3 mr-1 md:mr-2" /> {post.date}</span>
+                      <span className="flex items-center"><User className="w-3 h-3 mr-1 md:mr-2" /> Expert R&D Team</span>
                     </div>
-                    <h3 className="text-xl font-semibold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
+                    <h3 className="text-lg md:text-xl font-semibold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
                       {post.title}
                     </h3>
-                    <p className="text-slate-600 font-bold leading-relaxed">{post.excerpt}</p>
+                    <p className="text-slate-600 font-medium text-sm md:text-base leading-relaxed line-clamp-3">{post.excerpt}</p>
 
-                    <div className="pt-4 mt-auto">
-                      <span className="flex items-center space-x-3 text-slate-950 font-black text-xs uppercase tracking-[0.2em] group/btn">
+                    <div className="pt-2 md:pt-4 mt-auto">
+                      <span className="flex items-center space-x-3 text-slate-950 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] group/btn">
                         <span>Read Full Article</span>
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                        <ArrowRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-2 transition-transform" />
                       </span>
                     </div>
                   </div>
@@ -151,18 +151,18 @@ export default function BlogPage() {
       {/* Newsletter */}
       <section className="py-16 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="bg-teal-600 rounded-[60px] p-10 md:p-16 text-white text-center relative overflow-hidden">
+          <div className="bg-teal-600 rounded-[40px] md:rounded-[60px] p-8 md:p-16 text-white text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent_70%)]"></div>
-            <RevealOnScroll className="max-w-2xl mx-auto space-y-10 relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter uppercase leading-none">
+            <RevealOnScroll className="max-w-2xl mx-auto space-y-8 md:space-y-10 relative z-10">
+              <h2 className="text-2xl md:text-4xl font-bold tracking-tighter uppercase leading-[1.1]">
                 Subscribe to <br /> <span className="text-teal-100">Industry News.</span>
               </h2>
-              <p className="text-teal-50 text-xl font-bold opacity-90">
+              <p className="text-teal-50 text-base md:text-xl font-medium opacity-90">
                 Get the latest cosmetic trends and manufacturing insights delivered to your inbox.
               </p>
               <form className="flex flex-col sm:flex-row gap-4">
-                <input type="email" placeholder="Enter your email" className="flex-1 px-8 py-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white placeholder:text-white/60 focus:outline-none focus:bg-white focus:text-slate-900 transition-all font-bold" />
-                <button className="px-10 py-5 bg-white text-teal-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-2xl">
+                <input type="email" placeholder="Enter your email" className="flex-1 px-6 py-4 md:px-8 md:py-5 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl text-white placeholder:text-white/60 focus:outline-none focus:bg-white focus:text-slate-900 transition-all font-bold" />
+                <button className="px-8 py-4 md:px-10 md:py-5 bg-white text-teal-700 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all shadow-2xl">
                   Join Newsletter
                 </button>
               </form>

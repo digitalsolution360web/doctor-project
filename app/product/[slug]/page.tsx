@@ -57,11 +57,11 @@ export default function ProductDetails() {
 
           {/* Left: Product Image */}
           <div className="lg:col-span-5">
-            <div className="aspect-[4/5] bg-gray-50 rounded-2xl border border-gray-200 flex items-center justify-center overflow-hidden">
+            <div className="aspect-[4/5] bg-gray-50 rounded-3xl  border border-gray-200 flex items-center justify-center overflow-hidden">
               <img
                 src={product.mainImage}
                 alt={product.title}
-                className="w-full h-full object-contain"
+                className=" object-contain"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function ProductDetails() {
       </div>
 
       {/* Related Products */}
-      <section className="py-10 bg-white">
+      <section className="py-10 bg-gray-300">
         <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-8">
             <p className="text-xs font-bold tracking-widest uppercase text-teal-600 mb-2">Recommended For You</p>
@@ -204,7 +204,7 @@ export default function ProductDetails() {
       </div>
 
       {/* Enquiry Form Section */}
-      <section className="py-10 bg-gray-50">
+      <section className="py-10 bg-blue-100">
         <div className="container mx-auto px-4 md:px-8">
           <div className="max-w-3xl mx-auto bg-white rounded-2xl p-6 md:p-10 border border-gray-200 shadow-sm">
 

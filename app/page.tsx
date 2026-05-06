@@ -101,9 +101,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Zap, title: "Low Moq", desc: "Perfect for startups to launch their brand with minimal initial investment." },
-              { icon: Award, title: "Affordable Pricing", desc: "Competitive pricing structures with premium international quality standards." },
-              { icon: Microscope, title: "In-house R&d Experts", desc: "Innovative formulation development led by experienced scientific professionals." },
+              { icon: Zap, title: "Low MOQ", desc: "Perfect for startups to launch their brand with minimal initial investment." },
+              { icon: Award, title: "Affordable Pricing with Premium Quality", desc: "Competitive pricing structures with premium international quality standards." },
+              { icon: Microscope, title: "In-house R&D Experts", desc: "Innovative formulation development led by experienced scientific professionals." },
               { icon: Clock, title: "Fast Turnaround Time", desc: "Optimized production and dispatch to keep your supply chain moving." },
               { icon: Palette, title: "Custom Branding Support", desc: "End-to-end professional design and branding support for packaging." },
               { icon: ShieldCheck, title: "Regulatory Compliance", desc: "Complete support for licensing, certifications, and quality audits." }
@@ -125,7 +125,7 @@ export default function Home() {
           <RevealOnScroll className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
             <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] mb-3 md:mb-4 uppercase">Manufacturing Process</h2>
             <h3 className="text-2xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2] md:leading-[1.1]">
-              Our Professional <span className="text-slate-400 font-semibold">Workflow.</span>
+              Manufacturing <span className="text-slate-400 font-semibold">Process.</span>
             </h3>
           </RevealOnScroll>
 
@@ -229,40 +229,46 @@ export default function Home() {
                   <p className="text-slate-500 text-sm font-medium mt-1">Fill the form and we'll get back to you within 24 hours.</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all font-bold placeholder:text-slate-300" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+                  <div className="space-y-2.5">
+                    <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Full Name</label>
+                    <input type="text" placeholder="e.g. John Doe" className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all font-semibold placeholder:text-slate-400" />
                   </div>
-                  <div className="space-y-3">
-                    <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Email Address</label>
-                    <input type="email" placeholder="john@example.com" className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all font-bold placeholder:text-slate-300" />
+                  <div className="space-y-2.5">
+                    <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Email Address</label>
+                    <input type="email" placeholder="john@example.com" className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all font-semibold placeholder:text-slate-400" />
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Product Category</label>
+                <div className="space-y-2.5">
+                  <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Phone Number</label>
+                  <input type="tel" placeholder="+91 00000 00000" className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all font-semibold placeholder:text-slate-400" />
+                </div>
+
+                <div className="space-y-2.5">
+                  <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Product Category</label>
                   <div className="relative">
-                    <select className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all appearance-none font-bold">
-                      <option>Skincare</option>
-                      <option>Haircare</option>
-                      <option>Herbal Range</option>
+                    <select className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all appearance-none font-semibold">
+                      <option>Skincare (Serums, Creams)</option>
+                      <option>Haircare (Oils, Shampoo)</option>
+                      <option>Herbal & Ayurvedic Range</option>
                       <option>Color Cosmetics</option>
+                      <option>Bath & Body</option>
                     </select>
                     <div className="absolute right-6 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <ArrowRight className="w-4 h-4 rotate-90 text-slate-400" />
+                      <ArrowRight className="w-4 h-4 rotate-90 text-slate-500" />
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <label className="text-[10px] font-black text-slate-400 tracking-[0.2em]">Message</label>
-                  <textarea placeholder="Describe your vision..." rows={3} className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:ring-4 focus:ring-teal-600/5 focus:border-teal-600 text-slate-900 transition-all resize-none font-bold placeholder:text-slate-300"></textarea>
+                <div className="space-y-2.5">
+                  <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Message / Requirements</label>
+                  <textarea placeholder="Describe your vision or specific product needs..." rows={3} className="w-full px-6 py-5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all resize-none font-semibold placeholder:text-slate-400"></textarea>
                 </div>
 
-                <button type="submit" className="w-full py-4 md:py-6 bg-slate-900 text-white rounded-xl md:rounded-2xl font-black text-xs md:text-sm tracking-[0.2em] hover:bg-teal-600 transition-all shadow-xl shadow-slate-900/10 flex items-center justify-center group">
+                <button type="submit" className="w-full py-5 md:py-6 bg-slate-950 text-white rounded-2xl font-black text-xs md:text-sm tracking-[0.2em] uppercase hover:bg-teal-600 transition-all shadow-2xl shadow-slate-900/20 flex items-center justify-center group">
                   Submit Requirement
-                  <ArrowRight className="w-3.5 md:w-4 h-3.5 md:h-4 ml-1.5 md:ml-3 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-2 transition-transform" />
                 </button>
               </form>
             </RevealOnScroll>
