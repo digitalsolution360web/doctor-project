@@ -72,12 +72,6 @@ export default function ProductDetails() {
               {product.title}
             </h1>
 
-            <button
-              onClick={() => setIsQuotePopupOpen(true)}
-              className="w-fit px-8 py-3 bg-teal-700 text-white rounded-lg font-bold text-sm hover:bg-teal-800 transition-all"
-            >
-              Get a Quote
-            </button>
 
             {/* Specifications Table */}
             <div className="border border-gray-200 rounded-xl overflow-hidden">
@@ -90,10 +84,19 @@ export default function ProductDetails() {
                     </tr>
                   ))}
                 </tbody>
+
               </table>
+
             </div>
+            <button
+              onClick={() => setIsQuotePopupOpen(true)}
+              className="w-fit px-8 py-3 bg-teal-700 text-white rounded-lg font-bold text-sm hover:bg-teal-800 transition-all"
+            >
+              Get a Quote
+            </button>
           </div>
         </div>
+
       </section>
 
       {/* Divider */}
