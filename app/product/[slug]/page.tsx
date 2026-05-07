@@ -57,7 +57,7 @@ export default function ProductDetails() {
 
           {/* Left: Product Image */}
           <div className="lg:col-span-5">
-            <div className="aspect-[4/5] bg-gray-50 rounded-3xl  border border-gray-200 flex items-center justify-center overflow-hidden">
+            <div className="aspect-square bg-gray-50 rounded-3xl  border border-gray-200 flex items-center justify-center overflow-hidden">
               <img
                 src={product.mainImage}
                 alt={product.title}
@@ -90,7 +90,7 @@ export default function ProductDetails() {
             </div>
             <button
               onClick={() => setIsQuotePopupOpen(true)}
-              className="w-fit px-8 py-3 bg-teal-700 text-white rounded-lg font-bold text-sm hover:bg-teal-800 transition-all"
+              className="w-fit px-8 py-3 m-auto mt-5 bg-teal-700 text-white rounded-lg font-bold text-sm hover:bg-teal-800 transition-all"
             >
               Get a Quote
             </button>
@@ -184,7 +184,7 @@ export default function ProductDetails() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {product.relatedProducts.map((p, i) => (
               <div key={i} className="group cursor-pointer flex flex-col items-center">
-                <div className="aspect-[4/5] w-full bg-gray-50 rounded-xl border border-gray-200 overflow-hidden mb-4 group-hover:border-teal-300 transition-all duration-300">
+                <div className="aspect-square w-full bg-gray-50 rounded-xl border border-gray-200 overflow-hidden mb-4 group-hover:border-teal-300 transition-all duration-300">
                   <img
                     src={p.img}
                     alt={p.title}

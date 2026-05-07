@@ -114,7 +114,7 @@ export default function CategoriesPage() {
                 </div>
 
                 {/* Image Body */}
-                <div className="relative aspect-[3/4] overflow-hidden">
+                <div className="relative aspect-square overflow-hidden">
                   <Image
                     src={category.image}
                     alt={category.title}

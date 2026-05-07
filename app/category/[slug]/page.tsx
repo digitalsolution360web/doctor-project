@@ -154,7 +154,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
                 >
 
                   {/* Image Section */}
-                  <div className="relative aspect-[4/5] bg-slate-50 overflow-hidden">
+                  <div className="relative aspect-square bg-slate-50 overflow-hidden">
                     <Image
                       src={product.image}
                       alt={product.title}
