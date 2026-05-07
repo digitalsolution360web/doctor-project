@@ -34,7 +34,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
-      <body className="min-h-screen flex flex-col bg-white pb-16 lg:pb-0" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col bg-white pb-14 lg:pb-0" suppressHydrationWarning>
         <Header />
         <main className="flex-grow">
           {children}

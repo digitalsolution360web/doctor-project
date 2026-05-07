@@ -7,14 +7,14 @@ import { FaWhatsapp } from "react-icons/fa";
 
 const MobileContactBar = () => {
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 w-full bg-white border-t border-slate-100 z-[100] shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.1)]">
-      <div className="flex items-stretch h-16">
+    <div className="lg:hidden fixed bottom-0 left-0 w-full z-[100] shadow-[0_-10px_30px_-15px_rgba(0,0,0,0.1)] overflow-hidden">
+      <div className="flex items-stretch h-15 bg-white">
         {/* Support Button */}
         <Link
           href="/contact"
           className="flex-[2] bg-teal-600 text-white flex items-center justify-center font-bold text-sm tracking-wide active:bg-teal-700 transition-colors"
         >
-          Enquiy Now
+          Enquiry Now
         </Link>
 
         {/* WhatsApp Icon */}
