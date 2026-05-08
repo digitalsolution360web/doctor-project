@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, use } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 import {
   ChevronRight,
   CheckCircle2,
@@ -18,123 +19,150 @@ import {
 } from "lucide-react";
 import QuotePopup from "@/components/QuotePopup";
 
-export default function ProductDetails({ params }: { params: Promise<{ slug: string }> }) {
-  const resolvedParams = use(params);
-  const slug = resolvedParams.slug;
+interface ProductIngredient {
+  name: string;
+  img: string;
+}
+
+interface ProductSpec {
+  label: string;
+  value: string;
+}
+
+interface RelatedProduct {
+  title: string;
+  category: string;
+  img: string;
+}
+
+interface Product {
+  title: string;
+  mainImage: string;
+  specs: ProductSpec[];
+  detailedDescription: string;
+  extraInfo: string;
+  callToAction: string;
+  ingredients: ProductIngredient[];
+  relatedProducts: RelatedProduct[];
+}
+
+const allProducts: Record<string, Product> = {
+  "aloe-based-hair-cream-formulation": {
+    title: "Aloe-Based Hair Cream Third-Party Manufacturer",
+    mainImage: "/cate6.webp",
+    specs: [
+      { label: "MOQ", value: "3000 Units" },
+      { label: "Packaging Size", value: "As per brand recommendation" },
+      { label: "Packaging Type", value: "Jar or Tube" },
+      { label: "Customized Formulations", value: "Available" },
+      { label: "Private Labeling", value: "Available" },
+      { label: "Turnkey Solutions", value: "Available" },
+      { label: "Benefits", value: "Hydrates deeply, tames frizz, improves hair texture" },
+    ],
+    detailedDescription: "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.",
+    extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
+    callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
+    ingredients: [
+      { name: "Aloe Vera Extract", img: "/cate2.webp" },
+      { name: "Coconut Oil", img: "/cate10.webp" },
+      { name: "Shea Butter", img: "/cate12.webp" },
+    ],
+    relatedProducts: [
+      { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/cate1.webp" },
+      { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/cate8.webp" },
+      { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/cate.webp" }
+    ]
+  },
+  "organic-lip-balm-private-label": {
+    title: "Organic Lip Balm Private Label",
+    mainImage: "/lipp.webp",
+    specs: [
+      { label: "MOQ", value: "10000 Units" },
+      { label: "Packaging Size", value: "10g, 15g, 20g" },
+      { label: "Packaging Type", value: "Tube or Tin" },
+      { label: "Customized Formulations", value: "Available" },
+      { label: "Private Labeling", value: "Available" },
+      { label: "Turnkey Solutions", value: "Available" },
+      { label: "Benefits", value: "Moisturizes, heals cracked lips, long-lasting protection" },
+    ],
+    detailedDescription: "Our Organic Lip Balm is formulated with the finest natural ingredients to provide intense hydration and protection. Perfect for brands looking to offer a high-quality, eco-friendly lip care solution.",
+    extraInfo: "We use pure beeswax, essential oils, and organic butters to ensure a premium feel and effective results.",
+    callToAction: "Launch your own organic lip balm line today. Contact us for private labeling options.",
+    ingredients: [
+      { name: "Beeswax", img: "/cate13.webp" },
+      { name: "Essential Oils", img: "/cate11.webp" },
+      { name: "Cocoa Butter", img: "/cate12.webp" },
+    ],
+    relatedProducts: [
+      { title: "Lip Scrub Manufacturer", category: "Lip Care", img: "/cate11.webp" },
+      { title: "Lip Mask Manufacturer", category: "Lip Care", img: "/cate13.webp" },
+      { title: "Tinted Lip Balm", category: "Lip Care", img: "/cate12.webp" }
+    ]
+  },
+  "skin-hydrating-serum-manufacturer": {
+    title: "Skin Hydrating Serum Manufacturer",
+    mainImage: "/skin.webp",
+    specs: [
+      { label: "MOQ", value: "5000 Units" },
+      { label: "Packaging Size", value: "30ml, 50ml" },
+      { label: "Packaging Type", value: "Dropper Bottle" },
+      { label: "Customized Formulations", value: "Available" },
+      { label: "Private Labeling", value: "Available" },
+      { label: "Turnkey Solutions", value: "Available" },
+      { label: "Benefits", value: "Deep hydration, brightens skin, reduces fine lines" },
+    ],
+    detailedDescription: "This high-performance serum is designed to penetrate deep into the skin layers, providing instant hydration and a youthful glow. It's a must-have for any premium skincare brand.",
+    extraInfo: "Infused with Hyaluronic Acid and Vitamin C, this formula is highly stable and effective.",
+    callToAction: "Partner with us to manufacture your brand's signature hydrating serum.",
+    ingredients: [
+      { name: "Hyaluronic Acid", img: "/cate9.webp" },
+      { name: "Vitamin C", img: "/cate8.webp" },
+      { name: "Green Tea Extract", img: "/cate7.webp" },
+    ],
+    relatedProducts: [
+      { title: "Vitamin C Face Wash", category: "Skin Care", img: "/cate3.webp" },
+      { title: "Moisturizing Cream", category: "Skin Care", img: "/cate5.webp" },
+      { title: "Sunscreen SPF 50", category: "Skin Care", img: "/9.webp" }
+    ]
+  },
+  "vitamin-c-brightening-face-wash": {
+    title: "Vitamin C Brightening Face Wash",
+    mainImage: "/skin.webp",
+    specs: [
+      { label: "MOQ", value: "5000 Units" },
+      { label: "Packaging Size", value: "100ml, 150ml" },
+      { label: "Packaging Type", value: "Tube" },
+      { label: "Benefits", value: "Radiance, Deep Cleansing" }
+    ],
+    detailedDescription: "Brighten your skin with our Vitamin C Face Wash.",
+    extraInfo: "Gentle yet effective.",
+    callToAction: "Contact us for manufacturing.",
+    ingredients: [{ name: "Vitamin C", img: "/cate8.webp" }],
+    relatedProducts: []
+  },
+  "herbal-anti-hairfall-oil": {
+    title: "Herbal Anti-Hairfall Oil",
+    mainImage: "/cate.webp",
+    specs: [
+      { label: "MOQ", value: "3000 Units" },
+      { label: "Packaging Size", value: "100ml, 200ml" },
+      { label: "Packaging Type", value: "Bottle" },
+      { label: "Benefits", value: "Reduces hair fall, strengthens roots" }
+    ],
+    detailedDescription: "Effective herbal oil for hair fall control.",
+    extraInfo: "Traditional Ayurvedic recipe.",
+    callToAction: "Start your hair care line today.",
+    ingredients: [{ name: "Herbal Extracts", img: "/cate.webp" }],
+    relatedProducts: []
+  }
+};
+
+export default function ProductDetails() {
+  const params = useParams();
+  const slug = typeof params?.slug === "string" ? params.slug : "";
   const [isQuotePopupOpen, setIsQuotePopupOpen] = useState(false);
 
-  const allProducts: Record<string, any> = {
-    "aloe-based-hair-cream-formulation": {
-      title: "Aloe-Based Hair Cream Third-Party Manufacturer",
-      mainImage: "/cate6.webp",
-      specs: [
-        { label: "MOQ", value: "3000 Units" },
-        { label: "Packaging Size", value: "As per brand recommendation" },
-        { label: "Packaging Type", value: "Jar or Tube" },
-        { label: "Customized Formulations", value: "Available" },
-        { label: "Private Labeling", value: "Available" },
-        { label: "Turnkey Solutions", value: "Available" },
-        { label: "Benefits", value: "Hydrates deeply, tames frizz, improves hair texture" },
-      ],
-      detailedDescription: "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.",
-      extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
-      callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
-      ingredients: [
-        { name: "Aloe Vera Extract", img: "/cate2.webp" },
-        { name: "Coconut Oil", img: "/cate10.webp" },
-        { name: "Shea Butter", img: "/cate12.webp" },
-      ],
-      relatedProducts: [
-        { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/cate1.webp" },
-        { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/cate8.webp" },
-        { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/cate.webp" }
-      ]
-    },
-    "organic-lip-balm-private-label": {
-      title: "Organic Lip Balm Private Label",
-      mainImage: "/lipp.webp",
-      specs: [
-        { label: "MOQ", value: "10000 Units" },
-        { label: "Packaging Size", value: "10g, 15g, 20g" },
-        { label: "Packaging Type", value: "Tube or Tin" },
-        { label: "Customized Formulations", value: "Available" },
-        { label: "Private Labeling", value: "Available" },
-        { label: "Turnkey Solutions", value: "Available" },
-        { label: "Benefits", value: "Moisturizes, heals cracked lips, long-lasting protection" },
-      ],
-      detailedDescription: "Our Organic Lip Balm is formulated with the finest natural ingredients to provide intense hydration and protection. Perfect for brands looking to offer a high-quality, eco-friendly lip care solution.",
-      extraInfo: "We use pure beeswax, essential oils, and organic butters to ensure a premium feel and effective results.",
-      callToAction: "Launch your own organic lip balm line today. Contact us for private labeling options.",
-      ingredients: [
-        { name: "Beeswax", img: "/cate13.webp" },
-        { name: "Essential Oils", img: "/cate11.webp" },
-        { name: "Cocoa Butter", img: "/cate12.webp" },
-      ],
-      relatedProducts: [
-        { title: "Lip Scrub Manufacturer", category: "Lip Care", img: "/cate11.webp" },
-        { title: "Lip Mask Manufacturer", category: "Lip Care", img: "/cate13.webp" },
-        { title: "Tinted Lip Balm", category: "Lip Care", img: "/cate12.webp" }
-      ]
-    },
-    "skin-hydrating-serum-manufacturer": {
-      title: "Skin Hydrating Serum Manufacturer",
-      mainImage: "/skin.webp",
-      specs: [
-        { label: "MOQ", value: "5000 Units" },
-        { label: "Packaging Size", value: "30ml, 50ml" },
-        { label: "Packaging Type", value: "Dropper Bottle" },
-        { label: "Customized Formulations", value: "Available" },
-        { label: "Private Labeling", value: "Available" },
-        { label: "Turnkey Solutions", value: "Available" },
-        { label: "Benefits", value: "Deep hydration, brightens skin, reduces fine lines" },
-      ],
-      detailedDescription: "This high-performance serum is designed to penetrate deep into the skin layers, providing instant hydration and a youthful glow. It's a must-have for any premium skincare brand.",
-      extraInfo: "Infused with Hyaluronic Acid and Vitamin C, this formula is highly stable and effective.",
-      callToAction: "Partner with us to manufacture your brand's signature hydrating serum.",
-      ingredients: [
-        { name: "Hyaluronic Acid", img: "/cate9.webp" },
-        { name: "Vitamin C", img: "/cate8.webp" },
-        { name: "Green Tea Extract", img: "/cate7.webp" },
-      ],
-      relatedProducts: [
-        { title: "Vitamin C Face Wash", category: "Skin Care", img: "/cate3.webp" },
-        { title: "Moisturizing Cream", category: "Skin Care", img: "/cate5.webp" },
-        { title: "Sunscreen SPF 50", category: "Skin Care", img: "/9.webp" }
-      ]
-    },
-    "vitamin-c-brightening-face-wash": {
-      title: "Vitamin C Brightening Face Wash",
-      mainImage: "/skin.webp",
-      specs: [
-        { label: "MOQ", value: "5000 Units" },
-        { label: "Packaging Size", value: "100ml, 150ml" },
-        { label: "Packaging Type", value: "Tube" },
-        { label: "Benefits", value: "Radiance, Deep Cleansing" }
-      ],
-      detailedDescription: "Brighten your skin with our Vitamin C Face Wash.",
-      extraInfo: "Gentle yet effective.",
-      callToAction: "Contact us for manufacturing.",
-      ingredients: [{ name: "Vitamin C", img: "/cate8.webp" }],
-      relatedProducts: []
-    },
-    "herbal-anti-hairfall-oil": {
-      title: "Herbal Anti-Hairfall Oil",
-      mainImage: "/cate.webp",
-      specs: [
-        { label: "MOQ", value: "3000 Units" },
-        { label: "Packaging Size", value: "100ml, 200ml" },
-        { label: "Packaging Type", value: "Bottle" },
-        { label: "Benefits", value: "Reduces hair fall, strengthens roots" }
-      ],
-      detailedDescription: "Effective herbal oil for hair fall control.",
-      extraInfo: "Traditional Ayurvedic recipe.",
-      callToAction: "Start your hair care line today.",
-      ingredients: [{ name: "Herbal Extracts", img: "/cate.webp" }],
-      relatedProducts: []
-    }
-  };
-
-  const product = allProducts[slug] || allProducts["aloe-based-hair-cream-formulation"];
+  const product: Product = allProducts[slug] || allProducts["aloe-based-hair-cream-formulation"];
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-0">
@@ -145,11 +173,13 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
 
           {/* Left: Product Image */}
           <div className="lg:col-span-5">
-            <div className="aspect-square bg-gray-50 rounded-3xl  border border-gray-200 flex items-center justify-center overflow-hidden">
-              <img
+            <div className="relative aspect-square bg-gray-50 rounded-3xl border border-gray-200 overflow-hidden">
+              <Image
                 src={product.mainImage}
                 alt={product.title}
-                className=" object-contain"
+                fill
+                className="object-contain p-4"
+                priority
               />
             </div>
           </div>
@@ -165,7 +195,7 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
             <div className="border border-gray-200 rounded-xl overflow-hidden">
               <table className="w-full text-left border-collapse">
                 <tbody>
-                  {product.specs.map((spec, i) => (
+                  {product?.specs?.map((spec: ProductSpec, i: number) => (
                     <tr key={i} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
                       <td className="py-3 px-5 text-sm font-bold text-gray-900 w-1/3">{spec.label}</td>
                       <td className="py-3 px-5 text-sm text-gray-600">: {spec.value}</td>
@@ -216,10 +246,10 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
               <div className="w-16 h-0.5 bg-teal-100 mb-6 ml-7"></div>
 
               <p className="text-base leading-relaxed text-gray-600">
-                From raw material sourcing to high-volume production, <span className="font-bold text-gray-900">Midflora Herbal</span> offers a fully integrated <span className="font-bold text-gray-900">turnkey solution</span> for your haircare brand. Whether you're targeting <span className="font-bold text-gray-900">salon-grade treatments</span> or <span className="font-bold text-gray-900">everyday essentials</span>, our R&D team will develop a formula that fits your promise—and we'll handle <span className="font-bold text-gray-900">formulation, testing, packaging, and compliance</span> under certified facilities.
+                From raw material sourcing to high-volume production, <span className="font-bold text-gray-900">Midflora Herbal</span> offers a fully integrated <span className="font-bold text-gray-900">turnkey solution</span> for your haircare brand. Whether you&apos;re targeting <span className="font-bold text-gray-900">salon-grade treatments</span> or <span className="font-bold text-gray-900">everyday essentials</span>, our R&D team will develop a formula that fits your promise—and we&apos;ll handle <span className="font-bold text-gray-900">formulation, testing, packaging, and compliance</span> under certified facilities.
               </p>
               <p className="mt-4 text-base font-bold text-gray-900">
-                Let's create a standout formulation that strengthens your brand's presence in the natural hair care market.
+                Let&apos;s create a standout formulation that strengthens your brand&apos;s presence in the natural hair care market.
               </p>
             </div>
           </div>
@@ -240,13 +270,14 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
           </div>
 
           <div className="flex flex-wrap justify-center gap-8 md:gap-14">
-            {product.ingredients.map((ing, i) => (
+            {product?.ingredients?.map((ing: ProductIngredient, i: number) => (
               <div key={i} className="flex flex-col items-center gap-3">
-                <div className="w-36 h-36 md:w-44 md:h-44 rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm">
-                  <img
+                <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm">
+                  <Image
                     src={ing.img}
                     alt={ing.name}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
                 <span className="text-sm font-bold text-gray-900 text-center">{ing.name}</span>
@@ -270,13 +301,14 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            {product.relatedProducts.map((p, i) => (
+            {product?.relatedProducts?.map((p: RelatedProduct, i: number) => (
               <div key={i} className="group cursor-pointer flex flex-col items-center">
-                <div className="aspect-square w-full bg-gray-50 rounded-xl border border-gray-200 overflow-hidden mb-4 group-hover:border-teal-300 transition-all duration-300">
-                  <img
+                <div className="relative aspect-square w-full bg-gray-50 rounded-xl border border-gray-200 overflow-hidden mb-4 group-hover:border-teal-300 transition-all duration-300">
+                  <Image
                     src={p.img}
                     alt={p.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>
                 <h4 className="text-sm font-bold text-gray-900 text-center group-hover:text-teal-600 transition-colors duration-300">
@@ -318,8 +350,8 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
 
               <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
                 <div className="relative">
-                  <select className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
-                    <option value="" disabled selected className="text-gray-400">Select Product</option>
+                  <select defaultValue="" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
+                    <option value="" disabled className="text-gray-400">Select Product</option>
                     <option value="Hair Cream">Hair Cream</option>
                     <option value="Face Wash">Face Wash</option>
                     <option value="Serum">Serum</option>
@@ -329,8 +361,8 @@ export default function ProductDetails({ params }: { params: Promise<{ slug: str
                   </div>
                 </div>
                 <div className="relative">
-                  <select className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
-                    <option value="" disabled selected className="text-gray-400">Select Category</option>
+                  <select defaultValue="" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
+                    <option value="" disabled className="text-gray-400">Select Category</option>
                     <option value="Skincare">Skincare</option>
                     <option value="Haircare">Haircare</option>
                     <option value="Wellness">Wellness</option>
