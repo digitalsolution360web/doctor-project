@@ -109,7 +109,7 @@ const CategorySection = () => {
   };
 
   return (
-    <section id="categories" className="py-8 lg:py-16 bg-gray-200 relative overflow-hidden">
+    <section id="categories" className="py-8 lg:py-16 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] uppercase mb-3 md:mb-4">Product Categories</h2>
@@ -119,12 +119,16 @@ const CategorySection = () => {
           </h3>
         </div>
 
-        {/* Premium Category Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
+        {/* Premium Category Slider */}
+        <div 
+          ref={scrollRef}
+          className="flex overflow-x-auto gap-6 pb-12 no-scrollbar snap-x snap-mandatory px-4 md:px-0"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
           {categories.map((cat, i) => (
             <div
               key={i}
-              className="group relative bg-white rounded-[24px] shadow-[0_15px_40px_-20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(20,184,166,0.15)] hover:border-teal-100 cursor-pointer flex flex-col h-full"
+              className="flex-none w-[280px] md:w-[320px] snap-start group relative bg-white rounded-[24px] shadow-[0_15px_40px_-20px_rgba(0,0,0,0.05)] overflow-hidden border border-slate-100 transition-all duration-700 hover:shadow-[0_40px_80px_-20px_rgba(20,184,166,0.15)] hover:border-teal-100 cursor-pointer flex flex-col h-full"
             >
               {/* Image Container (Top) */}
               <div className="relative h-[240px] md:h-[280px] overflow-hidden">
@@ -132,7 +136,7 @@ const CategorySection = () => {
                   src={cat.img}
                   alt={cat.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 300px"
+                  sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700"></div>
@@ -166,11 +170,26 @@ const CategorySection = () => {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="flex justify-center">
+        {/* Navigation and View All */}
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-4">
+          <div className="flex items-center gap-4">
+            <button 
+              onClick={() => scroll("left")}
+              className="w-12 h-12 rounded-xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+            <button 
+              onClick={() => scroll("right")}
+              className="w-12 h-12 rounded-xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
+            >
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          </div>
+
           <Link
             href="/categories"
-            className="group px-10 py-5 bg-white border border-slate-200 text-slate-900 rounded-full font-black text-sm tracking-widest hover:bg-slate-950 hover:text-white transition-all shadow-xl flex items-center gap-3"
+            className="group px-10 py-4 bg-white border border-slate-200 text-slate-900 rounded-full font-black text-sm tracking-widest hover:bg-slate-950 hover:text-white transition-all shadow-xl flex items-center gap-3"
           >
             View All Products
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

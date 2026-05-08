@@ -37,6 +37,7 @@ interface RelatedProduct {
 
 interface Product {
   title: string;
+  category?: string;
   mainImage: string;
   specs: ProductSpec[];
   detailedDescription: string;
@@ -49,6 +50,7 @@ interface Product {
 const allProducts: Record<string, Product> = {
   "aloe-based-hair-cream-formulation": {
     title: "Aloe-Based Hair Cream Third-Party Manufacturer",
+    category: "Hair Care",
     mainImage: "/cate6.webp",
     specs: [
       { label: "MOQ", value: "3000 Units" },
@@ -75,6 +77,7 @@ const allProducts: Record<string, Product> = {
   },
   "organic-lip-balm-private-label": {
     title: "Organic Lip Balm Private Label",
+    category: "Lip Care",
     mainImage: "/lipp.webp",
     specs: [
       { label: "MOQ", value: "10000 Units" },
@@ -101,6 +104,7 @@ const allProducts: Record<string, Product> = {
   },
   "skin-hydrating-serum-manufacturer": {
     title: "Skin Hydrating Serum Manufacturer",
+    category: "Skin Care",
     mainImage: "/skin.webp",
     specs: [
       { label: "MOQ", value: "5000 Units" },
@@ -173,45 +177,53 @@ export default function ProductDetails() {
 
           {/* Left: Product Image */}
           <div className="lg:col-span-5">
-            <div className="relative aspect-square bg-gray-50 rounded-3xl border border-gray-200 overflow-hidden">
+            <div className="relative aspect-square overflow-hidden">
               <Image
                 src={product.mainImage}
                 alt={product.title}
                 fill
-                className="object-contain p-4"
+                className="object-cover rounded-[1.5rem]"
                 priority
               />
             </div>
           </div>
 
           {/* Right: Product Info */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug">
-              {product.title}
-            </h1>
-
-
-            {/* Specifications Table */}
-            <div className="border border-gray-200 rounded-xl overflow-hidden">
-              <table className="w-full text-left border-collapse">
-                <tbody>
-                  {product?.specs?.map((spec: ProductSpec, i: number) => (
-                    <tr key={i} className="border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors">
-                      <td className="py-3 px-5 text-sm font-bold text-gray-900 w-1/3">{spec.label}</td>
-                      <td className="py-3 px-5 text-sm text-gray-600">: {spec.value}</td>
-                    </tr>
-                  ))}
-                </tbody>
-
-              </table>
-
+          <div className="lg:col-span-7 flex flex-col gap-8 md:pl-10">
+            {/* Category + Title */}
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-[2px] bg-teal-600"></span>
+                <span className="text-teal-600 text-[9px] font-black uppercase tracking-[0.3em]">{product.category}</span>
+              </div>
+              <h1 className="text-2xl md:text-4xl font-[1000] text-slate-900 leading-tight tracking-tight">
+                {product.title}
+              </h1>
             </div>
-            <button
-              onClick={() => setIsQuotePopupOpen(true)}
-              className="w-fit px-8 py-3 m-auto mt-5 bg-teal-700 text-white rounded-lg font-bold text-sm hover:bg-teal-800 transition-all"
-            >
-              Get a Quote
-            </button>
+
+            {/* Professional Specs Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 pt-6 border-t border-slate-100">
+              {product?.specs?.map((spec: ProductSpec, i: number) => (
+                <div key={i} className="flex flex-col gap-1 group">
+                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover:text-teal-600 transition-colors">{spec.label}</span>
+                  <span className="text-slate-800 font-bold text-sm md:text-base leading-snug">{spec.value}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons - Moved below content */}
+            <div className="flex flex-wrap gap-3 pt-4">
+              <button
+                onClick={() => setIsQuotePopupOpen(true)}
+                className="group px-8 py-4 bg-teal-700 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-950 transition-all shadow-xl shadow-teal-700/10 flex items-center gap-2"
+              >
+                Get a Quote
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button className="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-50 transition-all">
+                Download Brochure
+              </button>
+            </div>
           </div>
         </div>
 
@@ -261,30 +273,68 @@ export default function ProductDetails() {
         <hr className="border-gray-100" />
       </div>
 
-      {/* Key Ingredients */}
-      <section className="py-10 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center mb-8">
-            <p className="text-xs font-bold tracking-widest uppercase text-teal-600 mb-2">Natural Ingredients</p>
-            <h2 className="text-xl font-bold text-gray-900">Key Ingredients Kit</h2>
+      {/* Key Ingredients Slider - Full Width Marquee */}
+      <section className="py-6 md:py-10 bg-slate-50 overflow-hidden relative w-full">
+        <div className="container mx-auto px-4 md:px-8 mb-6 md:mb-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-[9px] font-black tracking-[0.4em] uppercase text-teal-600 mb-3 justify-center flex items-center gap-3">
+              <span className="w-8 h-px bg-teal-600"></span>
+              Natural Ingredients
+              <span className="w-8 h-px bg-teal-600"></span>
+            </p>
+            <h2 className="text-2xl md:text-4xl font-[1000] text-slate-900 tracking-tighter leading-tight">
+              Premium <span className="text-slate-400 font-semibold italic">Ingredients.</span>
+            </h2>
           </div>
+        </div>
 
-          <div className="flex flex-wrap justify-center gap-8 md:gap-14">
-            {product?.ingredients?.map((ing: ProductIngredient, i: number) => (
-              <div key={i} className="flex flex-col items-center gap-3">
-                <div className="relative w-36 h-36 md:w-44 md:h-44 rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm">
+        <div className="relative w-full overflow-hidden">
+          {/* Marquee Wrapper */}
+          <div className="flex gap-6 md:gap-8 animate-marquee whitespace-nowrap hover:[animation-play-state:paused] w-max">
+            {[...product.ingredients, ...product.ingredients, ...product.ingredients, ...product.ingredients].map((ing: ProductIngredient, i: number) => (
+              <div key={i} className="flex-none w-[260px] md:w-[350px] flex flex-col gap-4 group/item">
+                <div className="relative aspect-square rounded-[20px] overflow-hidden bg-white border border-slate-100 shadow-xl group-hover/item:shadow-teal-600/20 transition-all duration-500">
                   <Image
                     src={ing.img}
                     alt={ing.name}
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
+                    <span className="text-xl md:text-2xl font-black text-white tracking-tight uppercase leading-none">{ing.name}</span>
+                    <p className="text-teal-400 text-[8px] font-black uppercase tracking-[0.3em] mt-2">Organic Extract</p>
+                  </div>
                 </div>
-                <span className="text-sm font-bold text-gray-900 text-center">{ing.name}</span>
               </div>
             ))}
           </div>
         </div>
+
+        <style jsx global>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            display: flex;
+            animation: marquee 50s linear infinite;
+          }
+          .animate-marquee:hover {
+            animation-play-state: paused;
+          }
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          .no-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          /* Hide scrollbar for IE, Edge and Firefox */
+          .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+          }
+          body {
+            overflow-x: hidden;
+          }
+        `}</style>
       </section>
 
       {/* Divider */}
@@ -293,28 +343,28 @@ export default function ProductDetails() {
       </div>
 
       {/* Related Products */}
-      <section className="py-10 bg-gray-300">
+      <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="text-center mb-8">
-            <p className="text-xs font-bold tracking-widest uppercase text-teal-600 mb-2">Recommended For You</p>
-            <h2 className="text-xl font-bold text-gray-900">Related Products</h2>
+          <div className="ml-70 mb-12">
+            <p className="text-[10px] font-black tracking-widest uppercase text-teal-600 mb-2">Recommended For You</p>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Related Products</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-10">
             {product?.relatedProducts?.map((p: RelatedProduct, i: number) => (
-              <div key={i} className="group cursor-pointer flex flex-col items-center">
-                <div className="relative aspect-square w-full bg-gray-50 rounded-xl border border-gray-200 overflow-hidden mb-4 group-hover:border-teal-300 transition-all duration-300">
+              <div key={i} className="group cursor-pointer flex flex-col items-center w-full sm:w-[280px]">
+                <div className="relative aspect-square w-full bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden mb-5 group-hover:border-teal-400 group-hover:shadow-xl transition-all duration-500">
                   <Image
                     src={p.img}
                     alt={p.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
-                <h4 className="text-sm font-bold text-gray-900 text-center group-hover:text-teal-600 transition-colors duration-300">
+                <h4 className="text-sm md:text-base font-black text-slate-900 text-center group-hover:text-teal-600 transition-colors duration-300 px-2">
                   {p.title}
                 </h4>
-                <span className="text-xs text-gray-400 mt-1">{p.category}</span>
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-2">{p.category}</span>
               </div>
             ))}
           </div>
@@ -326,58 +376,55 @@ export default function ProductDetails() {
         <hr className="border-gray-100" />
       </div>
 
-      {/* Enquiry Form Section */}
-      <section className="py-10 bg-blue-100">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="max-w-3xl mx-auto bg-white rounded-2xl p-6 md:p-10 border border-gray-200 shadow-sm">
+      {/* Enquiry Form Section - With Background */}
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/ayurvedic.webp"
+            alt="Natural Ingredients Background"
+            fill
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-slate-950/75"></div>
+        </div>
 
-            <div className="text-center mb-8">
-              <p className="text-xs font-bold tracking-widest uppercase text-teal-600 mb-2">Partner With Us</p>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">
-                Contact Us For Third Party Manufacturing
+        <div className="container mx-auto px-4 md:px-8 relative z-10">
+          <div className="max-w-3xl mx-auto bg-white/5 backdrop-blur-md rounded-3xl p-6 md:p-12 border border-white/10 shadow-2xl">
+
+            <div className="text-center mb-10">
+              <p className="text-[10px] font-black tracking-[0.4em] uppercase text-teal-400 mb-4">Partner With Us</p>
+              <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">
+                Request a Custom Quote
               </h2>
-              <p className="text-sm text-gray-500 max-w-md mx-auto">
-                Have questions? Our expert team is ready to assist you. Kindly share your details, and our experts will get in touch to understand your requirements.
+              <p className="text-sm text-slate-400 max-w-md mx-auto font-medium">
+                Our expert team is ready to discuss your brand&apos;s specific requirements and provide a tailored manufacturing plan.
               </p>
             </div>
 
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" placeholder="First Name*" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
-              <input type="text" placeholder="Last Name*" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
-              <input type="email" placeholder="Email*" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
-              <input type="tel" placeholder="Phone*" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
-              <input type="text" placeholder="Company" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none col-span-1 md:col-span-2" />
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <input type="text" placeholder="First Name*" className="w-full px-6 py-4 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
+              <input type="text" placeholder="Last Name*" className="w-full px-6 py-4 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
+              <input type="email" placeholder="Email Address*" className="w-full px-6 py-4 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
+              <input type="tel" placeholder="Phone Number*" className="w-full px-6 py-4 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none" required />
 
-              <div className="grid grid-cols-2 gap-4 col-span-1 md:col-span-2">
-                <div className="relative">
-                  <select defaultValue="" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
-                    <option value="" disabled className="text-gray-400">Select Product</option>
-                    <option value="Hair Cream">Hair Cream</option>
-                    <option value="Face Wash">Face Wash</option>
-                    <option value="Serum">Serum</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-gray-400">
-                    <ChevronRight className="w-4 h-4 rotate-90" />
-                  </div>
-                </div>
-                <div className="relative">
-                  <select defaultValue="" className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-700 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
-                    <option value="" disabled className="text-gray-400">Select Category</option>
-                    <option value="Skincare">Skincare</option>
-                    <option value="Haircare">Haircare</option>
-                    <option value="Wellness">Wellness</option>
-                  </select>
-                  <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-gray-400">
-                    <ChevronRight className="w-4 h-4 rotate-90" />
-                  </div>
+              <div className="relative col-span-1 md:col-span-2">
+                <select defaultValue="" className="w-full px-6 py-4 text-sm bg-white/5 border border-white/10 rounded-xl text-slate-300 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none appearance-none cursor-pointer">
+                  <option value="" disabled>Select Product Category</option>
+                  <option value="Skincare">Skincare</option>
+                  <option value="Haircare">Haircare</option>
+                  <option value="Bath & Body">Bath & Body</option>
+                </select>
+                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                  <ChevronRight className="w-4 h-4 rotate-90" />
                 </div>
               </div>
 
-              <textarea placeholder="Enquiry" rows={3} className="w-full px-4 py-3 text-sm bg-gray-50 border border-gray-300 rounded-lg text-gray-800 placeholder:text-gray-400 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none col-span-1 md:col-span-2 resize-none"></textarea>
+              <textarea placeholder="Tell us about your project requirements..." rows={4} className="w-full px-6 py-4 text-sm bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-slate-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-all outline-none col-span-1 md:col-span-2 resize-none"></textarea>
 
-              <div className="col-span-1 md:col-span-2 text-center mt-2">
-                <button type="submit" className="px-8 py-3 bg-teal-700 hover:bg-teal-800 text-white font-medium text-sm rounded-lg transition-all w-full md:w-auto">
-                  Submit Request
+              <div className="col-span-1 md:col-span-2 text-center mt-4">
+                <button type="submit" className="px-10 py-5 bg-teal-600 hover:bg-teal-500 text-white font-black text-xs uppercase tracking-widest rounded-xl transition-all w-full shadow-xl shadow-teal-600/20">
+                  Submit Requirement
                 </button>
               </div>
             </form>
