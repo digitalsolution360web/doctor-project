@@ -35,7 +35,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 2,
       title: "Skin Hydrating Serum Manufacturer",
-      image: "/9.webp",
+      image: "/skin.webp",
       moq: "5000 Units",
       category: "Skin Care",
       features: "Hyaluronic Acid • Vitamin C"
@@ -51,7 +51,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 4,
       title: "Organic Lip Balm Private Label",
-      image: "/lip.webp",
+      image: "/lipp.webp",
       moq: "10000 Units",
       category: "Lip Care",
       features: "Beeswax • Essential Oils"
@@ -59,7 +59,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 5,
       title: "Vitamin C Brightening Face Wash",
-      image: "/cate3.webp",
+      image: "/facemakup.webp",
       moq: "5000 Units",
       category: "Face Care",
       features: "Radiance • Gentle Formulation"
@@ -67,7 +67,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 6,
       title: "Herbal Anti-Hairfall Oil",
-      image: "/cate4.webp",
+      image: "/cate.webp",
       moq: "3000 Units",
       category: "Ayurvedic",
       features: "Cold-Pressed • Traditional Recipe"

@@ -69,14 +69,14 @@ interface CategorySection {
 }
 
 const categoriesData = [
-  { title: "Skin Care", image: "/cate.webp", features: ["Face Serums", "Moisturizers", "Cleansers"] },
-  { title: "Body Care", image: "/cate3.webp", features: ["Body Lotions", "Body Wash", "Scrubs"] },
-  { title: "Face Makeup", image: "/cate1.webp", features: ["Foundations", "Primers", "Setting Sprays"] },
-  { title: "Lip Care", image: "/lip.webp", features: ["Lip Balms", "Lip Scrubs", "Lip Masks"] },
-  { title: "Mother & Baby Care", image: "/cate2.webp", features: ["Baby Oils", "Stretch Mark Creams", "Gentle Washes"] },
-  { title: "Ayurvedic", image: "/cate4.webp", features: ["Herbal Oils", "Ubtans", "Natural Pastes"] },
-  { title: "Depilation Range", image: "/cate5.webp", features: ["Wax Strips", "Hair Removal Creams", "Post-Wax Oils"] },
-  { title: "Derma Care", image: "/9.webp", features: ["Clinical Serums", "Sunscreen SPF 50", "Acne Treatments"] }
+  { title: "Skin Care", image: "/skin.webp", features: ["Face Serums", "Moisturizers", "Cleansers"] },
+  { title: "Body Care", image: "/bodycare.webp", features: ["Body Lotions", "Body Wash", "Scrubs"] },
+  { title: "Face Makeup", image: "/facemakup.webp", features: ["Foundations", "Primers", "Setting Sprays"] },
+  { title: "Lip Care", image: "/lipp.webp", features: ["Lip Balms", "Lip Scrubs", "Lip Masks"] },
+  { title: "Mother & Baby Care", image: "/babycare.webp", features: ["Baby Oils", "Stretch Mark Creams", "Gentle Washes"] },
+  { title: "Ayurvedic", image: "/ayurvedic.webp", features: ["Herbal Oils", "Ubtans", "Natural Pastes"] },
+  { title: "Depilation Range", image: "/depilation.webp", features: ["Wax Strips", "Hair Removal Creams", "Post-Wax Oils"] },
+  { title: "Derma Care", image: "/skin.webp", features: ["Clinical Serums", "Sunscreen SPF 50", "Acne Treatments"] }
 ];
 
 export default function CategoriesPage() {

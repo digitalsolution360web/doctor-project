@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -18,35 +18,123 @@ import {
 } from "lucide-react";
 import QuotePopup from "@/components/QuotePopup";
 
-export default function ProductDetails() {
+export default function ProductDetails({ params }: { params: Promise<{ slug: string }> }) {
+  const resolvedParams = use(params);
+  const slug = resolvedParams.slug;
   const [isQuotePopupOpen, setIsQuotePopupOpen] = useState(false);
 
-  const product = {
-    title: "Aloe-Based Hair Cream Third-Party Manufacturer",
-    mainImage: "/cate6.webp",
-    specs: [
-      { label: "MOQ", value: "3000 Units" },
-      { label: "Packaging Size", value: "As per brand recommendation" },
-      { label: "Packaging Type", value: "Jar or Tube" },
-      { label: "Customized Formulations", value: "Available" },
-      { label: "Private Labeling", value: "Available" },
-      { label: "Turnkey Solutions", value: "Available" },
-      { label: "Benefits", value: "Hydrates deeply, tames frizz, improves hair texture" },
-    ],
-    detailedDescription: "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.",
-    extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
-    callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
-    ingredients: [
-      { name: "Aloe Vera Extract", img: "/cate2.webp" },
-      { name: "Coconut Oil", img: "/cate10.webp" },
-      { name: "Shea Butter", img: "/cate12.webp" },
-    ],
-    relatedProducts: [
-      { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/cate1.webp" },
-      { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/cate8.webp" },
-      { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/cate.webp" }
-    ]
+  const allProducts: Record<string, any> = {
+    "aloe-based-hair-cream-formulation": {
+      title: "Aloe-Based Hair Cream Third-Party Manufacturer",
+      mainImage: "/cate6.webp",
+      specs: [
+        { label: "MOQ", value: "3000 Units" },
+        { label: "Packaging Size", value: "As per brand recommendation" },
+        { label: "Packaging Type", value: "Jar or Tube" },
+        { label: "Customized Formulations", value: "Available" },
+        { label: "Private Labeling", value: "Available" },
+        { label: "Turnkey Solutions", value: "Available" },
+        { label: "Benefits", value: "Hydrates deeply, tames frizz, improves hair texture" },
+      ],
+      detailedDescription: "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.",
+      extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
+      callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
+      ingredients: [
+        { name: "Aloe Vera Extract", img: "/cate2.webp" },
+        { name: "Coconut Oil", img: "/cate10.webp" },
+        { name: "Shea Butter", img: "/cate12.webp" },
+      ],
+      relatedProducts: [
+        { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/cate1.webp" },
+        { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/cate8.webp" },
+        { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/cate.webp" }
+      ]
+    },
+    "organic-lip-balm-private-label": {
+      title: "Organic Lip Balm Private Label",
+      mainImage: "/lipp.webp",
+      specs: [
+        { label: "MOQ", value: "10000 Units" },
+        { label: "Packaging Size", value: "10g, 15g, 20g" },
+        { label: "Packaging Type", value: "Tube or Tin" },
+        { label: "Customized Formulations", value: "Available" },
+        { label: "Private Labeling", value: "Available" },
+        { label: "Turnkey Solutions", value: "Available" },
+        { label: "Benefits", value: "Moisturizes, heals cracked lips, long-lasting protection" },
+      ],
+      detailedDescription: "Our Organic Lip Balm is formulated with the finest natural ingredients to provide intense hydration and protection. Perfect for brands looking to offer a high-quality, eco-friendly lip care solution.",
+      extraInfo: "We use pure beeswax, essential oils, and organic butters to ensure a premium feel and effective results.",
+      callToAction: "Launch your own organic lip balm line today. Contact us for private labeling options.",
+      ingredients: [
+        { name: "Beeswax", img: "/cate13.webp" },
+        { name: "Essential Oils", img: "/cate11.webp" },
+        { name: "Cocoa Butter", img: "/cate12.webp" },
+      ],
+      relatedProducts: [
+        { title: "Lip Scrub Manufacturer", category: "Lip Care", img: "/cate11.webp" },
+        { title: "Lip Mask Manufacturer", category: "Lip Care", img: "/cate13.webp" },
+        { title: "Tinted Lip Balm", category: "Lip Care", img: "/cate12.webp" }
+      ]
+    },
+    "skin-hydrating-serum-manufacturer": {
+      title: "Skin Hydrating Serum Manufacturer",
+      mainImage: "/skin.webp",
+      specs: [
+        { label: "MOQ", value: "5000 Units" },
+        { label: "Packaging Size", value: "30ml, 50ml" },
+        { label: "Packaging Type", value: "Dropper Bottle" },
+        { label: "Customized Formulations", value: "Available" },
+        { label: "Private Labeling", value: "Available" },
+        { label: "Turnkey Solutions", value: "Available" },
+        { label: "Benefits", value: "Deep hydration, brightens skin, reduces fine lines" },
+      ],
+      detailedDescription: "This high-performance serum is designed to penetrate deep into the skin layers, providing instant hydration and a youthful glow. It's a must-have for any premium skincare brand.",
+      extraInfo: "Infused with Hyaluronic Acid and Vitamin C, this formula is highly stable and effective.",
+      callToAction: "Partner with us to manufacture your brand's signature hydrating serum.",
+      ingredients: [
+        { name: "Hyaluronic Acid", img: "/cate9.webp" },
+        { name: "Vitamin C", img: "/cate8.webp" },
+        { name: "Green Tea Extract", img: "/cate7.webp" },
+      ],
+      relatedProducts: [
+        { title: "Vitamin C Face Wash", category: "Skin Care", img: "/cate3.webp" },
+        { title: "Moisturizing Cream", category: "Skin Care", img: "/cate5.webp" },
+        { title: "Sunscreen SPF 50", category: "Skin Care", img: "/9.webp" }
+      ]
+    },
+    "vitamin-c-brightening-face-wash": {
+      title: "Vitamin C Brightening Face Wash",
+      mainImage: "/skin.webp",
+      specs: [
+        { label: "MOQ", value: "5000 Units" },
+        { label: "Packaging Size", value: "100ml, 150ml" },
+        { label: "Packaging Type", value: "Tube" },
+        { label: "Benefits", value: "Radiance, Deep Cleansing" }
+      ],
+      detailedDescription: "Brighten your skin with our Vitamin C Face Wash.",
+      extraInfo: "Gentle yet effective.",
+      callToAction: "Contact us for manufacturing.",
+      ingredients: [{ name: "Vitamin C", img: "/cate8.webp" }],
+      relatedProducts: []
+    },
+    "herbal-anti-hairfall-oil": {
+      title: "Herbal Anti-Hairfall Oil",
+      mainImage: "/cate.webp",
+      specs: [
+        { label: "MOQ", value: "3000 Units" },
+        { label: "Packaging Size", value: "100ml, 200ml" },
+        { label: "Packaging Type", value: "Bottle" },
+        { label: "Benefits", value: "Reduces hair fall, strengthens roots" }
+      ],
+      detailedDescription: "Effective herbal oil for hair fall control.",
+      extraInfo: "Traditional Ayurvedic recipe.",
+      callToAction: "Start your hair care line today.",
+      ingredients: [{ name: "Herbal Extracts", img: "/cate.webp" }],
+      relatedProducts: []
+    }
   };
+
+  const product = allProducts[slug] || allProducts["aloe-based-hair-cream-formulation"];
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-0">

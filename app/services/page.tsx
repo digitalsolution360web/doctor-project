@@ -71,7 +71,7 @@ export default function ServicesPage() {
       subtitle: "Launch Your Brand Effortlessly",
       description: "Start your own cosmetic brand without owning a factory. We provide a complete turnkey solution from concept to market-ready products.",
       features: ["Ready formulations", "Custom branding", "Packaging support"],
-      image: "/9.webp",
+      image: "/depilation.webp",
       icon: Package
     },
     {
@@ -141,7 +141,7 @@ export default function ServicesPage() {
                     className="object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60"></div>
-                  
+
                   {/* Floating Icon */}
                   <div className="absolute bottom-6 left-6 w-14 h-14 bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl flex items-center justify-center text-white">
                     <service.icon className="w-7 h-7" />
