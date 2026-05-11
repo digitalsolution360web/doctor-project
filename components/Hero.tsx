@@ -11,7 +11,7 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/banner1.webp"
+          src="/newbanner.webp"
           alt="Cosmetic Manufacturing"
           fill
           sizes="100vw"

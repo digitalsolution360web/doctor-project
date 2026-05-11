@@ -71,7 +71,7 @@ export default function ServicesPage() {
       subtitle: "Launch Your Brand Effortlessly",
       description: "Start your own cosmetic brand without owning a factory. We provide a complete turnkey solution from concept to market-ready products.",
       features: ["Ready formulations", "Custom branding", "Packaging support"],
-      image: "/depilation.webp",
+      image: "/manufac.webp",
       icon: Package
     },
     {
@@ -80,7 +80,7 @@ export default function ServicesPage() {
       subtitle: "Unique & Exclusive Recipes",
       description: "Unique formulations tailored to your brand vision. Our R&D team develops exclusive recipes using high-performance active ingredients.",
       features: ["Active ingredients", "Trend-based products (Niacinamide, Kojic Acid, etc.)", "Stability testing"],
-      image: "/3.webp",
+      image: "/custom.webp",
       icon: FlaskConical
     },
     {
@@ -89,7 +89,7 @@ export default function ServicesPage() {
       subtitle: "Scalable Production Excellence",
       description: "Large-scale production with consistent quality. We offer flexible manufacturing capacities to grow with your brand.",
       features: ["Bulk production", "High-speed filling", "Quality assurance & compliance"],
-      image: "/6.webp",
+      image: "/contract.webp",
       icon: Settings
     }
   ];
@@ -100,7 +100,7 @@ export default function ServicesPage() {
       <section className="relative h-[40vh] md:h-[50vh] flex items-center pt-20 overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/banner1.webp"
+            src="/newbanner.webp"
             alt="Manufacturing Services"
             fill
             className="object-cover opacity-40"

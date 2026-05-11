@@ -88,14 +88,14 @@ export default function BlogPage() {
       <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-slate-900 text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/banner1.webp"
+            src="/newbanner.webp"
             alt="Blog & Resources"
             fill
             sizes="100vw"
-            className="object-cover opacity-20"
+            className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-950/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900/20 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">

@@ -87,11 +87,11 @@ export default function InfrastructurePage() {
       <section className="relative min-h-[50vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/banner1.webp"
+            src="/newbanner.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
-            className="object-cover opacity-20"
+            className="object-cover opacity-100"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>

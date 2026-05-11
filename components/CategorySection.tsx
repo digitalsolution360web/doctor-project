@@ -23,34 +23,52 @@ interface Category {
 
 const categories: Category[] = [
   {
-    title: "Skincare",
-    items: "Serums, Creams, Face Wash",
+    title: "Skin Care",
+    items: "Face Serums, Moisturizers, Cleansers",
     icon: Droplets,
-    img: "/2.webp"
+    img: "/skin.webp"
   },
   {
-    title: "Haircare",
-    items: "Oils, Shampoo, Masks",
+    title: "Body Care",
+    items: "Body Lotions, Body Wash, Scrubs",
     icon: Sparkles,
-    img: "/3.webp"
+    img: "/bodycare.webp"
   },
   {
-    title: "Bath & Body",
-    items: "Soaps, Shower Gel",
+    title: "Face Makeup",
+    items: "Foundations, Primers, Setting Sprays",
     icon: Wind,
-    img: "/6.webp"
+    img: "/facemakup.webp"
   },
   {
-    title: "Herbal Products",
-    items: "Natural Formulations",
+    title: "Lip Care",
+    items: "Lip Balms, Lip Scrubs, Lip Masks",
+    icon: Palette,
+    img: "/lipp.webp"
+  },
+  {
+    title: "Mother & Baby Care",
+    items: "Baby Oils, Stretch Mark Creams, Gentle Washes",
     icon: Sprout,
-    img: "/7.webp"
+    img: "/babycare.webp"
   },
   {
-    title: "Men’s Grooming",
-    items: "Beard Oils, Face Wash",
-    icon: Users,
-    img: "/10.webp"
+    title: "Ayurvedic",
+    items: "Herbal Oils, Ubtans, Natural Pastes",
+    icon: Sprout,
+    img: "/ayurvedic.webp"
+  },
+  {
+    title: "Depilation Range",
+    items: "Wax Strips, Hair Removal Creams, Post-Wax Oils",
+    icon: Sparkles,
+    img: "/depilation.webp"
+  },
+  {
+    title: "Derma Care",
+    items: "Clinical Serums, Sunscreen SPF 50, Acne Treatments",
+    icon: Droplets,
+    img: "/skin.webp"
   }
 ];
 
