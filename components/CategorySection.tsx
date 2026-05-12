@@ -26,7 +26,13 @@ const categories: Category[] = [
     title: "Skin Care",
     items: "Face Serums, Moisturizers, Cleansers",
     icon: Droplets,
-    img: "/skin.webp"
+    img: "/skin_new.png"
+  },
+  {
+    title: "Hair Care",
+    items: "Shampoos, Conditioners, Hair Oils",
+    icon: Sparkles,
+    img: "/haircare_new.png"
   },
   {
     title: "Body Care",
@@ -56,19 +62,13 @@ const categories: Category[] = [
     title: "Ayurvedic",
     items: "Herbal Oils, Ubtans, Natural Pastes",
     icon: Sprout,
-    img: "/ayurvedic.webp"
-  },
-  {
-    title: "Depilation Range",
-    items: "Wax Strips, Hair Removal Creams, Post-Wax Oils",
-    icon: Sparkles,
-    img: "/depilation.webp"
+    img: "/ayurvedic_new.png"
   },
   {
     title: "Derma Care",
     items: "Clinical Serums, Sunscreen SPF 50, Acne Treatments",
     icon: Droplets,
-    img: "/skin.webp"
+    img: "/skin_new.png"
   }
 ];
 

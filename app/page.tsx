@@ -7,6 +7,7 @@ import CategorySection from "@/components/CategorySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   ShieldCheck,
@@ -123,9 +124,9 @@ export default function Home() {
       <section className="py-8 lg:py-16 bg-white relative">
         <div className="container mx-auto px-4 md:px-6">
           <RevealOnScroll className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
-            <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] mb-3 md:mb-4 uppercase">Manufacturing Process</h2>
+            <h2 className="text-[10px] md:text-xs font-bold text-teal-600 tracking-[0.3em] mb-3 md:mb-4 uppercase">From Formula to Finished Product</h2>
             <h3 className="text-2xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.2] md:leading-[1.1]">
-              Manufacturing <span className="text-slate-400 font-semibold">Process.</span>
+              Our Manufacturing <span className="text-slate-400 font-semibold">Process.</span>
             </h3>
           </RevealOnScroll>
 
@@ -161,12 +162,22 @@ export default function Home() {
               <h3 className="text-lg md:text-xl font-bold text-slate-900 tracking-tight uppercase text-center md:text-left">Manufactured under strict<br className="hidden md:block" />quality and safety standards.</h3>
             </RevealOnScroll>
             <RevealOnScroll className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
-              {["ISO", "GMP", "FDA"].map((cert, i) => (
+              {[
+                { name: "ISO", logo: "/iso_logo.png" },
+                { name: "GMP", logo: "/gmp_logo.png" },
+                { name: "FDA", logo: "/fda_logo.png" }
+              ].map((cert, i) => (
                 <div key={i} className="flex items-center gap-5 group cursor-default">
-                  <div className="w-20 h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)]">
-                    <ShieldCheck className="w-10 h-10 text-teal-600 stroke-[2.5px]" />
+                  <div className="w-20 h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-2">
+                    <Image 
+                      src={cert.logo} 
+                      alt={cert.name} 
+                      width={60} 
+                      height={60} 
+                      className="object-contain"
+                    />
                   </div>
-                  <span className="text-sm font-black tracking-[0.25em] text-slate-900 group-hover:text-teal-600 transition-colors">{cert}</span>
+                  <span className="text-sm font-black tracking-[0.25em] text-slate-900 group-hover:text-teal-600 transition-colors">{cert.name}</span>
                 </div>
               ))}
             </RevealOnScroll>
@@ -238,11 +249,10 @@ export default function Home() {
                     <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Email Address</label>
                     <input type="email" placeholder="john@example.com" className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all font-semibold placeholder:text-slate-400" />
                   </div>
-                </div>
-
-                <div className="space-y-2.5">
-                  <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Phone Number</label>
-                  <input type="tel" placeholder="+91 00000 00000" className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all font-semibold placeholder:text-slate-400" />
+                  <div className="space-y-2.5">
+                    <label className="text-[11px] font-bold text-slate-700 uppercase tracking-widest ml-1">Phone Number</label>
+                    <input type="tel" placeholder="+91 00000 00000" className="w-full px-6 py-4.5 bg-slate-50 rounded-2xl border border-slate-200 focus:outline-none focus:ring-4 focus:ring-teal-600/10 focus:border-teal-600 text-slate-900 transition-all font-semibold placeholder:text-slate-400" />
+                  </div>
                 </div>
 
                 <div className="space-y-2.5">

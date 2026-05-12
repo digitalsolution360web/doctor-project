@@ -66,7 +66,7 @@ const Header = () => {
             <Link href="/" className="flex items-center group">
               <div className="relative h-9 w-32 md:h-10 md:w-40 lg:h-14 lg:w-56 transition-transform group-hover:scale-105 duration-500">
                 <Image
-                  src="/logo.webp"
+                  src="/newlogo.webp"
                   alt="Midflora Herbal Logo"
                   fill
                   className="object-contain"

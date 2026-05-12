@@ -60,7 +60,7 @@ export default function BlogPage() {
       slug: "Product-details-1",
       title: "How to Start a Cosmetic Brand in India",
       excerpt: "A step-by-step roadmap for entrepreneurs looking to launch a successful skincare or haircare brand. Learn about legal requirements, formulations, and choosing the right manufacturing partner.",
-      image: "/8.webp",
+      image: "/contract.webp",
       date: "April 20, 2026",
       category: "Business Guide"
     },
@@ -68,7 +68,7 @@ export default function BlogPage() {
       slug: "Product-details-2",
       title: "Top Trending Skincare Ingredients for 2026",
       excerpt: "Discover the high-demand ingredients driving consumer interest this year. From Niacinamide and Kojic Acid to Botanical Extracts, learn what formulations are winning the market.",
-      image: "/banner1.webp",
+      image: "/manufac.webp",
       date: "April 15, 2026",
       category: "Ingredients"
     },
@@ -76,7 +76,7 @@ export default function BlogPage() {
       slug: "Product-details-3",
       title: "Private Label vs Custom Manufacturing",
       excerpt: "Not sure which path to choose? We break down the pros and cons of Private Labeling for speed-to-market versus Custom Formulations for unique brand exclusivity.",
-      image: "/9.webp",
+      image: "/custom.webp",
       date: "April 10, 2026",
       category: "Manufacturing"
     }

@@ -64,16 +64,16 @@ export default function RDPage() {
     <div className="flex flex-col min-h-screen bg-white pt-20">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-white border-b border-slate-100">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-slate-950">
           <Image
-            src="/newbanner.webp"
+            src="/manufac.webp"
             alt="R&D Lab"
             fill
             sizes="100vw"
-            className="object-cover opacity-50 scale-100"
+            className="object-cover opacity-60"
             priority
           />
-
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/40 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -81,11 +81,11 @@ export default function RDPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4">
               Science-Driven Innovation
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] text-slate-900">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] text-white">
               R&D & <br />
-              <span className="text-teal-600">Formulation Hub.</span>
+              <span className="text-teal-400">Formulation Hub.</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-700 max-w-2xl font-medium leading-relaxed">
+            <p className="text-base md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed">
               Where serious chemistry meets cosmetic art. Our in-house scientists transform your vision into market-ready, dermatologically tested formulations.
             </p>
           </RevealOnScroll>
@@ -114,7 +114,7 @@ export default function RDPage() {
             </RevealOnScroll>
             <RevealOnScroll direction="right">
               <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border border-slate-100">
-                <Image src="/8.webp" alt="In-house chemists" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
+                <Image src="/contract.webp" alt="In-house chemists" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
               </div>
             </RevealOnScroll>
           </div>
@@ -140,7 +140,7 @@ export default function RDPage() {
             </RevealOnScroll>
             <RevealOnScroll direction="left" className="lg:order-1">
               <div className="relative aspect-square rounded-[32px] md:rounded-[60px] overflow-hidden shadow-2xl border border-slate-100">
-                <Image src="/3.webp" alt="Global Sourcing" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
+                <Image src="/custom.webp" alt="Global Sourcing" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
               </div>
             </RevealOnScroll>
           </div>

@@ -31,8 +31,8 @@ const Hero = () => {
           </h1>
 
           <p className="text-sm md:text-2xl text-slate-200 mb-5 md:mb-8 font-medium tracking-wide max-w-3xl leading-snug">
-            Premium Herbal &amp; Dermatologically Tested Products – <br className="md:hidden" />
-            <span className="text-[#A3E635]">From Concept to Market</span>
+            Crafting Safe &amp; Market-Ready <br className="md:hidden" />
+            <span className="text-[#A3E635]">Cosmetic Solutions.</span>
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-5">

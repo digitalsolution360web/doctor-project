@@ -110,16 +110,16 @@ export default function CertificationsPage() {
           <div className="absolute top-10 left-10 w-64 h-64 border border-teal-500 rounded-full"></div>
           <div className="absolute bottom-10 right-10 w-96 h-96 border border-teal-500 rounded-full"></div>
         </div>
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 bg-slate-950">
           <Image
-            src="/newbanner.webp"
+            src="/contract.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
-            className="object-cover opacity-80"
+            className="object-cover opacity-60"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
@@ -127,10 +127,10 @@ export default function CertificationsPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4">
               Uncompromising Quality
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 leading-[0.9] tracking-tighter uppercase">
-              Global <span className="text-teal-600">Certifications.</span>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.9] tracking-tighter uppercase">
+              Global <span className="text-teal-400">Certifications.</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-700 max-w-2xl mx-auto font-medium leading-relaxed">
+            <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
               We don't just claim quality; we prove it. Our facility and processes are audited by international authorities to ensure world-class standards.
             </p>
           </RevealOnScroll>
