@@ -88,7 +88,7 @@ export default function BlogPage() {
       <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-slate-900 text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/newbanner.webp"
+            src="/blog.webp"
             alt="Blog & Resources"
             fill
             sizes="100vw"

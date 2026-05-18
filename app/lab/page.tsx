@@ -66,7 +66,7 @@ export default function RDPage() {
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-white border-b border-slate-100">
         <div className="absolute inset-0 z-0 bg-slate-950">
           <Image
-            src="/manufac.webp"
+            src="/labb.webp"
             alt="R&D Lab"
             fill
             sizes="100vw"

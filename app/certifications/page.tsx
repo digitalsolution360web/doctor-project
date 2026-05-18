@@ -112,7 +112,7 @@ export default function CertificationsPage() {
         </div>
         <div className="absolute inset-0 z-0 bg-slate-950">
           <Image
-            src="/contract.webp"
+            src="/certification.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"

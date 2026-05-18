@@ -163,9 +163,9 @@ export default function Home() {
             </RevealOnScroll>
             <RevealOnScroll className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
               {[
-                { name: "ISO", logo: "/iso_logo.png" },
-                { name: "GMP", logo: "/gmp_logo.png" },
-                { name: "FDA", logo: "/fda_logo.png" }
+                { name: "ISO", logo: "/iso-logo.webp" },
+                { name: "GMP", logo: "/gmp-logo.webp" },
+                { name: "FDA", logo: "/fda-logo.webp" }
               ].map((cert, i) => (
                 <div key={i} className="flex items-center gap-5 group cursor-default">
                   <div className="w-20 h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-2">
