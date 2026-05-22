@@ -102,12 +102,13 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Zap, title: "Low MOQ", desc: "Perfect for startups to launch their brand with minimal initial investment." },
-              { icon: Award, title: "Affordable Pricing with Premium Quality", desc: "Competitive pricing structures with premium international quality standards." },
-              { icon: Microscope, title: "In-house R&D Experts", desc: "Innovative formulation development led by experienced scientific professionals." },
-              { icon: Clock, title: "Fast Turnaround Time", desc: "Optimized production and dispatch to keep your supply chain moving." },
-              { icon: Palette, title: "Custom Branding Support", desc: "End-to-end professional design and branding support for packaging." },
-              { icon: ShieldCheck, title: "Regulatory Compliance", desc: "Complete support for licensing, certifications, and quality audits." }
+              { icon: Zap, title: "Affordable Pricing with Premium Quality", desc: "Competitive pricing structures with premium international quality standards." },
+              { icon: Award, title: "Low MOQ", desc: "Perfect for startups to launch their brand with minimal initial investment." },
+              { icon: Microscope, title: "In-house R&D Lab", desc: "Innovative formulation development led by experienced scientific professionals." },
+              { icon: Clock, title: "Packaging Support", desc: "Complete assistance with packaging selection, labeling, and product presentation for a professional brand appearance." },
+              { icon: Palette, title: "Strict Quality Control Standards", desc: "Multiple quality checks and testing processes to ensure safe, effective, and consistent product quality." },
+              { icon: ShieldCheck, title: "Regulatory Compliance", desc: "Complete support for licensing, certifications, and quality audits." },
+              { icon: Zap, title: "Fast Turnaround Time", desc: "Optimized production and dispatch to keep your supply chain moving." }
             ].map((item, i) => (
               <RevealOnScroll key={i} className="p-8 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-white/20 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-500 group">
                 <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-[#A3E635] group-hover:text-slate-900 transition-all duration-500">
@@ -163,9 +164,18 @@ export default function Home() {
             </RevealOnScroll>
             <RevealOnScroll className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
               {[
-                { name: "ISO", logo: "/iso-logo.webp" },
-                { name: "GMP", logo: "/gmp-logo.webp" },
-                { name: "FDA", logo: "/fda-logo.webp" }
+                // { name: "ISO", logo: "/iso-logo.webp" },
+                // { name: "GMP", logo: "/gmp-logo.webp" },
+                // { name: "FDA", logo: "/fda-logo.webp" }
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/organic-logo-18-4.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/kosher.webp" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/ISO_14001_Logo.webp" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/iso-9001_2015.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/glp-18-4.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2024/12/CrueltyFree.png" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/18-4-vegan-org.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/fda-18-4.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/22716-2007-18-4.png" }
               ].map((cert, i) => (
                 <div key={i} className="flex items-center gap-5 group cursor-default">
                   <div className="w-20 h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-2">
@@ -177,7 +187,7 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="text-sm font-black tracking-[0.25em] text-slate-900 group-hover:text-teal-600 transition-colors">{cert.name}</span>
+                  {/* <span className="text-sm font-black tracking-[0.25em] text-slate-900 group-hover:text-teal-600 transition-colors">{cert.name}</span> */}
                 </div>
               ))}
             </RevealOnScroll>
