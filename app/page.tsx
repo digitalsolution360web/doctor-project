@@ -155,18 +155,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Certifications (Clean, Minimal) */}
-      <section className="py-8 md:py-12 bg-slate-100 border-y border-slate-100">
+      <section className="py-10 md:py-16 bg-slate-100 border-y border-slate-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            <RevealOnScroll>
-              <h3 className="text-lg md:text-xl font-bold text-slate-900 tracking-tight uppercase text-center md:text-left">Manufactured under strict<br className="hidden md:block" />quality and safety standards.</h3>
+          <div className="flex flex-col items-center justify-center gap-10 md:gap-14">
+            <RevealOnScroll className="max-w-2xl">
+              <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight uppercase text-center mb-0">
+                Manufactured under strict<br className="hidden md:block" />quality and safety standards.
+              </h3>
             </RevealOnScroll>
-            <RevealOnScroll className="flex flex-wrap items-center justify-center gap-12 md:gap-24">
+            <RevealOnScroll className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
               {[
-                // { name: "ISO", logo: "/iso-logo.webp" },
-                // { name: "GMP", logo: "/gmp-logo.webp" },
-                // { name: "FDA", logo: "/fda-logo.webp" }
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/organic-logo-18-4.jpg" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/kosher.webp" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/ISO_14001_Logo.webp" },
@@ -177,17 +175,14 @@ export default function Home() {
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/fda-18-4.jpg" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/22716-2007-18-4.png" }
               ].map((cert, i) => (
-                <div key={i} className="flex items-center gap-5 group cursor-default">
-                  <div className="w-20 h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-2">
+                <div key={i} className="flex items-center group cursor-default">
+                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-2">
                     <img
                       src={cert.logo} 
                       alt={cert.name} 
-                      width={60} 
-                      height={60} 
-                      className="object-contain"
+                      className="w-full h-full object-contain"
                     />
                   </div>
-                  {/* <span className="text-sm font-black tracking-[0.25em] text-slate-900 group-hover:text-teal-600 transition-colors">{cert.name}</span> */}
                 </div>
               ))}
             </RevealOnScroll>
