@@ -98,7 +98,7 @@ export default function RDPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center mb-16">
             <RevealOnScroll direction="left" className="space-y-6 md:space-y-8">
               <h2 className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
-                In-House <span className="text-teal-600">Chemists.</span>
+                In-House <span className="text-teal-600">Lab.</span>
               </h2>
               <p className="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
                 Our team of experienced cosmetic chemists and pharmacologists work tirelessly to create unique textures and high-performance products. We don't just use formulas; we engineer results.
@@ -153,7 +153,7 @@ export default function RDPage() {
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-12">
             <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
-              Trend-Based <span className="text-teal-400">Formulations.</span>
+              Science & Trend-Based <span className="text-teal-400">Formulations.</span>
             </h2>
             <p className="text-xl text-slate-400 font-bold max-w-2xl mx-auto">
               Stay ahead of the market with our trend-focused R&D capabilities. We specialize in modern global beauty movements.
@@ -162,7 +162,7 @@ export default function RDPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { title: "K-Beauty Inspired", icon: Sparkles, desc: "Glass skin finishes, essence-driven textures, and high-hydration formats." },
-                { title: "Ayurvedic Science", icon: Leaf, desc: "Integrating ancient herbal wisdom with modern clinical validation." },
+                // { title: "Ayurvedic Science", icon: Leaf, desc: "Integrating ancient herbal wisdom with modern clinical validation." },
                 { title: "Clean Beauty", icon: ShieldCheck, desc: "Sulfate-free, paraben-free, and vegan formulations for conscious consumers." }
               ].map((trend, i) => (
                 <div key={i} className="p-8 md:p-10 bg-white/5 border border-white/10 rounded-[32px] md:rounded-[40px] hover:bg-white hover:text-slate-900 transition-all duration-700 group text-left">

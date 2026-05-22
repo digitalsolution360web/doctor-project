@@ -140,10 +140,10 @@ export default function InfrastructurePage() {
           <div className="bg-slate-900 rounded-[32px] md:rounded-[60px] p-8 md:p-16 text-white shadow-2xl border border-white/5">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 text-center">
               {[
-                { val: "50,000+", label: "Sq. Ft. Facility" },
-                { val: "100k+", label: "Daily Capacity" },
-                { val: "25+", label: "Auto Lines" },
-                { val: "Zero", label: "Waste Target" }
+                { val: "12,000", label: "Sq. Ft. Facility" },
+                { val: "55k", label: "Bottles Daily Capacity Automatic Servo-Based Bottle Filling Machine" },
+                { val: "40k", label: "Jars Daily Capacity  Automatic Jar  Filling Machine" },
+                { val: "55k", label: "Tubs Automatic Double Head Tube Filling Machine" }
               ].map((stat, i) => (
                 <div key={i} className="space-y-1 md:space-y-3 group p-4 rounded-3xl transition-colors hover:bg-white/5">
                   <p className="text-2xl sm:text-3xl md:text-5xl font-black text-teal-400 tracking-tighter transition-transform group-hover:scale-110 duration-500">{stat.val}</p>
