@@ -176,7 +176,7 @@ export default function Home() {
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/22716-2007-18-4.png" }
               ].map((cert, i) => (
                 <div key={i} className="flex items-center group cursor-default">
-                  <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-2">
+                  <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-3 md:p-4">
                     <img
                       src={cert.logo} 
                       alt={cert.name} 
