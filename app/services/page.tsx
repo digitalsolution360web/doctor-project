@@ -100,7 +100,7 @@ export default function ServicesPage() {
       <section className="relative h-[40vh] md:h-[50vh] flex items-center pt-20 overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/newbanner.webp"
+            src="/services.webp"
             alt="Manufacturing Services"
             fill
             className="object-cover opacity-40"

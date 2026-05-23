@@ -87,7 +87,7 @@ export default function InfrastructurePage() {
       <section className="relative min-h-[50vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/newbanner.webp"
+            src="/infractural.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
