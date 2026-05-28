@@ -2,6 +2,7 @@
 
 import Hero from "@/components/Hero";
 import TrustSignals from "@/components/TrustSignals";
+import BrandFeatureSection from "@/components/BrandFeatureSection";
 import ServicesSection from "@/components/ServicesSection";
 import CategorySection from "@/components/CategorySection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -71,6 +72,9 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-white font-sans text-slate-800">
       <Hero />
       <TrustSignals />
+
+      {/* Brand Excellence Section */}
+      <BrandFeatureSection />
 
       {/* Integrated Premium Services Section */}
       <RevealOnScroll>

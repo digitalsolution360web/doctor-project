@@ -85,28 +85,78 @@ export default function BlogPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-slate-900 text-white">
+      <section className="relative min-h-[40vh] flex items-center overflow-hidden bg-slate-900 text-white">
         <div className="absolute inset-0 z-0">
           <Image
             src="/blog.webp"
             alt="Blog & Resources"
             fill
             sizes="100vw"
-            className="object-cover opacity-60"
+            className="object-cover opacity-40 shadow-inner"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-900/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-6">
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9]">
-              Insights & <span className="text-teal-400">Trends.</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9]">
+              Blog & <span className="text-teal-400">Resources.</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-400 max-w-2xl mx-auto font-medium leading-relaxed">
-              Expert advice on manufacturing, brand growth, and the future of cosmetic science.
-            </p>
+            <div className="w-24 h-1.5 bg-teal-500 mx-auto rounded-full"></div>
           </RevealOnScroll>
+        </div>
+      </section>
+
+      {/* Blog Intro Content Section - NEW */}
+      <section className="py-20 bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <RevealOnScroll className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[1.1]">
+                  Insights, Trends & <br />
+                  <span className="text-teal-600">Cosmetic Innovation.</span>
+                </h2>
+                <div className="w-20 h-1 bg-teal-600"></div>
+              </div>
+              <p className="text-lg md:text-xl text-slate-600 font-bold leading-relaxed max-w-xl">
+                Stay updated with the latest cosmetic trends, hero ingredients, formulation innovations, and industry insights through our expert blogs.
+              </p>
+              
+              <div className="pt-4">
+                <Link href="/#contact" className="px-8 py-4 bg-slate-950 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-teal-600 transition-all shadow-xl inline-block">
+                  Consult With Our R&D Team
+                </Link>
+              </div>
+            </RevealOnScroll>
+
+            <RevealOnScroll direction="right" className="bg-slate-50 p-10 md:p-14 rounded-[48px] border border-slate-100 relative overflow-hidden group">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-teal-600/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+               
+               <h3 className="text-xl font-black uppercase tracking-[0.2em] text-slate-900 mb-8 border-b border-slate-200 pb-4 flex items-center">
+                  <span className="w-8 h-[2px] bg-teal-600 mr-4"></span>
+                  What We Cover
+               </h3>
+               
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+                  {[
+                    "Trending cosmetic ingredients",
+                    "Product formulation guides",
+                    "Market trends",
+                    "Skincare science",
+                    "Packaging innovations",
+                    "Manufacturing insights",
+                    "Private label business tips"
+                  ].map((topic, i) => (
+                    <div key={i} className="flex items-center space-x-4 group/item">
+                      <div className="w-2 h-2 bg-teal-500 rounded-full group-hover/item:scale-150 transition-transform shadow-[0_0_10px_rgba(20,184,166,0.5)]"></div>
+                      <span className="text-slate-700 font-bold text-sm tracking-tight">{topic}</span>
+                    </div>
+                  ))}
+               </div>
+            </RevealOnScroll>
+          </div>
         </div>
       </section>
 

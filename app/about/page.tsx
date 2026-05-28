@@ -105,11 +105,12 @@ export default function AboutPage() {
             <div className="relative h-20 w-80 mx-auto mb-12">
               <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority sizes="(max-width: 768px) 100vw, 320px" />
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 leading-none tracking-tighter uppercase">
-              Pioneering <span className="text-teal-600">Beauty</span> <br /> Since 2004.
+            <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tighter uppercase">
+              Manufacturing with <span className="text-teal-600">Science</span>, <br /> 
+              Creating with <span className="text-lime-600">Passion</span>.
             </h1>
             <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
-              Midflora Herbal is built on two decades of manufacturing excellence and a relentless pursuit of cosmetic and herbal perfection.
+              MIDFLORA HERBAL LLP is a modern cosmetic third-party manufacturing company committed to delivering high-quality, innovative, and market-ready beauty & personal care products.
             </p>
           </RevealOnScroll>
         </div>
@@ -125,7 +126,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-slate-900 uppercase tracking-tighter">Our Mission</h2>
               <p className="text-slate-700 text-lg font-bold leading-relaxed">
-                To provide high-quality, premium cosmetic and herbal solutions through advanced manufacturing technology and rigorous R&D, making premium beauty accessible to every brand.
+                To empower cosmetic brands with innovative, high-quality, and scalable manufacturing solutions while maintaining the highest standards of hygiene, safety, and product excellence.
               </p>
             </RevealOnScroll>
             <RevealOnScroll direction="right" className="p-12 bg-slate-900 rounded-[48px] text-white space-y-6 relative overflow-hidden">
@@ -135,7 +136,7 @@ export default function AboutPage() {
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tighter">Our Vision</h2>
               <p className="text-slate-400 text-lg font-bold leading-relaxed">
-                To become a global benchmark in cosmetic engineering, recognized for our commitment to quality, innovation, and ethical leadership in the herbal beauty industry.
+                To become one of India’s most trusted and innovation-driven cosmetic manufacturing companies by delivering world-class products backed by advanced research, modern infrastructure, and ethical manufacturing practices.
               </p>
             </RevealOnScroll>
           </div>
@@ -148,20 +149,20 @@ export default function AboutPage() {
           <div className="flex flex-col lg:flex-row items-center gap-20">
             <RevealOnScroll direction="left" className="flex-1 space-y-8">
               <div className="inline-flex items-center px-4 py-2 rounded-xl bg-slate-100 text-slate-600 font-black text-xs uppercase tracking-widest">
-                <History className="w-4 h-4 mr-2" /> OUR JOURNEY
+                <History className="w-4 h-4 mr-2" /> OUR STORY
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-slate-900 tracking-tighter uppercase leading-tight">
-                Two Decades of <br /> <span className="text-teal-600">Pure Dedication.</span>
+                Turning Ideas into <br /> <span className="text-teal-600">Market Success.</span>
               </h2>
               <div className="space-y-6 text-slate-700 text-lg font-bold leading-relaxed">
                 <p>
-                  Founded in 2004, Midflora Herbal started with a simple goal: to manufacture personal care products that meet international standards of purity and efficacy.
+                  Our strength lies in combining advanced technology with deep formulation expertise. Every product is developed with a strong focus on performance, stability, safety, and consumer satisfaction.
                 </p>
                 <p>
-                  Today, we operate a state-of-the-art facility in Noida, India, serving over 1000+ formulations and helping brands dominate the skincare and haircare markets.
+                  With a hygienic clean-room manufacturing setup, automated filling systems, and an experienced R&D team, we support startups, growing brands, and established companies with complete private label and contract manufacturing solutions.
                 </p>
                 <p>
-                  Our growth is fueled by our people—a team of dedicated scientists, engineers, and R&D experts who believe that quality is the ultimate foundation of beauty.
+                  We believe great products are created through research, transparency, and long-term partnerships.
                 </p>
               </div>
             </RevealOnScroll>

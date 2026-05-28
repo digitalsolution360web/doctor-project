@@ -84,14 +84,14 @@ export default function InfrastructurePage() {
   return (
     <div className="flex flex-col min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
+      <section className="relative min-h-[60vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
           <Image
             src="/infractural.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
-            className="object-cover opacity-100"
+            className="object-cover opacity-50"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
@@ -100,100 +100,83 @@ export default function InfrastructurePage() {
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-4xl space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-[0.2em] mb-4">
-              Our Manufacturing Strength
+              Modern Hi-Tech Infrastructure
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9]">
-              State-of-the-Art <br />
+            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-[0.9]">
+              World-Class <br />
               <span className="text-teal-400">Infrastructure.</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-400 max-w-2xl font-medium leading-relaxed">
-              Equipped with global technology and high-precision machinery to deliver pharmaceutical-grade cosmetic manufacturing at scale.
+            <p className="text-base md:text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
+              Our manufacturing facility is designed on a modern clean-room concept to ensure 100% hygienic and contamination-free production conditions. We use advanced automated machinery and controlled manufacturing processes to maintain superior product consistency, safety, and quality standards.
             </p>
           </RevealOnScroll>
         </div>
       </section>
 
-      {/* Grid Features */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
-            {facilityFeatures.map((f, i) => (
-              <RevealOnScroll key={i} className="group">
-                <div className="relative aspect-[4/3] md:aspect-square rounded-[32px] md:rounded-[40px] overflow-hidden mb-6 shadow-xl border border-slate-100">
-                  <Image src={f.image} alt={f.title} fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent"></div>
-                  <div className="absolute bottom-6 left-6">
-                    <f.icon className="w-8 h-8 md:w-10 md:h-10 text-teal-400" />
-                  </div>
+      {/* Stats Section - Manufacturing Capacity */}
+      <section className="py-24 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <RevealOnScroll className="mb-16">
+            <h2 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">Production Power</h2>
+            <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Manufacturing <span className="text-slate-400">Capacity.</span></h3>
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { val: "180 Tons+", label: "Monthly Manufacturing Capacity", icon: Layers },
+              { val: "50,000", label: "Tube Filling (Tubes Per Day)", icon: Settings },
+              { val: "75,000", label: "Bottle Filling (4-Head Servo Liquid)", icon: Zap },
+              { val: "40,000", label: "Jar Filling (2-Head Jar Per Day)", icon: Factory }
+            ].map((stat, i) => (
+              <div key={i} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 hover:bg-slate-900 group transition-all duration-700">
+                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-teal-600 transition-colors">
+                  <stat.icon className="w-7 h-7 text-teal-600 group-hover:text-white" />
                 </div>
-                <h3 className="text-xl md:text-2xl font-black text-slate-900 uppercase tracking-tighter mb-3">{f.title}</h3>
-                <p className="text-slate-600 font-medium text-sm md:text-base leading-relaxed">{f.desc}</p>
-              </RevealOnScroll>
+                <p className="text-4xl font-black text-slate-900 tracking-tighter mb-2 group-hover:text-white transition-colors">{stat.val}</p>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest leading-relaxed group-hover:text-slate-400 transition-colors">{stat.label}</p>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-12 md:py-16 bg-slate-50 relative overflow-hidden">
+      {/* Why Our Infrastructure Matters */}
+      <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px]"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="bg-slate-900 rounded-[32px] md:rounded-[60px] p-8 md:p-16 text-white shadow-2xl border border-white/5">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 text-center">
-              {[
-                { val: "12,000", label: "Sq. Ft. Facility" },
-                { val: "55k", label: "Bottles Daily Capacity Automatic Servo-Based Bottle Filling Machine" },
-                { val: "40k", label: "Jars Daily Capacity  Automatic Jar  Filling Machine" },
-                { val: "55k", label: "Tubs Automatic Double Head Tube Filling Machine" }
-              ].map((stat, i) => (
-                <div key={i} className="space-y-1 md:space-y-3 group p-4 rounded-3xl transition-colors hover:bg-white/5">
-                  <p className="text-2xl sm:text-3xl md:text-5xl font-black text-teal-400 tracking-tighter transition-transform group-hover:scale-110 duration-500">{stat.val}</p>
-                  <p className="text-[10px] md:text-xs text-slate-400 font-black uppercase tracking-[0.2em] leading-tight">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Hygiene Section */}
-      <section className="py-12 md:py-16 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <RevealOnScroll direction="left" className="flex-1 space-y-6">
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
-                Pure Environment. <br />
-                <span className="text-teal-600">Pure Products.</span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <RevealOnScroll direction="left" className="space-y-8">
+              <h2 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-none">
+                Why Our <br />
+                <span className="text-teal-400">Infrastructure Matters.</span>
               </h2>
-              <div className="grid grid-cols-1 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 {[
-                  { icon: Wind, title: "Air Filtration", desc: "Equipped with HVAC systems and ISO Class Cleanrooms for sterilized air flow." },
-                  { icon: Thermometer, title: "Temp Controlled", desc: "Sensitive active ingredients are stored and processed at optimal temperatures." },
-                  { icon: Layers, title: "Zero Cross-Contamination", desc: "Separated zones for R&D, manufacturing, and storage to ensure purity." }
+                  "Clean-room based manufacturing environment",
+                  "Advanced automated production systems",
+                  "Hygienic and contamination-controlled processing",
+                  "High-speed filling and packaging operations",
+                  "Scalable production capabilities",
+                  "Batch consistency and quality assurance",
+                  "Efficient turnaround timelines"
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center space-x-4 md:space-x-6 p-5 md:p-6 bg-slate-50 rounded-[24px] md:rounded-[32px] border border-slate-100 hover:border-teal-200 transition-colors">
-                    <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-xl md:rounded-2xl flex items-center justify-center shrink-0 shadow-sm text-teal-600">
-                      <item.icon className="w-5 h-5 md:w-7 md:h-7" />
-                    </div>
-                    <div>
-                      <h4 className="font-black text-slate-900 uppercase tracking-tight text-xs md:text-sm mb-1">{item.title}</h4>
-                      <p className="text-slate-500 font-medium text-[10px] md:text-xs leading-tight md:leading-normal">{item.desc}</p>
-                    </div>
+                  <div key={i} className="flex items-center gap-4 group">
+                    <div className="w-2 h-2 bg-teal-500 rounded-full group-hover:scale-150 transition-transform"></div>
+                    <p className="text-slate-300 font-bold text-sm md:text-lg tracking-tight group-hover:text-white transition-colors">{item}</p>
                   </div>
                 ))}
               </div>
             </RevealOnScroll>
 
-            <RevealOnScroll direction="right" className="flex-1 relative w-full">
-              <div className="relative aspect-square md:aspect-[4/5] rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl">
-                <Image src="/logo.webp" alt="Hygiene Process" fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-contain bg-slate-50 p-12 md:p-20 opacity-20" />
-                <div className="absolute inset-0 bg-teal-600/5 mix-blend-overlay"></div>
-                <div className="absolute inset-0 flex items-center justify-center p-6">
-                  <div className="bg-white/90 backdrop-blur-md p-6 md:p-10 rounded-[32px] md:rounded-[40px] border border-white shadow-2xl text-center space-y-2 md:space-y-4 max-w-[280px] md:max-w-none">
-                    <ShieldCheck className="w-10 h-10 md:w-16 md:h-16 text-teal-600 mx-auto" />
-                    <p className="font-black text-slate-900 uppercase tracking-widest text-base md:text-lg">GMP Certified</p>
-                    <p className="text-slate-500 font-bold text-[10px] md:text-xs uppercase">Safe & Sterile</p>
-                  </div>
-                </div>
+            <RevealOnScroll direction="right" className="relative group">
+              <div className="relative aspect-square rounded-[60px] overflow-hidden border-8 border-white/5">
+                <Image src="/8.webp" alt="Automated Machinery" fill className="object-cover group-hover:scale-110 transition-transform duration-[5s]" />
+                <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
+              </div>
+              {/* Floating Badge */}
+              <div className="absolute -bottom-10 -left-10 bg-teal-600 p-8 rounded-[40px] shadow-2xl animate-bounce-slow hidden md:block">
+                <ShieldCheck className="w-12 h-12 text-white mb-2" />
+                <p className="text-white font-black text-xl uppercase tracking-tighter">100% Sterile</p>
               </div>
             </RevealOnScroll>
           </div>
@@ -201,17 +184,18 @@ export default function InfrastructurePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <RevealOnScroll className="max-w-2xl mx-auto space-y-8">
+          <RevealOnScroll className="max-w-3xl mx-auto space-y-10">
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">Visit Our Facility</h2>
-            <p className="text-slate-600 text-xl font-bold">We welcome brand owners for physical tours of our state-of-the-art production floors.</p>
-            <Link href="/#contact" className="px-12 py-6 bg-slate-950 text-white rounded-[24px] font-black text-sm uppercase tracking-widest hover:bg-teal-600 transition-all shadow-2xl inline-block">
+            <p className="text-slate-600 text-xl font-bold">We welcome brand owners for physical tours of our state-of-the-art production floors in Noida.</p>
+            <Link href="/#contact" className="px-12 py-6 bg-slate-950 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-teal-600 transition-all shadow-2xl inline-block hover:-translate-y-1">
               Schedule a Factory Tour
             </Link>
           </RevealOnScroll>
         </div>
       </section>
+
     </div>
   );
 }

@@ -11,7 +11,13 @@ import {
   Wind,
   Palette,
   Sprout,
-  Users
+  Users,
+  ShieldCheck,
+  Sun,
+  Activity,
+  Heart,
+  Smile,
+  Zap
 } from "lucide-react";
 
 interface Category {
@@ -35,40 +41,76 @@ const categories: Category[] = [
     img: "/haircare_new.png"
   },
   {
+    title: "Advance / Clinical Skin Care",
+    items: "High-Performance Actives, Professional Treatments",
+    icon: ShieldCheck,
+    img: "/skin.webp"
+  },
+  {
+    title: "Sun Care",
+    items: "SPF 50+ Lotions, Sunscreens, After-Sun Care",
+    icon: Sun,
+    img: "/cate4.webp"
+  },
+  {
+    title: "Intimate Care Hygiene",
+    items: "Gentle Washes, pH Balanced Formulations",
+    icon: Heart,
+    img: "/cate5.webp"
+  },
+  {
+    title: "Men’s Care",
+    items: "Beard Oils, Men's Grooming, Face Washes",
+    icon: Users,
+    img: "/cate6.webp"
+  },
+  {
     title: "Body Care",
     items: "Body Lotions, Body Wash, Scrubs",
-    icon: Sparkles,
+    icon: Droplets,
     img: "/bodycare.webp"
   },
   {
-    title: "Face Makeup",
-    items: "Foundations, Primers, Setting Sprays",
-    icon: Wind,
-    img: "/facemakup.webp"
+    title: "Dental Care",
+    items: "Herbal Toothpastes, Mouthwashes, Oral Gels",
+    icon: Activity,
+    img: "/cate8.webp"
   },
   {
-    title: "Lip Care",
-    items: "Lip Balms, Lip Scrubs, Lip Masks",
+    title: "Handmade Soaps (Melt & Pour)",
+    items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
     icon: Palette,
-    img: "/lipp.webp"
+    img: "/cate9.webp"
   },
   {
-    title: "Mother & Baby Care",
-    items: "Baby Oils, Stretch Mark Creams, Gentle Washes",
+    title: "Bath Amenities",
+    items: "Shower Gels, Bath Salts, Amenities",
+    icon: Zap,
+    img: "/cate10.webp"
+  },
+  {
+    title: "Baby & Mother Care",
+    items: "Stretch Mark Creams, Gentle Baby Oils",
     icon: Sprout,
     img: "/babycare.webp"
   },
   {
-    title: "Ayurvedic",
-    items: "Herbal Oils, Ubtans, Natural Pastes",
-    icon: Sprout,
-    img: "/ayurvedic_new.png"
+    title: "Oral & Dental Care",
+    items: "Total Oral Hygiene, Advanced Dental Solutions",
+    icon: Smile,
+    img: "/cate12.webp"
   },
   {
     title: "Derma Care",
-    items: "Clinical Serums, Sunscreen SPF 50, Acne Treatments",
-    icon: Droplets,
-    img: "/skin_new.png"
+    items: "Clinical Solutions, Targeted Skin Treatments",
+    icon: ShieldCheck,
+    img: "/cate13.webp"
+  },
+  {
+    title: "Depilatory Range",
+    items: "Hair Removal Creams, Waxing Solutions",
+    icon: Zap,
+    img: "/depilation.webp"
   }
 ];
 

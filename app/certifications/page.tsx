@@ -105,35 +105,59 @@ export default function CertificationsPage() {
     <div className="flex flex-col min-h-screen bg-white pt-20">
 
       {/* Hero Section */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-slate-50 border-b border-slate-100">
-        <div className="absolute inset-0 opacity-10 pointer-events-none">
-          <div className="absolute top-10 left-10 w-64 h-64 border border-teal-500 rounded-full"></div>
-          <div className="absolute bottom-10 right-10 w-96 h-96 border border-teal-500 rounded-full"></div>
-        </div>
-        <div className="absolute inset-0 z-0 bg-slate-950">
+      <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-slate-950 text-white">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/certification.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
-            className="object-cover opacity-60"
+            className="object-cover opacity-50"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
         </div>
 
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <RevealOnScroll className="max-w-4xl mx-auto space-y-6">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4">
-              Uncompromising Quality
-            </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-[0.9] tracking-tighter uppercase">
-              Global <span className="text-teal-400">Certifications.</span>
-            </h1>
-            <p className="text-base md:text-xl text-slate-300 max-w-2xl mx-auto font-medium leading-relaxed">
-              We don't just claim quality; we prove it. Our facility and processes are audited by international authorities to ensure world-class standards.
-            </p>
-          </RevealOnScroll>
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <RevealOnScroll className="space-y-6 md:space-y-8">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4">
+                Quality & Compliance
+              </div>
+              <h1 className="text-3xl md:text-5xl lg:text-7xl font-black text-white leading-[0.9] tracking-tighter uppercase">
+                Certifications.
+              </h1>
+              <h2 className="text-xl md:text-3xl font-bold text-teal-400 tracking-tight leading-tight">
+                Commitment to Quality <br className="hidden md:block" /> & Compliance
+              </h2>
+              <p className="text-base md:text-xl text-slate-300 max-w-xl font-bold leading-relaxed">
+                We follow strict manufacturing protocols and quality practices to ensure reliable and safe cosmetic manufacturing.
+              </p>
+            </RevealOnScroll>
+
+            <RevealOnScroll direction="right" className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[48px]">
+               <h3 className="text-lg font-black uppercase tracking-widest text-white mb-8 flex items-center">
+                  <span className="w-8 h-[2px] bg-teal-500 mr-4"></span>
+                  Our Quality Focus
+               </h3>
+               <div className="grid grid-cols-1 gap-5">
+                  {[
+                    "Hygiene & safety",
+                    "Quality assurance",
+                    "Process consistency",
+                    "Product reliability",
+                    "Ethical manufacturing practices"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center space-x-4">
+                      <div className="w-5 h-5 rounded-full bg-teal-500/20 flex items-center justify-center border border-teal-500/30">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
+                      </div>
+                      <span className="text-slate-200 font-bold text-sm md:text-base tracking-tight">{item}</span>
+                    </div>
+                  ))}
+               </div>
+            </RevealOnScroll>
+          </div>
         </div>
       </section>
 
@@ -167,24 +191,37 @@ export default function CertificationsPage() {
       </section>
 
       {/* Image Gallery Section */}
-      <section className="py-16 bg-gray-200 overflow-hidden">
+      <section className="py-10 md:py-16 bg-slate-100 border-y border-slate-100">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
-              Certification <span className="text-teal-600">Badges.</span>
-            </h2>
-            <p className="text-slate-600 text-xl font-bold uppercase tracking-widest text-xs">Our Commitment in Seals</p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            {[1, 2, 3, 4].map((i) => (
-              <RevealOnScroll key={i} className="relative aspect-square bg-white rounded-2xl md:rounded-3xl border border-slate-200 p-6 md:p-10 flex items-center justify-center hover:shadow-2xl transition-all duration-500 group">
-                <ShieldCheck className="w-10 h-10 md:w-16 md:h-16 text-black group-hover:text-teal-500 transition-colors" />
-                <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6 text-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <p className="text-slate-900 font-black text-[10px] md:text-xs uppercase tracking-widest leading-tight">ISO 22716 Certified Process</p>
+          <div className="flex flex-col items-center justify-center gap-10 md:gap-14">
+            <RevealOnScroll className="max-w-2xl">
+              <h3 className="text-xl md:text-2xl font-bold text-slate-900 tracking-tight uppercase text-center mb-0">
+                Manufactured under strict<br className="hidden md:block" />quality and safety standards.
+              </h3>
+            </RevealOnScroll>
+            <RevealOnScroll className="flex flex-wrap items-center justify-center gap-8 md:gap-16">
+              {[
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/organic-logo-18-4.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/kosher.webp" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/ISO_14001_Logo.webp" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/iso-9001_2015.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/glp-18-4.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2024/12/CrueltyFree.png" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/18-4-vegan-org.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/fda-18-4.jpg" },
+                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/22716-2007-18-4.png" }
+              ].map((cert, i) => (
+                <div key={i} className="flex items-center group cursor-default">
+                  <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-3 md:p-4">
+                    <img
+                      src={cert.logo}
+                      alt={cert.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 </div>
-              </RevealOnScroll>
-            ))}
+              ))}
+            </RevealOnScroll>
           </div>
         </div>
       </section>

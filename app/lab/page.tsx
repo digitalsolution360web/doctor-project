@@ -78,118 +78,86 @@ export default function RDPage() {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="max-w-4xl space-y-6">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-700 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4">
-              Science-Driven Innovation
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4">
+              Our Strength
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] text-white">
-              R&D & <br />
-              <span className="text-teal-400">Formulation Hub.</span>
+            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-[0.9] text-white">
+              Research & Development <br />
+              <span className="text-teal-400 text-xl md:text-4xl mt-4 block">is Our Core Strength</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-300 max-w-2xl font-medium leading-relaxed">
-              Where serious chemistry meets cosmetic art. Our in-house scientists transform your vision into market-ready, dermatologically tested formulations.
+            <p className="text-base md:text-xl text-slate-300 max-w-2xl font-bold leading-relaxed">
+              At MIDFLORA HERBAL LLP, innovation begins in our R&D lab. Our experienced formulation team continuously works on trending ingredients, advanced textures, high-performance actives, and market-driven concepts to help brands stay ahead in the evolving cosmetic industry.
             </p>
           </RevealOnScroll>
         </div>
       </section>
 
       {/* Expertise Sections */}
-      <section className="py-16 bg-white">
+      <section className="py-24 bg-white relative">
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-teal-50 rounded-full blur-[120px] opacity-60"></div>
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center mb-16">
-            <RevealOnScroll direction="left" className="space-y-6 md:space-y-8">
-              <h2 className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
-                In-House <span className="text-teal-600">Lab.</span>
-              </h2>
-              <p className="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
-                Our team of experienced cosmetic chemists and pharmacologists work tirelessly to create unique textures and high-performance products. We don't just use formulas; we engineer results.
-              </p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-                {["Stability Testing", "Microbial Testing", "Compatibility Analysis", "pH Balanced Control"].map((item, i) => (
-                  <li key={i} className="flex items-center font-black text-slate-900 uppercase tracking-widest text-[10px] md:text-xs">
-                    <ShieldCheck className="w-4 h-4 md:w-5 md:h-5 text-teal-600 mr-2 md:mr-3" />
-                    {item}
-                  </li>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
+            <RevealOnScroll direction="left" className="space-y-10">
+              <div className="space-y-4">
+                <h2 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+                  We focus <span className="text-teal-600 font-semibold tracking-normal lowercase italic">on excellence.</span>
+                </h2>
+                <div className="w-20 h-1 bg-teal-600"></div>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {[
+                  { title: "Innovative ingredient combinations", icon: FlaskConical },
+                  { title: "Stable & effective formulations", icon: ShieldCheck },
+                  { title: "Premium textures and sensorial experience", icon: Smile },
+                  { title: "Market trend research", icon: Globe },
+                  { title: "Product customization", icon: Sparkles },
+                  { title: "Fast product development support", icon: Beaker }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start p-4 bg-slate-50 border border-slate-100 rounded-2xl hover:bg-white hover:shadow-xl transition-all duration-500 group">
+                    <div className="w-10 h-10 rounded-xl bg-teal-50 flex items-center justify-center text-teal-600 group-hover:bg-teal-600 group-hover:text-white transition-all mr-4 shrink-0">
+                      <item.icon className="w-5 h-5" />
+                    </div>
+                    <p className="text-slate-900 font-bold text-sm tracking-tight pt-1 leading-tight">{item.title}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </RevealOnScroll>
             <RevealOnScroll direction="right">
-              <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border border-slate-100">
-                <Image src="/contract.webp" alt="In-house chemists" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
+              <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border-[12px] border-slate-50 group">
+                <Image src="/contract.webp" alt="R&D Team at Work" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover group-hover:scale-110 transition-transform duration-[5s]" />
+                <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 to-transparent"></div>
               </div>
             </RevealOnScroll>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-20 items-center">
-            <RevealOnScroll direction="right" className="lg:order-2 space-y-6 md:space-y-8">
-              <h2 className="text-2xl md:text-4xl font-bold text-slate-900 tracking-tighter uppercase leading-none">
-                Ingredient <span className="text-teal-600">Sourcing.</span>
-              </h2>
-              <p className="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
-                We ethically source premium active ingredients from certified suppliers worldwide. From Swiss peptides to Amazonian clays, we ensure your brand uses only the highest purity materials.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="p-5 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
-                  <Globe className="w-6 h-6 md:w-8 md:h-8 text-teal-600 mb-3" />
-                  <p className="font-black text-slate-900 uppercase tracking-tight text-[10px] md:text-xs">Certified Global Suppliers</p>
-                </div>
-                <div className="p-5 md:p-6 bg-slate-50 rounded-2xl md:rounded-3xl border border-slate-100">
-                  <Leaf className="w-6 h-6 md:w-8 md:h-8 text-teal-600 mb-3" />
-                  <p className="font-black text-slate-900 uppercase tracking-tight text-[10px] md:text-xs">Ethically Sourced Extracts</p>
-                </div>
-              </div>
-            </RevealOnScroll>
-            <RevealOnScroll direction="left" className="lg:order-1">
-              <div className="relative aspect-square rounded-[32px] md:rounded-[60px] overflow-hidden shadow-2xl border border-slate-100">
-                <Image src="/custom.webp" alt="Global Sourcing" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover" />
-              </div>
-            </RevealOnScroll>
-          </div>
-        </div>
-      </section>
-
-      {/* Trend-based formulations */}
-      <section className="py-16 bg-slate-950 text-white overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]"></div>
-        <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-          <RevealOnScroll className="max-w-4xl mx-auto space-y-12">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter uppercase leading-none">
-              Science & Trend-Based <span className="text-teal-400">Formulations.</span>
-            </h2>
-            <p className="text-xl text-slate-400 font-bold max-w-2xl mx-auto">
-              Stay ahead of the market with our trend-focused R&D capabilities. We specialize in modern global beauty movements.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {[
-                { title: "K-Beauty Inspired", icon: Sparkles, desc: "Glass skin finishes, essence-driven textures, and high-hydration formats." },
-                // { title: "Ayurvedic Science", icon: Leaf, desc: "Integrating ancient herbal wisdom with modern clinical validation." },
-                { title: "Clean Beauty", icon: ShieldCheck, desc: "Sulfate-free, paraben-free, and vegan formulations for conscious consumers." }
-              ].map((trend, i) => (
-                <div key={i} className="p-8 md:p-10 bg-white/5 border border-white/10 rounded-[32px] md:rounded-[40px] hover:bg-white hover:text-slate-900 transition-all duration-700 group text-left">
-                  <trend.icon className="w-10 h-10 md:w-12 md:h-12 text-teal-400 mb-6 group-hover:text-teal-600" />
-                  <h4 className="text-lg md:text-xl font-bold uppercase tracking-tight mb-3 md:mb-4">{trend.title}</h4>
-                  <p className="text-slate-400 group-hover:text-slate-600 font-medium text-xs md:text-sm leading-relaxed">{trend.desc}</p>
-                </div>
-              ))}
+          <RevealOnScroll className="max-w-4xl mx-auto">
+            <div className="p-12 md:p-20 bg-slate-950 rounded-[60px] text-center relative overflow-hidden">
+                {/* Decorative glow */}
+                <div className="absolute -top-20 -left-20 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px]"></div>
+                
+                <h3 className="relative z-10 text-xl md:text-3xl text-teal-400 font-black italic tracking-tight leading-relaxed">
+                  "We believe every successful cosmetic product starts with strong research and thoughtful formulation science."
+                </h3>
             </div>
           </RevealOnScroll>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-slate-50">
+      <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4 text-center">
-          <RevealOnScroll className="max-w-3xl mx-auto space-y-8 md:space-y-10">
-            <h2 className="text-2xl md:text-4xl font-bold text-slate-900 uppercase tracking-tighter leading-[1.1]">
-              Create Your Unique <br /><span className="text-teal-600">Formulation Today.</span>
+          <RevealOnScroll className="max-w-3xl mx-auto space-y-10">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-tight">
+              Ready to Innovate <br /><span className="text-teal-600">Your Brand?</span>
             </h2>
-            <p className="text-slate-600 text-base md:text-xl font-medium">Talk to our lead chemists about developing a custom product that belongs only to your brand.</p>
-            <Link href="/#contact" className="px-8 py-4 md:px-12 md:py-6 bg-slate-950 text-white rounded-full font-black text-xs uppercase tracking-widest hover:bg-teal-600 transition-all shadow-2xl inline-block">
-              Request Lab Consultation
+            <Link href="/#contact" className="px-12 py-6 bg-slate-950 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-teal-600 transition-all shadow-2xl inline-block hover:-translate-y-1">
+              Start Formulation Now
             </Link>
           </RevealOnScroll>
         </div>
       </section>
+
     </div>
   );
 }

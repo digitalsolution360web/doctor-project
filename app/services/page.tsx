@@ -14,7 +14,8 @@ import {
   Package,
   TrendingUp,
   Palette,
-  ChevronRight
+  ChevronRight,
+  CheckCircle2
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -97,94 +98,120 @@ export default function ServicesPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* Hero / Banner Section */}
-      <section className="relative h-[40vh] md:h-[50vh] flex items-center pt-20 overflow-hidden bg-slate-950">
+      <section className="relative h-[60vh] flex items-center pt-20 overflow-hidden bg-slate-950">
         <div className="absolute inset-0 z-0">
           <Image
             src="/services.webp"
             alt="Manufacturing Services"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-50"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <RevealOnScroll className="max-w-3xl space-y-4">
-            <div className="flex items-center space-x-2 text-teal-400 font-bold text-xs uppercase tracking-widest">
-              <span>Home</span>
-              <ChevronRight className="w-3 h-3" />
-              <span>Services</span>
+          <RevealOnScroll className="max-w-4xl space-y-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-[0.2em] mb-4">
+              Complete Beauty Solutions
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tighter leading-tight">
-              Our Manufacturing <span className="text-teal-400">Services</span>
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85]">
+              Our <span className="text-teal-400">Services.</span>
             </h1>
-            <p className="text-slate-300 text-lg md:text-xl font-medium max-w-2xl leading-relaxed">
-              Premium end-to-end solutions for high-performance cosmetic brands.
-            </p>
+            <h2 className="text-xl md:text-3xl font-bold text-slate-300 tracking-tight leading-tight uppercase">
+              Complete Third-Party & <br className="hidden md:block" /> Private Label Solutions
+            </h2>
           </RevealOnScroll>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-12 md:py-24 bg-slate-50">
+      {/* Services List Section */}
+      <section className="py-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {services.map((service, index) => (
-              <RevealOnScroll key={service.id} direction="up" className="flex flex-col h-full bg-white rounded-[40px] border border-slate-100 shadow-[0_20px_60px_rgba(0,0,0,0.05)] overflow-hidden hover:shadow-[0_40px_100px_rgba(0,0,0,0.1)] transition-all duration-700 group">
-                {/* Visual */}
-                <div className="relative aspect-[1.3/1] overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-60"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <RevealOnScroll direction="left" className="space-y-10 group">
+              <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden border-8 border-slate-50 shadow-2xl">
+                <Image src="/contract.webp" alt="Service Excellence" fill className="object-cover group-hover:scale-105 transition-transform duration-[4000ms]" />
+                <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
+              </div>
+            </RevealOnScroll>
 
-                  {/* Floating Icon */}
-                  <div className="absolute bottom-6 left-6 w-14 h-14 bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl flex items-center justify-center text-white">
-                    <service.icon className="w-7 h-7" />
-                  </div>
-                </div>
+            <RevealOnScroll direction="right" className="space-y-12">
+               <div className="space-y-4">
+                  <h3 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">A-Z Solutions</h3>
+                  <h4 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">Global Standard <br /><span className="text-slate-400">Capabilities.</span></h4>
+               </div>
 
-                {/* Content */}
-                <div className="p-8 md:p-10 flex flex-col flex-1 space-y-8">
-                  <div className="space-y-4">
-                    <div className="space-y-2">
-                      <p className="text-teal-600 font-black text-[10px] uppercase tracking-[0.3em]">{service.subtitle}</p>
-                      <h2 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight tracking-tight group-hover:text-teal-600 transition-colors">
-                        {service.title}
-                      </h2>
+               <div className="grid grid-cols-1 gap-6">
+                  {[
+                    "Custom Cosmetic Formulation Development",
+                    "Third-Party Manufacturing",
+                    "Private Label Manufacturing",
+                    "Product Concept Development",
+                    "Packaging & Branding Support",
+                    "Bulk Manufacturing Solutions",
+                    "Regulatory & Documentation Support",
+                    "Product Stability & Quality Testing",
+                    "Innovative Ingredient-Based Product Development"
+                  ].map((service, i) => (
+                    <div key={i} className="flex items-center gap-5 group/item">
+                       <div className="w-6 h-6 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600 group-hover/item:bg-teal-600 group-hover/item:text-white transition-all">
+                          <CheckCircle2 className="w-4 h-4" />
+                       </div>
+                       <p className="text-slate-700 font-bold text-base md:text-lg tracking-tight group-hover/item:text-teal-700 transition-colors">{service}</p>
                     </div>
-                    <p className="text-slate-500 text-sm md:text-base font-medium leading-relaxed">
-                      {service.description}
-                    </p>
-                  </div>
-
-                  {/* Feature List */}
-                  <div className="space-y-4 flex-grow">
-                    <p className="text-slate-900 font-bold text-[10px] uppercase tracking-[0.1em]">Key Features:</p>
-                    <div className="grid gap-3">
-                      {service.features.map((feature, i) => (
-                        <div key={i} className="flex items-center space-x-3 group/item">
-                          <div className="w-1.5 h-1.5 rounded-full bg-teal-500 group-hover/item:scale-150 transition-transform"></div>
-                          <span className="text-slate-600 text-sm font-bold tracking-tight">{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-6">
-                    <Link href="/#contact" className="w-full inline-flex items-center justify-center space-x-3 px-8 py-5 bg-slate-950 text-white rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-teal-600 transition-all shadow-xl group">
-                      <span>Start Your Project</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </RevealOnScroll>
-            ))}
+                  ))}
+               </div>
+            </RevealOnScroll>
           </div>
+        </div>
+      </section>
+
+      {/* Categories Grid Section */}
+      <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        {/* Animated background glows */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-lime-500/5 rounded-full blur-[120px]"></div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <RevealOnScroll className="text-center mb-20 space-y-4">
+             <h3 className="text-[10px] font-bold text-teal-400 tracking-[0.3em] uppercase mb-4">Manufacturing Scope</h3>
+             <h4 className="text-3xl md:text-6xl font-black tracking-tighter uppercase">Categories We <br className="hidden md:block" /><span className="text-teal-400">Manufacture.</span></h4>
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+             {[
+               "Skincare", "Haircare", "Body Care", "Bath & Shower", 
+               "Sunscreens", "Handmade Soaps", "Baby Care", "Mother Care", 
+               "Men’s Grooming", "Intimate Hygiene", "Derma Cosmetics", 
+               "Dental Care Products", "PDRN & Advanced Cosmetic Formulations"
+             ].map((cat, i) => (
+               <RevealOnScroll key={i} className="group p-8 bg-white/5 border border-white/10 rounded-[40px] hover:bg-white transition-all duration-700">
+                  <div className="flex items-center justify-between mb-8">
+                     <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                        <Package className="w-6 h-6" />
+                     </div>
+                     <div className="w-1.5 h-1.5 rounded-full bg-teal-500 group-hover:scale-[3] transition-transform"></div>
+                  </div>
+                  <h5 className="text-lg md:text-xl font-black tracking-tight group-hover:text-slate-900 transition-colors">{cat}</h5>
+                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-4 opacity-0 group-hover:opacity-100 transition-all group-hover:text-teal-600">Premium Formulation</p>
+               </RevealOnScroll>
+             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 text-center">
+          <RevealOnScroll className="max-w-3xl mx-auto space-y-10">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter leading-tight">
+              Bring Your Vision <br /><span className="text-teal-600">to Life.</span>
+            </h2>
+            <Link href="/#contact" className="px-12 py-6 bg-slate-950 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-teal-600 transition-all shadow-2xl inline-block">
+              Request Project Proposal
+            </Link>
+          </RevealOnScroll>
         </div>
       </section>
     </div>

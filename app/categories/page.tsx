@@ -69,14 +69,20 @@ interface CategorySection {
 }
 
 const categoriesData = [
-  { title: "Skin Care", image: "/skin.webp", features: ["Face Serums", "Moisturizers", "Cleansers"] },
-  { title: "Body Care", image: "/bodycare.webp", features: ["Body Lotions", "Body Wash", "Scrubs"] },
-  { title: "Face Makeup", image: "/facemakup.webp", features: ["Foundations", "Primers", "Setting Sprays"] },
-  { title: "Lip Care", image: "/lipp.webp", features: ["Lip Balms", "Lip Scrubs", "Lip Masks"] },
-  { title: "Mother & Baby Care", image: "/babycare.webp", features: ["Baby Oils", "Stretch Mark Creams", "Gentle Washes"] },
-  { title: "Ayurvedic", image: "/ayurvedic.webp", features: ["Herbal Oils", "Ubtans", "Natural Pastes"] },
-  { title: "Depilation Range", image: "/depilation.webp", features: ["Wax Strips", "Hair Removal Creams", "Post-Wax Oils"] },
-  { title: "Derma Care", image: "/skin.webp", features: ["Clinical Serums", "Sunscreen SPF 50", "Acne Treatments"] }
+  { title: "Skin Care", image: "/skin_new.png" },
+  { title: "Hair Care", image: "/haircare_new.png" },
+  { title: "Advance / Clinical Skin Care", image: "/skin.webp" },
+  { title: "Sun Care", image: "/cate4.webp" },
+  { title: "Intimate Care Hygiene", image: "/cate5.webp" },
+  { title: "Men’s Care", image: "/cate6.webp" },
+  { title: "Body Care", image: "/bodycare.webp" },
+  { title: "Dental Care", image: "/cate8.webp" },
+  { title: "Handmade Soaps (Melt & Pour)", image: "/cate9.webp" },
+  { title: "Bath Amenities", image: "/cate10.webp" },
+  { title: "Baby & Mother Care", image: "/babycare.webp" },
+  { title: "Oral & Dental Care", image: "/cate12.webp" },
+  { title: "Derma Care", image: "/cate13.webp" },
+  { title: "Depilatory Range", image: "/depilation.webp" }
 ];
 
 export default function CategoriesPage() {
