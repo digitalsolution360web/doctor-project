@@ -23,10 +23,6 @@ export const metadata: Metadata = {
   },
 };
 
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import MobileContactBar from "@/components/MobileContactBar";
 
 export default function RootLayout({
   children,
@@ -60,14 +56,11 @@ export default function RootLayout({
             gtag('config', 'G-2XGZT9NS7B');
           `}
         </Script>
-        <Header />
-        <main className="flex-grow">
+       
+       
           {children}
         
-        </main>
-        <Footer />
-        <WhatsAppButton />
-        <MobileContactBar />
+        
       </body>
     </html>
   );
