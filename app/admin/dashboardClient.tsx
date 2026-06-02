@@ -106,7 +106,7 @@ export default function DashboardHome() {
     <div className="animate-fade-in">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-[var(--text-primary)] tracking-tight">Dashboard Overview</h1>
-        <p className="text-[var(--text-secondary)] mt-1">Monitor and manage your courier business metrics.</p>
+       
         
         {error && (
           <div className="mt-6 p-6 bg-[rgba(244,63,94,0.05)] border border-[rgba(244,63,94,0.2)] rounded-2xl animate-fade-in shadow-xl">

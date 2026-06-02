@@ -7,106 +7,80 @@ export async function GET(req: NextRequest) {
 
     const id = searchParams.get('id');
 
-if (id && !isNaN(Number(id))) {
-  const [categoryRows] = await pool.query(
-    `
-    SELECT
-      id,
-      slug,
-      image,
-      meta_title,
-      meta_description,
-      status,
-      created_at,
-      updated_at
-    FROM categories
-    WHERE id = ?
-    `,
-    [id]
-  );
+    if (id && !isNaN(Number(id))) {
+      const [categoryRows] = await pool.query(
+        `
+        SELECT
+          id,
+          name,
+          slug,
+          image,
+          paragraph,
+          meta_title,
+          meta_description,
+          status,
+          created_at,
+          updated_at
+        FROM categories
+        WHERE id = ?
+        `,
+        [id]
+      );
 
-  if (!(categoryRows as any[]).length) {
-    return NextResponse.json(
-      { error: 'Category not found' },
-      { status: 404 }
-    );
-  }
+      if (!(categoryRows as any[]).length) {
+        return NextResponse.json(
+          { error: 'Category not found' },
+          { status: 404 }
+        );
+      }
 
-  const [translations] = await pool.query(
-    `
-    SELECT
-      language_code,
-      name,
-      h1_title,
-      description
-    FROM category_translations
-    WHERE category_id = ?
-    `,
-    [id]
-  );
-
-  return NextResponse.json({
-    category: (categoryRows as any[])[0],
-    translations,
-  });
-}
+      return NextResponse.json({
+        category: (categoryRows as any[])[0],
+      });
+    }
 
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
     const search = searchParams.get('search') || '';
-    const languageCode = searchParams.get('language') || 'en'; // Default to English
 
     const offset = (page - 1) * limit;
 
     let query = `
       SELECT 
-        c.id,
-        c.slug,
-        c.image,
-        c.meta_title,
-        c.meta_description,
-        c.status,
-        c.created_at,
-        c.updated_at,
-        ct.name,
-        ct.h1_title,
-        ct.description
-      FROM categories c
-      LEFT JOIN category_translations ct 
-        ON c.id = ct.category_id 
-        AND ct.language_code = ?
+        id,
+        name,
+        slug,
+        image,
+        paragraph,
+        meta_title,
+        meta_description,
+        status,
+        created_at,
+        updated_at
+      FROM categories
     `;
 
     let countQuery = `
       SELECT COUNT(*) as total 
-      FROM categories c
+      FROM categories
     `;
 
-    const params: any[] = [languageCode];
+    const params: any[] = [];
 
-if (search) {
-  query += `
-    WHERE
-      ct.name LIKE ?
-      OR c.slug LIKE ?
-  `;
-
-  countQuery += `
-    WHERE EXISTS (
-      SELECT 1
-      FROM category_translations ct2
-      WHERE ct2.category_id = c.id
-      AND ct2.language_code = ?
-      AND ct2.name LIKE ?
-    )
-    OR c.slug LIKE ?
-  `;
-
-  params.push(`%${search}%`, `%${search}%`);
-}
+    if (search) {
+      query += `
+        WHERE name LIKE ? 
+        OR slug LIKE ?
+      `;
+      countQuery += `
+        WHERE name LIKE ? 
+        OR slug LIKE ?
+      `;
+      params.push(`%${search}%`, `%${search}%`);
+    }
 
     query += `
-      ORDER BY c.created_at DESC
+      ORDER BY created_at DESC
       LIMIT ? OFFSET ?
     `;
 
@@ -116,7 +90,7 @@ if (search) {
     
     let totalCount = 0;
     if (search) {
-      const countParams = [languageCode, `%${search}%`, `%${search}%`];
+      const countParams = [`%${search}%`, `%${search}%`];
       const [countResult] = await pool.query(countQuery, countParams);
       totalCount = (countResult as any[])[0].total;
     } else {
@@ -146,13 +120,22 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const {
+      name,
       slug,
       image,
+      paragraph,
       meta_title,
       meta_description,
-      status,
-      translations // Array of translations for different languages
+      status
     } = body;
+
+    // Validation
+    if (!name || !slug) {
+      return NextResponse.json(
+        { error: 'Name and slug are required fields' },
+        { status: 400 }
+      );
+    }
 
     // Start transaction
     const connection = await pool.getConnection();
@@ -163,33 +146,20 @@ export async function POST(req: NextRequest) {
       const [categoryResult] = await connection.query(
         `
         INSERT INTO categories
-        (slug, image, meta_title, meta_description, status)
-        VALUES (?, ?, ?, ?, ?)
+        (name, slug, image, paragraph, meta_title, meta_description, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
         `,
-        [slug, image, meta_title, meta_description, status ?? 1]
+        [name, slug, image || null, paragraph || null, meta_title || null, meta_description || null, status || 'active']
       );
 
       const categoryId = (categoryResult as any).insertId;
-
-      // Insert translations
-      if (translations && translations.length > 0) {
-        for (const trans of translations) {
-          await connection.query(
-            `
-            INSERT INTO category_translations
-            (category_id, language_code, name, h1_title, description)
-            VALUES (?, ?, ?, ?, ?)
-            `,
-            [categoryId, trans.language_code, trans.name, trans.h1_title, trans.description]
-          );
-        }
-      }
 
       await connection.commit();
       
       return NextResponse.json({
         success: true,
         id: categoryId,
+        message: 'Category created successfully'
       });
 
     } catch (error) {
@@ -202,8 +172,16 @@ export async function POST(req: NextRequest) {
   } catch (error: any) {
     console.error(error);
 
+    // Check for duplicate entry error
+    if (error.code === 'ER_DUP_ENTRY') {
+      return NextResponse.json(
+        { error: 'A category with this slug already exists' },
+        { status: 409 }
+      );
+    }
+
     return NextResponse.json(
-      { error: 'Failed to create category' },
+      { error: 'Failed to create category'},
       { status: 500 }
     );
   }
@@ -215,72 +193,72 @@ export async function PUT(req: NextRequest) {
 
     const {
       id,
+      name,
       slug,
       image,
+      paragraph,
       meta_title,
       meta_description,
-      status,
-      translations // Array of translations for different languages
+      status
     } = body;
+
+    // Validation
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Category ID is required' },
+        { status: 400 }
+      );
+    }
+
+    if (!name || !slug) {
+      return NextResponse.json(
+        { error: 'Name and slug are required fields' },
+        { status: 400 }
+      );
+    }
 
     // Start transaction
     const connection = await pool.getConnection();
     await connection.beginTransaction();
 
     try {
+      // Check if category exists
+      const [existingCategory] = await connection.query(
+        'SELECT id FROM categories WHERE id = ?',
+        [id]
+      );
+
+      if (!(existingCategory as any[]).length) {
+        await connection.rollback();
+        return NextResponse.json(
+          { error: 'Category not found' },
+          { status: 404 }
+        );
+      }
+
       // Update categories table
       await connection.query(
         `
         UPDATE categories
         SET
+          name = ?,
           slug = ?,
           image = ?,
+          paragraph = ?,
           meta_title = ?,
           meta_description = ?,
           status = ?,
           updated_at = NOW()
         WHERE id = ?
         `,
-        [slug, image, meta_title, meta_description, status, id]
+        [name, slug, image || null, paragraph || null, meta_title || null, meta_description || null, status, id]
       );
-
-      // Update or insert translations
-      if (translations && translations.length > 0) {
-        for (const trans of translations) {
-          // Check if translation exists
-          const [existing] = await connection.query(
-            'SELECT translation_id FROM category_translations WHERE category_id = ? AND language_code = ?',
-            [id, trans.language_code]
-          );
-
-          if ((existing as any[]).length > 0) {
-            // Update existing translation
-            await connection.query(
-              `
-              UPDATE category_translations
-              SET name = ?, h1_title = ?, description = ?
-              WHERE category_id = ? AND language_code = ?
-              `,
-              [trans.name, trans.h1_title, trans.description, id, trans.language_code]
-            );
-          } else {
-            // Insert new translation
-            await connection.query(
-              `
-              INSERT INTO category_translations
-              (category_id, language_code, name, h1_title, description)
-              VALUES (?, ?, ?, ?, ?)
-              `,
-              [id, trans.language_code, trans.name, trans.h1_title, trans.description]
-            );
-          }
-        }
-      }
 
       await connection.commit();
       
       return NextResponse.json({
         success: true,
+        message: 'Category updated successfully'
       });
 
     } catch (error) {
@@ -292,6 +270,14 @@ export async function PUT(req: NextRequest) {
 
   } catch (error: any) {
     console.error(error);
+
+    // Check for duplicate entry error
+    if (error.code === 'ER_DUP_ENTRY') {
+      return NextResponse.json(
+        { error: 'A category with this slug already exists' },
+        { status: 409 }
+      );
+    }
 
     return NextResponse.json(
       { error: 'Failed to update category' },
@@ -305,18 +291,33 @@ export async function DELETE(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
 
+    if (!id) {
+      return NextResponse.json(
+        { error: 'Category ID is required' },
+        { status: 400 }
+      );
+    }
+
     // Start transaction
     const connection = await pool.getConnection();
     await connection.beginTransaction();
 
     try {
-      // First delete translations (due to foreign key constraint)
-      await connection.query(
-        'DELETE FROM category_translations WHERE category_id = ?',
+      // Check if category exists
+      const [existingCategory] = await connection.query(
+        'SELECT id FROM categories WHERE id = ?',
         [id]
       );
 
-      // Then delete category
+      if (!(existingCategory as any[]).length) {
+        await connection.rollback();
+        return NextResponse.json(
+          { error: 'Category not found' },
+          { status: 404 }
+        );
+      }
+
+      // Delete category (products will be deleted automatically due to CASCADE)
       await connection.query(
         'DELETE FROM categories WHERE id = ?',
         [id]
@@ -326,6 +327,7 @@ export async function DELETE(req: NextRequest) {
       
       return NextResponse.json({
         success: true,
+        message: 'Category deleted successfully'
       });
 
     } catch (error) {

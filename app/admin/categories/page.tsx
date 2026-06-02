@@ -4,17 +4,15 @@ import { useEffect, useState } from 'react';
 
 interface Category {
   id: number;
+  name: string;
   slug: string;
-  image: string;
-  meta_title: string;
-  meta_description: string;
-  status: number;
+  image: string | null;
+  paragraph: string | null;
+  meta_title: string | null;
+  meta_description: string | null;
+  status: 'active' | 'inactive';
   created_at: string;
   updated_at?: string;
-
-  name: string;
-  h1_title: string;
-  description: string;
 }
 
 export default function CategoriesPage() {
@@ -25,28 +23,17 @@ export default function CategoriesPage() {
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [activeLang, setActiveLang] = useState('en');
   const [editingCategory, setEditingCategory] = useState<Category | null>(null);
 
   const [formData, setFormData] = useState({
-  slug: '',
-  image: '',
-  meta_title: '',
-  meta_description: '',
-  status: 1,
-
-  en: {
     name: '',
-    h1_title: '',
-    description: '',
-  },
-
-  es: {
-    name: '',
-    h1_title: '',
-    description: '',
-  },
-});
+    slug: '',
+    image: '',
+    paragraph: '',
+    meta_title: '',
+    meta_description: '',
+    status: 'active' as 'active' | 'inactive',
+  });
 
   const limit = 10;
   const totalPages = Math.ceil(total / limit);
@@ -76,75 +63,41 @@ export default function CategoriesPage() {
     }
   };
 
- const openModal = async (category?: Category) => {
-  if (!category) {
-    setEditingCategory(null);
+  const openModal = async (category?: Category) => {
+    if (!category) {
+      setEditingCategory(null);
+      setFormData({
+        name: '',
+        slug: '',
+        image: '',
+        paragraph: '',
+        meta_title: '',
+        meta_description: '',
+        status: 'active',
+      });
+      setShowModal(true);
+      return;
+    }
 
-    setFormData({
-  slug: '',
-  image: '',
-  meta_title: '',
-  meta_description: '',
-  status: 1,
+    try {
+      const res = await fetch(`/api/categories?id=${category.id}`);
+      const data = await res.json();
 
-  en: {
-    name: '',
-    h1_title: '',
-    description: '',
-  },
-
-  es: {
-    name: '',
-    h1_title: '',
-    description: '',
-  },
-});
-
-    setShowModal(true);
-    return;
-  }
-
-  try {
-    const res = await fetch(`/api/categories?id=${category.id}`);
-    const data = await res.json();
-
-const en =
-  data.translations?.find(
-    (t: any) => t.language_code === 'en'
-  ) || {};
-
-const es =
-  data.translations?.find(
-    (t: any) => t.language_code === 'es'
-  ) || {};
-
-    setEditingCategory(category);
-
-   setFormData({
-  slug: data.category.slug || '',
-  image: data.category.image || '',
-  meta_title: data.category.meta_title || '',
-  meta_description: data.category.meta_description || '',
-  status: data.category.status,
-
-  en: {
-    name: en.name || '',
-    h1_title: en.h1_title || '',
-    description: en.description || '',
-  },
-
-  es: {
-    name: es.name || '',
-    h1_title: es.h1_title || '',
-    description: es.description || '',
-  },
-});
-
-    setShowModal(true);
-  } catch (err) {
-    console.error(err);
-  }
-};
+      setEditingCategory(category);
+      setFormData({
+        name: data.category.name || '',
+        slug: data.category.slug || '',
+        image: data.category.image || '',
+        paragraph: data.category.paragraph || '',
+        meta_title: data.category.meta_title || '',
+        meta_description: data.category.meta_description || '',
+        status: data.category.status || 'active',
+      });
+      setShowModal(true);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const closeModal = () => {
     setShowModal(false);
@@ -152,55 +105,47 @@ const es =
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
- const payload = {
-  ...(editingCategory && { id: editingCategory.id }),
+    const payload = {
+      ...(editingCategory && { id: editingCategory.id }),
+      name: formData.name,
+      slug: formData.slug,
+      image: formData.image || null,
+      paragraph: formData.paragraph || null,
+      meta_title: formData.meta_title || null,
+      meta_description: formData.meta_description || null,
+      status: formData.status,
+    };
 
-  slug: formData.slug,
-  image: formData.image,
-  meta_title: formData.meta_title,
-  meta_description: formData.meta_description,
-  status: formData.status,
+    const res = await fetch('/api/categories', {
+      method: editingCategory ? 'PUT' : 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
 
-  translations: [
-    {
-      language_code: 'en',
-      name: formData.en.name,
-      h1_title: formData.en.h1_title,
-      description: formData.en.description,
-    },
-    {
-      language_code: 'es',
-      name: formData.es.name,
-      h1_title: formData.es.h1_title,
-      description: formData.es.description,
-    },
-  ],
-};
-
-  const res = await fetch('/api/categories', {
-    method: editingCategory ? 'PUT' : 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(payload),
-  });
-
-  if (res.ok) {
-    fetchCategories();
-    closeModal();
-  }
-};
+    if (res.ok) {
+      fetchCategories();
+      closeModal();
+    } else {
+      const error = await res.json();
+      alert(error.error || 'Failed to save category');
+    }
+  };
 
   const handleDelete = async (id: number) => {
-    if (confirm('Delete this category?')) {
+    if (confirm('Delete this category? This will also delete all products in this category.')) {
       const res = await fetch(`/api/categories?id=${id}`, {
         method: 'DELETE',
       });
 
       if (res.ok) {
         fetchCategories();
+      } else {
+        const error = await res.json();
+        alert(error.error || 'Failed to delete category');
       }
     }
   };
@@ -289,7 +234,7 @@ const es =
                   <th className="px-5 py-4">Status</th>
                   <th className="px-5 py-4">Date</th>
                   <th className="px-5 py-4 text-right">Actions</th>
-                </tr>
+                 </tr>
               </thead>
 
               <tbody className="divide-y divide-[var(--border-color)]">
@@ -298,8 +243,8 @@ const es =
                     <tr key={i}>
                       <td className="px-5 py-4">
                         <div className="h-4 w-8 skeleton" />
-                      </td>
-                    </tr>
+                       </td>
+                     </tr>
                   ))
                 ) : categories.length === 0 ? (
                   <tr>
@@ -344,12 +289,12 @@ const es =
                       <td className="px-5 py-4">
                         <span
                           className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                            category.status
+                            category.status === 'active'
                               ? 'bg-emerald-500/10 text-emerald-400'
                               : 'bg-red-500/10 text-red-400'
                           }`}
                         >
-                          {category.status ? 'Active' : 'Inactive'}
+                          {category.status === 'active' ? 'Active' : 'Inactive'}
                         </span>
                       </td>
 
@@ -437,7 +382,7 @@ const es =
       {/* MODAL */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[9999] p-4">
-          <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl w-full lg:max-w-[900px] max-w-[800px] overflow-hidden">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl w-full max-w-2xl overflow-hidden">
 
             {/* HEADER */}
             <div className="flex items-center justify-between p-5 border-b border-[var(--border-color)]">
@@ -447,213 +392,177 @@ const es =
 
               <button
                 onClick={closeModal}
-                className="text-[var(--text-muted)]"
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               >
                 ✕
               </button>
             </div>
-<div className="px-6 pt-5">
-  <div className="inline-flex bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl p-1">
 
-    <button
-      type="button"
-      onClick={() => setActiveLang('en')}
-      className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-        activeLang === 'en'
-          ? 'btn-primary text-white shadow-md'
-          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-      }`}
-    >
-      🇺🇸 English
-    </button>
-
-    <button
-      type="button"
-      onClick={() => setActiveLang('es')}
-      className={`px-5 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-        activeLang === 'es'
-          ? 'btn-primary text-white shadow-md'
-          : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-      }`}
-    >
-      🇪🇸 Spanish
-    </button>
-
-  </div>
-</div>
             {/* FORM */}
             <form onSubmit={handleSubmit}>
+              <div className="p-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-             <div className="p-6">
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {/* NAME */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Name *
+                    </label>
 
-                {/* NAME */}
-                <div>
-                  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-                    Name
-                  </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          name: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
 
-                  <input
-                    type="text"
-                    required
-                    value={formData[activeLang as 'en' | 'es'].name}
-onChange={(e) =>
-  setFormData({
-    ...formData,
-    [activeLang]: {
-      ...formData[activeLang as 'en' | 'es'],
-      name: e.target.value,
-    },
-  })
-}
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-                  />
+                  {/* SLUG */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Slug *
+                    </label>
+
+                    <input
+                      type="text"
+                      required
+                      value={formData.slug}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          slug: e.target.value.toLowerCase().replace(/\s+/g, '-'),
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    />
+                    <p className="text-xs text-[var(--text-muted)] mt-1">
+                      URL-friendly version of the name (auto-formatted)
+                    </p>
+                  </div>
+
+                  {/* IMAGE */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Image URL
+                    </label>
+
+                    <input
+                      type="text"
+                      value={formData.image}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          image: e.target.value,
+                        })
+                      }
+                      placeholder="https://example.com/image.jpg"
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
+
+                  
+
+                  {/* META TITLE */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Meta Title
+                    </label>
+
+                    <input
+                      type="text"
+                      value={formData.meta_title || ''}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          meta_title: e.target.value,
+                        })
+                      }
+                      maxLength={200}
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    />
+                    <p className="text-xs text-[var(--text-muted)] mt-1">
+                      {formData.meta_title?.length || 0}/200 characters
+                    </p>
+                  </div>
+
+                  {/* META DESCRIPTION */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Meta Description
+                    </label>
+
+                    <input
+                      type="text"
+                      value={formData.meta_description || ''}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          meta_description: e.target.value,
+                        })
+                      }
+                      maxLength={255}
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    />
+                    <p className="text-xs text-[var(--text-muted)] mt-1">
+                      {formData.meta_description?.length || 0}/255 characters
+                    </p>
+                  </div>
+
+                  {/* STATUS */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Status
+                    </label>
+
+                    <select
+                      value={formData.status}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          status: e.target.value as 'active' | 'inactive',
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    >
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
+                  </div>
+                  {/* PARAGRAPH */}
+                  <div className="md:col-span-2">
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Paragraph / Short Description
+                    </label>
+
+                    <textarea
+                      rows={3}
+                      value={formData.paragraph || ''}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          paragraph: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] resize-none focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
+
                 </div>
-
-
-                {/* SLUG */}
-                <div>
-                  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-                    Slug
-                  </label>
-
-                  <input
-                    type="text"
-                    value={formData.slug}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        slug: e.target.value,
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-                  />
-                </div>
-                <div>
-  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-    H1 Title
-  </label>
-
-  <input
-    type="text"
-    value={formData[activeLang as 'en' | 'es'].h1_title}
-onChange={(e) =>
-  setFormData({
-    ...formData,
-    [activeLang]: {
-      ...formData[activeLang as 'en' | 'es'],
-      h1_title: e.target.value,
-    },
-  })
-}
-    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-  />
-</div>
-                <div>
-  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-    Meta Title
-  </label>
-
-  <input
-    type="text"
-    value={formData.meta_title}
-    onChange={(e) =>
-      setFormData({
-        ...formData,
-        meta_title: e.target.value,
-      })
-    }
-    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-  />
-</div>
-<div>
-  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-    Meta Description
-  </label>
-
-  <input
-                    type="text"
-    value={formData.meta_description}
-    onChange={(e) =>
-      setFormData({
-        ...formData,
-        meta_description: e.target.value,
-      })
-    }
-    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-  />
-</div>
-
-                {/* IMAGE */}
-                <div>
-                  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-                    Image URL
-                  </label>
-
-                  <input
-                    type="text"
-                    value={formData.image}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        image: e.target.value,
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-                  />
-                </div>
-
-                {/* DESCRIPTION */}
-                <div className="md:col-span-2 lg:col-span-3">
-                  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-                    Description
-                  </label>
-
-                  <textarea
-                    rows={4}
-                    value={formData[activeLang as 'en' | 'es'].description}
-onChange={(e) =>
-  setFormData({
-    ...formData,
-    [activeLang]: {
-      ...formData[activeLang as 'en' | 'es'],
-      description: e.target.value,
-    },
-  })
-}
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 resize-none"
-                  />
-                </div>
-
-                {/* STATUS */}
-                <div>
-                  <label className="block text-xs mb-2 text-[var(--text-secondary)]">
-                    Status
-                  </label>
-
-                  <select
-                    value={formData.status}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        status: Number(e.target.value),
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3"
-                  >
-                    <option value={1}>Active</option>
-                    <option value={0}>Inactive</option>
-                  </select>
-                </div>
-
               </div>
+              
 
               {/* FOOTER */}
-              <div className="p-5 border-t border-[var(--border-color)] flex gap-3 mt-6">
+              <div className="p-5 border-t border-[var(--border-color)] flex gap-3">
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 py-3 rounded-xl bg-[var(--bg-secondary)]"
+                  className="flex-1 py-3 rounded-xl bg-[var(--bg-secondary)] text-[var(--text-primary)] font-medium hover:bg-[var(--bg-primary)] transition-colors"
                 >
                   Cancel
                 </button>
@@ -665,7 +574,6 @@ onChange={(e) =>
                   {editingCategory ? 'Update' : 'Create'}
                 </button>
               </div>
- </div>
             </form>
           </div>
         </div>
