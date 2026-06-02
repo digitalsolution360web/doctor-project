@@ -105,10 +105,12 @@ export default function AboutPage() {
             <div className="relative h-20 w-80 mx-auto mb-12">
               <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority sizes="(max-width: 768px) 100vw, 320px" />
             </div>
-            <h1 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tighter uppercase">
-              Manufacturing with <span className="text-teal-600">Science</span>, <br /> 
-              Creating with <span className="text-lime-600">Passion</span>.
+            <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tighter uppercase mb-4">
+              About <span className="text-teal-600">Midflora</span> <span className="text-lime-600">Herbal</span>
             </h1>
+            <h2 className="text-xl md:text-2xl text-teal-600 font-bold uppercase tracking-widest mb-8">
+              Manufacturing with Science, Creating with Passion
+            </h2>
             <p className="text-xl md:text-2xl text-slate-700 max-w-3xl mx-auto font-bold leading-relaxed">
               MIDFLORA HERBAL LLP is a modern cosmetic third-party manufacturing company committed to delivering high-quality, innovative, and market-ready beauty & personal care products.
             </p>
@@ -168,7 +170,7 @@ export default function AboutPage() {
             </RevealOnScroll>
             <RevealOnScroll direction="right" className="flex-1">
               <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border-[12px] border-slate-50 group">
-                <Image src="/8.webp" alt="Our Facility" fill className="object-cover group-hover:scale-105 transition-transform duration-[4000ms]" />
+                <Image src="/about.webp" alt="Our Facility" fill className="object-cover group-hover:scale-105 transition-transform duration-[4000ms]" />
                 <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
               </div>
             </RevealOnScroll>

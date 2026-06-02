@@ -104,7 +104,7 @@ export default function RDPage() {
                 </h2>
                 <div className="w-20 h-1 bg-teal-600"></div>
               </div>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
                   { title: "Innovative ingredient combinations", icon: FlaskConical },
@@ -125,7 +125,7 @@ export default function RDPage() {
             </RevealOnScroll>
             <RevealOnScroll direction="right">
               <div className="relative aspect-square rounded-[60px] overflow-hidden shadow-2xl border-[12px] border-slate-50 group">
-                <Image src="/contract.webp" alt="R&D Team at Work" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover group-hover:scale-110 transition-transform duration-[5s]" />
+                <Image src="/lap.webp" alt="R&D Team at Work" fill sizes="(max-width: 768px) 100vw, 600px" className="object-cover group-hover:scale-110 transition-transform duration-[5s]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 to-transparent"></div>
               </div>
             </RevealOnScroll>
@@ -133,12 +133,12 @@ export default function RDPage() {
 
           <RevealOnScroll className="max-w-4xl mx-auto">
             <div className="p-12 md:p-20 bg-slate-950 rounded-[60px] text-center relative overflow-hidden">
-                {/* Decorative glow */}
-                <div className="absolute -top-20 -left-20 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px]"></div>
-                
-                <h3 className="relative z-10 text-xl md:text-3xl text-teal-400 font-black italic tracking-tight leading-relaxed">
-                  "We believe every successful cosmetic product starts with strong research and thoughtful formulation science."
-                </h3>
+              {/* Decorative glow */}
+              <div className="absolute -top-20 -left-20 w-64 h-64 bg-teal-500/20 rounded-full blur-[80px]"></div>
+
+              <h3 className="relative z-10 text-xl md:text-3xl text-teal-400 font-black italic tracking-tight leading-relaxed">
+                "We believe every successful cosmetic product starts with strong research and thoughtful formulation science."
+              </h3>
             </div>
           </RevealOnScroll>
         </div>

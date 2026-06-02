@@ -115,8 +115,8 @@ export default function ServicesPage() {
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-[0.2em] mb-4">
               Complete Beauty Solutions
             </div>
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tighter uppercase leading-[0.85]">
-              Our <span className="text-teal-400">Services.</span>
+            <h1 className="text-2xl md:text-4xl lg:text-6xl font-black text-white tracking-tighter uppercase leading-[0.85]">
+              Our Manufacturing <span className="text-teal-400">Services.</span>
             </h1>
             <h2 className="text-xl md:text-3xl font-bold text-slate-300 tracking-tight leading-tight uppercase">
               Complete Third-Party & <br className="hidden md:block" /> Private Label Solutions
@@ -131,37 +131,37 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <RevealOnScroll direction="left" className="space-y-10 group">
               <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden border-8 border-slate-50 shadow-2xl">
-                <Image src="/contract.webp" alt="Service Excellence" fill className="object-cover group-hover:scale-105 transition-transform duration-[4000ms]" />
+                <Image src="/lab.webp" alt="Service Excellence" fill className="object-cover group-hover:scale-105 transition-transform duration-[4000ms]" />
                 <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
               </div>
             </RevealOnScroll>
 
             <RevealOnScroll direction="right" className="space-y-12">
-               <div className="space-y-4">
-                  <h3 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">A-Z Solutions</h3>
-                  <h4 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">Global Standard <br /><span className="text-slate-400">Capabilities.</span></h4>
-               </div>
+              <div className="space-y-4">
+                <h3 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">A-Z Solutions</h3>
+                <h4 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">Global Standard <br /><span className="text-slate-400">Capabilities.</span></h4>
+              </div>
 
-               <div className="grid grid-cols-1 gap-6">
-                  {[
-                    "Custom Cosmetic Formulation Development",
-                    "Third-Party Manufacturing",
-                    "Private Label Manufacturing",
-                    "Product Concept Development",
-                    "Packaging & Branding Support",
-                    "Bulk Manufacturing Solutions",
-                    "Regulatory & Documentation Support",
-                    "Product Stability & Quality Testing",
-                    "Innovative Ingredient-Based Product Development"
-                  ].map((service, i) => (
-                    <div key={i} className="flex items-center gap-5 group/item">
-                       <div className="w-6 h-6 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600 group-hover/item:bg-teal-600 group-hover/item:text-white transition-all">
-                          <CheckCircle2 className="w-4 h-4" />
-                       </div>
-                       <p className="text-slate-700 font-bold text-base md:text-lg tracking-tight group-hover/item:text-teal-700 transition-colors">{service}</p>
+              <div className="grid grid-cols-1 gap-6">
+                {[
+                  "Custom Cosmetic Formulation Development",
+                  "Third-Party Manufacturing",
+                  "Private Label Manufacturing",
+                  "Product Concept Development",
+                  "Packaging & Branding Support",
+                  "Bulk Manufacturing Solutions",
+                  "Regulatory & Documentation Support",
+                  "Product Stability & Quality Testing",
+                  "Innovative Ingredient-Based Product Development"
+                ].map((service, i) => (
+                  <div key={i} className="flex items-center gap-5 group/item">
+                    <div className="w-6 h-6 rounded-lg bg-teal-50 flex items-center justify-center text-teal-600 group-hover/item:bg-teal-600 group-hover/item:text-white transition-all">
+                      <CheckCircle2 className="w-4 h-4" />
                     </div>
-                  ))}
-               </div>
+                    <p className="text-slate-700 font-bold text-base md:text-lg tracking-tight group-hover/item:text-teal-700 transition-colors">{service}</p>
+                  </div>
+                ))}
+              </div>
             </RevealOnScroll>
           </div>
         </div>
@@ -175,28 +175,28 @@ export default function ServicesPage() {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <RevealOnScroll className="text-center mb-20 space-y-4">
-             <h3 className="text-[10px] font-bold text-teal-400 tracking-[0.3em] uppercase mb-4">Manufacturing Scope</h3>
-             <h4 className="text-3xl md:text-6xl font-black tracking-tighter uppercase">Categories We <br className="hidden md:block" /><span className="text-teal-400">Manufacture.</span></h4>
+            <h3 className="text-[10px] font-bold text-teal-400 tracking-[0.3em] uppercase mb-4">Manufacturing Scope</h3>
+            <h4 className="text-3xl md:text-6xl font-black tracking-tighter uppercase">Categories We <br className="hidden md:block" /><span className="text-teal-400">Manufacture.</span></h4>
           </RevealOnScroll>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-             {[
-               "Skincare", "Haircare", "Body Care", "Bath & Shower", 
-               "Sunscreens", "Handmade Soaps", "Baby Care", "Mother Care", 
-               "Men’s Grooming", "Intimate Hygiene", "Derma Cosmetics", 
-               "Dental Care Products", "PDRN & Advanced Cosmetic Formulations"
-             ].map((cat, i) => (
-               <RevealOnScroll key={i} className="group p-8 bg-white/5 border border-white/10 rounded-[40px] hover:bg-white transition-all duration-700">
-                  <div className="flex items-center justify-between mb-8">
-                     <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
-                        <Package className="w-6 h-6" />
-                     </div>
-                     <div className="w-1.5 h-1.5 rounded-full bg-teal-500 group-hover:scale-[3] transition-transform"></div>
+            {[
+              "Skincare", "Haircare", "Body Care", "Bath & Shower",
+              "Sunscreens", "Handmade Soaps", "Baby Care", "Mother Care",
+              "Men’s Grooming", "Intimate Hygiene", "Derma Cosmetics",
+              "Dental Care Products", "PDRN & Advanced Cosmetic Formulations"
+            ].map((cat, i) => (
+              <RevealOnScroll key={i} className="group p-8 bg-white/5 border border-white/10 rounded-[40px] hover:bg-white transition-all duration-700">
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-teal-400 group-hover:bg-teal-600 group-hover:text-white transition-all">
+                    <Package className="w-6 h-6" />
                   </div>
-                  <h5 className="text-lg md:text-xl font-black tracking-tight group-hover:text-slate-900 transition-colors">{cat}</h5>
-                  <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-4 opacity-0 group-hover:opacity-100 transition-all group-hover:text-teal-600">Premium Formulation</p>
-               </RevealOnScroll>
-             ))}
+                  <div className="w-1.5 h-1.5 rounded-full bg-teal-500 group-hover:scale-[3] transition-transform"></div>
+                </div>
+                <h5 className="text-lg md:text-xl font-black tracking-tight group-hover:text-slate-900 transition-colors">{cat}</h5>
+                <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-4 opacity-0 group-hover:opacity-100 transition-all group-hover:text-teal-600">Premium Formulation</p>
+              </RevealOnScroll>
+            ))}
           </div>
         </div>
       </section>

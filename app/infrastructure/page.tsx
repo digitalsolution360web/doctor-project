@@ -170,7 +170,7 @@ export default function InfrastructurePage() {
 
             <RevealOnScroll direction="right" className="relative group">
               <div className="relative aspect-square rounded-[60px] overflow-hidden border-8 border-white/5">
-                <Image src="/8.webp" alt="Automated Machinery" fill className="object-cover group-hover:scale-110 transition-transform duration-[5s]" />
+                <Image src="/home.webp" alt="Automated Machinery" fill className="object-cover group-hover:scale-110 transition-transform duration-[5s]" />
                 <div className="absolute inset-0 bg-teal-600/10 mix-blend-overlay"></div>
               </div>
               {/* Floating Badge */}

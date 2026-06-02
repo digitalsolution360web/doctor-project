@@ -76,12 +76,12 @@ const categoriesData = [
   { title: "Intimate Care Hygiene", image: "/cate5.webp" },
   { title: "Men’s Care", image: "/cate6.webp" },
   { title: "Body Care", image: "/bodycare.webp" },
-  { title: "Dental Care", image: "/cate8.webp" },
-  { title: "Handmade Soaps (Melt & Pour)", image: "/cate9.webp" },
-  { title: "Bath Amenities", image: "/cate10.webp" },
+  { title: "Dental Care", image: "/Dental-Care.webp" },
+  { title: "Handmade Soaps (Melt & Pour)", image: "/Handmade-Soaps.webp" },
+  { title: "Bath Amenities", image: "/Bath-Amenities.webp" },
   { title: "Baby & Mother Care", image: "/babycare.webp" },
-  { title: "Oral & Dental Care", image: "/cate12.webp" },
-  { title: "Derma Care", image: "/cate13.webp" },
+  { title: "Oral & Dental Care", image: "/Oral-Dental-Care.webp" },
+  { title: "Derma Care", image: "/Derma-Care.webp" },
   { title: "Depilatory Range", image: "/depilation.webp" }
 ];
 
