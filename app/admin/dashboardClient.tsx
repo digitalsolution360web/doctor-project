@@ -6,9 +6,11 @@ import Link from 'next/link';
 
 export default function DashboardHome() {
   const [stats, setStats] = useState({
-    customers: 0,
-    couriers: 0
-  });
+  categories: 0,
+  products: 0,
+  activeCategories: 0,
+  activeProducts: 0
+});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const router = useRouter();
@@ -20,57 +22,85 @@ export default function DashboardHome() {
   const fetchStats = async () => {
     try {
       setLoading(true);
-      const [customersRes, couriersRes] = await Promise.all([
-        fetch('/api/customers?limit=1'),
-        fetch('/api/couriers?limit=1')
-      ]);
-      
-      const customers = await customersRes.json();
-      const couriers = await couriersRes.json();
+          const [categoriesRes, productsRes] = await Promise.all([
+      fetch('/api/categories?limit=1'),
+      fetch('/api/products?limit=1')
+    ]);
 
-      setStats({
-        customers: customers.total || 0,
-        couriers: couriers.total || 0
-      });
-      setError(false);
-    } catch (error) {
-      console.error('Failed to fetch stats:', error);
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  };
+      
+       const categories = await categoriesRes.json();
+    const products = await productsRes.json();
+
+    setStats({
+      categories: categories.total || 0,
+      activeCategories: categories.active || 0,
+      products: products.total || 0,
+      activeProducts: products.active || 0
+    });
+
+    setError(false);
+  } catch (error) {
+    console.error('Failed to fetch stats:', error);
+    setError(true);
+  } finally {
+    setLoading(false);
+  }
+};
 
   const statCards = [
-    { 
-      title: 'Total Customers', 
-      value: stats.customers, 
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-          <circle cx="9" cy="7" r="4" />
-          <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        </svg>
-      ),
-      color: 'var(--accent-primary)',
-      bg: 'rgba(99, 102, 241, 0.1)'
-    },
-    { 
-      title: 'Total Couriers', 
-      value: stats.couriers, 
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="1" y="3" width="15" height="13" rx="2" />
-          <path d="M16 8h4l3 3v5h-7V8z" />
-          <circle cx="5.5" cy="18.5" r="2.5" />
-          <circle cx="18.5" cy="18.5" r="2.5" />
-        </svg>
-      ),
-      color: 'var(--accent-emerald)',
-      bg: 'rgba(16, 185, 129, 0.1)'
-    },
-  ];
+  {
+    title: 'Total Categories',
+    value: stats.categories,
+    color: 'var(--accent-primary)',
+    bg: 'rgba(99,102,241,0.1)',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 7h18" />
+        <path d="M3 12h18" />
+        <path d="M3 17h18" />
+      </svg>
+    )
+  },
+
+  {
+    title: 'Total Products',
+    value: stats.products,
+    color: 'var(--accent-emerald)',
+    bg: 'rgba(16,185,129,0.1)',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M9 9h6v6H9z" />
+      </svg>
+    )
+  },
+
+  {
+    title: 'Active Categories',
+    value: stats.activeCategories,
+    color: 'var(--accent-warning)',
+    bg: 'rgba(245,158,11,0.1)',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
+  },
+
+  {
+    title: 'Active Products',
+    value: stats.activeProducts,
+    color: 'var(--accent-rose)',
+    bg: 'rgba(244,63,94,0.1)',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="12" r="9" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    )
+  }
+];
 
   return (
     <div className="animate-fade-in">
@@ -116,7 +146,7 @@ export default function DashboardHome() {
         )}
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-6 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
         {statCards.map((stat, index) => (
           <div key={index} className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-5 md:p-6 card-hover shadow-lg">
             <div className="flex items-center justify-between">
@@ -155,7 +185,7 @@ export default function DashboardHome() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <Link
-            href="/dashboard/customers"
+            href="/admin/categories"
             className="group relative overflow-hidden bg-[var(--bg-secondary)] border border-[var(--border-color)] p-5 md:p-6 rounded-xl hover:border-[var(--accent-primary)] transition-all duration-300"
           >
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity hidden md:block">
@@ -173,13 +203,13 @@ export default function DashboardHome() {
                   <line x1="16" y1="11" x2="22" y2="11" />
                 </svg>
               </div>
-              <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-1">Manage Customers</h3>
-              <p className="text-[var(--text-secondary)] text-xs md:text-sm">Add, edit, or remove customer profiles and contact details.</p>
+              <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-1">Manage Categories</h3>
+              <p className="text-[var(--text-secondary)] text-xs md:text-sm">Create, edit, activate or deactivate product categories.</p>
             </div>
           </Link>
           
           <Link
-            href="/dashboard/couriers"
+            href="/admin/products"
             className="group relative overflow-hidden bg-[var(--bg-secondary)] border border-[var(--border-color)] p-5 md:p-6 rounded-xl hover:border-[var(--accent-emerald)] transition-all duration-300"
           >
             <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity hidden md:block">
@@ -197,8 +227,9 @@ export default function DashboardHome() {
                   <circle cx="18.5" cy="18.5" r="2.5" />
                 </svg>
               </div>
-              <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-1">Manage Couriers</h3>
-              <p className="text-[var(--text-secondary)] text-xs md:text-sm">Create shipments, track delivery status, and update routes.</p>
+              <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)] mb-1">Manage Products</h3>
+              <p className="text-[var(--text-secondary)] text-xs md:text-sm">Add products, update packaging details, MOQ,
+benefits and product descriptions.</p>
             </div>
           </Link>
         </div>

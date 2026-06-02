@@ -3,11 +3,12 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { useState } from 'react';
+import "../admin.css";
 
 const navItems = [
   {
-    href: '/dashboard',
-    label: 'Dashboard',
+    href: '/admin',
+    label: 'Admin',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
         <rect x="3" y="3" width="7" height="7" rx="1" />
@@ -20,7 +21,7 @@ const navItems = [
 
   // CATEGORY
   {
-    href: '/dashboard/categories',
+    href: '/admin/categories',
     label: 'Categories',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -33,7 +34,7 @@ const navItems = [
 
   // PRODUCTS
   {
-    href: '/dashboard/products',
+    href: '/admin/products',
     label: 'Products',
     icon: (
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -46,19 +47,6 @@ const navItems = [
     ),
   },
 
-  // MODELS
-  {
-    href: '/dashboard/models',
-    label: 'Models',
-    icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        <rect x="3" y="4" width="18" height="16" rx="2" />
-        <path d="M7 8h10" />
-        <path d="M7 12h10" />
-        <path d="M7 16h5" />
-      </svg>
-    ),
-  },
 ];
 
 export default function DashboardLayout({
@@ -90,7 +78,7 @@ export default function DashboardLayout({
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center p-1 shadow-sm">
             <img
-              src="/logo.png"
+              src="/newlogo.webp"
               alt="Logo"
               className="w-full h-full object-contain"
             />
@@ -137,7 +125,7 @@ export default function DashboardLayout({
         <div className="hidden lg:flex items-center gap-3 p-5 border-b border-[var(--border-color)]">
           <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center p-1.5">
             <img
-              src="/logo.png"
+              src="/newlogo.webp"
               alt="Logo"
               className="w-full h-full object-contain"
             />
