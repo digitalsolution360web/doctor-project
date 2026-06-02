@@ -26,7 +26,7 @@ export default function LoginPage() {
       });
       const data = await res.json();
       if (res.ok) {
-        router.push("/dashboard");
+        router.push("/admin");
       } else {
         setError(data.message || "Invalid credentials. Please try again.");
       }
