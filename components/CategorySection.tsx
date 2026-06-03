@@ -74,19 +74,19 @@ const categories: Category[] = [
     title: "Dental Care",
     items: "Herbal Toothpastes, Mouthwashes, Oral Gels",
     icon: Activity,
-    img: "/cate8.webp"
+    img: "/Dental-Care.webp"
   },
   {
     title: "Handmade Soaps (Melt & Pour)",
     items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
     icon: Palette,
-    img: "/cate9.webp"
+    img: "/Handmade-Soaps.webp"
   },
   {
     title: "Bath Amenities",
     items: "Shower Gels, Bath Salts, Amenities",
     icon: Zap,
-    img: "/cate10.webp"
+    img: "/Bath-Amenities.webp"
   },
   {
     title: "Baby & Mother Care",
@@ -98,13 +98,13 @@ const categories: Category[] = [
     title: "Oral & Dental Care",
     items: "Total Oral Hygiene, Advanced Dental Solutions",
     icon: Smile,
-    img: "/cate12.webp"
+    img: "/Oral-Dental-Care.webp"
   },
   {
     title: "Derma Care",
     items: "Clinical Solutions, Targeted Skin Treatments",
     icon: ShieldCheck,
-    img: "/cate13.webp"
+    img: "/Derma-Care.webp"
   },
   {
     title: "Depilatory Range",
@@ -180,7 +180,7 @@ const CategorySection = () => {
         </div>
 
         {/* Premium Category Slider */}
-        <div 
+        <div
           ref={scrollRef}
           className="flex overflow-x-auto gap-6 pb-12 no-scrollbar snap-x snap-mandatory px-4 md:px-0"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -233,13 +233,13 @@ const CategorySection = () => {
         {/* Navigation and View All */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-4">
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={() => scroll("left")}
               className="w-12 h-12 rounded-xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <button 
+            <button
               onClick={() => scroll("right")}
               className="w-12 h-12 rounded-xl bg-white border border-slate-200 text-slate-900 flex items-center justify-center transition-all hover:bg-slate-950 hover:text-white shadow-lg active:scale-95"
             >

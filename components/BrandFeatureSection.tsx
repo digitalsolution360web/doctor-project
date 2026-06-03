@@ -116,7 +116,7 @@ const BrandFeatureSection = () => {
           <RevealOnScroll direction="right" className="relative group">
             <div className="relative aspect-[4/5] rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl border-8 border-white group-hover:scale-[1.02] transition-transform duration-700">
               <Image
-                src="/lab.webp"
+                src="/home2.webp"
                 alt="State-of-the-art Manufacturing"
                 fill
                 className="object-cover"
