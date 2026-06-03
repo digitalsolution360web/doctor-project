@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
     const [result]: any = await pool.query(
       `
-      INSERT INTO contact_inquiries (
+      INSERT INTO enquiries (
         name,
         company,
         phone,
