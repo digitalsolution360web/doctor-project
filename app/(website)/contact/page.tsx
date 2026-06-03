@@ -118,7 +118,7 @@ const handleSubmit = async (
   try {
     setLoading(true);
 
-    const response = await fetch("/api/enquries", {
+    const response = await fetch("/api/enquiries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
