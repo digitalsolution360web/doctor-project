@@ -11,7 +11,9 @@ import {
   ChevronRight,
   Layers,
   Thermometer,
-  Wind
+  Wind,
+  Maximize
+
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -19,6 +21,44 @@ interface RevealOnScrollProps {
   className?: string;
   direction?: "up" | "left" | "right";
 }
+const galleryImages = [
+  {
+    src: "/secondary-packaging-area.webp",
+    title: "Secondary Packaging Area",
+    desc: "High-speed automated final packaging line ensuring zero-error distribution.",
+    tag: "Efficiency"
+  },
+  {
+    src: "/secondary-packaging-area2.webp",
+    title: "Thermal Sealing Zone",
+    desc: "Precision controlled environments for consistent product integrity.",
+    tag: "Integrity"
+  },
+  {
+    src: "/tube-filling-section.webp",
+    title: "High-Speed Tube Filling",
+    desc: "Multi-track filling modules capable of 50,000 units per shift.",
+    tag: "Automated"
+  },
+  {
+    src: "/tube-filling-section2.webp",
+    title: "Sanitized Filling Modules",
+    desc: "ISO Class cleanroom technology with sterile filling points.",
+    tag: "Sterile"
+  },
+  {
+    src: "/tube-filling-section2.webp",
+    title: "Batch Monitoring System",
+    desc: "Real-time sensory tracking for complete batch consistency.",
+    tag: "Precision"
+  },
+  {
+    src: "/work-area.webp",
+    title: "HEPA Filtered Work Zone",
+    desc: "100% hygienic environment maintained via advanced air filtration.",
+    tag: "Controlled"
+  }
+];
 
 const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "", direction = "up" }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,9 +97,13 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
       {children}
     </div>
   );
+
+
+
 };
 
 export default function InfrastructurePage() {
+
   const facilityFeatures = [
     {
       title: "Advanced Machinery",
@@ -121,12 +165,13 @@ export default function InfrastructurePage() {
             <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Manufacturing <span className="text-slate-400">Capacity.</span></h3>
           </RevealOnScroll>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
             {[
               { val: "180 Tons+", label: "Monthly Manufacturing Capacity", icon: Layers },
               { val: "50,000", label: "Tube Filling (Tubes Per Day)", icon: Settings },
               { val: "75,000", label: "Bottle Filling (4-Head Servo Liquid)", icon: Zap },
-              { val: "40,000", label: "Jar Filling (2-Head Jar Per Day)", icon: Factory }
+              { val: "40,000", label: "Jar Filling (2-Head Jar Per Day)", icon: Factory },
+              { val: "30000", label: "Units Per Day", icon: Factory }
             ].map((stat, i) => (
               <div key={i} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 hover:bg-slate-900 group transition-all duration-700">
                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-teal-600 transition-colors">
@@ -183,6 +228,88 @@ export default function InfrastructurePage() {
         </div>
       </section>
 
+      {/* Advanced Technical Gallery */}
+      <section className="py-32 bg-white relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none select-none overflow-hidden">
+          <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(#0f172a 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-4xl mb-20">
+            <RevealOnScroll>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="h-[2px] w-12 bg-teal-500 rounded-full"></span>
+                <span className="text-xs font-black text-teal-600 uppercase tracking-[0.4em]">Infrastructure 4.0</span>
+              </div>
+              <h2 className="text-2xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-[0.9] mb-8">
+                A Modern Manufacturing <br />
+                <span className="text-slate-300">Powerhouse.</span>
+              </h2>
+              <p className="text-slate-500 text-lg md:text-xl font-bold max-w-2xl leading-relaxed">
+                Take a closer look at our high-tech facility, where state-of-the-art machinery meets rigorous hygiene standards to deliver world-class excellence.
+              </p>
+            </RevealOnScroll>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[280px]">
+            {galleryImages.map((img, index) => {
+              const spanClasses = [
+                "md:col-span-8 md:row-span-2", // Large Hero
+                "md:col-span-4 md:row-span-1",
+                "md:col-span-4 md:row-span-2",
+                "md:col-span-4 md:row-span-1",
+                "md:col-span-4 md:row-span-1",
+                "md:col-span-8 md:row-span-1", // Wide Bottom
+              ];
+
+              return (
+                <RevealOnScroll
+                  key={index}
+                  className={`relative group overflow-hidden rounded-[3rem] border-1 border-slate-100 shadow-2xl shadow-slate-200/40 ${spanClasses[index] || "md:col-span-4"}`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.title}
+                    fill
+                    className="object-cover transition-all duration-[2s] cubic-bezier(0.2, 0, 0, 1) group-hover:scale-110"
+                  />
+
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+
+                  {/* Tag Overlay (Always visible or on hover) */}
+                  <div className="absolute top-8 right-8 z-20">
+                    <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-[10px] text-white font-black uppercase tracking-[0.25em] translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-xl">
+                      {img.tag}
+                    </div>
+                  </div>
+
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700">
+                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-out">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="w-12 h-[1px] bg-teal-500"></div>
+                        <span className="text-teal-400 font-black text-xs uppercase tracking-widest">Facility Detail</span>
+                      </div>
+                      <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-3 leading-none italic">
+                        {img.title}
+                      </h4>
+                      <p className="text-slate-300 font-bold text-sm max-w-md leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
+                        {img.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Technical Line Decoration */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"></div>
+                </RevealOnScroll>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4 text-center">
@@ -195,6 +322,8 @@ export default function InfrastructurePage() {
           </RevealOnScroll>
         </div>
       </section>
+
+
 
     </div>
   );
