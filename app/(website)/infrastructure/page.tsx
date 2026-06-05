@@ -178,7 +178,7 @@ export default function InfrastructurePage() {
                   <stat.icon className="w-7 h-7 text-teal-600 group-hover:text-white" />
                 </div>
                 <p className="text-4xl font-black text-slate-900 tracking-tighter mb-2 group-hover:text-white transition-colors">{stat.val}</p>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest leading-relaxed group-hover:text-slate-400 transition-colors">{stat.label}</p>
+                <p className="text-xs font-bold text-slate-500  tracking-widest leading-relaxed group-hover:text-slate-400 transition-colors">{stat.label}</p>
               </div>
             ))}
           </div>
