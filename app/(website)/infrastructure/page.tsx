@@ -171,7 +171,7 @@ export default function InfrastructurePage() {
               { val: "50,000", label: "Tube Filling (Tubes Per Day)", icon: Settings },
               { val: "75,000", label: "Bottle Filling (4-Head Servo Liquid)", icon: Zap },
               { val: "40,000", label: "Jar Filling (2-Head Jar Per Day)", icon: Factory },
-              { val: "30000", label: "Units Per Day", icon: Factory }
+              { val: "30000", label: "Labeling Capacity: 30,000 Units Per Day", icon: Factory }
             ].map((stat, i) => (
               <div key={i} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 hover:bg-slate-900 group transition-all duration-700">
                 <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-teal-600 transition-colors">
