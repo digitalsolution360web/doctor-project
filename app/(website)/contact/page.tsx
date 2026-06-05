@@ -59,6 +59,97 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 };
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+  name: "",
+  company: "",
+  phone: "",
+  email: "",
+  product_type: "Skincare (Serums, Face Wash)",
+  qty: "",
+  message: "",
+});
+
+const [errors, setErrors] = useState<{
+  name?: string;
+  phone?: string;
+}>({});
+
+const [loading, setLoading] = useState(false);
+
+const handleChange = (
+  e: React.ChangeEvent<
+    HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+  >
+) => {
+  setFormData({
+    ...formData,
+    [e.target.name]: e.target.value,
+  });
+};
+
+const validateForm = () => {
+  const newErrors: {
+    name?: string;
+    phone?: string;
+  } = {};
+
+  if (!formData.name.trim()) {
+    newErrors.name = "Name is required";
+  }
+
+  if (!formData.phone.trim()) {
+    newErrors.phone = "Phone number is required";
+  } else if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+    newErrors.phone = "Enter a valid 10 digit mobile number";
+  }
+
+  setErrors(newErrors);
+
+  return Object.keys(newErrors).length === 0;
+};
+
+const handleSubmit = async (
+  e: React.FormEvent<HTMLFormElement>
+) => {
+  e.preventDefault();
+
+  if (!validateForm()) return;
+
+  try {
+    setLoading(true);
+
+    const response = await fetch("/api/enquiries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Something went wrong");
+    }
+
+    alert("Form submitted successfully");
+
+    setFormData({
+      name: "",
+      company: "",
+      phone: "",
+      email: "",
+      product_type: "Skincare (Serums, Face Wash)",
+      qty: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error(error);
+    alert("Failed to submit form");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 pt-20">
       {/* Hero Section */}
@@ -94,55 +185,124 @@ export default function ContactPage() {
             {/* Form Section */}
             <div className="flex-[1.5]">
               <RevealOnScroll className="bg-white rounded-[48px] p-8 md:p-16 shadow-2xl border border-slate-100">
-                <form className="space-y-10">
+                <form onSubmit={handleSubmit} className="space-y-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Full Name</label>
-                      <input type="text" placeholder="Your Name" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">
+                        Full Name *
+                      </label>
+
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Your Name"
+                        className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold"
+                      />
+
+                      {errors.name && (
+                        <p className="text-red-500 text-sm">{errors.name}</p>
+                      )}
                     </div>
                     <div className="space-y-3">
                       <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Brand Name</label>
-                      <input type="text" placeholder="Your Brand / Company" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        placeholder="Your Brand / Company"
+                        className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold"
+                      />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Phone Number</label>
-                      <input type="tel" placeholder="+91" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
-                    </div>
+                        <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">
+                          Phone Number *
+                        </label>
+
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          placeholder="9876543210"
+                          maxLength={10}
+                          className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold"
+                        />
+
+                        {errors.phone && (
+                          <p className="text-red-500 text-sm">{errors.phone}</p>
+                        )}
+                      </div>
                     <div className="space-y-3">
                       <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Email Address</label>
-                      <input type="email" placeholder="example@email.com" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="example@email.com"
+                        className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold"
+                      />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-3">
                       <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Product Type</label>
-                      <select className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold appearance-none">
-                        <option>Skincare (Serums, Face Wash)</option>
-                        <option>Haircare (Oils, Shampoos)</option>
-                        <option>Herbal Products</option>
-                        <option>Men's Grooming</option>
-                        <option>Bath & Body</option>
-                      </select>
+                     <select
+                    name="product_type"
+                    value={formData.product_type}
+                    onChange={handleChange}
+                    className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold appearance-none"
+                  >
+                    <option>Skincare (Serums, Face Wash)</option>
+                    <option>Haircare (Oils, Shampoos)</option>
+                    <option>Herbal Products</option>
+                    <option>Men's Grooming</option>
+                    <option>Bath & Body</option>
+                  </select>
                     </div>
                     <div className="space-y-3">
                       <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Quantity Required</label>
-                      <input type="number" placeholder="Expected MOQ" className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold" />
+                      <input
+                      type="number"
+                      name="qty"
+                      value={formData.qty}
+                      onChange={handleChange}
+                      placeholder="Expected MOQ"
+                      className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold"
+                    />
                     </div>
                   </div>
 
                   <div className="space-y-3">
                     <label className="text-[10px] font-black text-slate-500 uppercase tracking-widest ml-4">Message / Brand Vision</label>
-                    <textarea rows={5} placeholder="Tell us about your product requirements..." className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold resize-none"></textarea>
+                   <textarea
+                    rows={5}
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    placeholder="Tell us about your product requirements..."
+                    className="w-full px-8 py-5 bg-slate-50 rounded-2xl border border-slate-100 focus:outline-none focus:border-teal-500 font-bold resize-none"
+                  />
                   </div>
 
-                  <button className="w-full py-6 bg-slate-950 text-white rounded-[24px] font-black text-xs uppercase tracking-[0.3em] hover:bg-teal-600 transition-all shadow-2xl flex items-center justify-center space-x-3">
-                    <span>Submit Requirement</span>
-                    <Send className="w-4 h-4" />
-                  </button>
+                  <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full py-6 bg-slate-950 text-white rounded-[24px] font-black text-xs uppercase tracking-[0.3em] hover:bg-teal-600 transition-all shadow-2xl flex items-center justify-center space-x-3 disabled:opacity-50"
+                    >
+                      <span>
+                        {loading ? "Submitting..." : "Submit Requirement"}
+                      </span>
+
+                      <Send className="w-4 h-4" />
+                    </button>
                 </form>
               </RevealOnScroll>
             </div>
