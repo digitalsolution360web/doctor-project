@@ -38,67 +38,67 @@ const categories: Category[] = [
     title: "Hair Care",
     items: "Shampoos, Conditioners, Hair Oils",
     icon: Sparkles,
-    img: "/haircare_new.png"
+    img: "/Hair Care.webp"
   },
   {
     title: "Advance / Clinical Skin Care",
     items: "High-Performance Actives, Professional Treatments",
     icon: ShieldCheck,
-    img: "/skin.webp"
+    img: "/skin-care.webp"
   },
   {
     title: "Sun Care",
     items: "SPF 50+ Lotions, Sunscreens, After-Sun Care",
     icon: Sun,
-    img: "/cate4.webp"
+    img: "/sun-care.webp"
   },
   {
     title: "Intimate Care Hygiene",
     items: "Gentle Washes, pH Balanced Formulations",
     icon: Heart,
-    img: "/cate5.webp"
+    img: "/Intimate-care-hygiene.webp"
   },
   {
     title: "Men’s Care",
     items: "Beard Oils, Men's Grooming, Face Washes",
     icon: Users,
-    img: "/cate6.webp"
+    img: "/mens-care.webp"
   },
   {
     title: "Body Care",
     items: "Body Lotions, Body Wash, Scrubs",
     icon: Droplets,
-    img: "/bodycare.webp"
+    img: "/body-care.webp"
   },
   {
     title: "Dental Care",
     items: "Herbal Toothpastes, Mouthwashes, Oral Gels",
     icon: Activity,
-    img: "/Dental-Care.webp"
+    img: "/dental-Care.webp"
   },
   {
     title: "Handmade Soaps (Melt & Pour)",
     items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
     icon: Palette,
-    img: "/Handmade-Soaps.webp"
+    img: "/handmade-soaps.webp"
   },
   {
     title: "Bath Amenities",
     items: "Shower Gels, Bath Salts, Amenities",
     icon: Zap,
-    img: "/Bath-Amenities.webp"
+    img: "/bath-amenities.webp"
   },
   {
     title: "Baby & Mother Care",
     items: "Stretch Mark Creams, Gentle Baby Oils",
     icon: Sprout,
-    img: "/babycare.webp"
+    img: "/mother-baby-care.webp"
   },
   {
     title: "Oral & Dental Care",
     items: "Total Oral Hygiene, Advanced Dental Solutions",
     icon: Smile,
-    img: "/Oral-Dental-Care.webp"
+    img: "/oral-dental-Care.webp"
   },
   {
     title: "Derma Care",
