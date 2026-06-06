@@ -5,6 +5,7 @@ import TrustSignals from "@/components/TrustSignals";
 import BrandFeatureSection from "@/components/BrandFeatureSection";
 import ServicesSection from "@/components/ServicesSection";
 import CategorySection from "@/components/CategorySection";
+
 import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import Link from "next/link";
@@ -75,6 +76,9 @@ export default function Home() {
 
       {/* Brand Excellence Section */}
       <BrandFeatureSection />
+
+      {/* Manufacturing Capacity Section */}
+
 
       {/* Integrated Premium Services Section */}
       <RevealOnScroll>
@@ -182,8 +186,8 @@ export default function Home() {
                 <div key={i} className="flex items-center group cursor-default">
                   <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] border border-slate-100 flex items-center justify-center group-hover:scale-110 transition-all duration-500 group-hover:shadow-[0_20px_40px_-15px_rgba(20,184,166,0.2)] overflow-hidden p-3 md:p-4">
                     <img
-                      src={cert.logo} 
-                      alt={cert.name} 
+                      src={cert.logo}
+                      alt={cert.name}
                       className="w-full h-full object-contain"
                     />
                   </div>

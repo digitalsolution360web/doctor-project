@@ -12,9 +12,111 @@ import {
   Layers,
   Thermometer,
   Wind,
-  Maximize
-
+  Maximize,
+  ArrowRight
 } from "lucide-react";
+
+// --- Count-Up Component ---
+function CountUp({ target, suffix = "" }: { target: number | string; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          setStarted(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [started]);
+
+  useEffect(() => {
+    if (!started || typeof target !== "number") return;
+    let start = 0;
+    const duration = 1800;
+    const step = 16;
+    const increment = target / (duration / step);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, step);
+    return () => clearInterval(timer);
+  }, [started, target]);
+
+  if (typeof target !== "number") return <span ref={ref}>{target}</span>;
+  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
+}
+
+// --- Stats Carousel (standalone) ---
+const statsData = [
+  { num: 180, suffix: " Tons+", title: "Monthly Manufacturing", sub: "Capacity", icon: Layers },
+  { num: 50000, suffix: "", title: "Tube Filling", sub: "Tubes Per Day", icon: Settings },
+  { num: 75000, suffix: "", title: "Bottle Filling", sub: "4-Head Servo Liquid", icon: Zap },
+  { num: 40000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day", icon: Factory },
+  { num: 30000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day", icon: Factory },
+  { num: 25000, suffix: "", title: "Carton Sealing", sub: "Units Per Day", icon: ShieldCheck },
+  { num: 100, suffix: "%", title: "Sterile Manufacturing", sub: "Environment", icon: ShieldCheck },
+];
+
+function StatCarousel() {
+  return (
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
+        <div className="mb-16">
+          <h2 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">Production Power</h2>
+          <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Manufacturing <span className="text-slate-400">Capacity.</span></h3>
+        </div>
+        <div className="relative group">
+          <div id="stats-carousel" className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-8 snap-x snap-mandatory">
+            {statsData.map((stat, i) => (
+              <div key={i} className="min-w-[240px] md:min-w-[280px] p-8 bg-slate-50 rounded-[32px] border border-slate-100 hover:bg-slate-900 group/card transition-all duration-700 snap-center shadow-sm hover:shadow-2xl hover:shadow-teal-900/20 flex flex-col gap-3">
+                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover/card:bg-teal-600 transition-colors">
+                  <stat.icon className="w-6 h-6 text-teal-600 group-hover/card:text-white" />
+                </div>
+                <p className="text-4xl font-black text-slate-900 tracking-tighter group-hover/card:text-white transition-colors">
+                  <CountUp target={stat.num} suffix={stat.suffix} />
+                </p>
+                <div>
+                  <p className="text-sm font-bold text-slate-800 group-hover/card:text-white transition-colors leading-tight">{stat.title}</p>
+                  <p className="text-xs text-slate-400 group-hover/card:text-slate-400 transition-colors mt-0.5">{stat.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Left Arrow */}
+          <button
+            onClick={() => { const el = document.getElementById('stats-carousel'); if (el) el.scrollBy({ left: -300, behavior: 'smooth' }); }}
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 w-11 h-11 bg-white rounded-full shadow-xl border border-slate-100 flex items-center justify-center text-slate-900 hover:bg-teal-600 hover:text-white transition-all z-20"
+          >
+            <ArrowRight className="w-4 h-4 rotate-180" />
+          </button>
+          {/* Right Arrow */}
+          <button
+            onClick={() => { const el = document.getElementById('stats-carousel'); if (el) el.scrollBy({ left: 300, behavior: 'smooth' }); }}
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 w-11 h-11 bg-white rounded-full shadow-xl border border-slate-100 flex items-center justify-center text-slate-900 hover:bg-teal-600 hover:text-white transition-all z-20"
+          >
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+      <style jsx>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </section>
+  );
+}
+
 
 interface RevealOnScrollProps {
   children: React.ReactNode;
@@ -103,6 +205,17 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 };
 
 export default function InfrastructurePage() {
+  const [lightboxImage, setLightboxImage] = useState<{ src: string; title: string; desc: string; tag: string } | null>(null);
+
+  // Lock body scroll when lightbox is open
+  useEffect(() => {
+    if (lightboxImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [lightboxImage]);
 
   const facilityFeatures = [
     {
@@ -157,33 +270,9 @@ export default function InfrastructurePage() {
         </div>
       </section>
 
-      {/* Stats Section - Manufacturing Capacity */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <RevealOnScroll className="mb-16">
-            <h2 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">Production Power</h2>
-            <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Manufacturing <span className="text-slate-400">Capacity.</span></h3>
-          </RevealOnScroll>
+      {/* Manufacturing Capacity Carousel Section */}
+      <StatCarousel />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
-            {[
-              { val: "180 Tons+", label: "Monthly Manufacturing Capacity", icon: Layers },
-              { val: "50,000", label: "Tube Filling (Tubes Per Day)", icon: Settings },
-              { val: "75,000", label: "Bottle Filling (4-Head Servo Liquid)", icon: Zap },
-              { val: "40,000", label: "Jar Filling (2-Head Jar Per Day)", icon: Factory },
-              { val: "30000", label: "Labeling Capacity: 30,000 Units Per Day", icon: Factory }
-            ].map((stat, i) => (
-              <div key={i} className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 hover:bg-slate-900 group transition-all duration-700">
-                <div className="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-8 shadow-sm group-hover:bg-teal-600 transition-colors">
-                  <stat.icon className="w-7 h-7 text-teal-600 group-hover:text-white" />
-                </div>
-                <p className="text-4xl font-black text-slate-900 tracking-tighter mb-2 group-hover:text-white transition-colors">{stat.val}</p>
-                <p className="text-xs font-bold text-slate-500  tracking-widest leading-relaxed group-hover:text-slate-400 transition-colors">{stat.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Why Our Infrastructure Matters */}
       <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
@@ -252,63 +341,87 @@ export default function InfrastructurePage() {
             </RevealOnScroll>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[280px]">
-            {galleryImages.map((img, index) => {
-              const spanClasses = [
-                "md:col-span-8 md:row-span-2", // Large Hero
-                "md:col-span-4 md:row-span-1",
-                "md:col-span-4 md:row-span-2",
-                "md:col-span-4 md:row-span-1",
-                "md:col-span-4 md:row-span-1",
-                "md:col-span-8 md:row-span-1", // Wide Bottom
-              ];
-
-              return (
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] md:auto-rows-[200px]">
+            {galleryImages.map((img, index) => (
+              <div key={index} onClick={() => setLightboxImage(img)} className="cursor-pointer">
                 <RevealOnScroll
-                  key={index}
-                  className={`relative group overflow-hidden rounded-[3rem] border-1 border-slate-100 shadow-2xl shadow-slate-200/40 ${spanClasses[index] || "md:col-span-4"}`}
+                  className="relative group overflow-hidden rounded-2xl border border-slate-100 shadow-lg shadow-slate-200/40 h-[180px] md:h-[200px]"
                 >
                   <Image
                     src={img.src}
                     alt={img.title}
                     fill
-                    className="object-cover transition-all duration-[2s] cubic-bezier(0.2, 0, 0, 1) group-hover:scale-110"
+                    className="object-cover transition-all duration-[1.5s] group-hover:scale-110"
                   />
 
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  {/* Always-visible dark gradient at bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
 
-                  {/* Tag Overlay (Always visible or on hover) */}
-                  <div className="absolute top-8 right-8 z-20">
-                    <div className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-[10px] text-white font-black uppercase tracking-[0.25em] translate-y-[-10px] opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 shadow-xl">
-                      {img.tag}
+                  {/* Zoom Icon - appears on hover */}
+                  <div className="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
+                      <Maximize className="w-4 h-4 text-slate-900" />
                     </div>
                   </div>
 
-                  {/* Content Overlay */}
-                  <div className="absolute inset-0 p-10 flex flex-col justify-end bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-700">
-                    <div className="transform translate-y-8 group-hover:translate-y-0 transition-all duration-700 ease-out">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="w-12 h-[1px] bg-teal-500"></div>
-                        <span className="text-teal-400 font-black text-xs uppercase tracking-widest">Facility Detail</span>
-                      </div>
-                      <h4 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tighter mb-3 leading-none italic">
-                        {img.title}
-                      </h4>
-                      <p className="text-slate-300 font-bold text-sm max-w-md leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200">
-                        {img.desc}
-                      </p>
+                  {/* Always-visible title label at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 z-10 p-3">
+                    <div className="inline-block bg-slate-900/80 backdrop-blur-sm px-3 py-1.5 rounded-lg">
+                      <h4 className="text-[11px] font-black text-white uppercase tracking-widest leading-none">{img.title}</h4>
                     </div>
                   </div>
 
-                  {/* Technical Line Decoration */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-teal-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-1000 origin-left"></div>
+                  {/* Hover glow overlay */}
+                  <div className="absolute inset-0 ring-2 ring-teal-500 ring-inset opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
                 </RevealOnScroll>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* Lightbox Popup */}
+      {lightboxImage && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+          onClick={() => setLightboxImage(null)}
+        >
+          <div
+            className="relative max-w-5xl w-full bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setLightboxImage(null)}
+              className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+
+            {/* Full Image */}
+            <div className="relative w-full aspect-video">
+              <Image
+                src={lightboxImage.src}
+                alt={lightboxImage.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 80vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            </div>
+
+            {/* Caption */}
+            <div className="p-6 md:p-8">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="w-8 h-[2px] bg-teal-500"></span>
+                <span className="text-teal-400 text-[10px] font-black uppercase tracking-[0.3em]">{lightboxImage.tag}</span>
+              </div>
+              <h3 className="text-xl md:text-3xl font-black text-white uppercase tracking-tight mb-2">{lightboxImage.title}</h3>
+              <p className="text-slate-400 font-medium text-sm leading-relaxed">{lightboxImage.desc}</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* CTA */}
       <section className="py-24 bg-white">
