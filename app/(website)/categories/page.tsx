@@ -73,7 +73,7 @@ const categoriesData = [
   { title: "Hair Care", image: "/Hair Care.webp" },
   { title: "Advance / Clinical Skin Care", image: "/skin.webp" },
   { title: "Sun Care", image: "/sun-care.webp" },
-  { title: "Intimate Care Hygiene", image: "/intimate-care-hygiene.webp" },
+  { title: "Intimate Care Hygiene", image: "/Intimate-care-hygiene.webp" },
   { title: "Men’s Care", image: "/mens-care.webp" },
   { title: "Body Care", image: "/body-care.webp" },
   { title: "Dental Care", image: "/dental-care.webp" },

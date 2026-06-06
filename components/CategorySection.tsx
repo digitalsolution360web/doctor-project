@@ -74,19 +74,19 @@ const categories: Category[] = [
     title: "Dental Care",
     items: "Herbal Toothpastes, Mouthwashes, Oral Gels",
     icon: Activity,
-    img: "/Dental-Care.webp"
+    img: "/dental-care.webp"
   },
   {
     title: "Handmade Soaps (Melt & Pour)",
     items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
     icon: Palette,
-    img: "/Handmade-Soaps.webp"
+    img: "/handmade-soaps.webp"
   },
   {
     title: "Bath Amenities",
     items: "Shower Gels, Bath Salts, Amenities",
     icon: Zap,
-    img: "/Bath-Amenities.webp"
+    img: "/bath-amenities.webp"
   },
   {
     title: "Baby & Mother Care",
@@ -98,13 +98,13 @@ const categories: Category[] = [
     title: "Oral & Dental Care",
     items: "Total Oral Hygiene, Advanced Dental Solutions",
     icon: Smile,
-    img: "/Oral-Dental-Care.webp"
+    img: "/oral-dental-care.webp"
   },
   {
     title: "Derma Care",
     items: "Clinical Solutions, Targeted Skin Treatments",
     icon: ShieldCheck,
-    img: "/Derma-Care.webp"
+    img: "/derma-care.webp"
   },
   {
     title: "Depilatory Range",
