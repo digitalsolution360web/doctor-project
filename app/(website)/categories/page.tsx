@@ -69,20 +69,20 @@ interface CategorySection {
 }
 
 const categoriesData = [
-  { title: "Skin Care", image: "/skin_new.png" },
-  { title: "Hair Care", image: "/haircare_new.png" },
+  { title: "Skin Care", image: "/skin-care.webp" },
+  { title: "Hair Care", image: "/Hair Care.webp" },
   { title: "Advance / Clinical Skin Care", image: "/skin.webp" },
-  { title: "Sun Care", image: "/cate4.webp" },
-  { title: "Intimate Care Hygiene", image: "/cate5.webp" },
-  { title: "Men’s Care", image: "/cate6.webp" },
-  { title: "Body Care", image: "/bodycare.webp" },
-  { title: "Dental Care", image: "/Dental-Care.webp" },
-  { title: "Handmade Soaps (Melt & Pour)", image: "/Handmade-Soaps.webp" },
-  { title: "Bath Amenities", image: "/Bath-Amenities.webp" },
-  { title: "Baby & Mother Care", image: "/babycare.webp" },
-  { title: "Oral & Dental Care", image: "/Oral-Dental-Care.webp" },
-  { title: "Derma Care", image: "/Derma-Care.webp" },
-  { title: "Depilatory Range", image: "/depilation.webp" }
+  { title: "Sun Care", image: "/sun-care.webp" },
+  { title: "Intimate Care Hygiene", image: "/intimate-care-hygiene.webp" },
+  { title: "Men’s Care", image: "/mens-care.webp" },
+  { title: "Body Care", image: "/body-care.webp" },
+  { title: "Dental Care", image: "/dental-care.webp" },
+  { title: "Handmade Soaps (Melt & Pour)", image: "/handmade-soaps.webp" },
+  { title: "Bath Amenities", image: "/bath-amenities.webp" },
+  { title: "Baby & Mother Care", image: "/mother-baby-care.webp" },
+  { title: "Oral & Dental Care", image: "/oral-dental-care.webp" },
+  { title: "Derma Care", image: "/derma-care.webp" },
+  { title: "Depilatory Range", image: "/depilation-range.webp" }
 ];
 
 export default function CategoriesPage() {
