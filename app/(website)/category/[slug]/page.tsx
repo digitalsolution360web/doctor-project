@@ -114,7 +114,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
                 {sidebarCategories.map((cat, idx) => (
                   <li key={idx}>
                     <Link
-                      href={`/category/${cat.name.toLowerCase().replace(/ /g, "-").replace(/&/g, "and")}`}
+                      href={`/category/${cat.name.toLowerCase().replace(/&/g, "and").replace(/[\s/]+/g, "-").replace(/^-+|-+$/g, "")}`}
                       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl transition-all duration-300 ${cat.active
                         ? 'bg-teal-50 text-teal-700 font-bold'
                         : 'text-slate-600 hover:bg-slate-50 hover:text-teal-600 font-medium'
@@ -148,7 +148,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
               {products.map((product) => (
                 <Link
-                  href={`/product/${product.title.toLowerCase().replace(/ /g, "-")}`}
+                  href={`/product/${product.title.toLowerCase().replace(/&/g, "and").replace(/[\s/]+/g, "-").replace(/^-+|-+$/g, "")}`}
                   key={product.id}
                   className="group flex flex-col h-full bg-white rounded-2xl border border-slate-200 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_15px_40px_rgba(0,0,0,0.08)] hover:border-teal-100 transition-all duration-500 overflow-hidden"
                 >

@@ -109,7 +109,7 @@ export default function CategoriesPage() {
           {categoriesData.map((category, idx) => (
             <RevealOnScroll key={idx} delay={idx * 100}>
               <Link
-                href={`/category/${category.title.toLowerCase().replace(/ /g, "-")}`}
+                href={`/category/${category.title.toLowerCase().replace(/&/g, "and").replace(/[\s/]+/g, "-").replace(/^-+|-+$/g, "")}`}
                 className="flex flex-col h-full bg-white rounded-[32px] border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,0.08)] overflow-hidden hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 group"
               >
                 {/* Header Bar */}
