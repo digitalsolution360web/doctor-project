@@ -99,10 +99,15 @@ const Footer = () => {
                 <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
                   <Phone className="w-5 h-5 text-teal-500 group-hover:text-white" />
                 </div>
-                <div>
-                  <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-81307 08357</p>
+                <div className="space-y-1">
+                  <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-789528 0742</p>
                   <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
+                  <div>
+                    <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-81307 08357</p>
+                    <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
+                  </div>
                 </div>
+
               </div>
               <div className="flex items-start space-x-5 group">
                 <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
