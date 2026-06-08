@@ -60,11 +60,11 @@ function CountUp({ target, suffix = "" }: { target: number | string; suffix?: st
 // --- Stats Carousel (standalone) ---
 const statsData = [
   { num: 180, suffix: " Tons+", title: "Monthly Manufacturing", sub: "Capacity", icon: Layers },
-  { num: 50000, suffix: "", title: "Tube Filling", sub: "Tubes Per Day", icon: Settings },
-  { num: 75000, suffix: "", title: "Bottle Filling", sub: "4-Head Servo Liquid", icon: Zap },
+  { num: 50000, suffix: "", title: "Tube Filling", sub: "Tubes Per Day", icon: Settings, img: "/Tube-FIlling.webp" },
+  { num: 75000, suffix: "", title: "Bottle Filling", sub: "4-Head Servo Liquid", icon: Zap, img: "/Bottle-filling.webp" },
   { num: 40000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day", icon: Factory },
-  { num: 30000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day", icon: Factory },
-  { num: 25000, suffix: "", title: "Carton Sealing", sub: "Units Per Day", icon: ShieldCheck },
+  { num: 30000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day", icon: Factory, img: "/labeling-machines.webp" },
+  { num: 25000, suffix: "", title: "Tube Sealing", sub: "Units Per Day", icon: ShieldCheck, img: "/Tube-Sealing.webp" },
   { num: 100, suffix: "%", title: "Sterile Manufacturing", sub: "Environment", icon: ShieldCheck },
 ];
 
@@ -79,16 +79,29 @@ function StatCarousel() {
         <div className="relative group">
           <div id="stats-carousel" className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-8 snap-x snap-mandatory">
             {statsData.map((stat, i) => (
-              <div key={i} className="min-w-[240px] md:min-w-[280px] p-8 bg-slate-50 rounded-[32px] border border-slate-100 hover:bg-slate-900 group/card transition-all duration-700 snap-center shadow-sm hover:shadow-2xl hover:shadow-teal-900/20 flex flex-col gap-3">
-                <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-sm group-hover/card:bg-teal-600 transition-colors">
-                  <stat.icon className="w-6 h-6 text-teal-600 group-hover/card:text-white" />
-                </div>
-                <p className="text-4xl font-black text-slate-900 tracking-tighter group-hover/card:text-white transition-colors">
-                  <CountUp target={stat.num} suffix={stat.suffix} />
-                </p>
-                <div>
-                  <p className="text-sm font-bold text-slate-800 group-hover/card:text-white transition-colors leading-tight">{stat.title}</p>
-                  <p className="text-xs text-slate-400 group-hover/card:text-slate-400 transition-colors mt-0.5">{stat.sub}</p>
+              <div key={i} className={`min-w-[240px] md:min-w-[280px] p-8 rounded-[32px] border border-slate-100 group/card transition-all duration-700 snap-center shadow-sm hover:shadow-2xl flex flex-col gap-3 relative overflow-hidden ${stat.img ? 'bg-slate-900' : 'bg-slate-50 hover:bg-slate-900'} hover:shadow-teal-900/20`}>
+                {stat.img && (
+                  <>
+                    <Image
+                      src={stat.img}
+                      alt={stat.title}
+                      fill
+                      className="object-cover transition-transform duration-1000 group-hover/card:scale-110 opacity-50 group-hover/card:opacity-40"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-transparent z-0 transition-opacity duration-700 group-hover/card:opacity-90" />
+                  </>
+                )}
+                <div className="relative z-10 flex flex-col gap-3 h-full">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-sm transition-all duration-500 ${stat.img ? 'bg-white/10 backdrop-blur-md border border-white/20 group-hover/card:bg-teal-600' : 'bg-white group-hover/card:bg-teal-600'}`}>
+                    <stat.icon className={`w-6 h-6 transition-colors ${stat.img ? 'text-white' : 'text-teal-600 group-hover/card:text-white'}`} />
+                  </div>
+                  <p className={`text-4xl font-black tracking-tighter transition-colors ${stat.img ? 'text-white' : 'text-slate-900 group-hover/card:text-white'}`}>
+                    <CountUp target={stat.num} suffix={stat.suffix} />
+                  </p>
+                  <div className="mt-auto">
+                    <p className={`text-sm font-bold transition-colors leading-tight ${stat.img ? 'text-white' : 'text-slate-800 group-hover/card:text-white'}`}>{stat.title}</p>
+                    <p className={`text-xs mt-0.5 transition-colors ${stat.img ? 'text-slate-300' : 'text-slate-400 group-hover/card:text-slate-400'}`}>{stat.sub}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -244,14 +257,15 @@ export default function InfrastructurePage() {
       <section className="relative min-h-[60vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/infractural.webp"
+            src="/infrastructure-banner.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
-            className="object-cover opacity-50"
+            className="object-cover opacity-80 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
+          <div className="absolute inset-0 bg-slate-950/40"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
