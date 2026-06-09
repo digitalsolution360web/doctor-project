@@ -70,42 +70,70 @@ const statsData = [
 
 function StatCarousel() {
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="mb-16">
-          <h2 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4">Production Power</h2>
-          <h3 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tighter uppercase">Manufacturing <span className="text-slate-400">Capacity.</span></h3>
+          <h2 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4 flex items-center">
+            <span className="w-8 h-[1px] bg-teal-600 mr-3"></span>
+            Production Power
+          </h2>
+          <h3 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
+            Manufacturing <span className="text-slate-400">Capacity.</span>
+          </h3>
         </div>
-        <div className="relative group">
-          <div id="stats-carousel" className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-8 snap-x snap-mandatory">
+
+        <div className="relative group px-2">
+          <div
+            id="stats-carousel"
+            className="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-12 snap-x snap-mandatory"
+          >
             {statsData.map((stat, i) => (
-              <div key={i} className={`min-w-[240px] md:min-w-[280px] p-8 rounded-[32px] border border-slate-100 group/card transition-all duration-700 snap-center shadow-sm hover:shadow-2xl flex flex-col gap-3 relative overflow-hidden ${stat.img ? 'bg-slate-900' : 'bg-slate-50 hover:bg-slate-900'} hover:shadow-teal-900/20`}>
-                {stat.img && (
-                  <>
+              <div
+                key={i}
+                className="min-w-[300px] md:min-w-[380px] bg-white rounded-[32px] overflow-hidden border border-slate-100 group/card transition-all duration-500 snap-center shadow-sm flex flex-col"
+              >
+                {/* Image Section */}
+                <div className="relative h-[220px] w-full overflow-hidden bg-slate-100">
+                  {stat.img ? (
                     <Image
                       src={stat.img}
                       alt={stat.title}
                       fill
-                      className="object-cover transition-transform duration-1000 group-hover/card:scale-110 opacity-50 group-hover/card:opacity-40"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-slate-900/40 to-transparent z-0 transition-opacity duration-700 group-hover/card:opacity-90" />
-                  </>
-                )}
-                <div className="relative z-10 flex flex-col gap-3 h-full">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-sm transition-all duration-500 ${stat.img ? 'bg-white/10 backdrop-blur-md border border-white/20 group-hover/card:bg-teal-600' : 'bg-white group-hover/card:bg-teal-600'}`}>
-                    <stat.icon className={`w-6 h-6 transition-colors ${stat.img ? 'text-white' : 'text-teal-600 group-hover/card:text-white'}`} />
+                  ) : (
+                    <div className="w-full h-full bg-slate-50 flex items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(#000000 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+                      <stat.icon className="w-16 h-16 text-teal-500/20 relative z-10" />
+                    </div>
+                  )}
+
+                  {/* Floating Icon Badge */}
+
+                </div>
+
+                {/* Content Section */}
+                <div className="p-8 flex flex-col flex-grow">
+                  <div className="mb-4">
+                    <p className="text-4xl font-black tracking-tight text-slate-900 mb-1">
+                      <CountUp target={stat.num} suffix={stat.suffix} />
+                    </p>
+                    <div className="h-1 w-12 bg-teal-500 rounded-full"></div>
                   </div>
-                  <p className={`text-4xl font-black tracking-tighter transition-colors ${stat.img ? 'text-white' : 'text-slate-900 group-hover/card:text-white'}`}>
-                    <CountUp target={stat.num} suffix={stat.suffix} />
-                  </p>
+
                   <div className="mt-auto">
-                    <p className={`text-sm font-bold transition-colors leading-tight ${stat.img ? 'text-white' : 'text-slate-800 group-hover/card:text-white'}`}>{stat.title}</p>
-                    <p className={`text-xs mt-0.5 transition-colors ${stat.img ? 'text-slate-300' : 'text-slate-400 group-hover/card:text-slate-400'}`}>{stat.sub}</p>
+                    <h4 className="text-xl font-bold text-slate-900 leading-tight mb-2 uppercase tracking-tight">
+                      {stat.title}
+                    </h4>
+                    <p className="text-slate-500 text-sm font-medium leading-relaxed">
+                      {stat.sub}
+                    </p>
                   </div>
                 </div>
               </div>
             ))}
           </div>
+
           {/* Left Arrow */}
           <button
             onClick={() => { const el = document.getElementById('stats-carousel'); if (el) el.scrollBy({ left: -300, behavior: 'smooth' }); }}
@@ -113,6 +141,7 @@ function StatCarousel() {
           >
             <ArrowRight className="w-4 h-4 rotate-180" />
           </button>
+
           {/* Right Arrow */}
           <button
             onClick={() => { const el = document.getElementById('stats-carousel'); if (el) el.scrollBy({ left: 300, behavior: 'smooth' }); }}
@@ -255,7 +284,7 @@ export default function InfrastructurePage() {
     <div className="flex flex-col min-h-screen bg-white pt-20">
       {/* Hero Section */}
       <section className="relative min-h-[60vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 ">
           <Image
             src="/infrastructure-banner.webp"
             alt="Factory Infrastructure"
@@ -264,8 +293,8 @@ export default function InfrastructurePage() {
             className="object-cover opacity-80 mix-blend-overlay"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent"></div>
-          <div className="absolute inset-0 bg-slate-950/40"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/5 to-transparent"></div>
+          <div className="absolute inset-0 bg-slate-950/5"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
