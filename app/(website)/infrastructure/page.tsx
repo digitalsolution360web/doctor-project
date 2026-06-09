@@ -283,30 +283,30 @@ export default function InfrastructurePage() {
   return (
     <div className="flex flex-col min-h-screen bg-white pt-20">
       {/* Hero Section */}
-      <section className="relative min-h-[60vh] py-20 flex items-center overflow-hidden bg-slate-950 text-white">
-        <div className="absolute inset-0 z-0 ">
+      <section className="relative min-h-[70vh] py-24 flex items-center overflow-hidden bg-slate-950 text-white">
+        <div className="absolute inset-0 z-0">
           <Image
             src="/infrastructure-banner.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
-            className="object-cover opacity-80 mix-blend-overlay"
+            className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/5 to-transparent"></div>
-          <div className="absolute inset-0 bg-slate-950/5"></div>
+          {/* Left-side dark gradient: very dark on the far left for text readability, fading to transparent on the right to keep machinery clear */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 md:via-slate-950/40 to-transparent"></div>
         </div>
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <RevealOnScroll className="max-w-4xl space-y-6">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 font-black text-xs uppercase tracking-[0.2em] mb-4">
+          <RevealOnScroll className="max-w-4xl space-y-6 text-left">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-teal-500/20 border border-teal-500/30 text-teal-300 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] mb-4 backdrop-blur-sm">
               Modern Hi-Tech Infrastructure
             </div>
-            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase leading-[0.9]">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9] text-white">
               World-Class <br />
               <span className="text-teal-400">Infrastructure.</span>
             </h1>
-            <p className="text-base md:text-xl text-slate-400 max-w-2xl font-bold leading-relaxed">
+            <p className="text-base md:text-xl text-slate-100 max-w-2xl font-bold leading-relaxed drop-shadow-xl">
               Our manufacturing facility is designed on a modern clean-room concept to ensure 100% hygienic and contamination-free production conditions. We use advanced automated machinery and controlled manufacturing processes to maintain superior product consistency, safety, and quality standards.
             </p>
           </RevealOnScroll>
