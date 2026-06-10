@@ -59,13 +59,13 @@ function CountUp({ target, suffix = "" }: { target: number | string; suffix?: st
 
 // --- Stats Carousel (standalone) ---
 const statsData = [
-  { num: 180, suffix: " Tons+", title: "Monthly Manufacturing", sub: "Capacity", icon: Layers },
+  { num: 180, suffix: " Tons+", title: "Monthly Manufacturing", sub: "Capacity", icon: Layers, img: "/Monthly-Manufacturing.webp" },
   { num: 50000, suffix: "", title: "Tube Filling", sub: "Tubes Per Day", icon: Settings, img: "/Tube-FIlling.webp" },
   { num: 75000, suffix: "", title: "Bottle Filling", sub: "4-Head Servo Liquid", icon: Zap, img: "/Bottle-filling.webp" },
-  { num: 40000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day", icon: Factory },
+  { num: 40000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day", icon: Factory, img: "/Bottle-filling.webp" },
   { num: 30000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day", icon: Factory, img: "/labeling-machines.webp" },
   { num: 25000, suffix: "", title: "Tube Sealing", sub: "Units Per Day", icon: ShieldCheck, img: "/Tube-Sealing.webp" },
-  { num: 100, suffix: "%", title: "Sterile Manufacturing", sub: "Environment", icon: ShieldCheck },
+  // { num: 100, suffix: "%", title: "Sterile Manufacturing", sub: "Environment", icon: ShieldCheck },
 ];
 
 function StatCarousel() {
