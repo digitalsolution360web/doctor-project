@@ -13,7 +13,9 @@ import {
   ClipboardCheck,
   FileCheck,
   Medal,
-  CheckCircle2
+  CheckCircle2,
+  X,
+  Maximize2
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -62,6 +64,8 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 };
 
 export default function CertificationsPage() {
+  const [selectedCert, setSelectedCert] = useState<{ title: string, img: string } | null>(null);
+
   const certs = [
     {
       title: "ISO 22716:2007",
@@ -103,6 +107,33 @@ export default function CertificationsPage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white pt-20">
+      {/* Lightbox Modal */}
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-md p-4 md:p-8 animate-in fade-in duration-300"
+          onClick={() => setSelectedCert(null)}
+        >
+          <button
+            className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 rounded-full text-white transition-all z-[110]"
+            onClick={(e) => { e.stopPropagation(); setSelectedCert(null); }}
+          >
+            <X className="w-8 h-8" />
+          </button>
+
+          <div
+            className="relative w-full max-w-5xl h-[85vh] flex items-center justify-center animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={selectedCert.img}
+              alt={selectedCert.title}
+              fill
+              className="object-contain drop-shadow-[0_0_30px_rgba(0,0,0,0.5)]"
+              unoptimized
+            />
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-slate-950 text-white">
@@ -136,26 +167,26 @@ export default function CertificationsPage() {
             </RevealOnScroll>
 
             <RevealOnScroll direction="right" className="bg-white/5 backdrop-blur-md border border-white/10 p-8 md:p-12 rounded-[48px]">
-               <h3 className="text-lg font-black uppercase tracking-widest text-white mb-8 flex items-center">
-                  <span className="w-8 h-[2px] bg-teal-500 mr-4"></span>
-                  Our Quality Focus
-               </h3>
-               <div className="grid grid-cols-1 gap-5">
-                  {[
-                    "Hygiene & safety",
-                    "Quality assurance",
-                    "Process consistency",
-                    "Product reliability",
-                    "Ethical manufacturing practices"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center space-x-4">
-                      <div className="w-5 h-5 rounded-full bg-teal-500/20 flex items-center justify-center border border-teal-500/30">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
-                      </div>
-                      <span className="text-slate-200 font-bold text-sm md:text-base tracking-tight">{item}</span>
+              <h3 className="text-lg font-black uppercase tracking-widest text-white mb-8 flex items-center">
+                <span className="w-8 h-[2px] bg-teal-500 mr-4"></span>
+                Our Quality Focus
+              </h3>
+              <div className="grid grid-cols-1 gap-5">
+                {[
+                  "Hygiene & safety",
+                  "Quality assurance",
+                  "Process consistency",
+                  "Product reliability",
+                  "Ethical manufacturing practices"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center space-x-4">
+                    <div className="w-5 h-5 rounded-full bg-teal-500/20 flex items-center justify-center border border-teal-500/30">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-teal-400" />
                     </div>
-                  ))}
-               </div>
+                    <span className="text-slate-200 font-bold text-sm md:text-base tracking-tight">{item}</span>
+                  </div>
+                ))}
+              </div>
             </RevealOnScroll>
           </div>
         </div>
@@ -226,12 +257,73 @@ export default function CertificationsPage() {
         </div>
       </section>
 
+      {/* Official Credentials Grid */}
+      <section className="py-16 bg-white border-b border-slate-100">
+        <div className="container mx-auto px-4 md:px-6">
+          <RevealOnScroll className="mb-12 text-center md:text-left">
+
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter">
+              Certification <span className="text-teal-600">Documents.</span>
+            </h2>
+          </RevealOnScroll>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10">
+            {[
+              { title: "Sedex Certified", img: "/56953_MIDFLORA-HERBAL-LLP-SEDEX.webp" },
+              { title: "ISO 14001:2015", img: "/56953_MIDFLORA-HERBAL-LLP_14001.webp" },
+              { title: "ISO 22716 (GMP)", img: "/56953_MIDFLORA-HERBAL-LLP_22716-gmp.webp" },
+              { title: "Cruelty Free", img: "/56953_MIDFLORA-HERBAL-LLP_CRUELTY-FREE.webp" },
+              { title: "Organic Certified", img: "/56953_MIDFLORA-HERBAL-LLP_ORGANIC.webp" },
+              { title: "US FDA Registered", img: "/56953_MIDFLORA-HERBAL-LLP_US- FDA.webp" },
+              { title: "Kosher Certified", img: "/56953_MIDFLORA-HERBAL-LLP_updated _kosher.webp" },
+              { title: "Vegan Certified", img: "/56953_MIDFLORA-HERBAL-LLP_vegan.webp" }
+            ].map((cert, i) => (
+              <RevealOnScroll key={i} className="group">
+                <div
+                  className="relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group cursor-pointer"
+                  onClick={() => setSelectedCert(cert)}
+                >
+                  <div className="aspect-[1/1.4] relative overflow-hidden bg-white p-1">
+                    <Image
+                      src={cert.img}
+                      alt={cert.title}
+                      fill
+                      className="object-contain transition-all duration-700 group-hover:scale-[1.05]"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      unoptimized
+                      priority={i < 4}
+                    />
+
+                    {/* Overlay on hover */}
+                    <div className="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/10 transition-colors duration-500 flex items-center justify-center">
+                      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-xl transform translate-y-4 group-hover:translate-y-0 text-slate-900 flex items-center gap-2 font-bold text-xs">
+                        <Maximize2 className="w-4 h-4 text-teal-600" />
+                        View Full
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 md:p-5 bg-white border-t border-slate-100 flex items-center justify-center min-h-[70px]">
+                    <h4 className="text-sm md:text-base font-black text-slate-900 uppercase tracking-tight text-center leading-tight">
+                      {cert.title}
+                    </h4>
+                  </div>
+
+                  {/* Subtle Accent Line */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-teal-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                </div>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Trust Section */}
       <section className="py-16 bg-slate-950 text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(20,184,166,0.1),transparent_70%)]"></div>
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-3xl mx-auto space-y-8 md:space-y-10">
-            <h2 className="text-2xl md:text-4xl font-bold tracking-tighter uppercase leading-[1.1]">
+            <h2 className="text-2xl md:text-4xl font-black tracking-tighter uppercase leading-[1.1]">
               Safety is <span className="text-teal-400">Non-Negotiable.</span>
             </h2>
             <p className="text-slate-400 text-base md:text-xl font-medium leading-relaxed">
