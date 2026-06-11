@@ -234,9 +234,9 @@ export default function CertificationsPage() {
               {[
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/organic-logo-18-4.jpg" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/kosher.webp" },
-                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/ISO_14001_Logo.webp" },
+                // { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/ISO_14001_Logo.webp" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/iso-9001_2015.jpg" },
-                { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/glp-18-4.jpg" },
+                // { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/glp-18-4.jpg" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2024/12/CrueltyFree.png" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/18-4-vegan-org.jpg" },
                 { name: "ISO", logo: "https://thegreatherbal.com/wp-content/uploads/2025/04/fda-18-4.jpg" },

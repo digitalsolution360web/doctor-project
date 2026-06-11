@@ -384,11 +384,11 @@ export default function InfrastructurePage() {
             </RevealOnScroll>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[180px] md:auto-rows-[200px]">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
             {galleryImages.map((img, index) => (
               <div key={index} onClick={() => setLightboxImage(img)} className="cursor-pointer">
                 <RevealOnScroll
-                  className="relative group overflow-hidden rounded-2xl border border-slate-100 shadow-lg shadow-slate-200/40 h-[180px] md:h-[200px]"
+                  className="relative group overflow-hidden rounded-[32px] border border-slate-100 shadow-lg shadow-slate-200/40 aspect-square"
                 >
                   <Image
                     src={img.src}
