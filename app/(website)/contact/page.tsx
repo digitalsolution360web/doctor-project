@@ -383,6 +383,36 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Map Section */}
+      <section className="pb-24">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="space-y-10">
+
+            <RevealOnScroll className="relative h-[500px] w-full rounded-[20px] overflow-hidden border border-white border-5 shadow-2xl ">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.240179168982!2d77.4665237!3d28.532499699999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce9b9d3be8473%3A0x22037284f6ce882!2sMidFlora%20Herbal%20LLP!5e0!3m2!1sen!2sin!4v1781162831376!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen={true}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0"
+              ></iframe>
+
+              {/* Optional: Add a subtle overlay or info card on hover if needed, 
+                  but usually users just want to interact with the map. 
+                  Adding a small floating badge can look premium. */}
+              <div className="absolute bottom-8 left-8 bg-white/90 backdrop-blur-md p-6 rounded-3xl shadow-xl border border-white/20 hidden md:block group-hover:translate-y-[-10px] transition-transform duration-500">
+                <p className="text-[10px] font-black uppercase tracking-widest text-teal-600 mb-1">Our Location</p>
+                <h4 className="font-bold text-slate-900">MidFlora Herbal LLP</h4>
+                <p className="text-slate-500 text-xs font-bold mt-1">Udyog Kendra 2, Ecotech III,<br />Greater Noida, UP</p>
+              </div>
+            </RevealOnScroll>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

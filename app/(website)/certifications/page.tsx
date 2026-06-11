@@ -91,12 +91,12 @@ export default function CertificationsPage() {
       desc: "Every formulation we develop undergoes rigorous clinical testing and dermatological evaluation. We ensure that our products are non-irritating, safe for skin, and meet the highest international safety standards for consumer health.",
       icon: CheckCircle2
     },
-    {
-      title: "HALAL Certified",
-      body: "Ethical Manufacturing Standards",
-      desc: "We maintain compliance with Halal standards, ensuring that our raw materials, ingredients, and entire manufacturing process are ethically sourced and religiously compliant, opening your brand to a global audience.",
-      icon: Globe
-    },
+    // {
+    //   title: "HALAL Certified",
+    //   body: "Ethical Manufacturing Standards",
+    //   desc: "We maintain compliance with Halal standards, ensuring that our raw materials, ingredients, and entire manufacturing process are ethically sourced and religiously compliant, opening your brand to a global audience.",
+    //   icon: Globe
+    // },
     {
       title: "FDA Compliant",
       body: "Strict Regulatory Adherence",
@@ -276,7 +276,10 @@ export default function CertificationsPage() {
               { title: "Organic Certified", img: "/56953_MIDFLORA-HERBAL-LLP_ORGANIC.webp" },
               { title: "US FDA Registered", img: "/56953_MIDFLORA-HERBAL-LLP_US- FDA.webp" },
               { title: "Kosher Certified", img: "/56953_MIDFLORA-HERBAL-LLP_updated _kosher.webp" },
-              { title: "Vegan Certified", img: "/56953_MIDFLORA-HERBAL-LLP_vegan.webp" }
+              { title: "Vegan Certified", img: "/56953_MIDFLORA-HERBAL-LLP_vegan.webp" },
+              { title: "Quality Management", img: "/56953_MIDFLORA-HERBAL-LLP_9001.webp" }
+
+
             ].map((cert, i) => (
               <RevealOnScroll key={i} className="group">
                 <div

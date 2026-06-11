@@ -102,9 +102,7 @@ export default function AboutPage() {
 
         <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
           <RevealOnScroll className="max-w-4xl mx-auto space-y-10">
-            <div className="relative h-20 w-80 mx-auto mb-12">
-              <Image src="/logo.webp" alt="Logo" fill className="object-contain" priority sizes="(max-width: 768px) 100vw, 320px" />
-            </div>
+
             <h1 className="text-4xl md:text-6xl font-black text-slate-900 leading-tight tracking-tighter uppercase mb-4">
               About <span className="text-teal-600">Midflora</span> <span className="text-lime-600">Herbal</span>
             </h1>

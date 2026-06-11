@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import CategoriesSection from "@/app/(website)/categories/page";
 import Link from "next/link";
 import {
   FlaskConical,
@@ -168,8 +169,8 @@ export default function ServicesPage() {
       </section>
 
       {/* Categories Grid Section */}
-      <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
-        {/* Animated background glows */}
+      {/* <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-lime-500/5 rounded-full blur-[120px]"></div>
 
@@ -199,7 +200,8 @@ export default function ServicesPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
+      <CategoriesSection />
 
       {/* CTA */}
       <section className="py-24 bg-white">
