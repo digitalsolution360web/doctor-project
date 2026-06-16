@@ -446,26 +446,7 @@ export default function CategoriesPage() {
                     </p>
                   </div>
 
-                  {/* IMAGE */}
-                  <div>
-                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Image URL
-                    </label>
-
-                    <input
-                      type="text"
-                      value={formData.image}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          image: e.target.value,
-                        })
-                      }
-                      placeholder="https://example.com/image.jpg"
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
-                    />
-                  </div>
-
+                  
                   
 
                   {/* META TITLE */}
@@ -513,6 +494,26 @@ export default function CategoriesPage() {
                       {formData.meta_description?.length || 0}/255 characters
                     </p>
                   </div>
+                  {/* IMAGE */}
+                  <div>
+                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
+                      Image URL
+                    </label>
+
+                    <input
+                      type="text"
+                      value={formData.image}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          image: e.target.value,
+                        })
+                      }
+                      placeholder="https://example.com/image.jpg"
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
+                    />
+                  </div>
+
 
                   {/* STATUS */}
                   <div>

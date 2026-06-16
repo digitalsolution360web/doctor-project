@@ -13,14 +13,20 @@ interface Product {
   category_name: string;
   name: string;
   slug: string;
-  short_description: string;
-  price: number;
-  sale_price: number;
-  sku: string;
-  stock: number;
   image: string;
-  status: number;
+  moq: number;
+  packaging_size: string;
+  packaging_type: string;
+  customized_formulations: number;
+  private_labeling: number;
+  turnkey_solutions: number;
+  benefits: string;
+  description: string;
+  meta_title: string;
+  meta_description: string;
+  status: string;
   created_at: string;
+  updated_at: string;
 }
 
 export default function ProductsPage() {
@@ -43,13 +49,17 @@ export default function ProductsPage() {
     category_id: '',
     name: '',
     slug: '',
-    short_description: '',
-    description: '',
-    price: '',
-    sale_price: '',
-    sku: '',
-    stock: '',
     image: '',
+    moq: '',
+    packaging_size: '',
+    packaging_type: '',
+    customized_formulations: 0,
+    private_labeling: 0,
+    turnkey_solutions: 0,
+    benefits: '',
+    description: '',
+    meta_title: '',
+    meta_description: '',
     status: 1,
   });
 
@@ -107,13 +117,17 @@ export default function ProductsPage() {
         category_id: String(product.category_id),
         name: product.name || '',
         slug: product.slug || '',
-        short_description: product.short_description || '',
-        description: '',
-        price: String(product.price || ''),
-        sale_price: String(product.sale_price || ''),
-        sku: product.sku || '',
-        stock: String(product.stock || ''),
         image: product.image || '',
+        moq: String(product.moq || ''),
+        packaging_size: product.packaging_size || '',
+        packaging_type: product.packaging_type || '',
+        customized_formulations: product.customized_formulations,
+        private_labeling: product.private_labeling,
+        turnkey_solutions: product.turnkey_solutions,
+        benefits: product.benefits || '',
+        description: product.description || '',
+        meta_title: product.meta_title || '',
+        meta_description: product.meta_description || '',
         status: product.status,
       });
     } else {
@@ -123,13 +137,17 @@ export default function ProductsPage() {
         category_id: '',
         name: '',
         slug: '',
-        short_description: '',
-        description: '',
-        price: '',
-        sale_price: '',
-        sku: '',
-        stock: '',
         image: '',
+        moq: '',
+        packaging_size: '',
+        packaging_type: '',
+        customized_formulations: 0,
+        private_labeling: 0,
+        turnkey_solutions: 0,
+        benefits: '',
+        description: '',
+        meta_title: '',
+        meta_description: '',
         status: 1,
       });
     }
@@ -258,15 +276,15 @@ export default function ProductsPage() {
 
               <thead>
                 <tr className="bg-[var(--bg-primary)] text-left text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider">
-
+                  <th className="px-5 py-4">ID</th>
                   <th className="px-5 py-4">Image</th>
                   <th className="px-5 py-4">Product</th>
                   <th className="px-5 py-4">Category</th>
-                  <th className="px-5 py-4">Price</th>
-                  <th className="px-5 py-4">Stock</th>
+                  <th className="px-5 py-4">MOQ</th>
+                  <th className="px-5 py-4">Packaging</th>
+                  <th className="px-5 py-4">Services</th>
                   <th className="px-5 py-4">Status</th>
                   <th className="px-5 py-4 text-right">Actions</th>
-
                 </tr>
               </thead>
 
@@ -278,27 +296,24 @@ export default function ProductsPage() {
                       <td className="px-5 py-4">
                         <div className="h-12 w-12 rounded-lg skeleton" />
                       </td>
-
                       <td className="px-5 py-4">
                         <div className="h-4 w-40 skeleton" />
                       </td>
-
                       <td className="px-5 py-4">
                         <div className="h-4 w-28 skeleton" />
                       </td>
-
                       <td className="px-5 py-4">
                         <div className="h-4 w-16 skeleton" />
                       </td>
-
                       <td className="px-5 py-4">
-                        <div className="h-4 w-12 skeleton" />
+                        <div className="h-4 w-20 skeleton" />
                       </td>
-
+                      <td className="px-5 py-4">
+                        <div className="h-4 w-24 skeleton" />
+                      </td>
                       <td className="px-5 py-4">
                         <div className="h-6 w-16 skeleton" />
                       </td>
-
                       <td className="px-5 py-4">
                         <div className="h-8 w-20 skeleton ml-auto" />
                       </td>
@@ -307,7 +322,7 @@ export default function ProductsPage() {
                 ) : products.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={7}
+                      colSpan={8}
                       className="px-6 py-16 text-center text-[var(--text-secondary)]"
                     >
                       No products found.
@@ -319,7 +334,9 @@ export default function ProductsPage() {
                       key={product.id}
                       className="hover:bg-white/[0.02] transition-colors"
                     >
-
+                      <td className="px-5 py-4 text-xs text-[var(--text-muted)]">
+                        #{product.id}
+                      </td>
                       <td className="px-5 py-4">
                         <img
                           src={product.image || '/placeholder.png'}
@@ -332,9 +349,8 @@ export default function ProductsPage() {
                         <div className="font-semibold text-[var(--text-primary)] text-sm">
                           {product.name}
                         </div>
-
-                        <div className="text-xs text-[var(--text-muted)]">
-                          SKU: {product.sku || 'N/A'}
+                        <div className="text-xs text-[var(--text-muted)] mt-1">
+                          {product.slug || 'No slug'}
                         </div>
                       </td>
 
@@ -342,42 +358,62 @@ export default function ProductsPage() {
                         {product.category_name}
                       </td>
 
-                      <td className="px-5 py-4">
-                        <div className="text-sm font-semibold text-[var(--text-primary)]">
-                          ₹{product.price}
-                        </div>
-
-                        {product.sale_price ? (
-                          <div className="text-xs text-emerald-400">
-                            Sale ₹{product.sale_price}
-                          </div>
-                        ) : null}
+                      <td className="px-5 py-4 text-sm text-[var(--text-secondary)]">
+                        {product.moq || 'N/A'}
                       </td>
 
-                      <td className="px-5 py-4 text-sm text-[var(--text-secondary)]">
-                        {product.stock}
+                      <td className="px-5 py-4">
+                        <div className="text-xs text-[var(--text-secondary)]">
+                          <div>{product.packaging_size || 'N/A'}</div>
+                          <div className="text-[10px] text-[var(--text-muted)]">
+                            {product.packaging_type || 'No type'}
+                          </div>
+                        </div>
+                      </td>
+
+                      <td className="px-5 py-4">
+                        <div className="flex flex-wrap gap-1">
+                          {product.customized_formulations === 1 && (
+                            <span className="px-1.5 py-0.5 bg-purple-500/10 text-purple-400 rounded text-[9px] font-medium">
+                              Custom
+                            </span>
+                          )}
+                          {product.private_labeling === 1 && (
+                            <span className="px-1.5 py-0.5 bg-blue-500/10 text-blue-400 rounded text-[9px] font-medium">
+                              Private Label
+                            </span>
+                          )}
+                          {product.turnkey_solutions === 1 && (
+                            <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded text-[9px] font-medium">
+                              Turnkey
+                            </span>
+                          )}
+                          {product.customized_formulations === 0 && 
+                           product.private_labeling === 0 && 
+                           product.turnkey_solutions === 0 && (
+                            <span className="text-[10px] text-[var(--text-muted)]">None</span>
+                          )}
+                        </div>
                       </td>
 
                       <td className="px-5 py-4">
                         <span
                           className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide ${
-                            product.status
+                            product.status == "active"
                               ? 'bg-emerald-500/10 text-emerald-400'
                               : 'bg-red-500/10 text-red-400'
                           }`}
                         >
-                          {product.status ? 'Active' : 'Inactive'}
+                          {product.status == "active" ? 'Active' : 'Inactive'}
                         </span>
                       </td>
 
                       <td className="px-5 py-4">
                         <div className="flex justify-end gap-2">
-
                           <button
                             onClick={() => openModal(product)}
                             className="p-2 text-sky-400 hover:bg-sky-500/10 rounded-lg"
                           >
-
                             <svg
                               width="16"
                               height="16"
@@ -395,7 +431,7 @@ export default function ProductsPage() {
                             onClick={() => handleDelete(product.id)}
                             className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg"
                           >
-                                                        <svg
+                            <svg
                               width="16"
                               height="16"
                               viewBox="0 0 24 24"
@@ -407,10 +443,8 @@ export default function ProductsPage() {
                               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
                             </svg>
                           </button>
-
                         </div>
                       </td>
-
                     </tr>
                   ))
                 )}
@@ -425,7 +459,6 @@ export default function ProductsPage() {
         {/* PAGINATION */}
         {totalPages > 1 && (
           <div className="flex justify-between items-center">
-
             <button
               onClick={() => setPage(page - 1)}
               disabled={page === 1}
@@ -445,7 +478,6 @@ export default function ProductsPage() {
             >
               Next
             </button>
-
           </div>
         )}
       </div>
@@ -453,260 +485,351 @@ export default function ProductsPage() {
       {/* MODAL */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4">
-
-          <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl w-full max-w-2xl overflow-hidden">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
 
             {/* HEADER */}
             <div className="flex items-center justify-between p-5 border-b border-[var(--border-color)]">
-
               <h2 className="text-xl font-bold text-[var(--text-primary)]">
                 {editingProduct ? 'Update Product' : 'Create Product'}
               </h2>
-
               <button
                 onClick={closeModal}
-                className="text-[var(--text-muted)]"
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)]"
               >
                 ✕
               </button>
-
             </div>
 
             <form onSubmit={handleSubmit}>
+              <div className="p-6 space-y-4 max-h-[calc(80vh-120px)] overflow-y-auto">
+                
+                {/* Two Column Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  
+                  {/* CATEGORY */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Category <span className="text-red-400">*</span>
+                    </label>
+                    <select
+                      required
+                      value={formData.category_id}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          category_id: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    >
+                      <option value="">Select Category</option>
+                      {categories.map((category) => (
+                        <option key={category.id} value={category.id}>
+                          {category.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-              <div className="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                  {/* NAME */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Product Name <span className="text-red-400">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          name: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    />
+                  </div>
 
-                {/* CATEGORY */}
-                <div>
-                  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Category
-                  </label>
+                  {/* SLUG */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Slug
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.slug}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          slug: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="auto-generated from name"
+                    />
+                  </div>
 
-                  <select
-                    required
-                    value={formData.category_id}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        category_id: e.target.value,
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                  >
-                    <option value="">Select Category</option>
+                  {/* IMAGE URL */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Image URL
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.image}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          image: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="https://example.com/image.jpg"
+                    />
+                  </div>
 
-                    {categories.map((category) => (
-                      <option
-                        key={category.id}
-                        value={category.id}
-                      >
-                        {category.name}
-                      </option>
-                    ))}
-                  </select>
+                  {/* MOQ */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Minimum Order Quantity (MOQ)
+                    </label>
+                    <input
+                      type="number"
+                      value={formData.moq}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          moq: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="0"
+                    />
+                  </div>
+
+                  {/* PACKAGING SIZE */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Packaging Size
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.packaging_size}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          packaging_size: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="e.g., 250ml, 500g, 1kg"
+                    />
+                  </div>
+
+                  {/* PACKAGING TYPE */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Packaging Type
+                    </label>
+                    <select
+                      value={formData.packaging_type}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          packaging_type: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    >
+                      <option value="">Select Packaging Type</option>
+                      <option value="bottle">Bottle</option>
+                      <option value="pouch">Pouch</option>
+                      <option value="box">Box</option>
+                      <option value="container">Container</option>
+                      <option value="tube">Tube</option>
+                      <option value="jar">Jar</option>
+                      <option value="sachet">Sachet</option>
+                    </select>
+                  </div>
+
+                  {/* STATUS */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Status
+                    </label>
+                    <select
+                      value={formData.status}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          status: Number(e.target.value),
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    >
+                      <option value={1}>Active</option>
+                      <option value={0}>Inactive</option>
+                    </select>
+                  </div>
+
                 </div>
 
-                {/* NAME */}
-                <div>
-                  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Product Name
+                {/* Services Section */}
+                <div className="border-t border-[var(--border-color)] pt-4">
+                  <label className="block text-xs font-bold mb-3 text-[var(--text-secondary)] uppercase">
+                    Available Services
                   </label>
-
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        name: e.target.value,
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                  />
+                  <div className="flex flex-wrap gap-4">
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.customized_formulations === 1}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            customized_formulations: e.target.checked ? 1 : 0,
+                          })
+                        }
+                        className="w-4 h-4 rounded border-[var(--border-color)]"
+                      />
+                      <span className="text-sm text-[var(--text-primary)]">Customized Formulations</span>
+                    </label>
+                    
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.private_labeling === 1}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            private_labeling: e.target.checked ? 1 : 0,
+                          })
+                        }
+                        className="w-4 h-4 rounded border-[var(--border-color)]"
+                      />
+                      <span className="text-sm text-[var(--text-primary)]">Private Labeling</span>
+                    </label>
+                    
+                    <label className="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        checked={formData.turnkey_solutions === 1}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            turnkey_solutions: e.target.checked ? 1 : 0,
+                          })
+                        }
+                        className="w-4 h-4 rounded border-[var(--border-color)]"
+                      />
+                      <span className="text-sm text-[var(--text-primary)]">Turnkey Solutions</span>
+                    </label>
+                  </div>
                 </div>
 
-                {/* SLUG */}
+                {/* BENEFITS */}
                 <div>
                   <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Slug
+                    Benefits
                   </label>
-
-                  <input
-                    type="text"
-                    value={formData.slug}
+                  <textarea
+                    rows={3}
+                    value={formData.benefits}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        slug: e.target.value,
+                        benefits: e.target.value,
                       })
                     }
                     className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    placeholder="List product benefits (one per line)"
                   />
                 </div>
 
                 {/* DESCRIPTION */}
                 <div>
                   <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Short Description
+                    Full Description
                   </label>
-
                   <textarea
-                    rows={3}
-                    value={formData.short_description}
+                    rows={5}
+                    value={formData.description}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        short_description: e.target.value,
+                        description: e.target.value,
                       })
                     }
                     className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    placeholder="Detailed product description"
                   />
                 </div>
 
-                {/* GRID */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                  <div>
+                {/* SEO Section */}
+                <div className="border-t border-[var(--border-color)] pt-4">
+                  <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-3">SEO Settings</h3>
+                  
+                  {/* META TITLE */}
+                  <div className="mb-3">
                     <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                      Price
+                      Meta Title
                     </label>
-
-                    <input
-                      type="number"
-                      value={formData.price}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          price: e.target.value,
-                        })
-                      }
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                      Sale Price
-                    </label>
-
-                    <input
-                      type="number"
-                      value={formData.sale_price}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          sale_price: e.target.value,
-                        })
-                      }
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                      SKU
-                    </label>
-
                     <input
                       type="text"
-                      value={formData.sku}
+                      value={formData.meta_title}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          sku: e.target.value,
+                          meta_title: e.target.value,
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      maxLength={60}
+                      placeholder="SEO title (60 chars max)"
                     />
                   </div>
 
+                  {/* META DESCRIPTION */}
                   <div>
                     <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                      Stock
+                      Meta Description
                     </label>
-
-                    <input
-                      type="number"
-                      value={formData.stock}
+                    <textarea
+                      rows={2}
+                      value={formData.meta_description}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          stock: e.target.value,
+                          meta_description: e.target.value,
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      maxLength={160}
+                      placeholder="SEO description (160 chars max)"
                     />
                   </div>
-
-                </div>
-
-                {/* IMAGE */}
-                <div>
-                  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Image URL
-                  </label>
-
-                  <input
-                    type="text"
-                    value={formData.image}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        image: e.target.value,
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                  />
-                </div>
-
-                {/* STATUS */}
-                <div>
-                  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Status
-                  </label>
-
-                  <select
-                    value={formData.status}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        status: Number(e.target.value),
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                  >
-                    <option value={1}>Active</option>
-                    <option value={0}>Inactive</option>
-                  </select>
                 </div>
 
               </div>
 
               {/* FOOTER */}
               <div className="p-5 border-t border-[var(--border-color)] flex gap-3">
-
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="flex-1 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)]"
+                  className="flex-1 py-3 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:bg-[var(--bg-primary)] transition-colors"
                 >
                   Cancel
                 </button>
-
                 <button
                   type="submit"
                   className="flex-1 py-3 rounded-xl btn-primary text-white font-semibold"
                 >
                   {editingProduct ? 'Update Product' : 'Save Product'}
                 </button>
-
               </div>
-
             </form>
-
           </div>
-
         </div>
       )}
     </>
