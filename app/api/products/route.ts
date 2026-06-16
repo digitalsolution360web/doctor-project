@@ -34,7 +34,8 @@ export async function GET(req: NextRequest) {
         WHERE 
           products.name LIKE ? OR
           products.slug LIKE ? OR
-          products.sku LIKE ? OR
+          products.meta_title LIKE ? OR
+          products.meta_description LIKE ? OR
           categories.name LIKE ?
       `;
 
@@ -42,11 +43,13 @@ export async function GET(req: NextRequest) {
         WHERE 
           products.name LIKE ? OR
           products.slug LIKE ? OR
-          products.sku LIKE ? OR
+          products.meta_title LIKE ? OR
+          products.meta_description LIKE ? OR
           categories.name LIKE ?
       `;
 
       params.push(
+        `%${search}%`,
         `%${search}%`,
         `%${search}%`,
         `%${search}%`,
@@ -92,15 +95,28 @@ export async function POST(req: NextRequest) {
       category_id,
       name,
       slug,
-      short_description,
-      description,
-      price,
-      sale_price,
-      sku,
-      stock,
       image,
+      moq,
+      packaging_size,
+      packaging_type,
+      customized_formulations,
+      private_labeling,
+      turnkey_solutions,
+      benefits,
+      description,
+      meta_title,
+      meta_description,
       status,
     } = body;
+
+    // Generate slug from name if not provided
+    let finalSlug = slug;
+    if (!finalSlug && name) {
+      finalSlug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
 
     const [result] = await pool.query(
       `
@@ -108,28 +124,36 @@ export async function POST(req: NextRequest) {
         category_id,
         name,
         slug,
-        short_description,
-        description,
-        price,
-        sale_price,
-        sku,
-        stock,
         image,
+        moq,
+        packaging_size,
+        packaging_type,
+        customized_formulations,
+        private_labeling,
+        turnkey_solutions,
+        benefits,
+        description,
+        meta_title,
+        meta_description,
         status
       )
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `,
       [
-        category_id,
+        category_id || null,
         name,
-        slug,
-        short_description,
-        description,
-        price || 0,
-        sale_price || null,
-        sku,
-        stock || 0,
-        image,
+        finalSlug,
+        image || null,
+        moq || 0,
+        packaging_size || null,
+        packaging_type || null,
+        customized_formulations || 0,
+        private_labeling || 0,
+        turnkey_solutions || 0,
+        benefits || null,
+        description || null,
+        meta_title || null,
+        meta_description || null,
         status ?? 1,
       ]
     );
@@ -158,15 +182,28 @@ export async function PUT(req: NextRequest) {
       category_id,
       name,
       slug,
-      short_description,
-      description,
-      price,
-      sale_price,
-      sku,
-      stock,
       image,
+      moq,
+      packaging_size,
+      packaging_type,
+      customized_formulations,
+      private_labeling,
+      turnkey_solutions,
+      benefits,
+      description,
+      meta_title,
+      meta_description,
       status,
     } = body;
+
+    // Generate slug from name if not provided
+    let finalSlug = slug;
+    if (!finalSlug && name) {
+      finalSlug = name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '');
+    }
 
     await pool.query(
       `
@@ -175,27 +212,35 @@ export async function PUT(req: NextRequest) {
         category_id = ?,
         name = ?,
         slug = ?,
-        short_description = ?,
-        description = ?,
-        price = ?,
-        sale_price = ?,
-        sku = ?,
-        stock = ?,
         image = ?,
+        moq = ?,
+        packaging_size = ?,
+        packaging_type = ?,
+        customized_formulations = ?,
+        private_labeling = ?,
+        turnkey_solutions = ?,
+        benefits = ?,
+        description = ?,
+        meta_title = ?,
+        meta_description = ?,
         status = ?
       WHERE id = ?
       `,
       [
-        category_id,
+        category_id || null,
         name,
-        slug,
-        short_description,
-        description,
-        price || 0,
-        sale_price || null,
-        sku,
-        stock || 0,
-        image,
+        finalSlug,
+        image || null,
+        moq || 0,
+        packaging_size || null,
+        packaging_type || null,
+        customized_formulations || 0,
+        private_labeling || 0,
+        turnkey_solutions || 0,
+        benefits || null,
+        description || null,
+        meta_title || null,
+        meta_description || null,
         status ?? 1,
         id,
       ]
@@ -228,24 +273,50 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    // Delete models first because of FK relation
-    await pool.query(
-      'DELETE FROM models WHERE product_id = ?',
-      [id]
-    );
+    // Check if product has any related records (models, order_items, etc.)
+    // Delete related records first based on your foreign key constraints
+    
+    // Example: Delete from models if exists
+    try {
+      await pool.query(
+        'DELETE FROM models WHERE product_id = ?',
+        [id]
+      );
+    } catch (err) {
+      // Table might not exist, continue
+      console.log('No models table or no records deleted');
+    }
 
     // Delete product
-    await pool.query(
+    const [result] = await pool.query(
       'DELETE FROM products WHERE id = ?',
       [id]
     );
 
+    const affectedRows = (result as any).affectedRows;
+    
+    if (affectedRows === 0) {
+      return NextResponse.json(
+        { error: 'Product not found' },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json({
       success: true,
+      message: 'Product deleted successfully',
     });
 
   } catch (error: any) {
     console.error('DELETE PRODUCT ERROR:', error);
+
+    // Handle foreign key constraint errors
+    if (error.code === 'ER_ROW_IS_REFERENCED_2' || error.code === 'ER_ROW_IS_REFERENCED') {
+      return NextResponse.json(
+        { error: 'Cannot delete product because it has related orders or other records' },
+        { status: 409 }
+      );
+    }
 
     return NextResponse.json(
       { error: 'Failed to delete product' },
