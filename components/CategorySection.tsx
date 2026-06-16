@@ -70,12 +70,7 @@ const categories: Category[] = [
     icon: Droplets,
     img: "/body-care.webp"
   },
-  {
-    title: "Dental Care",
-    items: "Herbal Toothpastes, Mouthwashes, Oral Gels",
-    icon: Activity,
-    img: "/Dental-Care.webp"
-  },
+
   {
     title: "Handmade Soaps (Melt & Pour)",
     items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
@@ -110,7 +105,7 @@ const categories: Category[] = [
     title: "Depilatory Range",
     items: "Hair Removal Creams, Waxing Solutions",
     icon: Zap,
-    img: "/depilation.webp"
+    img: "/depilation-range.webp"
   }
 ];
 
@@ -211,10 +206,10 @@ const CategorySection = () => {
 
               {/* Category Details */}
               <div className="p-5 flex flex-col flex-grow">
-                <h4 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-none">
+                <h4 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-tight min-h-[3.25rem] flex items-center">
                   {cat.title}
                 </h4>
-                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.15em] mb-6 opacity-80 leading-snug min-h-[2.5rem]">
+                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.15em] mb-4 opacity-80 leading-snug min-h-[2.5rem]">
                   {cat.items}
                 </p>
 

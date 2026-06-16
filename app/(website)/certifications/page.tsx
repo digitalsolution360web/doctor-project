@@ -73,12 +73,7 @@ export default function CertificationsPage() {
       desc: "The premier international standard for Good Manufacturing Practices (GMP) specifically for the cosmetics industry. It provides guidance for production, control, storage, and shipment, ensuring that Midflora products are manufactured to the highest safety and quality benchmarks.",
       icon: Award
     },
-    {
-      title: "WHO-GMP Certified",
-      body: "Good Manufacturing Practices",
-      desc: "Our production facility strictly adheres to WHO-GMP guidelines. This certification ensures that our products are consistently produced and controlled according to quality standards appropriate for their intended use and as required by the regulatory authorities.",
-      icon: ShieldCheck
-    },
+
     {
       title: "ISO 9001:2015",
       body: "Quality Management System",

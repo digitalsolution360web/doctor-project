@@ -129,7 +129,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-slate-500 text-[10px] font-black tracking-[0.3em]">
+        <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-slate-500 text-[14px] font-black">
           <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center space-x-3 group">
               <Shield className="w-4 h-4 text-teal-500/40 group-hover:text-teal-500 transition-colors" />

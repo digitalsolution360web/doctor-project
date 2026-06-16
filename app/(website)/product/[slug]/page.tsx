@@ -189,40 +189,34 @@ export default function ProductDetails() {
           </div>
 
           {/* Right: Product Info */}
-          <div className="lg:col-span-7 flex flex-col gap-8 md:pl-10">
-            {/* Category + Title */}
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-3">
-                <span className="w-8 h-[2px] bg-teal-600"></span>
-                <span className="text-teal-600 text-[9px] font-black uppercase tracking-[0.3em]">{product.category}</span>
-              </div>
-              <h1 className="text-2xl md:text-4xl font-[1000] text-slate-900 leading-tight tracking-tight">
+          <div className="lg:col-span-7 flex flex-col gap-6 md:pl-10">
+            {/* Title + CTA */}
+            <div className="flex flex-col gap-5">
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
                 {product.title}
               </h1>
+              
+              <div className="flex">
+                <button
+                  onClick={() => setIsQuotePopupOpen(true)}
+                  className="px-6 py-2.5 bg-[#00665c] text-white rounded-md font-bold text-sm tracking-wide hover:bg-teal-900 transition-all"
+                >
+                  Get a Quote
+                </button>
+              </div>
             </div>
 
-            {/* Professional Specs Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 pt-6 border-t border-slate-100">
+            {/* Product Specifications List */}
+            <div className="flex flex-col mt-4 border-t border-slate-200">
               {product?.specs?.map((spec: ProductSpec, i: number) => (
-                <div key={i} className="flex flex-col gap-1 group">
-                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest group-hover:text-teal-600 transition-colors">{spec.label}</span>
-                  <span className="text-slate-800 font-bold text-sm md:text-base leading-snug">{spec.value}</span>
+                <div key={i} className="grid grid-cols-[160px_1fr] md:grid-cols-[220px_1fr] py-3 border-b border-slate-200 items-start">
+                  <span className="font-bold text-slate-900 text-[14px] md:text-[15px]">{spec.label}</span>
+                  <span className="text-slate-800 text-[14px] md:text-[15px] font-medium flex gap-2">
+                    <span className="text-slate-900">:</span>
+                    {spec.value}
+                  </span>
                 </div>
               ))}
-            </div>
-
-            {/* CTA Buttons - Moved below content */}
-            <div className="flex flex-wrap gap-3 pt-4">
-              <button
-                onClick={() => setIsQuotePopupOpen(true)}
-                className="group px-8 py-4 bg-teal-700 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-950 transition-all shadow-xl shadow-teal-700/10 flex items-center gap-2"
-              >
-                Get a Quote
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-50 transition-all">
-                Download Brochure
-              </button>
             </div>
           </div>
         </div>
@@ -234,36 +228,51 @@ export default function ProductDetails() {
         <hr className="border-gray-100" />
       </div>
 
-      {/* Product Details Text Section */}
-      <section className="py-10">
+      {/* Product Details & Turnkey Solution Section */}
+      <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="max-w-4xl">
-
-            <h2 className="text-xl font-bold text-gray-900 mb-1 border-l-4 border-teal-600 pl-3">
-              Product Details
-            </h2>
-            <div className="w-16 h-0.5 bg-teal-100 mb-6 ml-7"></div>
-
-            <div className="space-y-5 text-base leading-relaxed text-gray-600">
-              <p>{product.detailedDescription}</p>
-              <p>{product.extraInfo}</p>
-              <p className="text-teal-700 font-bold italic">{product.callToAction}</p>
-            </div>
-
-            {/* Turnkey Solution */}
-            <div className="mt-10">
-              <h2 className="text-xl font-bold text-gray-900 mb-1 border-l-4 border-teal-600 pl-3">
-                Turnkey Solution — Hassle-Free Product Launch
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            
+            {/* Left Column: Product Details */}
+            <div className="flex flex-col">
+              <h2 className="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-teal-600 rounded-full"></span>
+                Product Details
               </h2>
-              <div className="w-16 h-0.5 bg-teal-100 mb-6 ml-7"></div>
-
-              <p className="text-base leading-relaxed text-gray-600">
-                From raw material sourcing to high-volume production, <span className="font-bold text-gray-900">Midflora Herbal</span> offers a fully integrated <span className="font-bold text-gray-900">turnkey solution</span> for your haircare brand. Whether you&apos;re targeting <span className="font-bold text-gray-900">salon-grade treatments</span> or <span className="font-bold text-gray-900">everyday essentials</span>, our R&D team will develop a formula that fits your promise—and we&apos;ll handle <span className="font-bold text-gray-900">formulation, testing, packaging, and compliance</span> under certified facilities.
-              </p>
-              <p className="mt-4 text-base font-bold text-gray-900">
-                Let&apos;s create a standout formulation that strengthens your brand&apos;s presence in the natural hair care market.
-              </p>
+              
+              <div className="space-y-6 text-[15px] md:text-[16px] leading-[1.8] text-gray-600 font-medium">
+                <p className="bg-slate-50 p-6 rounded-2xl border-l-4 border-teal-600/30">
+                  {product.detailedDescription}
+                </p>
+                <p>{product.extraInfo}</p>
+                <p className="text-teal-700 font-bold italic border-t border-teal-50 pt-4">
+                  {product.callToAction}
+                </p>
+              </div>
             </div>
+
+            {/* Right Column: Turnkey Solution */}
+            <div className="flex flex-col lg:mt-0">
+              <h2 className="text-2xl font-black text-gray-900 mb-6 flex items-center gap-3">
+                <span className="w-1.5 h-8 bg-teal-600 rounded-full"></span>
+                Turnkey Solutions
+              </h2>
+
+              <div className="bg-teal-50/50 p-8 rounded-[2.5rem] border border-teal-100 shadow-sm">
+                <p className="text-[15px] md:text-[16px] leading-[1.8] text-gray-600 font-medium">
+                  From raw material sourcing to high-volume production, <span className="font-extrabold text-slate-900 underline decoration-teal-500/30 decoration-4 underline-offset-2">Midflora Herbal</span> offers a fully integrated <span className="font-extrabold text-slate-900">turnkey solution</span> for your haircare brand.
+                </p>
+                <p className="mt-6 text-[15px] md:text-[16px] leading-[1.8] text-gray-600 font-medium">
+                  Whether you&apos;re targeting <span className="font-bold text-slate-900">salon-grade treatments</span> or <span className="font-bold text-slate-900">everyday essentials</span>, our R&D team will handle <span className="font-bold text-teal-700">formulation, testing, packaging, and compliance</span> under certified facilities.
+                </p>
+                <div className="mt-8 pt-6 border-t border-teal-100">
+                  <p className="text-base font-black text-slate-900 tracking-tight">
+                    Let&apos;s create a standout formulation that strengthens your brand&apos;s presence in the market.
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -300,7 +309,7 @@ export default function ProductDetails() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0 group-hover/item:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0  transition-opacity duration-700 flex flex-col justify-end p-8">
                     <span className="text-xl md:text-2xl font-black text-white tracking-tight uppercase leading-none">{ing.name}</span>
                     <p className="text-teal-400 text-[8px] font-black uppercase tracking-[0.3em] mt-2">Organic Extract</p>
                   </div>
