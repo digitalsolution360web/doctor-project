@@ -24,7 +24,7 @@ interface Product {
   description: string;
   meta_title: string;
   meta_description: string;
-  status: number;
+  status: string;
   created_at: string;
   updated_at: string;
 }
@@ -60,7 +60,7 @@ export default function ProductsPage() {
     description: '',
     meta_title: '',
     meta_description: '',
-    status: 1,
+    status: 'active',
   });
 
   const limit = 10;
@@ -148,7 +148,7 @@ export default function ProductsPage() {
         description: '',
         meta_title: '',
         meta_description: '',
-        status: 1,
+        status: 'active',
       });
     }
 
@@ -662,13 +662,13 @@ export default function ProductsPage() {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          status: Number(e.target.value),
+                          status: e.target.value,
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
                     >
-                      <option value={1}>Active</option>
-                      <option value={0}>Inactive</option>
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
                     </select>
                   </div>
 
