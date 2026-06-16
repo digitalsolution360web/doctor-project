@@ -24,7 +24,7 @@ interface Product {
   description: string;
   meta_title: string;
   meta_description: string;
-  status: string;
+  status: number;
   created_at: string;
   updated_at: string;
 }
