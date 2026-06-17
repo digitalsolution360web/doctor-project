@@ -76,4 +76,34 @@
     50% { transform: translateY(-12px); box-shadow: 0 25px 30px -5px rgba(37, 211, 102, 0.5); }
   }
 }
+.ql-toolbar {
+  border: none !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  background: var(--bg-secondary);
+}
+
+.ql-container {
+  border: none !important;
+  min-height: 200px;
+  font-size: 14px;
+  background: var(--bg-secondary);
+}
+
+.ql-editor {
+  min-height: 180px;
+  color: var(--text-primary);
+}
+
+.ql-editor.ql-blank::before {
+  color: #9ca3af !important;
+  font-style: normal !important;
+}
+
+.ql-snow .ql-stroke {
+  stroke: currentColor;
+}
+
+.ql-snow .ql-fill {
+  fill: currentColor;
+}
 

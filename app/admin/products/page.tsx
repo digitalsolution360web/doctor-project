@@ -1,6 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import 'react-quill-new/dist/quill.snow.css';
+
+const ReactQuill = dynamic(
+  () => import('react-quill-new'),
+  { ssr: false }
+);
 
 interface Category {
   id: number;
@@ -35,6 +42,7 @@ export default function ProductsPage() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [description, setDescription] = useState('');
 
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -373,24 +381,24 @@ export default function ProductsPage() {
 
                       <td className="px-5 py-4">
                         <div className="flex flex-wrap gap-1">
-                          {product.customized_formulations === 1 && (
+                          {product.customized_formulations == 1 && (
                             <span className="px-1.5 py-0.5 bg-purple-500/10 text-purple-400 rounded text-[9px] font-medium">
                               Custom
                             </span>
                           )}
-                          {product.private_labeling === 1 && (
+                          {product.private_labeling == 1 && (
                             <span className="px-1.5 py-0.5 bg-blue-500/10 text-blue-400 rounded text-[9px] font-medium">
                               Private Label
                             </span>
                           )}
-                          {product.turnkey_solutions === 1 && (
+                          {product.turnkey_solutions == 1 && (
                             <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded text-[9px] font-medium">
                               Turnkey
                             </span>
                           )}
-                          {product.customized_formulations === 0 && 
-                           product.private_labeling === 0 && 
-                           product.turnkey_solutions === 0 && (
+                          {product.customized_formulations == 0 && 
+                           product.private_labeling == 0 && 
+                           product.turnkey_solutions == 0 && (
                             <span className="text-[10px] text-[var(--text-muted)]">None</span>
                           )}
                         </div>
@@ -683,7 +691,7 @@ export default function ProductsPage() {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={formData.customized_formulations === 1}
+                        checked={formData.customized_formulations == 1}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -698,7 +706,7 @@ export default function ProductsPage() {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={formData.private_labeling === 1}
+                        checked={formData.private_labeling == 1}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -713,7 +721,7 @@ export default function ProductsPage() {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={formData.turnkey_solutions === 1}
+                        checked={formData.turnkey_solutions == 1}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -751,7 +759,21 @@ export default function ProductsPage() {
                   <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
                     Full Description
                   </label>
-                  <textarea
+                  <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl overflow-hidden">
+    <ReactQuill
+      theme="snow"
+      value={formData.description}
+      onChange={(value) =>
+        setFormData({
+          ...formData,
+          description: value,
+        })
+      }
+      placeholder="Detailed product description"
+     
+    />
+  </div>
+                  {/* <textarea
                     rows={5}
                     value={formData.description}
                     onChange={(e) =>
@@ -762,7 +784,7 @@ export default function ProductsPage() {
                     }
                     className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
                     placeholder="Detailed product description"
-                  />
+                  /> */}
                 </div>
 
                 {/* SEO Section */}
