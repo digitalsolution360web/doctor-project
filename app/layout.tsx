@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Midflora Herbal | Cosmetic Manufacturer & Herbal Products",
   description: "Midflora Herbal is a leading herbal cosmetic manufacturer offering private label, contract manufacturing, skincare, haircare, and Ayurvedic products.",
   keywords: "Herbal Cosmetic Manufacturer, Ayurvedic Cosmetic Manufacturer, Private Label Cosmetics, Herbal Skincare Products, Herbal Haircare Products, Cosmetic Contract Manufacturing, Third Party Cosmetic Manufacturing, Herbal Products Manufacturer, Natural Beauty Products, Cosmetic Manufacturer India",
+  icons: {
+    icon: "/midflora-favicon.png",
+    apple: "/midflora-favicon.png",
+  },
   verification: {
     google: "CxPdCMVR8Pnm7jEdcLsB4BjepPy5xicN-wHi5hIz1xA",
   },

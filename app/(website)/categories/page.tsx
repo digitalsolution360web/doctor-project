@@ -76,7 +76,7 @@ const categoriesData = [
   { title: "Intimate Care Hygiene", image: "/Intimate-care-hygiene.webp" },
   { title: "Men’s Care", image: "/mens-care.webp" },
   { title: "Body Care", image: "/body-care.webp" },
-  { title: "Dental Care", image: "/Dental-Care.webp" },
+  // { title: "Dental Care", image: "/Dental-Care.webp" },
   { title: "Handmade Soaps (Melt & Pour)", image: "/Handmade-Soaps.webp" },
   { title: "Bath Amenities", image: "/Bath-Amenities.webp" },
   { title: "Baby & Mother Care", image: "/mother-baby-care.webp" },
@@ -113,7 +113,7 @@ export default function CategoriesPage() {
                 className="flex flex-col h-full bg-white rounded-[32px] border border-slate-200 shadow-[0_15px_40px_rgba(0,0,0,0.08)] overflow-hidden hover:shadow-[0_25px_60px_rgba(0,0,0,0.15)] transition-all duration-500 group"
               >
                 {/* Header Bar */}
-                <div className="bg-white py-5 px-4 text-center border-b border-slate-100">
+                <div className="bg-white/80 backdrop-blur-md py-5 px-4 text-center border-b border-slate-100 group-hover:bg-teal-50/50 transition-colors duration-500">
                   <h3 className="text-[13px] font-black text-slate-900 uppercase tracking-widest group-hover:text-teal-600 transition-colors">
                     {category.title}
                   </h3>
