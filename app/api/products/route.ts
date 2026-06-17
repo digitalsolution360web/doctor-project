@@ -94,6 +94,7 @@ export async function POST(req: NextRequest) {
     const {
       category_id,
       name,
+      h1_title,
       slug,
       image,
       moq,
@@ -107,6 +108,7 @@ export async function POST(req: NextRequest) {
       meta_title,
       meta_description,
       status,
+      ingredients,
     } = body;
 
     // Generate slug from name if not provided
@@ -124,6 +126,7 @@ export async function POST(req: NextRequest) {
         category_id,
         name,
         slug,
+        h1_title,
         image,
         moq,
         packaging_size,
@@ -135,14 +138,16 @@ export async function POST(req: NextRequest) {
         description,
         meta_title,
         meta_description,
-        status
+        status,
+        ingredients
       )
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `,
       [
         category_id || null,
         name,
         finalSlug,
+        h1_title || null,
         image || null,
         moq || 0,
         packaging_size || null,
@@ -155,6 +160,7 @@ export async function POST(req: NextRequest) {
         meta_title || null,
         meta_description || null,
         status ?? 1,
+        ingredients || null,
       ]
     );
 
@@ -181,6 +187,7 @@ export async function PUT(req: NextRequest) {
       id,
       category_id,
       name,
+      h1_title,
       slug,
       image,
       moq,
@@ -194,6 +201,7 @@ export async function PUT(req: NextRequest) {
       meta_title,
       meta_description,
       status,
+      ingredients,
     } = body;
 
     // Generate slug from name if not provided
@@ -212,6 +220,7 @@ export async function PUT(req: NextRequest) {
         category_id = ?,
         name = ?,
         slug = ?,
+        h1_title = ?,
         image = ?,
         moq = ?,
         packaging_size = ?,
@@ -223,13 +232,15 @@ export async function PUT(req: NextRequest) {
         description = ?,
         meta_title = ?,
         meta_description = ?,
-        status = ?
+        status = ?,
+        ingredients = ?
       WHERE id = ?
       `,
       [
         category_id || null,
         name,
         finalSlug,
+        h1_title || null,
         image || null,
         moq || 0,
         packaging_size || null,
@@ -242,6 +253,7 @@ export async function PUT(req: NextRequest) {
         meta_title || null,
         meta_description || null,
         status ?? 1,
+        ingredients || null,
         id,
       ]
     );

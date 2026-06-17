@@ -1,6 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
+import 'react-quill-new/dist/quill.snow.css';
+
+const ReactQuill = dynamic(
+  () => import('react-quill-new'),
+  { ssr: false }
+);
 
 interface Category {
   id: number;
@@ -12,6 +19,7 @@ interface Product {
   category_id: number;
   category_name: string;
   name: string;
+  h1_title: string;
   slug: string;
   image: string;
   moq: number;
@@ -22,6 +30,7 @@ interface Product {
   turnkey_solutions: number;
   benefits: string;
   description: string;
+  ingredients: string;
   meta_title: string;
   meta_description: string;
   status: string;
@@ -32,7 +41,7 @@ interface Product {
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-
+  const [ingredients, setIngredients] = useState<Array<{slug: string, name: string}>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -61,11 +70,20 @@ export default function ProductsPage() {
     meta_title: '',
     meta_description: '',
     status: 'active',
+    h1_title: '',
+    ingredients: [] as string[],
   });
 
   const limit = 10;
 
   const totalPages = Math.ceil(total / limit);
+
+  const staticIngredients = [
+  { slug: 'aloe-vera', name: 'Aloe Vera' },
+  { slug: 'tea-tree-oil', name: 'Tea Tree Oil' },
+  { slug: 'peppermint', name: 'Peppermint' },
+  { slug: 'chamomile', name: 'Chamomile' },
+];
 
   useEffect(() => {
     fetchProducts();
@@ -112,7 +130,7 @@ export default function ProductsPage() {
   const openModal = (product?: Product) => {
     if (product) {
       setEditingProduct(product);
-
+      const ingredientArray = product.ingredients ? product.ingredients.split(',') : [];
       setFormData({
         category_id: String(product.category_id),
         name: product.name || '',
@@ -129,6 +147,8 @@ export default function ProductsPage() {
         meta_title: product.meta_title || '',
         meta_description: product.meta_description || '',
         status: product.status,
+        h1_title: product.h1_title || '',
+        ingredients: ingredientArray,
       });
     } else {
       setEditingProduct(null);
@@ -143,12 +163,14 @@ export default function ProductsPage() {
         packaging_type: '',
         customized_formulations: 0,
         private_labeling: 0,
+        h1_title: '',
         turnkey_solutions: 0,
         benefits: '',
         description: '',
         meta_title: '',
         meta_description: '',
         status: 'active',
+        ingredients: [],
       });
     }
 
@@ -164,13 +186,16 @@ export default function ProductsPage() {
     e.preventDefault();
 
     const method = editingProduct ? 'PUT' : 'POST';
-
+     const submitData = {
+    ...formData,
+    ingredients: formData.ingredients.join(','), // Convert array to string
+  };
     const body = editingProduct
       ? {
-          ...formData,
+          ...submitData,
           id: editingProduct.id,
         }
-      : formData;
+      : submitData;
 
     const res = await fetch('/api/products', {
       method,
@@ -373,24 +398,24 @@ export default function ProductsPage() {
 
                       <td className="px-5 py-4">
                         <div className="flex flex-wrap gap-1">
-                          {product.customized_formulations === 1 && (
+                          {product.customized_formulations == 1 && (
                             <span className="px-1.5 py-0.5 bg-purple-500/10 text-purple-400 rounded text-[9px] font-medium">
                               Custom
                             </span>
                           )}
-                          {product.private_labeling === 1 && (
+                          {product.private_labeling == 1 && (
                             <span className="px-1.5 py-0.5 bg-blue-500/10 text-blue-400 rounded text-[9px] font-medium">
                               Private Label
                             </span>
                           )}
-                          {product.turnkey_solutions === 1 && (
+                          {product.turnkey_solutions == 1 && (
                             <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded text-[9px] font-medium">
                               Turnkey
                             </span>
                           )}
-                          {product.customized_formulations === 0 && 
-                           product.private_labeling === 0 && 
-                           product.turnkey_solutions === 0 && (
+                          {product.customized_formulations == 0 && 
+                           product.private_labeling == 0 && 
+                           product.turnkey_solutions == 0 && (
                             <span className="text-[10px] text-[var(--text-muted)]">None</span>
                           )}
                         </div>
@@ -561,7 +586,7 @@ export default function ProductsPage() {
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          slug: e.target.value,
+                          slug: e.target.value.toLowerCase().replace(/\s+/g, '-'),
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
@@ -588,6 +613,24 @@ export default function ProductsPage() {
                     />
                   </div>
 
+                  {/* h1 title */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      H1 Title
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.h1_title}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          h1_title: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="H1 Title"
+                    />
+                  </div>
                   {/* MOQ */}
                   <div>
                     <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
@@ -683,7 +726,7 @@ export default function ProductsPage() {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={formData.customized_formulations === 1}
+                        checked={formData.customized_formulations == 1}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -698,7 +741,7 @@ export default function ProductsPage() {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={formData.private_labeling === 1}
+                        checked={formData.private_labeling == 1}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -713,7 +756,7 @@ export default function ProductsPage() {
                     <label className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={formData.turnkey_solutions === 1}
+                        checked={formData.turnkey_solutions == 1}
                         onChange={(e) =>
                           setFormData({
                             ...formData,
@@ -745,13 +788,85 @@ export default function ProductsPage() {
                     placeholder="List product benefits (one per line)"
                   />
                 </div>
+                      {/* INGREDIENTS - Multi-select */}
+<div className="md:col-span-2">
+  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+    Ingredients
+  </label>
+  <select
+    multiple
+    value={formData.ingredients}
+    onChange={(e) => {
+      const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+      setFormData({
+        ...formData,
+        ingredients: selectedOptions,
+      });
+    }}
+    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm max-h-[120px] overflow-y-auto"
+  >
+    {staticIngredients.map((ingredient) => (
+      <option 
+        key={ingredient.slug} 
+        value={ingredient.slug}
+        className="py-2 px-3 hover:bg-[var(--bg-primary)]"
+      >
+        {ingredient.name}
+      </option>
+    ))}
+  </select>
+  <p className="text-xs text-[var(--text-muted)] mt-1">
+    Hold Ctrl/Cmd to select multiple ingredients
+  </p>
+  
+  {/* Selected Ingredients Tags */}
+  {formData.ingredients.length > 0 && (
+    <div className="flex flex-wrap gap-1 mt-2">
+      {formData.ingredients.map((slug) => {
+        const ingredient = staticIngredients.find(i => i.slug === slug);
+        return ingredient ? (
+          <span key={slug} className="px-2 py-1 bg-blue-500/10 text-blue-400 rounded text-xs flex items-center gap-1">
+            {ingredient.name}
+            <button
+              type="button"
+              onClick={() => {
+                setFormData({
+                  ...formData,
+                  ingredients: formData.ingredients.filter(s => s !== slug),
+                });
+              }}
+              className="hover:text-red-400 ml-1"
+            >
+              ×
+            </button>
+          </span>
+        ) : null;
+      })}
+    </div>
+  )}
+</div>
+
 
                 {/* DESCRIPTION */}
                 <div>
                   <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
                     Full Description
                   </label>
-                  <textarea
+                  <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl overflow-hidden">
+    <ReactQuill
+      theme="snow"
+      value={formData.description}
+      onChange={(value) =>
+        setFormData({
+          ...formData,
+          description: value,
+        })
+      }
+      placeholder="Detailed product description"
+     
+    />
+  </div>
+                  {/* <textarea
                     rows={5}
                     value={formData.description}
                     onChange={(e) =>
@@ -762,7 +877,7 @@ export default function ProductsPage() {
                     }
                     className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
                     placeholder="Detailed product description"
-                  />
+                  /> */}
                 </div>
 
                 {/* SEO Section */}
