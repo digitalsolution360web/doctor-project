@@ -64,7 +64,7 @@ const statsData = [
   { num: 40000, suffix: "", title: "Jar Filling", sub: "Automatic 2-Head Jar Filling Machines", icon: Zap, img: "/Bottle-filling.webp" },
   { num: 60000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day Capacity", icon: Factory, img: "/labeling-machines.webp" },
   { num: 52000, suffix: "", title: "Tube Filling & Sealing", sub: "Tube Per Day Capacity", icon: ShieldCheck, img: "/Tube-Sealing.webp" },
- // { num: 35000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day Capacity", icon: Factory, img: "/Bottle-filling.webp" },
+  // { num: 35000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day Capacity", icon: Factory, img: "/Bottle-filling.webp" },
   // { num: 100, suffix: "%", title: "Sterile Manufacturing", sub: "Environment", icon: ShieldCheck },
 ];
 
@@ -74,7 +74,7 @@ function StatCarousel() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="mb-16">
           <h2 className="text-[10px] font-bold text-teal-600 tracking-[0.3em] uppercase mb-4 flex items-center">
-            <span className="w-8 h-[1px] bg-teal-600 mr-3"></span>
+            <span className="w-8 h-[1px] bg-teal-200 mr-3"></span>
             Production Power
           </h2>
           <h3 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter uppercase leading-none">
@@ -90,10 +90,10 @@ function StatCarousel() {
             {statsData.map((stat, i) => (
               <div
                 key={i}
-                className="min-w-[300px] md:min-w-[380px] bg-white rounded-[32px] overflow-hidden border border-slate-100 group/card transition-all duration-500 snap-center shadow-sm flex flex-col"
+                className="min-w-[400px] md:min-w-[510px] bg-white rounded-[32px] overflow-hidden border border-slate-100 group/card transition-all duration-500 snap-center shadow-sm flex flex-col"
               >
                 {/* Image Section */}
-                <div className="relative h-[220px] w-full overflow-hidden bg-slate-100">
+                <div className="relative h-[440px] w-full overflow-hidden bg-slate-100">
                   {stat.img ? (
                     <Image
                       src={stat.img}
@@ -113,16 +113,16 @@ function StatCarousel() {
                 </div>
 
                 {/* Content Section */}
-                <div className="p-8 flex flex-col flex-grow">
-                  <div className="mb-4">
-                    <p className="text-4xl font-black tracking-tight text-slate-900 mb-1">
+                <div className="p-4 flex bg-gray-100 flex-col flex-grow">
+                  <div className="mb-2">
+                    <p className="text-2xl font-black tracking-tight text-slate-900 ">
                       <CountUp target={stat.num} suffix={stat.suffix} />
                     </p>
                     <div className="h-1 w-12 bg-teal-500 rounded-full"></div>
                   </div>
 
                   <div className="mt-auto">
-                    <h4 className="text-xl font-bold text-slate-900 leading-tight mb-2 uppercase tracking-tight">
+                    <h4 className="text-xl font-bold text-slate-900 leading-tight uppercase tracking-tight">
                       {stat.title}
                     </h4>
                     <p className="text-slate-500 text-sm font-medium leading-relaxed">
