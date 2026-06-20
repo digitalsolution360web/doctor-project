@@ -312,3 +312,46 @@ body {
   background: rgba(152, 155, 46, 0.2);
   color: white;
 }
+/* HTML Editor custom styles */
+.ql-html-textArea.ql-container {
+  min-height: 200px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: all 0.2s ease;
+}
+
+.ql-html-textArea.ql-container:focus-within {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.ql-html-textArea .ql-editor {
+  min-height: 180px;
+  padding: 16px;
+  color: #1f2937;
+}
+
+.ql-html-textArea .ql-editor.ql-blank::before {
+  color: #9ca3af;
+  font-style: normal;
+  left: 16px;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  .ql-html-textArea.ql-container {
+    background: #1f2937;
+    border-color: #374151;
+  }
+  
+  .ql-html-textArea .ql-editor {
+    color: #f3f4f6;
+  }
+  
+  .ql-html-textArea .ql-editor.ql-blank::before {
+    color: #6b7280;
+  }
+}
