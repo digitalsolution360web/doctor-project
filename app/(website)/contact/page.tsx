@@ -10,7 +10,9 @@ import {
   Send,
   MessageSquare,
   Clock,
-  ArrowRight
+  ArrowRight,
+  CheckCircle,
+  X
 } from "lucide-react";
 
 interface RevealOnScrollProps {
@@ -75,6 +77,7 @@ export default function ContactPage() {
   }>({});
 
   const [loading, setLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -132,7 +135,7 @@ export default function ContactPage() {
         throw new Error(result.message || "Something went wrong");
       }
 
-      alert("Form submitted successfully");
+      setShowSuccessModal(true);
 
       setFormData({
         name: "",
@@ -145,7 +148,7 @@ export default function ContactPage() {
       });
     } catch (error) {
       console.error(error);
-      alert("Failed to submit form");
+      // alert("Failed to submit form");
     } finally {
       setLoading(false);
     }
@@ -413,6 +416,45 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      
+      {/* Success Modal */}
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-[32px] p-8 md:p-10 max-w-md w-full shadow-2xl relative overflow-hidden animate-reveal-up">
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-teal-400 to-emerald-500"></div>
+            
+            <button 
+              onClick={() => setShowSuccessModal(false)}
+              className="absolute top-5 right-5 p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-400"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="flex flex-col items-center text-center space-y-5">
+              <div className="w-16 h-16 bg-teal-50 rounded-full flex items-center justify-center text-teal-500">
+                <CheckCircle className="w-8 h-8" />
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-slate-950 uppercase tracking-tight">Success!</h3>
+                <p className="text-slate-500 font-medium text-sm leading-relaxed">
+                  Your requirement has been received by <span className="text-teal-600 font-bold">MidFlora Herbal</span>. 
+                  Our team will contact you shortly.
+                </p>
+              </div>
+
+              <div className="w-full pt-2">
+                <button
+                  onClick={() => setShowSuccessModal(false)}
+                  className="w-full py-4 bg-slate-950 text-white rounded-2xl font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-teal-600 transition-all shadow-lg"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
