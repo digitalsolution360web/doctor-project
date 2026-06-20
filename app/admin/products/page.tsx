@@ -37,7 +37,15 @@ interface Product {
   created_at: string;
   updated_at: string;
 }
-
+interface FAQ {
+  id: number;
+  product_id: number;
+  question: string;
+  answer: string;
+  serial_no: number;
+  created_at: string;
+  updated_at: string;
+}
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -53,6 +61,10 @@ export default function ProductsPage() {
   const [showModal, setShowModal] = useState(false);
 
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [showFAQModal, setShowFAQModal] = useState(false);
+  const [editingFAQ, setEditingFAQ] = useState<FAQ | null>(null);
+  const [faqs, setFaqs] = useState<FAQ[]>([]);
+  const [loadingFAQs, setLoadingFAQs] = useState(false);
 
   const [formData, setFormData] = useState({
     category_id: '',
@@ -72,6 +84,12 @@ export default function ProductsPage() {
     status: 'active',
     h1_title: '',
     ingredients: [] as string[],
+  });
+  const [faqFormData, setFaqFormData] = useState({
+    product_id: '',
+    question: '',
+    answer: '',
+    serial_no: 0,
   });
 
   const limit = 10;
@@ -124,6 +142,18 @@ export default function ProductsPage() {
       setCategories(data.data || []);
     } catch (err) {
       console.error(err);
+    }
+  };
+   const fetchFAQs = async (productId: number) => {
+    setLoadingFAQs(true);
+    try {
+      const res = await fetch(`/api/product-faqs?productId=${productId}`);
+      const data = await res.json();
+      setFaqs(data.data || []);
+    } catch (err) {
+      console.error('Error fetching FAQs:', err);
+    } finally {
+      setLoadingFAQs(false);
     }
   };
 
@@ -180,6 +210,39 @@ export default function ProductsPage() {
   const closeModal = () => {
     setShowModal(false);
     setEditingProduct(null);
+    setFaqs([]);
+  };
+
+  const openFAQModal = (product: Product) => {
+    setEditingProduct(product);
+    fetchFAQs(product.id);
+    setFaqFormData({
+    ...faqFormData,
+    product_id: String(product.id),
+  });
+    setShowFAQModal(true);
+  };
+
+  const closeFAQModal = () => {
+    setShowFAQModal(false);
+    setEditingFAQ(null);
+    setFaqs([]);
+    setFaqFormData({
+      product_id: '',
+      question: '',
+      answer: '',
+      serial_no: 0,
+    });
+  };
+
+  const openEditFAQ = (faq: FAQ) => {
+    setEditingFAQ(faq);
+    setFaqFormData({
+      product_id: String(faq.product_id),
+      question: faq.question,
+      answer: faq.answer,
+      serial_no: faq.serial_no,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -210,6 +273,51 @@ export default function ProductsPage() {
       closeModal();
     }
   };
+  const handleFAQSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const method = editingFAQ ? 'PUT' : 'POST';
+    const body = editingFAQ
+      ? {
+          ...faqFormData,
+          id: editingFAQ.id,
+        }
+      : faqFormData;
+
+    const res = await fetch('/api/product-faqs', {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (res.ok) {
+      if (editingProduct) {
+        fetchFAQs(editingProduct.id);
+      }
+      setEditingFAQ(null);
+      setFaqFormData({
+        product_id: faqFormData.product_id,
+        question: '',
+        answer: '',
+        serial_no: 0,
+      });
+    }
+  };
+
+  const handleDeleteFAQ = async (id: number) => {
+    if (!confirm('Delete this FAQ?')) return;
+
+    const res = await fetch(`/api/product-faqs?id=${id}`, {
+      method: 'DELETE',
+    });
+
+    if (res.ok && editingProduct) {
+      fetchFAQs(editingProduct.id);
+    }
+  };
+
 
   const handleDelete = async (id: number) => {
     if (!confirm('Delete this product?')) return;
@@ -435,6 +543,24 @@ export default function ProductsPage() {
 
                       <td className="px-5 py-4">
                         <div className="flex justify-end gap-2">
+                            <button
+                            onClick={() => openFAQModal(product)}
+                            className="p-2 text-emerald-400 hover:bg-emerald-500/10 rounded-lg"
+                            title="Manage FAQs"
+                          >
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <circle cx="12" cy="12" r="10" />
+                              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                              <line x1="12" y1="17" x2="12.01" y2="17" />
+                            </svg>
+                          </button>
                           <button
                             onClick={() => openModal(product)}
                             className="p-2 text-sky-400 hover:bg-sky-500/10 rounded-lg"
@@ -944,6 +1070,213 @@ export default function ProductsPage() {
                 </button>
               </div>
             </form>
+          </div>
+        </div>
+      )}
+      {/* FAQ MODAL */}
+      {showFAQModal && editingProduct && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[9999] p-4">
+          <div className="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+
+            {/* HEADER */}
+            <div className="flex items-center justify-between p-5 border-b border-[var(--border-color)]">
+              <div>
+                <h2 className="text-xl font-bold text-[var(--text-primary)]">
+                  Manage FAQs
+                </h2>
+                <p className="text-sm text-[var(--text-secondary)]">
+                  For: {editingProduct.name}
+                </p>
+              </div>
+              <button
+                onClick={closeFAQModal}
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="p-6 max-h-[calc(80vh-120px)] overflow-y-auto">
+              
+              {/* FAQ Form */}
+              <form onSubmit={handleFAQSubmit} className="mb-8 p-4 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-color)]">
+                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">
+                  {editingFAQ ? 'Edit FAQ' : 'Add New FAQ'}
+                </h3>
+                
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Question <span className="text-red-400">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={faqFormData.question}
+                      onChange={(e) =>
+                        setFaqFormData({
+                          ...faqFormData,
+                          question: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="Enter FAQ question"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Answer <span className="text-red-400">*</span>
+                    </label>
+                    <textarea
+                      required
+                      rows={3}
+                      value={faqFormData.answer}
+                      onChange={(e) =>
+                        setFaqFormData({
+                          ...faqFormData,
+                          answer: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="Enter FAQ answer"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Serial Number
+                    </label>
+                    <input
+                      type="number"
+                      value={faqFormData.serial_no}
+                      onChange={(e) =>
+                        setFaqFormData({
+                          ...faqFormData,
+                          serial_no: parseInt(e.target.value) || 0,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="0"
+                      min="0"
+                    />
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button
+                      type="submit"
+                      className="px-6 py-2 rounded-xl btn-primary text-white font-semibold"
+                    >
+                      {editingFAQ ? 'Update FAQ' : 'Add FAQ'}
+                    </button>
+                    {editingFAQ && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEditingFAQ(null);
+                          setFaqFormData({
+                            product_id: String(editingProduct.id),
+                            question: '',
+                            answer: '',
+                            serial_no: 0,
+                          });
+                        }}
+                        className="px-6 py-2 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:bg-[var(--bg-primary)] transition-colors"
+                      >
+                        Cancel Edit
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </form>
+
+              {/* FAQ List */}
+              <div>
+                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">
+                  Existing FAQs ({faqs.length})
+                </h3>
+                
+                {loadingFAQs ? (
+                  <div className="text-center py-8 text-[var(--text-secondary)]">
+                    Loading FAQs...
+                  </div>
+                ) : faqs.length === 0 ? (
+                  <div className="text-center py-8 text-[var(--text-secondary)]">
+                    No FAQs added yet.
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {faqs.map((faq) => (
+                      <div
+                        key={faq.id}
+                        className="p-4 bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl"
+                      >
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1">
+                              <span className="text-xs text-[var(--text-muted)]">
+                                #{faq.serial_no || '0'}
+                              </span>
+                              <h4 className="font-semibold text-[var(--text-primary)]">
+                                {faq.question}
+                              </h4>
+                            </div>
+                            <p className="text-sm text-[var(--text-secondary)]">
+                              {faq.answer}
+                            </p>
+                          </div>
+                          <div className="flex gap-2 flex-shrink-0">
+                            <button
+                              onClick={() => openEditFAQ(faq)}
+                              className="p-2 text-sky-400 hover:bg-sky-500/10 rounded-lg"
+                            >
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                              >
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                              </svg>
+                            </button>
+                            <button
+                              onClick={() => handleDeleteFAQ(faq.id)}
+                              className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg"
+                            >
+                              <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                              >
+                                <polyline points="3 6 5 6 21 6" />
+                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                              </svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+            </div>
+
+            {/* FOOTER */}
+            <div className="p-5 border-t border-[var(--border-color)] flex justify-end">
+              <button
+                onClick={closeFAQModal}
+                className="px-6 py-2 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] hover:bg-[var(--bg-primary)] transition-colors"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
