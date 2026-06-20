@@ -77,6 +77,7 @@ const categoriesData = [
   { title: "Men’s Care", image: "/mens-care.webp" },
   { title: "Body Care", image: "/body-care.webp" },
   // { title: "Dental Care", image: "/Dental-Care.webp" },
+  { title: "Skin Care", image: "/pdrn-regenerative-skincare.webp" },
   { title: "Handmade Soaps (Melt & Pour)", image: "/Handmade-Soaps.webp" },
   { title: "Bath Amenities", image: "/Bath-Amenities.webp" },
   { title: "Baby & Mother Care", image: "/mother-baby-care.webp" },
