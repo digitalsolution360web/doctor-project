@@ -53,6 +53,9 @@ export default function ProductsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const [showHtmlEditor, setShowHtmlEditor] = useState(false);
+const [htmlContent, setHtmlContent] = useState('');
+
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
 
@@ -110,6 +113,17 @@ export default function ProductsPage() {
   useEffect(() => {
     fetchCategories();
   }, []);
+
+  const [modules, setModules] = useState<any>({
+  toolbar: [
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
+    [{ color: [] }, { background: [] }],
+    ['link', 'image', 'video'],
+    ['clean']
+  ]
+});
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -208,10 +222,12 @@ export default function ProductsPage() {
   };
 
   const closeModal = () => {
-    setShowModal(false);
-    setEditingProduct(null);
-    setFaqs([]);
-  };
+  setShowModal(false);
+  setEditingProduct(null);
+  setFaqs([]);
+  setShowHtmlEditor(false); // Add this
+  setHtmlContent(''); // Add this
+};
 
   const openFAQModal = (product: Product) => {
     setEditingProduct(product);
@@ -800,7 +816,9 @@ export default function ProductsPage() {
                     <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
                       Packaging Type
                     </label>
-                    <select
+                    
+                    <input
+                      type="text"
                       value={formData.packaging_type}
                       onChange={(e) =>
                         setFormData({
@@ -809,36 +827,8 @@ export default function ProductsPage() {
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                    >
-                      <option value="">Select Packaging Type</option>
-                      <option value="bottle">Bottle</option>
-                      <option value="pouch">Pouch</option>
-                      <option value="box">Box</option>
-                      <option value="container">Container</option>
-                      <option value="tube">Tube</option>
-                      <option value="jar">Jar</option>
-                      <option value="sachet">Sachet</option>
-                    </select>
-                  </div>
-
-                  {/* STATUS */}
-                  <div>
-                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                      Status
-                    </label>
-                    <select
-                      value={formData.status}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          status: e.target.value,
-                        })
-                      }
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                    >
-                      <option value="active">Active</option>
-                      <option value="inactive">Inactive</option>
-                    </select>
+                      placeholder="e.g., Bottle, Pouch, Box"
+                    />
                   </div>
 
                 </div>
@@ -915,7 +905,7 @@ export default function ProductsPage() {
                   />
                 </div>
                       {/* INGREDIENTS - Multi-select */}
-<div className="md:col-span-2">
+<div className="md:col-span-2 hidden">
   <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
     Ingredients
   </label>
@@ -971,40 +961,106 @@ export default function ProductsPage() {
     </div>
   )}
 </div>
-
-
-                {/* DESCRIPTION */}
-                <div>
-                  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
-                    Full Description
-                  </label>
-                  <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl overflow-hidden">
-    <ReactQuill
-      theme="snow"
-      value={formData.description}
-      onChange={(value) =>
-        setFormData({
-          ...formData,
-          description: value,
-        })
-      }
-      placeholder="Detailed product description"
-     
-    />
+{/* DESCRIPTION */}
+<div>
+  <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+    Full Description
+  </label>
+  
+  {/* Toolbar buttons */}
+  <div className="flex items-center gap-2 mb-2">
+    <button
+      type="button"
+      onClick={() => {
+        if (!showHtmlEditor) {
+          setHtmlContent(formData.description);
+        }
+        setShowHtmlEditor(!showHtmlEditor);
+      }}
+      className="px-3 py-1.5 text-xs font-medium bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--bg-primary)] transition-colors"
+    >
+      {showHtmlEditor ? 'Hide HTML' : 'View HTML'}
+    </button>
+    <span className="text-xs text-[var(--text-muted)]">
+      {showHtmlEditor ? 'Editing raw HTML' : 'Visual editor'}
+    </span>
   </div>
-                  {/* <textarea
-                    rows={5}
-                    value={formData.description}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        description: e.target.value,
-                      })
-                    }
-                    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                    placeholder="Detailed product description"
-                  /> */}
-                </div>
+
+  {/* Visual Editor */}
+  {!showHtmlEditor && (
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl overflow-hidden">
+      <ReactQuill
+        theme="snow"
+        value={formData.description}
+        onChange={(value) =>
+          setFormData({
+            ...formData,
+            description: value,
+          })
+        }
+        modules={modules}
+        placeholder="Detailed product description"
+      />
+    </div>
+  )}
+
+  {/* HTML Editor */}
+  {showHtmlEditor && (
+    <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-2 bg-[var(--bg-primary)] border-b border-[var(--border-color)]">
+        <span className="text-xs font-bold text-[var(--text-secondary)] uppercase">
+          HTML Editor
+        </span>
+        <button
+          type="button"
+          onClick={() => {
+            setShowHtmlEditor(false);
+            setHtmlContent('');
+          }}
+          className="p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <textarea
+        value={htmlContent}
+        onChange={(e) => setHtmlContent(e.target.value)}
+        className="w-full min-h-[300px] p-4 bg-[var(--bg-secondary)] text-[var(--text-primary)] font-mono text-sm resize-none focus:outline-none"
+        placeholder="Enter HTML content..."
+        spellCheck={false}
+      />
+      <div className="flex items-center justify-end gap-3 p-3 bg-[var(--bg-primary)] border-t border-[var(--border-color)]">
+        <button
+          type="button"
+          onClick={() => {
+            setShowHtmlEditor(false);
+            setHtmlContent('');
+          }}
+          className="px-4 py-1.5 text-sm bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--bg-primary)] transition-colors"
+        >
+          Cancel
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            setFormData({
+              ...formData,
+              description: htmlContent,
+            });
+            setShowHtmlEditor(false);
+            setHtmlContent('');
+          }}
+          className="px-4 py-1.5 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+        >
+          Apply HTML
+        </button>
+      </div>
+    </div>
+  )}
+</div>
 
                 {/* SEO Section */}
                 <div className="border-t border-[var(--border-color)] pt-4">
@@ -1048,6 +1104,25 @@ export default function ProductsPage() {
                       maxLength={160}
                       placeholder="SEO description (160 chars max)"
                     />
+                  </div>
+                  {/* STATUS */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Status
+                    </label>
+                    <select
+                      value={formData.status}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          status: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                    >
+                      <option value="active">Active</option>
+                      <option value="inactive">Inactive</option>
+                    </select>
                   </div>
                 </div>
 
