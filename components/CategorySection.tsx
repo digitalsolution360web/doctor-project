@@ -65,6 +65,12 @@ const categories: Category[] = [
     img: "/mens-care.webp"
   },
   {
+    title: "PDRN & Advanced Cosmetic Formulations",
+    items: "PDRN Serums, Regenerative Skincare, Anti-Aging Creams",
+    icon: Users,
+    img: "/pdrn-regenerative-skincare.webp"
+  },
+  {
     title: "Body Care",
     items: "Body Lotions, Body Wash, Scrubs",
     icon: Droplets,
