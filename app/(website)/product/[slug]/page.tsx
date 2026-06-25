@@ -51,7 +51,7 @@ const allProducts: Record<string, Product> = {
   "aloe-based-hair-cream-formulation": {
     title: "Aloe-Based Hair Cream Third-Party Manufacturer",
     category: "Hair Care",
-    mainImage: "/cate6.webp",
+    mainImage: "/categories/cate6.webp",
     specs: [
       { label: "MOQ", value: "3000 Units" },
       { label: "Packaging Size", value: "As per brand recommendation" },
@@ -65,20 +65,20 @@ const allProducts: Record<string, Product> = {
     extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
     callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
     ingredients: [
-      { name: "Aloe Vera Extract", img: "/cate2.webp" },
-      { name: "Coconut Oil", img: "/cate10.webp" },
-      { name: "Shea Butter", img: "/cate12.webp" },
+      { name: "Aloe Vera Extract", img: "/categories/cate2.webp" },
+      { name: "Coconut Oil", img: "/categories/cate10.webp" },
+      { name: "Shea Butter", img: "/categories/cate12.webp" },
     ],
     relatedProducts: [
-      { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/cate1.webp" },
-      { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/cate8.webp" },
-      { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/cate.webp" }
+      { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/categories/cate1.webp" },
+      { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/categories/cate8.webp" },
+      { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/categories/cate.webp" }
     ]
   },
   "organic-lip-balm-private-label": {
     title: "Organic Lip Balm Private Label",
     category: "Lip Care",
-    mainImage: "/lipp.webp",
+    mainImage: "/categories/lipp.webp",
     specs: [
       { label: "MOQ", value: "10000 Units" },
       { label: "Packaging Size", value: "10g, 15g, 20g" },
@@ -92,20 +92,20 @@ const allProducts: Record<string, Product> = {
     extraInfo: "We use pure beeswax, essential oils, and organic butters to ensure a premium feel and effective results.",
     callToAction: "Launch your own organic lip balm line today. Contact us for private labeling options.",
     ingredients: [
-      { name: "Beeswax", img: "/cate13.webp" },
-      { name: "Essential Oils", img: "/cate11.webp" },
-      { name: "Cocoa Butter", img: "/cate12.webp" },
+      { name: "Beeswax", img: "/categories/cate13.webp" },
+      { name: "Essential Oils", img: "/categories/cate11.webp" },
+      { name: "Cocoa Butter", img: "/categories/cate12.webp" },
     ],
     relatedProducts: [
-      { title: "Lip Scrub Manufacturer", category: "Lip Care", img: "/cate11.webp" },
-      { title: "Lip Mask Manufacturer", category: "Lip Care", img: "/cate13.webp" },
-      { title: "Tinted Lip Balm", category: "Lip Care", img: "/cate12.webp" }
+      { title: "Lip Scrub Manufacturer", category: "Lip Care", img: "/categories/cate11.webp" },
+      { title: "Lip Mask Manufacturer", category: "Lip Care", img: "/categories/cate13.webp" },
+      { title: "Tinted Lip Balm", category: "Lip Care", img: "/categories/cate12.webp" }
     ]
   },
   "skin-hydrating-serum-manufacturer": {
     title: "Skin Hydrating Serum Manufacturer",
     category: "Skin Care",
-    mainImage: "/skin.webp",
+    mainImage: "/categories/skin.webp",
     specs: [
       { label: "MOQ", value: "5000 Units" },
       { label: "Packaging Size", value: "30ml, 50ml" },
@@ -119,19 +119,19 @@ const allProducts: Record<string, Product> = {
     extraInfo: "Infused with Hyaluronic Acid and Vitamin C, this formula is highly stable and effective.",
     callToAction: "Partner with us to manufacture your brand's signature hydrating serum.",
     ingredients: [
-      { name: "Hyaluronic Acid", img: "/cate9.webp" },
-      { name: "Vitamin C", img: "/cate8.webp" },
-      { name: "Green Tea Extract", img: "/cate7.webp" },
+      { name: "Hyaluronic Acid", img: "/categories/cate9.webp" },
+      { name: "Vitamin C", img: "/categories/cate8.webp" },
+      { name: "Green Tea Extract", img: "/categories/cate7.webp" },
     ],
     relatedProducts: [
-      { title: "Vitamin C Face Wash", category: "Skin Care", img: "/cate3.webp" },
-      { title: "Moisturizing Cream", category: "Skin Care", img: "/cate5.webp" },
-      { title: "Sunscreen SPF 50", category: "Skin Care", img: "/9.webp" }
+      { title: "Vitamin C Face Wash", category: "Skin Care", img: "/categories/cate3.webp" },
+      { title: "Moisturizing Cream", category: "Skin Care", img: "/categories/cate5.webp" },
+      { title: "Sunscreen SPF 50", category: "Skin Care", img: "/categories/9.webp" }
     ]
   },
   "vitamin-c-brightening-face-wash": {
     title: "Vitamin C Brightening Face Wash",
-    mainImage: "/skin.webp",
+    mainImage: "/categories/skin.webp",
     specs: [
       { label: "MOQ", value: "5000 Units" },
       { label: "Packaging Size", value: "100ml, 150ml" },
@@ -141,12 +141,12 @@ const allProducts: Record<string, Product> = {
     detailedDescription: "Brighten your skin with our Vitamin C Face Wash.",
     extraInfo: "Gentle yet effective.",
     callToAction: "Contact us for manufacturing.",
-    ingredients: [{ name: "Vitamin C", img: "/cate8.webp" }],
+    ingredients: [{ name: "Vitamin C", img: "/categories/cate8.webp" }],
     relatedProducts: []
   },
   "herbal-anti-hairfall-oil": {
     title: "Herbal Anti-Hairfall Oil",
-    mainImage: "/cate.webp",
+    mainImage: "/categories/cate.webp",
     specs: [
       { label: "MOQ", value: "3000 Units" },
       { label: "Packaging Size", value: "100ml, 200ml" },
@@ -156,7 +156,7 @@ const allProducts: Record<string, Product> = {
     detailedDescription: "Effective herbal oil for hair fall control.",
     extraInfo: "Traditional Ayurvedic recipe.",
     callToAction: "Start your hair care line today.",
-    ingredients: [{ name: "Herbal Extracts", img: "/cate.webp" }],
+    ingredients: [{ name: "Herbal Extracts", img: "/categories/cate.webp" }],
     relatedProducts: []
   }
 };
@@ -390,7 +390,7 @@ export default function ProductDetails() {
         {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/ayurvedic.webp"
+            src="/categories/ayurvedic.webp"
             alt="Natural Ingredients Background"
             fill
             className="object-cover"

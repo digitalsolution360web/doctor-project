@@ -264,19 +264,19 @@ export default function InfrastructurePage() {
       title: "Advanced Machinery",
       desc: "Our facility is equipped with state-of-the-art automated machinery, including vacuum emulsifiers, high-speed tube filling, and multi-track packaging units for precision manufacturing.",
       icon: Settings,
-      image: "/8.webp"
+      image: "/categories/8.webp"
     },
     {
       title: "Production Capacity",
       desc: "We boast a massive production capacity, capable of scaling from small startup batches to large-scale millions of units per month with consistent quality and fast turnaround.",
       icon: Zap,
-      image: "/9.webp"
+      image: "/categories/9.webp"
     },
     {
       title: "Hygiene Standards",
       desc: "Maintaining strict hygiene standards is our priority. Our facility features ISO Class cleanrooms with HEPA filtration and rigorous sanitation protocols to ensure zero-contamination.",
       icon: ShieldCheck,
-      image: "/10.webp"
+      image: "/categories/10.webp"
     }
   ];
 

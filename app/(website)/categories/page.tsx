@@ -69,21 +69,21 @@ interface CategorySection {
 }
 
 const categoriesData = [
-  { title: "Skin Care", image: "/skin-care.webp" },
-  { title: "Hair Care", image: "/Hair Care.webp" },
-  { title: "Advance / Clinical Skin Care", image: "/skin.webp" },
-  { title: "Sun Care", image: "/sun-care.webp" },
-  { title: "Intimate Care Hygiene", image: "/Intimate-care-hygiene.webp" },
-  { title: "Men’s Care", image: "/mens-care.webp" },
-  { title: "Body Care", image: "/body-care.webp" },
-  // { title: "Dental Care", image: "/Dental-Care.webp" },
-  { title: "PDRN & Advanced Cosmetic Formulations", image: "/pdrn-regenerative-skincare.webp" },
-  { title: "Handmade Soaps (Melt & Pour)", image: "/Handmade-Soaps.webp" },
-  { title: "Bath Amenities", image: "/Bath-Amenities.webp" },
-  { title: "Baby & Mother Care", image: "/mother-baby-care.webp" },
-  { title: "Oral & Dental Care", image: "/Oral-Dental-Care.webp" },
-  { title: "Derma Care", image: "/Derma-Care.webp" },
-  { title: "Depilatory Range", image: "/depilation-range.webp" }
+  { title: "Skin Care", image: "/categories/skin-care.webp" },
+  { title: "Hair Care", image: "/categories/Hair Care.webp" },
+  { title: "Advance / Clinical Skin Care", image: "/categories/skin.webp" },
+  { title: "Sun Care", image: "/categories/sun-care.webp" },
+  { title: "Intimate Care Hygiene", image: "/categories/Intimate-care-hygiene.webp" },
+  { title: "Men’s Care", image: "/categories/mens-care.webp" },
+  { title: "Body Care", image: "/categories/body-care.webp" },
+  // { title: "Dental Care", image: "/categories/Dental-Care.webp" },
+  { title: "PDRN & Advanced Cosmetic Formulations", image: "/categories/pdrn-regenerative-skincare.webp" },
+  { title: "Handmade Soaps (Melt & Pour)", image: "/categories/Handmade-Soaps.webp" },
+  { title: "Bath Amenities", image: "/categories/Bath-Amenities.webp" },
+  { title: "Baby & Mother Care", image: "/categories/mother-baby-care.webp" },
+  { title: "Oral & Dental Care", image: "/categories/Oral-Dental-Care.webp" },
+  { title: "Derma Care", image: "/categories/Derma-Care.webp" },
+  { title: "Depilatory Range", image: "/categories/depilation-range.webp" }
 ];
 
 export default function CategoriesPage() {

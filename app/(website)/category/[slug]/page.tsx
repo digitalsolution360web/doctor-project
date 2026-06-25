@@ -29,13 +29,13 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 1,
       title: "Aloe-Based Hair Cream Formulation",
-      image: "/cate6.webp",
+      image: "/categories/cate6.webp",
 
     },
     {
       id: 2,
       title: "Skin Hydrating Serum Manufacturer",
-      image: "/skin.webp",
+      image: "/categories/skin.webp",
       moq: "5000 Units",
       category: "Skin Care",
       features: "Hyaluronic Acid • Vitamin C"
@@ -43,7 +43,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 3,
       title: "Charcoal Face Wash Turnkey Solution",
-      image: "/cate10.webp",
+      image: "/categories/cate10.webp",
       moq: "2500 Units",
       category: "Face Care",
       features: "Deep Cleansing • Anti-Acne"
@@ -51,7 +51,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 4,
       title: "Organic Lip Balm Private Label",
-      image: "/lipp.webp",
+      image: "/categories/lipp.webp",
       moq: "10000 Units",
       category: "Lip Care",
       features: "Beeswax • Essential Oils"
@@ -59,7 +59,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 5,
       title: "Vitamin C Brightening Face Wash",
-      image: "/facemakup.webp",
+      image: "/categories/facemakup.webp",
       moq: "5000 Units",
       category: "Face Care",
       features: "Radiance • Gentle Formulation"
@@ -67,7 +67,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
     {
       id: 6,
       title: "Herbal Anti-Hairfall Oil",
-      image: "/cate.webp",
+      image: "/categories/cate.webp",
       moq: "3000 Units",
       category: "Ayurvedic",
       features: "Cold-Pressed • Traditional Recipe"

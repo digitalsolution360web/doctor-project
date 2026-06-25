@@ -32,86 +32,86 @@ const categories: Category[] = [
     title: "Skin Care",
     items: "Face Serums, Moisturizers, Cleansers",
     icon: Droplets,
-    img: "/skin_new.png"
+    img: "/categories/skin_new.png"
   },
   {
     title: "Hair Care",
     items: "Shampoos, Conditioners, Hair Oils",
     icon: Sparkles,
-    img: "/Hair Care.webp"
+    img: "/categories/Hair Care.webp"
   },
   {
     title: "Advance / Clinical Skin Care",
     items: "High-Performance Actives, Professional Treatments",
     icon: ShieldCheck,
-    img: "/skin-care.webp"
+    img: "/categories/skin-care.webp"
   },
   {
     title: "Sun Care",
     items: "SPF 50+ Lotions, Sunscreens, After-Sun Care",
     icon: Sun,
-    img: "/sun-care.webp"
+    img: "/categories/sun-care.webp"
   },
   {
     title: "Intimate Care Hygiene",
     items: "Gentle Washes, pH Balanced Formulations",
     icon: Heart,
-    img: "/Intimate-care-hygiene.webp"
+    img: "/categories/Intimate-care-hygiene.webp"
   },
   {
     title: "Men’s Care",
     items: "Beard Oils, Men's Grooming, Face Washes",
     icon: Users,
-    img: "/mens-care.webp"
+    img: "/categories/mens-care.webp"
   },
   {
     title: "PDRN & Advanced Cosmetic Formulations",
     items: "PDRN Serums, Regenerative Skincare, Anti-Aging Creams",
     icon: Users,
-    img: "/pdrn-regenerative-skincare.webp"
+    img: "/categories/pdrn-regenerative-skincare.webp"
   },
   {
     title: "Body Care",
     items: "Body Lotions, Body Wash, Scrubs",
     icon: Droplets,
-    img: "/body-care.webp"
+    img: "/categories/body-care.webp"
   },
 
   {
     title: "Handmade Soaps (Melt & Pour)",
     items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
     icon: Palette,
-    img: "/Handmade-Soaps.webp"
+    img: "/categories/Handmade-Soaps.webp"
   },
   {
     title: "Bath Amenities",
     items: "Shower Gels, Bath Salts, Amenities",
     icon: Zap,
-    img: "/Bath-Amenities.webp"
+    img: "/categories/Bath-Amenities.webp"
   },
   {
     title: "Baby & Mother Care",
     items: "Stretch Mark Creams, Gentle Baby Oils",
     icon: Sprout,
-    img: "/mother-baby-care.webp"
+    img: "/categories/mother-baby-care.webp"
   },
   {
     title: "Oral & Dental Care",
     items: "Total Oral Hygiene, Advanced Dental Solutions",
     icon: Smile,
-    img: "/Oral-Dental-Care.webp"
+    img: "/categories/Oral-Dental-Care.webp"
   },
   {
     title: "Derma Care",
     items: "Clinical Solutions, Targeted Skin Treatments",
     icon: ShieldCheck,
-    img: "/Derma-Care.webp"
+    img: "/categories/Derma-Care.webp"
   },
   {
     title: "Depilatory Range",
     items: "Hair Removal Creams, Waxing Solutions",
     icon: Zap,
-    img: "/depilation-range.webp"
+    img: "/categories/depilation-range.webp"
   }
 ];
 

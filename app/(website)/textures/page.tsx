@@ -69,7 +69,7 @@ export default function TexturesPage() {
       title: "Active Serums",
       subtitle: "High-Penetration Formats",
       desc: "Lightweight, water or oil-based formulations designed for deep skin penetration. Perfect for high-concentration active ingredients like Vitamin C, Niacinamide, and Hyaluronic Acid.",
-      image: "/9.webp",
+      image: "/categories/9.webp",
       specs: ["Water-based", "Oil-based", "Bi-phasic", "Silicone-free"],
       icon: Droplets
     },
@@ -78,7 +78,7 @@ export default function TexturesPage() {
       title: "Luxurious Creams",
       subtitle: "Emulsion Excellence",
       desc: "Rich, velvety emulsions that provide hydration and protection. We master the art of stable oil-in-water and water-in-oil emulsions for various skin types.",
-      image: "/2.webp",
+      image: "/categories/2.webp",
       specs: ["Day Creams", "Night Repairs", "Moisturizers", "Anti-aging"],
       icon: Layers
     },
@@ -87,7 +87,7 @@ export default function TexturesPage() {
       title: "Fluid Lotions",
       subtitle: "Daily Hydration",
       desc: "Lightweight fluid textures for daily body and face care. Formulated for quick absorption and long-lasting moisture without a greasy feel.",
-      image: "/10.webp",
+      image: "/categories/10.webp",
       specs: ["Body Lotions", "Face Milks", "Cleansing Lotions", "Sun Protection"],
       icon: Wind
     },
@@ -96,7 +96,7 @@ export default function TexturesPage() {
       title: "Soothing Gels",
       subtitle: "Cooling & Transparent",
       desc: "Crystal-clear gel formulations that provide an instant cooling effect. Ideal for aloe-based products, eye gels, and lightweight face treatments.",
-      image: "/6.webp",
+      image: "/categories/6.webp",
       specs: ["Face Gels", "Eye Gels", "Hair Gels", "Exfoliating Gels"],
       icon: Sparkles
     }

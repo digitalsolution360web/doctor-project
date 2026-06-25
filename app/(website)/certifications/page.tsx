@@ -134,7 +134,7 @@ export default function CertificationsPage() {
       <section className="relative min-h-[60vh] flex items-center overflow-hidden bg-slate-950 text-white">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/certification.webp"
+            src="/certificates/certification.webp"
             alt="Factory Infrastructure"
             fill
             sizes="100vw"
@@ -264,15 +264,15 @@ export default function CertificationsPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-10">
             {[
-              { title: "Sedex Certified", img: "/56953_MIDFLORA-HERBAL-LLP-SEDEX.webp" },
-              { title: "ISO 14001:2015", img: "/56953_MIDFLORA-HERBAL-LLP_14001.webp" },
-              { title: "ISO 22716 (GMP)", img: "/56953_MIDFLORA-HERBAL-LLP_22716-gmp.webp" },
-              { title: "Cruelty Free", img: "/56953_MIDFLORA-HERBAL-LLP_CRUELTY-FREE.webp" },
-              { title: "Organic Certified", img: "/56953_MIDFLORA-HERBAL-LLP_ORGANIC.webp" },
-              { title: "US FDA Registered", img: "/56953_MIDFLORA-HERBAL-LLP_US- FDA.webp" },
-              { title: "Kosher Certified", img: "/56953_MIDFLORA-HERBAL-LLP_updated _kosher.webp" },
-              { title: "Vegan Certified", img: "/56953_MIDFLORA-HERBAL-LLP_vegan.webp" },
-              { title: "Quality Management", img: "/56953_MIDFLORA-HERBAL-LLP_9001.webp" }
+              { title: "Sedex Certified", img: "/certificates/56953_MIDFLORA-HERBAL-LLP-SEDEX.webp" },
+              { title: "ISO 14001:2015", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_14001.webp" },
+              { title: "ISO 22716 (GMP)", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_22716-gmp.webp" },
+              { title: "Cruelty Free", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_CRUELTY-FREE.webp" },
+              { title: "Organic Certified", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_ORGANIC.webp" },
+              { title: "US FDA Registered", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_US- FDA.webp" },
+              { title: "Kosher Certified", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_updated _kosher.webp" },
+              { title: "Vegan Certified", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_vegan.webp" },
+              { title: "Quality Management", img: "/certificates/56953_MIDFLORA-HERBAL-LLP_9001.webp" }
 
 
             ].map((cert, i) => (
