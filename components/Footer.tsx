@@ -1,169 +1,197 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Phone, Mail, Clock, ChevronRight, Globe, Shield, Star, Award } from "lucide-react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa";
+import { MapPin, Phone, Mail, Clock, Shield, Globe, MessageSquare } from "lucide-react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import EnquiryPopup from "./EnquiryPopup";
 
 const Footer = () => {
+  const [showEnquiry, setShowEnquiry] = useState(false);
+
   return (
-    <footer className="bg-[#05080f] text-white pt-24 pb-12 relative overflow-hidden">
-      {/* Premium Gradient Overlays */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-teal-600/5 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/2"></div>
+    <>
+      {showEnquiry && <EnquiryPopup onClose={() => setShowEnquiry(false)} />}
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
-          {/* Brand & Mission */}
-          <div className="lg:col-span-4 space-y-10">
-            <Link href="/" className="inline-block group">
-              <div className="relative h-16 w-64 transition-all duration-700 transform group-hover:scale-105 bg-white p-4 rounded-2xl shadow-[0_20px_50px_-15px_rgba(20,184,166,0.3)]">
-                <Image
-                  src="/newlogo.webp"
-                  alt="Midflora Herbal"
-                  fill
-                  className="object-contain px-2"
-                  sizes="(max-width: 768px) 256px, 256px"
-                />
-              </div>
-            </Link>
-            <p className="text-slate-400 leading-relaxed text-lg font-medium max-w-sm">
-              India&apos;s trusted third-party cosmetic manufacturer. Crafting Safe &amp; Market-Ready Cosmetic Solutions.
-            </p>
-            <div className="flex items-center space-x-4">
-              {[
-                { icon: FaFacebook, href: "#", color: "hover:bg-[#1877F2]" },
-                { icon: FaInstagram, href: "#", color: "hover:bg-[#E4405F]" },
-                { icon: FaLinkedin, href: "#", color: "hover:bg-[#0A66C2]" },
-                { icon: FaTwitter, href: "#", color: "hover:bg-[#1DA1F2]" }
-              ].map((social, i) => (
-                <Link
-                  key={i}
-                  href={social.href}
-                  className={`w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ${social.color} hover:-translate-y-2 group shadow-2xl overflow-hidden relative`}
-                >
-                  <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <social.icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors relative z-10" />
-                </Link>
-              ))}
-            </div>
-          </div>
+      <footer className="bg-[#05080f] text-white pt-24 pb-12 relative overflow-hidden">
+        {/* Premium Gradient Overlays */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-teal-500/5 rounded-full blur-[150px] translate-x-1/3 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-teal-600/5 rounded-full blur-[120px] -translate-x-1/4 translate-y-1/2"></div>
 
-          {/* Corporate Links */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs font-black mb-12 tracking-[0.4em] text-teal-500 flex items-center">
-              <div className="w-2 h-2 rounded-full bg-teal-500 mr-4"></div>
-              Corporate
-            </h4>
-            <ul className="space-y-5">
-              {[
-                { name: "Home", href: "/" },
-                { name: "Manufacturing", href: "/services" },
-                { name: "Research Lab", href: "/lab" },
-                { name: "Infrastructure", href: "/infrastructure" },
-                { name: "Certifications", href: "/certifications" },
-                { name: "Blog", href: "/blog" },
-                // { name: "About Us", href: "/about" },
-                { name: "Contact Center", href: "/contact" }
-              ].map((link, i) => (
-                <li key={i}>
-                  <Link href={link.href} className="text-slate-200 hover:text-teal-400 transition-all flex items-center group text-sm font-bold tracking-[0.1em]">
-                    <span className="w-0 group-hover:w-5 h-px bg-teal-500 mr-0 group-hover:mr-3 transition-all duration-500"></span>
-                    {link.name}
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
+            {/* Brand & Mission */}
+            <div className="lg:col-span-4 space-y-8">
+              <Link href="/" className="inline-block group">
+                <div className="relative h-16 w-64 transition-all duration-700 transform group-hover:scale-105 bg-white p-4 rounded-2xl shadow-[0_20px_50px_-15px_rgba(20,184,166,0.3)]">
+                  <Image
+                    src="/newlogo.webp"
+                    alt="Midflora Herbal"
+                    fill
+                    className="object-contain px-2"
+                    sizes="(max-width: 768px) 256px, 256px"
+                  />
+                </div>
+              </Link>
+              <p className="text-slate-400 leading-relaxed text-lg font-medium max-w-sm">
+                India&apos;s trusted third-party cosmetic manufacturer. Crafting Safe &amp; Market-Ready Cosmetic Solutions.
+              </p>
+
+              {/* Enquiry Now Button */}
+              <button
+                onClick={() => setShowEnquiry(true)}
+                className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-2xl bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-white font-black text-sm tracking-widest transition-all duration-300 hover:shadow-[0_15px_40px_-10px_rgba(20,184,166,0.5)] hover:-translate-y-1 enquiry-pulse-btn"
+              >
+                <MessageSquare className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                ENQUIRY NOW
+              </button>
+
+              <div className="flex items-center space-x-4">
+                {[
+                  { icon: FaFacebook, href: "#", color: "hover:bg-[#1877F2]" },
+                  { icon: FaInstagram, href: "#", color: "hover:bg-[#E4405F]" },
+                  { icon: FaLinkedin, href: "#", color: "hover:bg-[#0A66C2]" },
+                  { icon: FaTwitter, href: "#", color: "hover:bg-[#1DA1F2]" }
+                ].map((social, i) => (
+                  <Link
+                    key={i}
+                    href={social.href}
+                    className={`w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center transition-all duration-500 ${social.color} hover:-translate-y-2 group shadow-2xl overflow-hidden relative`}
+                  >
+                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <social.icon className="w-5 h-5 text-slate-400 group-hover:text-white transition-colors relative z-10" />
                   </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Details */}
-          <div className="lg:col-span-5">
-            <h4 className="text-xs font-black mb-12 tracking-[0.4em] text-teal-500 flex items-center">
-              <div className="w-2 h-2 rounded-full bg-teal-500 mr-4"></div>
-              Global Headquarters
-            </h4>
-
-            <div className="space-y-8">
-              <div className="flex items-start space-x-5 group">
-                <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
-                  <MapPin className="w-5 h-5 text-teal-500 group-hover:text-white" />
-                </div>
-                <p className="text-slate-300 text-sm font-bold leading-relaxed">
-                  Plot No. 517, Udyog Kendra 2,<br />
-                  Ecotech III, Greater Noida,<br />
-                  Uttar Pradesh 201306
-                </p>
+                ))}
               </div>
-              <div className="flex items-start space-x-5 group">
-                <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
-                  <Phone className="w-5 h-5 text-teal-500 group-hover:text-white" />
+            </div>
+
+            {/* Corporate Links */}
+            <div className="lg:col-span-3">
+              <h4 className="text-xs font-black mb-12 tracking-[0.4em] text-teal-500 flex items-center">
+                <div className="w-2 h-2 rounded-full bg-teal-500 mr-4"></div>
+                Corporate
+              </h4>
+              <ul className="space-y-5">
+                {[
+                  { name: "Home", href: "/" },
+                  { name: "Manufacturing", href: "/services" },
+                  { name: "Research Lab", href: "/lab" },
+                  { name: "Infrastructure", href: "/infrastructure" },
+                  { name: "Certifications", href: "/certifications" },
+                  { name: "Blog", href: "/blog" },
+                ].map((link, i) => (
+                  <li key={i}>
+                    <Link
+                      href={link.href}
+                      className="text-slate-200 hover:text-teal-400 transition-all flex items-center group text-sm font-bold tracking-[0.1em]"
+                    >
+                      <span className="w-0 group-hover:w-5 h-px bg-teal-500 mr-0 group-hover:mr-3 transition-all duration-500"></span>
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Contact Details */}
+            <div className="lg:col-span-5">
+              <h4 className="text-xs font-black mb-12 tracking-[0.4em] text-teal-500 flex items-center">
+                <div className="w-2 h-2 rounded-full bg-teal-500 mr-4"></div>
+                Global Headquarters
+              </h4>
+
+              <div className="space-y-8">
+                <div className="flex items-start space-x-5 group">
+                  <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
+                    <MapPin className="w-5 h-5 text-teal-500 group-hover:text-white" />
+                  </div>
+                  <p className="text-slate-300 text-sm font-bold leading-relaxed">
+                    Plot No. 517, Udyog Kendra 2,<br />
+                    Ecotech III, Greater Noida,<br />
+                    Uttar Pradesh 201306
+                  </p>
                 </div>
-                <div className="space-y-1">
-                  <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-789528 0742</p>
-                  <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
-                  <div>
-                    <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">+91-81307 08357</p>
+                <div className="flex items-start space-x-5 group">
+                  <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
+                    <Phone className="w-5 h-5 text-teal-500 group-hover:text-white" />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">
+                      +91-789528 0742
+                    </p>
                     <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
+                    <div>
+                      <p className="text-teal-400 font-black text-xl tracking-tighter group-hover:text-teal-300 transition-colors">
+                        +91-81307 08357
+                      </p>
+                      <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">24/7 Priority Support</p>
+                    </div>
                   </div>
                 </div>
-
-              </div>
-              <div className="flex items-start space-x-5 group">
-                <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
-                  <Mail className="w-5 h-5 text-teal-500 group-hover:text-white" />
+                <div className="flex items-start space-x-5 group">
+                  <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
+                    <Mail className="w-5 h-5 text-teal-500 group-hover:text-white" />
+                  </div>
+                  <p className="text-slate-300 text-sm font-bold truncate">midfloraherbal@gmail.com</p>
                 </div>
-                <p className="text-slate-300 text-sm font-bold truncate">midfloraherbal@gmail.com</p>
-              </div>
-              <div className="flex items-start space-x-5 group">
-                <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
-                  <Clock className="w-5 h-5 text-teal-500 group-hover:text-white" />
-                </div>
-                <div>
-                  <p className="text-slate-300 text-sm font-bold">10:00 - 05:30</p>
-                  <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">Mon - Sat Working</p>
+                <div className="flex items-start space-x-5 group">
+                  <div className="mt-1 w-12 h-12 rounded-2xl bg-teal-500/10 flex items-center justify-center shrink-0 border border-teal-500/20 group-hover:bg-teal-500 transition-all duration-700">
+                    <Clock className="w-5 h-5 text-teal-500 group-hover:text-white" />
+                  </div>
+                  <div>
+                    <p className="text-slate-300 text-sm font-bold">10:00 - 05:30</p>
+                    <p className="text-slate-500 text-[10px] font-black tracking-widest mt-1">Mon - Sat Working</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-slate-500 text-[14px] font-black">
-          <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center space-x-3 group">
-              <Shield className="w-4 h-4 text-teal-500/40 group-hover:text-teal-500 transition-colors" />
-              <p>© {new Date().getFullYear()} Midflora Herbal. Premium Cosmetic Manufacturing.</p>
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-slate-500 text-[14px] font-black">
+            <div className="w-full flex flex-col md:flex-row items-center justify-between gap-4">
+              <div className="flex items-center space-x-3 group">
+                <Shield className="w-4 h-4 text-teal-500/40 group-hover:text-teal-500 transition-colors" />
+                <p>© {new Date().getFullYear()} Midflora Herbal. Premium Cosmetic Manufacturing.</p>
+              </div>
+              <div className="flex items-center space-x-8">
+                <Link href="#" className="hover:text-teal-400 transition-colors">Privacy Policy</Link>
+                <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+              </div>
             </div>
-            <div className="flex items-center space-x-8">
-              <Link href="#" className="hover:text-teal-400 transition-colors">Privacy Policy</Link>
-              <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-            </div>
-          </div>
 
-          {/* Designed By */}
-          <a
-            href="https://www.digitalsolution360.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.03] hover:bg-teal-500/10 hover:border-teal-500/30 transition-all duration-500"
-          >
-            <span className="text-slate-600 text-[10px] tracking-[0.2em] font-bold">DESIGNED &amp; DEVELOPED BY</span>
-            <span className="relative">
-              <span className="text-teal-400 font-black text-[11px] tracking-wider group-hover:text-teal-300 transition-colors">
-                Digital Solution 360
+            {/* Designed By */}
+            <a
+              href="https://www.digitalsolution360.in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/5 bg-white/[0.03] hover:bg-teal-500/10 hover:border-teal-500/30 transition-all duration-500"
+            >
+              <span className="text-slate-600 text-[10px] tracking-[0.2em] font-bold">DESIGNED &amp; DEVELOPED BY</span>
+              <span className="relative">
+                <span className="text-teal-400 font-black text-[11px] tracking-wider group-hover:text-teal-300 transition-colors">
+                  Digital Solution 360
+                </span>
+                <span className="absolute -bottom-0.5 left-0 w-0 group-hover:w-full h-px bg-teal-400/50 transition-all duration-500"></span>
               </span>
-              <span className="absolute -bottom-0.5 left-0 w-0 group-hover:w-full h-px bg-teal-400/50 transition-all duration-500"></span>
-            </span>
-            <Globe className="w-3 h-3 text-teal-500/50 group-hover:text-teal-400 transition-colors" />
-          </a>
+              <Globe className="w-3 h-3 text-teal-500/50 group-hover:text-teal-400 transition-colors" />
+            </a>
+          </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+
+      <style jsx global>{`
+        .enquiry-pulse-btn {
+          animation: enquiryPulse 3s ease-in-out infinite;
+        }
+        @keyframes enquiryPulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(20, 184, 166, 0.4); }
+          50% { box-shadow: 0 0 0 12px rgba(20, 184, 166, 0); }
+        }
+      `}</style>
+    </>
   );
 };
 
 export default Footer;
-
-
-
