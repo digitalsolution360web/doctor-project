@@ -20,100 +20,107 @@ import {
   Zap
 } from "lucide-react";
 
+const url = process.env.NEXT_PUBLIC_API_URL || "https://www.midfloraherbal.com/api";
+
 interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  image: string;
   title: string;
   items: string;
   icon: any;
   img: string;
 }
 
-const categories: Category[] = [
-  {
-    title: "Skin Care",
-    items: "Face Serums, Moisturizers, Cleansers",
-    icon: Droplets,
-    img: "/categories/skin_new.png"
-  },
-  {
-    title: "Hair Care",
-    items: "Shampoos, Conditioners, Hair Oils",
-    icon: Sparkles,
-    img: "/categories/Hair Care.webp"
-  },
-  {
-    title: "Advance / Clinical Skin Care",
-    items: "High-Performance Actives, Professional Treatments",
-    icon: ShieldCheck,
-    img: "/categories/skin-care.webp"
-  },
-  {
-    title: "Sun Care",
-    items: "SPF 50+ Lotions, Sunscreens, After-Sun Care",
-    icon: Sun,
-    img: "/categories/sun-care.webp"
-  },
-  {
-    title: "Intimate Care Hygiene",
-    items: "Gentle Washes, pH Balanced Formulations",
-    icon: Heart,
-    img: "/categories/Intimate-care-hygiene.webp"
-  },
-  {
-    title: "Men’s Care",
-    items: "Beard Oils, Men's Grooming, Face Washes",
-    icon: Users,
-    img: "/categories/mens-care.webp"
-  },
-  {
-    title: "PDRN & Advanced Cosmetic Formulations",
-    items: "PDRN Serums, Regenerative Skincare, Anti-Aging Creams",
-    icon: Users,
-    img: "/categories/pdrn-regenerative-skincare.webp"
-  },
-  {
-    title: "Body Care",
-    items: "Body Lotions, Body Wash, Scrubs",
-    icon: Droplets,
-    img: "/categories/body-care.webp"
-  },
 
-  {
-    title: "Handmade Soaps (Melt & Pour)",
-    items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
-    icon: Palette,
-    img: "/categories/Handmade-Soaps.webp"
-  },
-  {
-    title: "Bath Amenities",
-    items: "Shower Gels, Bath Salts, Amenities",
-    icon: Zap,
-    img: "/categories/Bath-Amenities.webp"
-  },
-  {
-    title: "Baby & Mother Care",
-    items: "Stretch Mark Creams, Gentle Baby Oils",
-    icon: Sprout,
-    img: "/categories/mother-baby-care.webp"
-  },
-  {
-    title: "Oral & Dental Care",
-    items: "Total Oral Hygiene, Advanced Dental Solutions",
-    icon: Smile,
-    img: "/categories/Oral-Dental-Care.webp"
-  },
-  {
-    title: "Derma Care",
-    items: "Clinical Solutions, Targeted Skin Treatments",
-    icon: ShieldCheck,
-    img: "/categories/Derma-Care.webp"
-  },
-  {
-    title: "Depilatory Range",
-    items: "Hair Removal Creams, Waxing Solutions",
-    icon: Zap,
-    img: "/categories/depilation-range.webp"
-  }
-];
+// const categories: Category[] = [
+//   {
+//     title: "Skin Care",
+//     items: "Face Serums, Moisturizers, Cleansers",
+//     icon: Droplets,
+//     img: "/categories/skin_new.png"
+//   },
+//   {
+//     title: "Hair Care",
+//     items: "Shampoos, Conditioners, Hair Oils",
+//     icon: Sparkles,
+//     img: "/categories/Hair Care.webp"
+//   },
+//   {
+//     title: "Advance / Clinical Skin Care",
+//     items: "High-Performance Actives, Professional Treatments",
+//     icon: ShieldCheck,
+//     img: "/categories/skin-care.webp"
+//   },
+//   {
+//     title: "Sun Care",
+//     items: "SPF 50+ Lotions, Sunscreens, After-Sun Care",
+//     icon: Sun,
+//     img: "/categories/sun-care.webp"
+//   },
+//   {
+//     title: "Intimate Care Hygiene",
+//     items: "Gentle Washes, pH Balanced Formulations",
+//     icon: Heart,
+//     img: "/categories/Intimate-care-hygiene.webp"
+//   },
+//   {
+//     title: "Men’s Care",
+//     items: "Beard Oils, Men's Grooming, Face Washes",
+//     icon: Users,
+//     img: "/categories/mens-care.webp"
+//   },
+//   {
+//     title: "PDRN & Advanced Cosmetic Formulations",
+//     items: "PDRN Serums, Regenerative Skincare, Anti-Aging Creams",
+//     icon: Users,
+//     img: "/categories/pdrn-regenerative-skincare.webp"
+//   },
+//   {
+//     title: "Body Care",
+//     items: "Body Lotions, Body Wash, Scrubs",
+//     icon: Droplets,
+//     img: "/categories/body-care.webp"
+//   },
+
+//   {
+//     title: "Handmade Soaps (Melt & Pour)",
+//     items: "Artisan Soaps, Glycerin Bars, Natural Soaps",
+//     icon: Palette,
+//     img: "/categories/Handmade-Soaps.webp"
+//   },
+//   {
+//     title: "Bath Amenities",
+//     items: "Shower Gels, Bath Salts, Amenities",
+//     icon: Zap,
+//     img: "/categories/Bath-Amenities.webp"
+//   },
+//   {
+//     title: "Baby & Mother Care",
+//     items: "Stretch Mark Creams, Gentle Baby Oils",
+//     icon: Sprout,
+//     img: "/categories/mother-baby-care.webp"
+//   },
+//   {
+//     title: "Oral & Dental Care",
+//     items: "Total Oral Hygiene, Advanced Dental Solutions",
+//     icon: Smile,
+//     img: "/categories/Oral-Dental-Care.webp"
+//   },
+//   {
+//     title: "Derma Care",
+//     items: "Clinical Solutions, Targeted Skin Treatments",
+//     icon: ShieldCheck,
+//     img: "/categories/Derma-Care.webp"
+//   },
+//   {
+//     title: "Depilatory Range",
+//     items: "Hair Removal Creams, Waxing Solutions",
+//     icon: Zap,
+//     img: "/categories/depilation-range.webp"
+//   }
+// ];
 
 const CategorySection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -168,7 +175,16 @@ const CategorySection = () => {
       });
     }
   };
+  const [categories, setCategories] = useState<Category[]>([]);
+   useEffect(() => {
+    async function load() {
+      const res = await fetch(`${url}/frontend/categories`);
+      const data = await res.json();
+      setCategories(data.data);
+    }
 
+    load();
+  }, []);
   return (
     <section id="categories" className="py-8 lg:py-16 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -193,34 +209,33 @@ const CategorySection = () => {
             >
               {/* Image Container (Top) */}
               <div className="relative h-[240px] md:h-[280px] overflow-hidden">
-                <Image
-                  src={cat.img}
-                  alt={cat.title}
-                  fill
+                <img
+                  src={cat.image}
+                  alt={cat.name}
                   sizes="(max-width: 768px) 100vw, 400px"
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-700"></div>
 
                 {/* Category Icon Overlay */}
-                <div className="absolute top-6 left-6">
+                {/* <div className="absolute top-6 left-6">
                   <div className="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white">
                     <cat.icon className="w-5 h-5" />
                   </div>
-                </div>
+                </div> */}
               </div>
 
               {/* Category Details */}
               <div className="p-5 flex flex-col flex-grow">
                 <h4 className="text-xl font-bold text-slate-900 mb-2 tracking-tight group-hover:text-teal-600 transition-colors uppercase leading-tight min-h-[3.25rem] flex items-center">
-                  {cat.title}
+                  {cat.name}
                 </h4>
-                <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.15em] mb-4 opacity-80 leading-snug min-h-[2.5rem]">
+                {/* <p className="text-slate-500 text-[10px] font-bold uppercase tracking-[0.15em] mb-4 opacity-80 leading-snug min-h-[2.5rem]">
                   {cat.items}
-                </p>
+                </p> */}
 
                 <Link
-                  href={`/category/${cat.title.toLowerCase().replace(/\s+/g, '-')}`}
+                  href={`/category/${cat.slug}`}
                   className="mt-auto w-full py-4 bg-slate-950 text-white rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center group-hover:bg-teal-600 transition-all shadow-lg"
                 >
                   Explore Range
