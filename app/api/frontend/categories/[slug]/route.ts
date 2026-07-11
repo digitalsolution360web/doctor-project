@@ -45,7 +45,6 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ slug
     }
 
     const category = categoryRows[0];
-    console.log(category);
 
     // Get products
     const [productRows]: any = await pool.query(

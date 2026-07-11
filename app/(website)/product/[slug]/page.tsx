@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -19,154 +19,218 @@ import {
 } from "lucide-react";
 import QuotePopup from "@/components/QuotePopup";
 
+interface Product {
+  id: number;
+  category_id: number;
+  name: string;
+  h1_title: string | null;
+  slug: string;
+  image: string;
+  moq: string;
+  packaging_size: string;
+  packaging_type: string;
+  customized_formulations: string;
+  private_labeling: string;
+  turnkey_solutions: string;
+  benefits: string;
+  description: string;
+  ingredients: string | null;
+  meta_title: string;
+  meta_description: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+interface StaticProduct {
+  ingredients: ProductIngredient[];
+}
+interface RelatedProduct {
+  name: string;
+  image: string | null;
+  slug: string;
+}
+
+interface ProductResponse {
+  product: Product;
+  relatedProducts: RelatedProduct[];
+}
 interface ProductIngredient {
   name: string;
   img: string;
 }
 
-interface ProductSpec {
-  label: string;
-  value: string;
-}
+// Map API data to component structure
+const mapProductData = (data: ProductResponse) => {
+  const { product, relatedProducts } = data;
+  
+  // Parse description HTML and extract text content
+  const descriptionText = product.description ? product.description.replace(/<[^>]*>/g, '') : '';
+  
+  // Build specs from product data
+  const specs = [
+    { label: "MOQ", value: product.moq || "N/A" },
+    { label: "Packaging Size", value: product.packaging_size || "N/A" },
+    { label: "Packaging Type", value: product.packaging_type || "N/A" },
+  ];
 
-interface RelatedProduct {
-  title: string;
-  category: string;
-  img: string;
-}
+  // Add services if available
+  if (product.customized_formulations === "1") {
+    specs.push({ label: "Customized Formulations", value: "Available" });
+  }
+  if (product.private_labeling === "1") {
+    specs.push({ label: "Private Labeling", value: "Available" });
+  }
+  if (product.turnkey_solutions === "1") {
+    specs.push({ label: "Turnkey Solutions", value: "Available" });
+  }
+  specs.push({label:"Benefits", value:product.benefits || "N/A"});
 
-interface Product {
-  title: string;
-  category?: string;
-  mainImage: string;
-  specs: ProductSpec[];
-  detailedDescription: string;
-  extraInfo: string;
-  callToAction: string;
-  ingredients: ProductIngredient[];
-  relatedProducts: RelatedProduct[];
-}
+  return {
+    name: product.name,
+    h1_title: product.h1_title || product.name,
+    image: product.image || '/placeholder.png',
+    moq: product.moq,
+    packaging_size: product.packaging_size,
+    packaging_type: product.packaging_type,
+    customized_formulations: product.customized_formulations,
+    private_labeling: product.private_labeling,
+    turnkey_solutions: product.turnkey_solutions,
+    benefits:product.benefits,
+    description: product.description,
+    descriptionText: descriptionText,
+    specs: specs,
+    meta_title: product.meta_title,
+    meta_description: product.meta_description,
+    ingredients: product.ingredients ? product.ingredients.split(',').map(i => i.trim()) : [],
+    relatedProducts: relatedProducts || [],
+    // For UI display
+    title: product.name,
+    detailedDescription: descriptionText || `Experience premium quality with our ${product.name}.`,
+    extraInfo: `Our ${product.name} is manufactured under strict quality control standards, ensuring consistent performance and safety for your customers.`,
+    callToAction: `Partner with us to bring your brand vision to life with our premium ${product.name}.`,
+    // Convert related products to the format expected by the UI
+    relatedProductsForUI: (relatedProducts || []).map((rp: RelatedProduct) => ({
+      title: rp.name,
+      img: rp.image || '/placeholder.png',
+      slug: rp.slug
+    }))
+  };
+};
 
-const allProducts: Record<string, Product> = {
+const allProducts: Record<string, StaticProduct> = {
   "aloe-based-hair-cream-formulation": {
-    title: "Aloe-Based Hair Cream Third-Party Manufacturer",
-    category: "Hair Care",
-    mainImage: "/categories/cate6.webp",
-    specs: [
-      { label: "MOQ", value: "3000 Units" },
-      { label: "Packaging Size", value: "As per brand recommendation" },
-      { label: "Packaging Type", value: "Jar or Tube" },
-      { label: "Customized Formulations", value: "Available" },
-      { label: "Private Labeling", value: "Available" },
-      { label: "Turnkey Solutions", value: "Available" },
-      { label: "Benefits", value: "Hydrates deeply, tames frizz, improves hair texture" },
-    ],
-    detailedDescription: "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.",
-    extraInfo: "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.",
-    callToAction: "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.",
     ingredients: [
       { name: "Aloe Vera Extract", img: "/categories/cate2.webp" },
       { name: "Coconut Oil", img: "/categories/cate10.webp" },
       { name: "Shea Butter", img: "/categories/cate12.webp" },
-    ],
-    relatedProducts: [
-      { title: "Hair Tonic Manufacturer", category: "Hair Care", img: "/categories/cate1.webp" },
-      { title: "Anti-Greying Oil Manufacturer", category: "Personal Care", img: "/categories/cate8.webp" },
-      { title: "Hair Growth Oil Manufacturer", category: "Natural Oils", img: "/categories/cate.webp" }
     ]
   },
   "organic-lip-balm-private-label": {
-    title: "Organic Lip Balm Private Label",
-    category: "Lip Care",
-    mainImage: "/categories/lipp.webp",
-    specs: [
-      { label: "MOQ", value: "10000 Units" },
-      { label: "Packaging Size", value: "10g, 15g, 20g" },
-      { label: "Packaging Type", value: "Tube or Tin" },
-      { label: "Customized Formulations", value: "Available" },
-      { label: "Private Labeling", value: "Available" },
-      { label: "Turnkey Solutions", value: "Available" },
-      { label: "Benefits", value: "Moisturizes, heals cracked lips, long-lasting protection" },
-    ],
-    detailedDescription: "Our Organic Lip Balm is formulated with the finest natural ingredients to provide intense hydration and protection. Perfect for brands looking to offer a high-quality, eco-friendly lip care solution.",
-    extraInfo: "We use pure beeswax, essential oils, and organic butters to ensure a premium feel and effective results.",
-    callToAction: "Launch your own organic lip balm line today. Contact us for private labeling options.",
     ingredients: [
       { name: "Beeswax", img: "/categories/cate13.webp" },
       { name: "Essential Oils", img: "/categories/cate11.webp" },
       { name: "Cocoa Butter", img: "/categories/cate12.webp" },
-    ],
-    relatedProducts: [
-      { title: "Lip Scrub Manufacturer", category: "Lip Care", img: "/categories/cate11.webp" },
-      { title: "Lip Mask Manufacturer", category: "Lip Care", img: "/categories/cate13.webp" },
-      { title: "Tinted Lip Balm", category: "Lip Care", img: "/categories/cate12.webp" }
     ]
   },
   "skin-hydrating-serum-manufacturer": {
-    title: "Skin Hydrating Serum Manufacturer",
-    category: "Skin Care",
-    mainImage: "/categories/skin.webp",
-    specs: [
-      { label: "MOQ", value: "5000 Units" },
-      { label: "Packaging Size", value: "30ml, 50ml" },
-      { label: "Packaging Type", value: "Dropper Bottle" },
-      { label: "Customized Formulations", value: "Available" },
-      { label: "Private Labeling", value: "Available" },
-      { label: "Turnkey Solutions", value: "Available" },
-      { label: "Benefits", value: "Deep hydration, brightens skin, reduces fine lines" },
-    ],
-    detailedDescription: "This high-performance serum is designed to penetrate deep into the skin layers, providing instant hydration and a youthful glow. It's a must-have for any premium skincare brand.",
-    extraInfo: "Infused with Hyaluronic Acid and Vitamin C, this formula is highly stable and effective.",
-    callToAction: "Partner with us to manufacture your brand's signature hydrating serum.",
     ingredients: [
       { name: "Hyaluronic Acid", img: "/categories/cate9.webp" },
       { name: "Vitamin C", img: "/categories/cate8.webp" },
       { name: "Green Tea Extract", img: "/categories/cate7.webp" },
-    ],
-    relatedProducts: [
-      { title: "Vitamin C Face Wash", category: "Skin Care", img: "/categories/cate3.webp" },
-      { title: "Moisturizing Cream", category: "Skin Care", img: "/categories/cate5.webp" },
-      { title: "Sunscreen SPF 50", category: "Skin Care", img: "/categories/9.webp" }
     ]
   },
   "vitamin-c-brightening-face-wash": {
-    title: "Vitamin C Brightening Face Wash",
-    mainImage: "/categories/skin.webp",
-    specs: [
-      { label: "MOQ", value: "5000 Units" },
-      { label: "Packaging Size", value: "100ml, 150ml" },
-      { label: "Packaging Type", value: "Tube" },
-      { label: "Benefits", value: "Radiance, Deep Cleansing" }
-    ],
-    detailedDescription: "Brighten your skin with our Vitamin C Face Wash.",
-    extraInfo: "Gentle yet effective.",
-    callToAction: "Contact us for manufacturing.",
-    ingredients: [{ name: "Vitamin C", img: "/categories/cate8.webp" }],
-    relatedProducts: []
+   
+    ingredients: [{ name: "Vitamin C", img: "/categories/cate8.webp" }]
+   
   },
   "herbal-anti-hairfall-oil": {
-    title: "Herbal Anti-Hairfall Oil",
-    mainImage: "/categories/cate.webp",
-    specs: [
-      { label: "MOQ", value: "3000 Units" },
-      { label: "Packaging Size", value: "100ml, 200ml" },
-      { label: "Packaging Type", value: "Bottle" },
-      { label: "Benefits", value: "Reduces hair fall, strengthens roots" }
-    ],
-    detailedDescription: "Effective herbal oil for hair fall control.",
-    extraInfo: "Traditional Ayurvedic recipe.",
-    callToAction: "Start your hair care line today.",
-    ingredients: [{ name: "Herbal Extracts", img: "/categories/cate.webp" }],
-    relatedProducts: []
+    ingredients: [{ name: "Herbal Extracts", img: "/categories/cate.webp" }]
   }
 };
+
+const detailedDescription = "Experience the gentle yet effective power of Aloe Vera with Midflora Herbal's Aloe-Based Hair Cream. Designed to offer daily hydration and softness, this cream nourishes both scalp and strands while smoothing away dryness and dullness. Ideal for brands focused on natural haircare solutions, it's infused with Aloe Vera Extract, Coconut Oil, Shea Butter, and Pro-Vitamin B5—all working in harmony to leave the hair glossy, frizz-free, and more manageable.";
+
+const callToAction = "Want to launch a nourishing, aloe-powered hair cream under your brand? Partner with Midflora Herbal and let's co-create a high-performance formula that your customers will love—naturally.";
+
+const extraInfo =  "Its lightweight yet rich texture makes it suitable for leave-in conditioning, styling prep, or overnight hydration, especially for customers looking for chemical-free daily hair nourishment. The formula can be fully tailored to your vision—whether you want to add biotin, keratin, coconut milk, or build a curly-hair or Ayurvedic variant.";
 
 export default function ProductDetails() {
   const params = useParams();
   const slug = typeof params?.slug === "string" ? params.slug : "";
   const [isQuotePopupOpen, setIsQuotePopupOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [productData, setProductData] = useState<any | null>(null);
+  const staticproduct: StaticProduct = allProducts[slug] || allProducts["aloe-based-hair-cream-formulation"];
 
-  const product: Product = allProducts[slug] || allProducts["aloe-based-hair-cream-formulation"];
+  useEffect(() => {
+    fetchProductData();
+  }, [slug]);
+
+  const fetchProductData = async () => {
+    setLoading(true);
+    setError(false);
+
+    try {
+      const res = await fetch(`/api/frontend/products/${slug}`);
+      
+      if (!res.ok) {
+        throw new Error('Failed to fetch product data');
+      }
+
+      const result = await res.json();
+      
+      if (result.success && result.data) {
+        const mappedData = mapProductData(result.data);
+        setProductData(mappedData);
+      } else {
+        throw new Error('Invalid product data');
+      }
+      
+    } catch (err) {
+      console.error(err);
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="bg-white min-h-screen pt-32">
+        <div className="container mx-auto px-4 md:px-8 py-20">
+          <div className="text-center">
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-teal-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+            <p className="mt-4 text-slate-500">Loading product details...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error || !productData) {
+    return (
+      <div className="bg-white min-h-screen pt-32">
+        <div className="container mx-auto px-4 md:px-8 py-20">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Product Not Found</h2>
+            <p className="text-slate-500">The product you're looking for doesn't exist or has been removed.</p>
+            <Link 
+              href="/category/all-products"
+              className="inline-block mt-6 px-6 py-3 bg-teal-600 text-white rounded-xl hover:bg-teal-700 transition-colors font-bold"
+            >
+              View All Products
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const product = productData;
 
   return (
     <div className="bg-white min-h-screen pt-32 pb-0">
@@ -178,12 +242,10 @@ export default function ProductDetails() {
           {/* Left: Product Image */}
           <div className="lg:col-span-5">
             <div className="relative aspect-square overflow-hidden">
-              <Image
-                src={product.mainImage}
-                alt={product.title}
-                fill
-                className="object-cover rounded-[1.5rem]"
-                priority
+              <img
+                src={product.image}
+                alt={product.name}
+                className="object-cover rounded-[1.5rem] w-full h-full"
               />
             </div>
           </div>
@@ -193,7 +255,7 @@ export default function ProductDetails() {
             {/* Title + CTA */}
             <div className="flex flex-col gap-5">
               <h1 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">
-                {product.title}
+                {product.h1_title}
               </h1>
               
               <div className="flex">
@@ -208,7 +270,7 @@ export default function ProductDetails() {
 
             {/* Product Specifications List */}
             <div className="flex flex-col mt-4 border-t border-slate-200">
-              {product?.specs?.map((spec: ProductSpec, i: number) => (
+              {product.specs.map((spec: any, i: number) => (
                 <div key={i} className="grid grid-cols-[160px_1fr] md:grid-cols-[220px_1fr] py-3 border-b border-slate-200 items-start">
                   <span className="font-bold text-slate-900 text-[14px] md:text-[15px]">{spec.label}</span>
                   <span className="text-slate-800 text-[14px] md:text-[15px] font-medium flex gap-2">
@@ -227,7 +289,6 @@ export default function ProductDetails() {
       <div className="container mx-auto px-4 md:px-8">
         <hr className="border-gray-100" />
       </div>
-
       {/* Product Details & Turnkey Solution Section */}
       <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-4 md:px-8">
@@ -242,11 +303,11 @@ export default function ProductDetails() {
               
               <div className="space-y-6 text-[15px] md:text-[16px] leading-[1.8] text-gray-600 font-medium">
                 <p className="bg-slate-50 p-6 rounded-2xl border-l-4 border-teal-600/30">
-                  {product.detailedDescription}
+                  {detailedDescription}
                 </p>
-                <p>{product.extraInfo}</p>
+                <p>{extraInfo}</p>
                 <p className="text-teal-700 font-bold italic border-t border-teal-50 pt-4">
-                  {product.callToAction}
+                  {callToAction}
                 </p>
               </div>
             </div>
@@ -276,13 +337,14 @@ export default function ProductDetails() {
           </div>
         </div>
       </section>
+{/* <div dangerouslySetInnerHTML={{ __html: product.description }} /> */}
 
       {/* Divider */}
       <div className="container mx-auto px-4 md:px-8">
         <hr className="border-gray-100" />
       </div>
 
-      {/* Key Ingredients Slider - Full Width Marquee */}
+        {/* Key Ingredients Slider - Full Width Marquee */}
       <section className="py-6 md:py-10 bg-slate-50 overflow-hidden relative w-full">
         <div className="container mx-auto px-4 md:px-8 mb-6 md:mb-10">
           <div className="max-w-3xl mx-auto text-center">
@@ -300,7 +362,7 @@ export default function ProductDetails() {
         <div className="relative w-full overflow-hidden">
           {/* Marquee Wrapper */}
           <div className="flex gap-6 md:gap-8 animate-marquee whitespace-nowrap hover:[animation-play-state:paused] w-max">
-            {[...product.ingredients, ...product.ingredients, ...product.ingredients, ...product.ingredients].map((ing: ProductIngredient, i: number) => (
+            {[...staticproduct.ingredients, ...staticproduct.ingredients, ...staticproduct.ingredients, ...staticproduct.ingredients].map((ing: ProductIngredient, i: number) => (
               <div key={i} className="flex-none w-[260px] md:w-[350px] flex flex-col gap-4 group/item">
                 <div className="relative aspect-square rounded-[20px] overflow-hidden bg-white border border-slate-100 shadow-xl group-hover/item:shadow-teal-600/20 transition-all duration-500">
                   <Image
@@ -352,33 +414,33 @@ export default function ProductDetails() {
       </div>
 
       {/* Related Products */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="ml-70 mb-12">
+      {product.relatedProductsForUI && product.relatedProductsForUI.length > 0 && (
+        <section className="py-16 bg-white">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="ml-70 mb-12">
             <p className="text-[10px] font-black tracking-widest uppercase text-teal-600 mb-2">Recommended For You</p>
             <h2 className="text-2xl md:text-3xl font-black text-gray-900 tracking-tight">Related Products</h2>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-8 md:gap-10">
-            {product?.relatedProducts?.map((p: RelatedProduct, i: number) => (
-              <div key={i} className="group cursor-pointer flex flex-col items-center w-full sm:w-[280px]">
-                <div className="relative aspect-square w-full bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden mb-5 group-hover:border-teal-400 group-hover:shadow-xl transition-all duration-500">
-                  <Image
-                    src={p.img}
-                    alt={p.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                </div>
-                <h4 className="text-sm md:text-base font-black text-slate-900 text-center group-hover:text-teal-600 transition-colors duration-300 px-2">
-                  {p.title}
-                </h4>
-                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mt-2">{p.category}</span>
-              </div>
-            ))}
+            <div className="flex flex-wrap justify-center gap-8 md:gap-10">
+              {product.relatedProductsForUI.map((p: any, i: number) => (
+                <Link href={`/product/${p.slug}`} key={i} className="group cursor-pointer flex flex-col items-center w-full sm:w-[280px]">
+                  <div className="relative aspect-square w-full bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden mb-5 group-hover:border-teal-400 group-hover:shadow-xl transition-all duration-500">
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+                  <h4 className="text-sm md:text-base font-black text-slate-900 text-center group-hover:text-teal-600 transition-colors duration-300 px-2">
+                    {p.title}
+                  </h4>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Divider */}
       <div className="container mx-auto px-4 md:px-8">
@@ -387,7 +449,6 @@ export default function ProductDetails() {
 
       {/* Enquiry Form Section - With Background */}
       <section className="py-16 md:py-24 relative overflow-hidden">
-        {/* Background Image with Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/categories/ayurvedic.webp"
