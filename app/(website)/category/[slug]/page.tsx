@@ -74,12 +74,12 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
       // Build sidebar categories with counts
       if (result.data.allCategories) {
         // Add "All Products" option with total count
-        const allProducts = {
-          id: 0,
-          name: "All Products",
-          slug: "all-products",
-          product_count: result.data.total,
-        };
+        // const allProducts = {
+        //   id: 0,
+        //   name: "All Products",
+        //   slug: "all-products",
+        //   product_count: result.data.total,
+        // };
         
         // Format categories with active state
         const categoriesWithActive = result.data.allCategories.map((cat: Category) => ({
@@ -87,7 +87,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
           active: cat.slug === slug
         }));
         
-        setSidebarCategories([allProducts, ...categoriesWithActive]);
+        setSidebarCategories([...categoriesWithActive]);
       }
     } catch (err) {
       console.error(err);
@@ -195,7 +195,7 @@ export default function CategoryFilterPage({ params }: { params: Promise<{ slug:
               <ul className="p-3 space-y-1">
                 {sidebarCategories.map((cat) => {
                   // Determine if this category is active
-                  const isActive = cat.slug === slug || (cat.slug === "all-products" && slug === "all-products");
+                  const isActive = cat.slug === slug;
                   
                   return (
                     <li key={cat.id}>
