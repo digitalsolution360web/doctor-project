@@ -46,6 +46,26 @@ const navItems = [
       </svg>
     ),
   },
+  // INGREDIENTS
+{
+  href: '/admin/ingredients',
+  label: 'Ingredients',
+  icon: (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 21c6-1 12-7 14-14-7 2-13 8-14 14z" />
+      <path d="M9 15c1.5-1.5 3.5-3.5 7-7" />
+    </svg>
+  ),
+},
   {
   href: '/admin/enquiries',
   label: 'Enquiries',

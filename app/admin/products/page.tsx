@@ -1081,8 +1081,8 @@ const [htmlContent, setHtmlContent] = useState('');
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                      maxLength={60}
-                      placeholder="SEO title (60 chars max)"
+                      
+                      placeholder="SEO title"
                     />
                   </div>
 
@@ -1101,8 +1101,8 @@ const [htmlContent, setHtmlContent] = useState('');
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
-                      maxLength={160}
-                      placeholder="SEO description (160 chars max)"
+                      
+                      placeholder="SEO description"
                     />
                   </div>
                   {/* STATUS */}

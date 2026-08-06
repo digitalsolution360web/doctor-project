@@ -2,57 +2,51 @@
 
 import { useEffect, useState } from 'react';
 
-interface Category {
+interface Ingredient {
   id: number;
   name: string;
-  slug: string;
   image: string | null;
-  paragraph: string | null;
-  meta_title: string | null;
-  meta_description: string | null;
-  status: 'active' | 'inactive';
+  heading: string | null;
+  alt: string | null;
   created_at: string;
   updated_at?: string;
 }
 
-export default function CategoriesPage() {
-  const [categories, setCategories] = useState<Category[]>([]);
+export default function IngredientsPage() {
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+  const [editingIngredient, setEditingIngredient] = useState<Ingredient | null>(null);
 
   const [formData, setFormData] = useState({
     name: '',
-    slug: '',
     image: '',
-    paragraph: '',
-    meta_title: '',
-    meta_description: '',
-    status: 'active' as 'active' | 'inactive',
+    heading: '',
+    alt: '',
   });
 
   const limit = 10;
   const totalPages = Math.ceil(total / limit);
 
   useEffect(() => {
-    fetchCategories();
+    fetchIngredients();
   }, [page, search]);
 
-  const fetchCategories = async () => {
+  const fetchIngredients = async () => {
     setLoading(true);
 
     try {
       const res = await fetch(
-        `/api/categories?page=${page}&limit=${limit}&search=${search}`
+        `/api/ingredients?page=${page}&limit=${limit}&search=${search}`
       );
 
       const data = await res.json();
 
-      setCategories(data.data || []);
+      setIngredients(data.data || []);
       setTotal(data.total || 0);
       setError(false);
     } catch (err) {
@@ -63,63 +57,45 @@ export default function CategoriesPage() {
     }
   };
 
-  const openModal = async (category?: Category) => {
-    if (!category) {
-      setEditingCategory(null);
+  const openModal = (ingredient?: Ingredient) => {
+    if (ingredient) {
+      setEditingIngredient(ingredient);
+      setFormData({
+        name: ingredient.name,
+        image: ingredient.image || '',
+        heading: ingredient.heading || '',
+        alt: ingredient.alt || '',
+      });
+    } else {
+      setEditingIngredient(null);
       setFormData({
         name: '',
-        slug: '',
         image: '',
-        paragraph: '',
-        meta_title: '',
-        meta_description: '',
-        status: 'active',
+        heading: '',
+        alt: '',
       });
-      setShowModal(true);
-      return;
     }
-
-    try {
-      const res = await fetch(`/api/categories?id=${category.id}`);
-      const data = await res.json();
-
-      setEditingCategory(category);
-      setFormData({
-        name: data.category.name || '',
-        slug: data.category.slug || '',
-        image: data.category.image || '',
-        paragraph: data.category.paragraph || '',
-        meta_title: data.category.meta_title || '',
-        meta_description: data.category.meta_description || '',
-        status: data.category.status || 'active',
-      });
-      setShowModal(true);
-    } catch (err) {
-      console.error(err);
-    }
+    setShowModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setEditingCategory(null);
+    setEditingIngredient(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const payload = {
-      ...(editingCategory && { id: editingCategory.id }),
+      ...(editingIngredient && { id: editingIngredient.id }),
       name: formData.name,
-      slug: formData.slug,
       image: formData.image || null,
-      paragraph: formData.paragraph || null,
-      meta_title: formData.meta_title || null,
-      meta_description: formData.meta_description || null,
-      status: formData.status,
+      heading: formData.heading || null,
+      alt: formData.alt || null,
     };
 
-    const res = await fetch('/api/categories', {
-      method: editingCategory ? 'PUT' : 'POST',
+    const res = await fetch('/api/ingredients', {
+      method: editingIngredient ? 'PUT' : 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -127,25 +103,25 @@ export default function CategoriesPage() {
     });
 
     if (res.ok) {
-      fetchCategories();
+      fetchIngredients();
       closeModal();
     } else {
       const error = await res.json();
-      alert(error.error || 'Failed to save category');
+      alert(error.error || 'Failed to save ingredient');
     }
   };
 
   const handleDelete = async (id: number) => {
-    if (confirm('Delete this category? This will also delete all products in this category.')) {
-      const res = await fetch(`/api/categories?id=${id}`, {
+    if (confirm('Delete this ingredient?')) {
+      const res = await fetch(`/api/ingredients?id=${id}`, {
         method: 'DELETE',
       });
 
       if (res.ok) {
-        fetchCategories();
+        fetchIngredients();
       } else {
         const error = await res.json();
-        alert(error.error || 'Failed to delete category');
+        alert(error.error || 'Failed to delete ingredient');
       }
     }
   };
@@ -158,11 +134,11 @@ export default function CategoriesPage() {
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
           <div>
             <h1 className="text-2xl md:text-3xl font-bold text-[var(--text-primary)] tracking-tight">
-              Categories
+              Ingredients
             </h1>
 
             <p className="text-[var(--text-secondary)] text-sm mt-1">
-              Manage product categories.
+              Manage product ingredients.
             </p>
           </div>
 
@@ -182,23 +158,22 @@ export default function CategoriesPage() {
               <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
 
-            Add Category
+            Add Ingredient
           </button>
         </div>
 
         {/* ERROR */}
         {error && (
           <div className="mb-4 p-3 bg-[rgba(244,63,94,0.1)] border border-[rgba(244,63,94,0.2)] rounded-xl text-red-400 text-xs">
-            Failed to load categories.
+            Failed to load ingredients.
           </div>
         )}
-      
 
         {/* SEARCH */}
         <div className="mb-6 relative">
           <input
             type="text"
-            placeholder="Search category..."
+            placeholder="Search ingredient..."
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
@@ -230,11 +205,11 @@ export default function CategoriesPage() {
                   <th className="px-5 py-4">ID</th>
                   <th className="px-5 py-4">Image</th>
                   <th className="px-5 py-4">Name</th>
-                  <th className="px-5 py-4">Slug</th>
-                  <th className="px-5 py-4">Status</th>
+                  <th className="px-5 py-4">Heading</th>
+                  <th className="px-5 py-4">Alt</th>
                   <th className="px-5 py-4">Date</th>
                   <th className="px-5 py-4 text-right">Actions</th>
-                 </tr>
+                </tr>
               </thead>
 
               <tbody className="divide-y divide-[var(--border-color)]">
@@ -243,30 +218,30 @@ export default function CategoriesPage() {
                     <tr key={i}>
                       <td className="px-5 py-4">
                         <div className="h-4 w-8 skeleton" />
-                       </td>
-                     </tr>
+                      </td>
+                    </tr>
                   ))
-                ) : categories.length === 0 ? (
+                ) : ingredients.length === 0 ? (
                   <tr>
                     <td
                       colSpan={7}
                       className="px-6 py-16 text-center text-[var(--text-secondary)]"
                     >
-                      No categories found.
+                      No ingredients found.
                     </td>
                   </tr>
                 ) : (
-                  categories.map((category) => (
-                    <tr key={category.id} className="table-row">
+                  ingredients.map((ingredient) => (
+                    <tr key={ingredient.id} className="table-row">
                       <td className="px-5 py-4 text-xs text-[var(--text-muted)]">
-                        #{category.id}
+                        #{ingredient.id}
                       </td>
 
                       <td className="px-5 py-4">
-                        {category.image ? (
+                        {ingredient.image ? (
                           <img
-                            src={category.image}
-                            alt={category.name}
+                            src={ingredient.image}
+                            alt={ingredient.name}
                             className="w-12 h-12 rounded-lg object-cover border border-[var(--border-color)]"
                           />
                         ) : (
@@ -278,28 +253,20 @@ export default function CategoriesPage() {
 
                       <td className="px-5 py-4">
                         <div className="font-semibold text-[var(--text-primary)]">
-                          {category.name}
+                          {ingredient.name}
                         </div>
                       </td>
 
                       <td className="px-5 py-4 text-sm text-[var(--text-secondary)]">
-                        {category.slug}
+                        {ingredient.heading || '—'}
                       </td>
 
-                      <td className="px-5 py-4">
-                        <span
-                          className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                            category.status === 'active'
-                              ? 'bg-emerald-500/10 text-emerald-400'
-                              : 'bg-red-500/10 text-red-400'
-                          }`}
-                        >
-                          {category.status === 'active' ? 'Active' : 'Inactive'}
-                        </span>
+                      <td className="px-5 py-4 text-sm text-[var(--text-secondary)]">
+                        {ingredient.alt || '—'}
                       </td>
 
                       <td className="px-5 py-4 text-xs text-[var(--text-muted)]">
-                        {new Date(category.created_at).toLocaleDateString(
+                        {new Date(ingredient.created_at).toLocaleDateString(
                           'en-GB'
                         )}
                       </td>
@@ -309,7 +276,7 @@ export default function CategoriesPage() {
 
                           {/* EDIT */}
                           <button
-                            onClick={() => openModal(category)}
+                            onClick={() => openModal(ingredient)}
                             className="p-2 text-sky-400 hover:bg-sky-500/10 rounded-lg"
                           >
                             <svg
@@ -327,7 +294,7 @@ export default function CategoriesPage() {
 
                           {/* DELETE */}
                           <button
-                            onClick={() => handleDelete(category.id)}
+                            onClick={() => handleDelete(ingredient.id)}
                             className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg"
                           >
                             <svg
@@ -387,7 +354,7 @@ export default function CategoriesPage() {
             {/* HEADER */}
             <div className="flex items-center justify-between p-5 border-b border-[var(--border-color)]">
               <h2 className="text-xl font-bold text-[var(--text-primary)]">
-                {editingCategory ? 'Update Category' : 'Create Category'}
+                {editingIngredient ? 'Update Ingredient' : 'Create Ingredient'}
               </h2>
 
               <button
@@ -423,73 +390,44 @@ export default function CategoriesPage() {
                     />
                   </div>
 
-                  {/* SLUG */}
+                  {/* HEADING */}
                   <div>
                     <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Slug *
+                      Heading
                     </label>
 
                     <input
                       type="text"
-                      required
-                      value={formData.slug}
+                      value={formData.heading || ''}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          slug: e.target.value.toLowerCase().replace(/\s+/g, '-'),
+                          heading: e.target.value,
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
                     />
-                    <p className="text-xs text-[var(--text-muted)] mt-1">
-                      URL-friendly version of the name (auto-formatted)
-                    </p>
                   </div>
 
-                  
-                  
-
-                  {/* META TITLE */}
+                  {/* ALT */}
                   <div>
                     <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Meta Title
+                      Alt Text
                     </label>
 
                     <input
                       type="text"
-                      value={formData.meta_title || ''}
+                      value={formData.alt || ''}
                       onChange={(e) =>
                         setFormData({
                           ...formData,
-                          meta_title: e.target.value,
+                          alt: e.target.value,
                         })
                       }
-                      
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
                     />
-                    
                   </div>
 
-                  {/* META DESCRIPTION */}
-                  <div>
-                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Meta Description
-                    </label>
-
-                    <input
-                      type="text"
-                      value={formData.meta_description || ''}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          meta_description: e.target.value,
-                        })
-                      }
-                      
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
-                    />
-                    
-                  </div>
                   {/* IMAGE */}
                   <div>
                     <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
@@ -510,49 +448,8 @@ export default function CategoriesPage() {
                     />
                   </div>
 
-
-                  {/* STATUS */}
-                  <div>
-                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Status
-                    </label>
-
-                    <select
-                      value={formData.status}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          status: e.target.value as 'active' | 'inactive',
-                        })
-                      }
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
-                    >
-                      <option value="active">Active</option>
-                      <option value="inactive">Inactive</option>
-                    </select>
-                  </div>
-                  {/* PARAGRAPH */}
-                  <div className="md:col-span-2">
-                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Paragraph / Short Description
-                    </label>
-
-                    <textarea
-                      rows={3}
-                      value={formData.paragraph || ''}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          paragraph: e.target.value,
-                        })
-                      }
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] resize-none focus:outline-none focus:border-sky-500"
-                    />
-                  </div>
-
                 </div>
               </div>
-              
 
               {/* FOOTER */}
               <div className="p-5 border-t border-[var(--border-color)] flex gap-3">
@@ -568,7 +465,7 @@ export default function CategoriesPage() {
                   type="submit"
                   className="flex-1 py-3 rounded-xl btn-primary text-white font-semibold"
                 >
-                  {editingCategory ? 'Update' : 'Create'}
+                  {editingIngredient ? 'Update' : 'Create'}
                 </button>
               </div>
             </form>
