@@ -6,7 +6,6 @@ interface Ingredient {
   id: number;
   name: string;
   image: string | null;
-  heading: string | null;
   alt: string | null;
   created_at: string;
   updated_at?: string;
@@ -25,7 +24,6 @@ export default function IngredientsPage() {
   const [formData, setFormData] = useState({
     name: '',
     image: '',
-    heading: '',
     alt: '',
   });
 
@@ -63,7 +61,6 @@ export default function IngredientsPage() {
       setFormData({
         name: ingredient.name,
         image: ingredient.image || '',
-        heading: ingredient.heading || '',
         alt: ingredient.alt || '',
       });
     } else {
@@ -71,7 +68,6 @@ export default function IngredientsPage() {
       setFormData({
         name: '',
         image: '',
-        heading: '',
         alt: '',
       });
     }
@@ -90,7 +86,6 @@ export default function IngredientsPage() {
       ...(editingIngredient && { id: editingIngredient.id }),
       name: formData.name,
       image: formData.image || null,
-      heading: formData.heading || null,
       alt: formData.alt || null,
     };
 
@@ -205,7 +200,6 @@ export default function IngredientsPage() {
                   <th className="px-5 py-4">ID</th>
                   <th className="px-5 py-4">Image</th>
                   <th className="px-5 py-4">Name</th>
-                  <th className="px-5 py-4">Heading</th>
                   <th className="px-5 py-4">Alt</th>
                   <th className="px-5 py-4">Date</th>
                   <th className="px-5 py-4 text-right">Actions</th>
@@ -224,7 +218,7 @@ export default function IngredientsPage() {
                 ) : ingredients.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={7}
+                      colSpan={6}
                       className="px-6 py-16 text-center text-[var(--text-secondary)]"
                     >
                       No ingredients found.
@@ -255,10 +249,6 @@ export default function IngredientsPage() {
                         <div className="font-semibold text-[var(--text-primary)]">
                           {ingredient.name}
                         </div>
-                      </td>
-
-                      <td className="px-5 py-4 text-sm text-[var(--text-secondary)]">
-                        {ingredient.heading || '—'}
                       </td>
 
                       <td className="px-5 py-4 text-sm text-[var(--text-secondary)]">
@@ -384,25 +374,6 @@ export default function IngredientsPage() {
                         setFormData({
                           ...formData,
                           name: e.target.value,
-                        })
-                      }
-                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
-                    />
-                  </div>
-
-                  {/* HEADING */}
-                  <div>
-                    <label className="block text-xs mb-2 text-[var(--text-secondary)] font-medium">
-                      Heading
-                    </label>
-
-                    <input
-                      type="text"
-                      value={formData.heading || ''}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          heading: e.target.value,
                         })
                       }
                       className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-primary)] focus:outline-none focus:border-sky-500"
