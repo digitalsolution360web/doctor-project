@@ -520,9 +520,27 @@ export default function BlogsPage() {
                       placeholder="auto-generated from title"
                     />
                   </div>
+                  {/* IMAGE UPLOAD */}
+                  <div>
+                    <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
+                      Image
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.image}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          image: e.target.value,
+                        })
+                      }
+                      className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm"
+                      placeholder="Image URL"
+                    />
+                  </div>
 
                    {/* IMAGE UPLOAD */}
-                  <div className="md:col-span-2">
+                  <div className="md:col-span-2 hidden">
                     <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
                       Blog Image
                     </label>
@@ -563,7 +581,7 @@ export default function BlogsPage() {
 
                     {/* Image Preview */}
                     {formData.image && (
-                      <div className="mt-3 flex items-center gap-3 p-3 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-color)]">
+                      <div className="hidden mt-3 flex items-center gap-3 p-3 bg-[var(--bg-secondary)] rounded-xl border border-[var(--border-color)]">
                         <img
                           src={formData.image}
                           alt="Preview"
