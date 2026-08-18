@@ -475,7 +475,7 @@ const openFAQModal = (blog: Blog) => {
 
                       <td className="px-5 py-4">
                         <div className="flex justify-end gap-2">
-                          <button
+                          {/* <button
                             onClick={() => openFAQModal(blog)}
                             className="p-2 text-emerald-400 hover:bg-emerald-500/10 rounded-lg"
                             title="Manage FAQs"
@@ -492,7 +492,7 @@ const openFAQModal = (blog: Blog) => {
                               <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                               <line x1="12" y1="17" x2="12.01" y2="17" />
                             </svg>
-                          </button>
+                          </button> */}
                             
                           <button
                             onClick={() => openModal(blog)}

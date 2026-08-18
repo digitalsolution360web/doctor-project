@@ -14,6 +14,13 @@ interface RevealOnScrollProps {
   className?: string;
   direction?: "up" | "left" | "right";
 }
+interface Blog {
+  h1: string;
+  slug: string;
+  excerpt: string;
+  image: string;
+  created_at: string;
+}
 
 const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "", direction = "up" }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -55,32 +62,47 @@ const RevealOnScroll: React.FC<RevealOnScrollProps> = ({ children, className = "
 };
 
 export default function BlogPage() {
-  const posts = [
-    {
-      slug: "Product-details-1",
-      title: "How to Start a Cosmetic Brand in India",
-      excerpt: "A step-by-step roadmap for entrepreneurs looking to launch a successful skincare or haircare brand. Learn about legal requirements, formulations, and choosing the right manufacturing partner.",
-      image: "/contract.webp",
-      date: "April 20, 2026",
-      category: "Business Guide"
-    },
-    {
-      slug: "Product-details-2",
-      title: "Top Trending Skincare Ingredients for 2026",
-      excerpt: "Discover the high-demand ingredients driving consumer interest this year. From Niacinamide and Kojic Acid to Botanical Extracts, learn what formulations are winning the market.",
-      image: "/manufac.webp",
-      date: "April 15, 2026",
-      category: "Ingredients"
-    },
-    {
-      slug: "Product-details-3",
-      title: "Private Label vs Custom Manufacturing",
-      excerpt: "Not sure which path to choose? We break down the pros and cons of Private Labeling for speed-to-market versus Custom Formulations for unique brand exclusivity.",
-      image: "/custom.webp",
-      date: "April 10, 2026",
-      category: "Manufacturing"
+
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const fetchBlogs = async () => {
+    setLoading(true);
+    setError(false);
+
+    try {
+      const res = await fetch('/api/frontend/blogs?page=1&limit=100');
+      
+      if (!res.ok) {
+        throw new Error('Failed to fetch blogs');
+      }
+
+      const result = await res.json();
+      setBlogs(Array.isArray(result.data) ? result.data : []);
+      
+    } catch (err) {
+      console.error('Error fetching blogs:', err);
+      setError(true);
+      setBlogs([]);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  // Format date to readable format
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      month: 'short', 
+      day: 'numeric', 
+      year: 'numeric' 
+    });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-white pt-20">
@@ -160,29 +182,50 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Featured Posts Grid */}
+      {/* Featured Blogs Grid */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 md:px-6">
+          {loading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 xl:gap-14">
+              {[...Array(3)].map((_, idx) => (
+                <div key={idx} className="animate-pulse">
+                  <div className="bg-gray-200 h-72 rounded-[2rem]"></div>
+                  <div className="p-10">
+                    <div className="h-4 bg-gray-200 rounded w-1/4 mb-3"></div>
+                    <div className="h-6 bg-gray-200 rounded w-3/4 mb-4"></div>
+                    <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                    <div className="h-4 bg-gray-200 rounded w-2/3"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : error ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500">Failed to load blogs. Please try again later.</p>
+            </div>
+          ) : blogs.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500">No blogs found.</p>
+            </div>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-            {posts.map((post, i) => (
+             {blogs.map((blog, i) => (
               <RevealOnScroll key={i} className="group cursor-pointer h-full flex flex-col">
-                <Link href={`/blog/${post.slug}`} className="flex flex-col h-full">
+                <Link href={`/${blog.slug}`} className="flex flex-col h-full">
                   <div className="relative aspect-[16/10] rounded-[32px] md:rounded-[40px] overflow-hidden mb-6 md:mb-8 shadow-2xl border border-slate-100 shrink-0">
-                    <Image src={post.image} alt={post.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
-                    <div className="absolute top-4 left-4 md:top-6 md:left-6 px-3 py-1.5 md:px-4 md:py-2 bg-white/20 backdrop-blur-md border border-white/30 rounded-full">
-                      <span className="text-white font-black text-[8px] md:text-[10px] uppercase tracking-widest">{post.category}</span>
-                    </div>
+                    <img src={blog.image} alt={blog.h1} sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover transition-transform duration-1000 group-hover:scale-110" />
+                    
                   </div>
 
                   <div className="flex flex-col flex-1 space-y-3 md:space-y-4">
                     <div className="flex items-center space-x-4 text-slate-400 text-[10px] md:text-xs font-bold uppercase tracking-widest">
-                      <span className="flex items-center"><Calendar className="w-3 h-3 mr-1 md:mr-2" /> {post.date}</span>
-                      <span className="flex items-center"><User className="w-3 h-3 mr-1 md:mr-2" /> Expert R&D Team</span>
+                      <span className="flex items-center"><Calendar className="w-3 h-3 mr-1 md:mr-2" /> {formatDate(blog.created_at)}</span>
+                      <span className="flex items-center"><User className="w-3 h-3 mr-1 md:mr-2" /> Midflora Herbal</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-semibold text-slate-900 tracking-tight leading-tight group-hover:text-teal-600 transition-colors">
-                      {post.title}
+                      {blog.h1}
                     </h3>
-                    <p className="text-slate-600 font-medium text-sm md:text-base leading-relaxed line-clamp-3">{post.excerpt}</p>
+                    <p className="text-slate-600 font-medium text-sm md:text-base leading-relaxed line-clamp-3">{blog.excerpt}</p>
 
                     <div className="pt-2 md:pt-4 mt-auto">
                       <span className="flex items-center space-x-3 text-slate-950 font-black text-[10px] md:text-xs uppercase tracking-[0.2em] group/btn">
@@ -195,6 +238,7 @@ export default function BlogPage() {
               </RevealOnScroll>
             ))}
           </div>
+          )}
         </div>
       </section>
 
