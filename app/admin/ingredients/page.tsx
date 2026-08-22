@@ -130,7 +130,7 @@ export default function IngredientsPage() {
     const data = await res.json();
     const allIngredients = data.data || [];
     // Prepare data for Excel
-    const excelData = allIngredients.sort((a, b) => a.id - b.id).map((item: Ingredient) => ({
+    const excelData = allIngredients.sort((a: Ingredient, b: Ingredient) => a.id - b.id).map((item: Ingredient) => ({
       ID: item.id,
       Name: item.name,
       'Alt Text': item.alt || '',
