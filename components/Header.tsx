@@ -38,8 +38,7 @@ const Header = () => {
               <div className="w-6 h-6 rounded-full bg-teal-500/10 flex items-center justify-center mr-2 group-hover:bg-teal-500 transition-colors">
                 <Phone className="w-3 h-3 text-teal-400 group-hover:text-white" />
               </div>
-              +91-7895280742 ,
-              +91-8826862154
+              +91-7895280742
 
             </a>
             <a href="mailto:info@midfloraherbal.com" className="flex items-center hover:text-teal-400 transition-all opacity-90 hover:opacity-100 group">
