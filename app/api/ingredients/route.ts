@@ -59,10 +59,24 @@ export async function POST(req: NextRequest) {
     if (!name) {
       return NextResponse.json({ error: 'Ingredient name is required' }, { status: 400 });
     }
+    const ingredientName = name.trim();
+
+    // Check duplicate
+    const [existing] = await pool.query(
+      `SELECT id FROM ingredients WHERE name = ? LIMIT 1`,
+      [ingredientName]
+    );
+
+    if ((existing as any[]).length > 0) {
+      return NextResponse.json(
+        { error: 'Ingredient name already exists' },
+        { status: 409 }
+      );
+    }
 
     const [result] = await pool.query(
       `INSERT INTO ingredients (name, image, alt) VALUES (?, ?, ?)`,
-      [name, image || null, alt || null]
+      [ingredientName, image || null, alt || null]
     );
 
     return NextResponse.json({

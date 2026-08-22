@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import * as XLSX from 'xlsx';
 
 interface Ingredient {
   id: number;
@@ -20,6 +21,7 @@ export default function IngredientsPage() {
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [editingIngredient, setEditingIngredient] = useState<Ingredient | null>(null);
+  const [exporting, setExporting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -120,6 +122,32 @@ export default function IngredientsPage() {
       }
     }
   };
+  const exportToExcel = async () => {
+  try {
+    setExporting(true);
+    // Fetch all ingredients without pagination
+    const res = await fetch(`/api/ingredients?page=1&limit=10000&search=${search}`);
+    const data = await res.json();
+    const allIngredients = data.data || [];
+    // Prepare data for Excel
+    const excelData = allIngredients.sort((a, b) => a.id - b.id).map((item: Ingredient) => ({
+      ID: item.id,
+      Name: item.name,
+      'Alt Text': item.alt || '',
+      Image: item.image || '',
+      'Created At': new Date(item.created_at).toLocaleString(),
+    }));
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(excelData);
+    XLSX.utils.book_append_sheet(wb, ws, 'Ingredients');
+    XLSX.writeFile(wb, `ingredients_${new Date().toISOString().slice(0,10)}.xlsx`);
+  } catch (error) {
+    console.error('Export error:', error);
+    alert('Failed to export ingredients.');
+  } finally {
+    setExporting(false);
+  }
+};
 
   return (
     <>
@@ -136,8 +164,8 @@ export default function IngredientsPage() {
               Manage product ingredients.
             </p>
           </div>
-
-          <button
+           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto items-center justify-end">
+           <button
             onClick={() => openModal()}
             className="btn-primary flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white w-full sm:w-auto"
           >
@@ -155,6 +183,27 @@ export default function IngredientsPage() {
 
             Add Ingredient
           </button>
+          <button
+          onClick={exportToExcel}
+          disabled={exporting}
+          className="btn-primary flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white w-full sm:w-auto bg-green-600 hover:bg-green-700"
+        >
+           <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+  >
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+          {exporting ? 'Exporting...' : 'Export to Excel'}
+        </button>
+            </div>
+          
         </div>
 
         {/* ERROR */}
