@@ -163,6 +163,8 @@ export default function ProductDetails() {
   const [error, setError] = useState(false);
   const [productData, setProductData] = useState<any | null>(null);
   const staticproduct: StaticProduct = allProducts[slug] || allProducts["aloe-based-hair-cream-formulation"];
+  const [ingredientsList, setIngredientsList] = useState<Array<{id: number, name: string, image: string}>>([]);
+  const [ingredientsLoading, setIngredientsLoading] = useState(false);
 
   useEffect(() => {
     fetchProductData();
@@ -195,6 +197,29 @@ export default function ProductDetails() {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    fetchIngredients();
+  }, []);
+
+  const fetchIngredients = async () => {
+    setIngredientsLoading(true);
+    try {
+      const res = await fetch('/api/ingredients?limit=1000');
+      const data = await res.json();
+      setIngredientsList(data.data || []);
+    } catch (err) {
+      console.error('Failed to load ingredients:', err);
+    } finally {
+      setIngredientsLoading(false);
+    }
+  };
+  const productIngredients = React.useMemo(() => {
+    if (!productData || !productData.ingredients) return [];
+    const ids = productData.ingredients; // array of strings
+    return ingredientsList
+      .filter(ing => ids.includes(String(ing.id)))
+      .map(ing => ({ name: ing.name, img: ing.image || '/placeholder.png' }));
+  }, [productData, ingredientsList]);
 
   // Loading state
   if (loading) {
@@ -359,11 +384,15 @@ export default function ProductDetails() {
           </div>
         </div>
 
-        <div className="relative w-full overflow-hidden">
-          {/* Marquee Wrapper */}
-          <div className="flex gap-6 md:gap-8 animate-marquee whitespace-nowrap hover:[animation-play-state:paused] w-max">
-            {[...staticproduct.ingredients, ...staticproduct.ingredients, ...staticproduct.ingredients, ...staticproduct.ingredients].map((ing: ProductIngredient, i: number) => (
-              <div key={i} className="flex-none w-[260px] md:w-[350px] flex flex-col gap-4 group/item">
+       <div className="relative w-full overflow-hidden">
+      {ingredientsLoading ? (
+        <div className="text-center py-8 text-slate-500">Loading ingredients...</div>
+      ) : productIngredients.length === 0 ? (
+        <div className="text-center py-8 text-slate-400">No ingredients listed for this product.</div>
+      ) : (
+        <div className="flex gap-6 md:gap-8 animate-marquee whitespace-nowrap hover:[animation-play-state:paused] w-max">
+          {[...productIngredients, ...productIngredients, ...productIngredients, ...productIngredients].map((ing, i) => (
+            <div key={i} className="flex-none w-[260px] md:w-[350px] flex flex-col gap-4 group/item">
                 <div className="relative aspect-square rounded-[20px] overflow-hidden bg-white border border-slate-100 shadow-xl group-hover/item:shadow-teal-600/20 transition-all duration-500">
                   <Image
                     src={ing.img}
@@ -377,9 +406,10 @@ export default function ProductDetails() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+          ))}
         </div>
+      )}
+    </div>
 
         <style jsx global>{`
           @keyframes marquee {
