@@ -49,7 +49,6 @@ interface FAQ {
 export default function ProductsPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [ingredients, setIngredients] = useState<Array<{slug: string, name: string}>>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -68,6 +67,8 @@ const [htmlContent, setHtmlContent] = useState('');
   const [editingFAQ, setEditingFAQ] = useState<FAQ | null>(null);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   const [loadingFAQs, setLoadingFAQs] = useState(false);
+  const [ingredientsList, setIngredientsList] = useState<Array<{id: string, name: string}>>([]);
+  const [ingredientsLoading, setIngredientsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     category_id: '',
@@ -99,12 +100,6 @@ const [htmlContent, setHtmlContent] = useState('');
 
   const totalPages = Math.ceil(total / limit);
 
-  const staticIngredients = [
-  { slug: 'aloe-vera', name: 'Aloe Vera' },
-  { slug: 'tea-tree-oil', name: 'Tea Tree Oil' },
-  { slug: 'peppermint', name: 'Peppermint' },
-  { slug: 'chamomile', name: 'Chamomile' },
-];
 
   useEffect(() => {
     fetchProducts();
@@ -112,7 +107,25 @@ const [htmlContent, setHtmlContent] = useState('');
 
   useEffect(() => {
     fetchCategories();
+    fetchIngredients();
   }, []);
+
+  const fetchIngredients = async () => {
+    setIngredientsLoading(true);
+  try {
+    const res = await fetch('/api/ingredients?limit=1000');
+    const data = await res.json();
+     setIngredientsList(data.data.map((item: any) => ({
+      id: String(item.id),   
+      name: item.name,
+    })));
+  } catch (err) {
+    console.error('Failed to load ingredients:', err);
+  }
+  finally {
+    setIngredientsLoading(false);
+  }
+};
 
   const [modules, setModules] = useState<any>({
   toolbar: [
@@ -905,61 +918,86 @@ const [htmlContent, setHtmlContent] = useState('');
                   />
                 </div>
                       {/* INGREDIENTS - Multi-select */}
-<div className="md:col-span-2 hidden">
+{/* INGREDIENTS - Checkbox Grid */}
+<div className="md:col-span-2">
   <label className="block text-xs font-bold mb-2 text-[var(--text-secondary)] uppercase">
     Ingredients
   </label>
-  <select
-    multiple
-    value={formData.ingredients}
-    onChange={(e) => {
-      const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
-      setFormData({
-        ...formData,
-        ingredients: selectedOptions,
-      });
-    }}
-    className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl py-3 px-4 text-sm max-h-[120px] overflow-y-auto"
-  >
-    {staticIngredients.map((ingredient) => (
-      <option 
-        key={ingredient.slug} 
-        value={ingredient.slug}
-        className="py-2 px-3 hover:bg-[var(--bg-primary)]"
-      >
-        {ingredient.name}
-      </option>
-    ))}
-  </select>
-  <p className="text-xs text-[var(--text-muted)] mt-1">
-    Hold Ctrl/Cmd to select multiple ingredients
-  </p>
-  
+  {ingredientsLoading ? (
+  <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl p-6 text-center text-[var(--text-muted)]">
+    <div className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-solid border-blue-600 border-r-transparent"></div>
+    <span className="ml-2 text-sm">Loading ingredients...</span>
+  </div>
+) : (
+  <div className="bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl p-4 max-h-[200px] overflow-y-auto">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+      {ingredientsList.map((ingredient) => (
+        <label
+          key={ingredient.id}
+          className="flex items-center gap-2 text-sm text-[var(--text-primary)] hover:bg-[var(--bg-primary)] p-1.5 rounded-lg cursor-pointer transition-colors"
+        >
+          <input
+            type="checkbox"
+            checked={formData.ingredients.includes(ingredient.id)}
+            onChange={(e) => {
+              if (e.target.checked) {
+                setFormData({
+                  ...formData,
+                  ingredients: [...formData.ingredients, ingredient.id],
+                });
+              } else {
+                setFormData({
+                  ...formData,
+                  ingredients: formData.ingredients.filter((s) => s !== ingredient.id),
+                });
+              }
+            }}
+            className="w-4 h-4 rounded border-[var(--border-color)] text-blue-600 focus:ring-blue-500"
+          />
+          <span className="font-medium">{ingredient.name}</span>
+        </label>
+      ))}
+    </div>
+  </div>
+)}
   {/* Selected Ingredients Tags */}
   {formData.ingredients.length > 0 && (
-    <div className="flex flex-wrap gap-1 mt-2">
-      {formData.ingredients.map((slug) => {
-        const ingredient = staticIngredients.find(i => i.slug === slug);
+    <div className="mt-3 flex flex-wrap gap-1.5">
+      {formData.ingredients.map((id) => {
+        const ingredient = ingredientsList.find((i) => i.id === id);
         return ingredient ? (
-          <span key={slug} className="px-2 py-1 bg-blue-500/10 text-blue-400 rounded text-xs flex items-center gap-1">
+          <span
+            key={id}
+            className="inline-flex items-center gap-1 px-2.5 py-1 bg-blue-500/10 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium border border-blue-200/30"
+          >
             {ingredient.name}
             <button
               type="button"
               onClick={() => {
                 setFormData({
                   ...formData,
-                  ingredients: formData.ingredients.filter(s => s !== slug),
+                  ingredients: formData.ingredients.filter((s) => s !== id),
                 });
               }}
-              className="hover:text-red-400 ml-1"
+              className="hover:text-red-500 transition-colors ml-0.5"
             >
               ×
             </button>
           </span>
         ) : null;
       })}
+      <button
+        type="button"
+        onClick={() => setFormData({ ...formData, ingredients: [] })}
+        className="text-xs text-red-400 hover:text-red-500 font-medium ml-1"
+      >
+        Clear all
+      </button>
     </div>
   )}
+  <p className="text-xs text-[var(--text-muted)] mt-1.5">
+    Select all ingredients that apply to this product.
+  </p>
 </div>
 {/* DESCRIPTION */}
 <div>
