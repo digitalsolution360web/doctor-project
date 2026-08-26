@@ -392,17 +392,21 @@ export default function ProductDetails() {
       ) : (
         <div className="flex gap-6 md:gap-8 animate-marquee whitespace-nowrap hover:[animation-play-state:paused] w-max">
           {[...productIngredients, ...productIngredients, ...productIngredients, ...productIngredients].map((ing, i) => (
-            <div key={i} className="flex-none w-[260px] md:w-[350px] flex flex-col gap-4 group/item">
-                <div className="relative aspect-square rounded-[20px] overflow-hidden bg-white border border-slate-100 shadow-xl group-hover/item:shadow-teal-600/20 transition-all duration-500">
-                  <Image
-                    src={ing.img}
-                    alt={ing.name}
-                    fill
-                    className="object-cover"
-                  />
-                   <p className="text-center text-sm font-semibold text-slate-700">{ing.name}</p>
-                </div>
-              </div>
+            <div key={i} className="flex-none w-[260px] md:w-[350px] flex flex-col items-center gap-3 group/item">
+  <div className="relative aspect-square w-full rounded-[20px] overflow-hidden bg-white border border-slate-100 shadow-xl group-hover/item:shadow-teal-600/20 transition-all duration-500">
+    <Image
+      src={ing.img}
+      alt={ing.name}
+      title={ing.name}
+      fill
+      className="object-cover"
+    />
+  </div>
+  {/* Name label – now clearly visible */}
+  <p className="text-center text-sm font-semibold text-slate-700 w-full px-2">
+    {ing.name}
+  </p>
+</div>
           ))}
         </div>
       )}
