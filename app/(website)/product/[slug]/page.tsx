@@ -400,10 +400,7 @@ export default function ProductDetails() {
                     fill
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-0  transition-opacity duration-700 flex flex-col justify-end p-8">
-                    <span className="text-xl md:text-2xl font-black text-white tracking-tight uppercase leading-none">{ing.name}</span>
-                    <p className="text-teal-400 text-[8px] font-black uppercase tracking-[0.3em] mt-2">Organic Extract</p>
-                  </div>
+                   <p className="text-center text-sm font-semibold text-slate-700">{ing.name}</p>
                 </div>
               </div>
           ))}
