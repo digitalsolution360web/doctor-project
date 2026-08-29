@@ -59,11 +59,11 @@ function CountUp({ target, suffix = "" }: { target: number | string; suffix?: st
 
 // --- Stats Carousel (standalone) ---
 const statsData = [
-  { num: 180, suffix: " Tons+", title: "Monthly Manufacturing", sub: "Capacity", icon: Layers, img: "/Monthly-Manufacturing.webp" },
-  { num: 60000, suffix: "", title: "Liquid  Filling", sub: "Fully Automatic Servo-Based", icon: Settings, img: "/Tube-FIlling.webp" },
-  { num: 40000, suffix: "", title: "Jar Filling", sub: "Automatic 2-Head Jar Filling Machines", icon: Zap, img: "/Bottle-filling.webp" },
-  { num: 60000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day Capacity", icon: Factory, img: "/labeling-machines.webp" },
-  { num: 52000, suffix: "", title: "Tube Filling & Sealing", sub: "Tube Per Day Capacity", icon: ShieldCheck, img: "/Tube-Sealing.webp" },
+  { num: 180, suffix: " Tons+", title: "Monthly Manufacturing", sub: "Capacity", icon: Layers, img: "/categories/Monthly-Manufacturing.webp" },
+  { num: 60000, suffix: "", title: "Liquid  Filling", sub: "Fully Automatic Servo-Based", icon: Settings, img: "/categories/Tube-FIlling.webp" },
+  { num: 40000, suffix: "", title: "Jar Filling", sub: "Automatic 2-Head Jar Filling Machines", icon: Zap, img: "/categories/Bottle-filling.webp" },
+  { num: 60000, suffix: "", title: "Labeling Capacity", sub: "Units Per Day Capacity", icon: Factory, img: "/categories/labeling-machines.webp" },
+  { num: 52000, suffix: "", title: "Tube Filling & Sealing", sub: "Tube Per Day Capacity", icon: ShieldCheck, img: "/categories/Tube-Sealing.webp" },
   // { num: 35000, suffix: "", title: "Jar Filling", sub: "2-Head Jar Per Day Capacity", icon: Factory, img: "/Bottle-filling.webp" },
   // { num: 100, suffix: "%", title: "Sterile Manufacturing", sub: "Environment", icon: ShieldCheck },
 ];
