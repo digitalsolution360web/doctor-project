@@ -444,7 +444,7 @@ const [htmlContent, setHtmlContent] = useState('');
                   <th className="px-5 py-4">Category</th>
                   <th className="px-5 py-4">MOQ</th>
                   <th className="px-5 py-4">Packaging</th>
-                  <th className="px-5 py-4">Services</th>
+                  <th className="px-5 py-4">Ingredients</th>
                   <th className="px-5 py-4">Status</th>
                   <th className="px-5 py-4 text-right">Actions</th>
                 </tr>
@@ -535,17 +535,17 @@ const [htmlContent, setHtmlContent] = useState('');
 
                       <td className="px-5 py-4">
                         <div className="flex flex-wrap gap-1">
-                          {product.customized_formulations == 1 && (
+                          {product.ingredients && (
                             <span className="px-1.5 py-0.5 bg-purple-500/10 text-purple-400 rounded text-[9px] font-medium">
-                              Custom
+                              Yes
                             </span>
                           )}
-                          {product.private_labeling == 1 && (
+                          {product.ingredients == null && (
                             <span className="px-1.5 py-0.5 bg-blue-500/10 text-blue-400 rounded text-[9px] font-medium">
-                              Private Label
+                              No
                             </span>
                           )}
-                          {product.turnkey_solutions == 1 && (
+                          {/* {product.turnkey_solutions == 1 && (
                             <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-400 rounded text-[9px] font-medium">
                               Turnkey
                             </span>
@@ -554,7 +554,7 @@ const [htmlContent, setHtmlContent] = useState('');
                            product.private_labeling == 0 && 
                            product.turnkey_solutions == 0 && (
                             <span className="text-[10px] text-[var(--text-muted)]">None</span>
-                          )}
+                          )} */}
                         </div>
                       </td>
 
