@@ -200,7 +200,7 @@ const [htmlContent, setHtmlContent] = useState('');
         private_labeling: product.private_labeling,
         turnkey_solutions: product.turnkey_solutions,
         benefits: product.benefits || '',
-        description: product.description || '',
+        description: cleanDescription(product.description || ''),
         meta_title: product.meta_title || '',
         meta_description: product.meta_description || '',
         status: product.status,
@@ -273,13 +273,17 @@ const [htmlContent, setHtmlContent] = useState('');
       serial_no: faq.serial_no,
     });
   };
-
+const cleanDescription = (html: string) => {
+  if (!html) return '';
+  return html.replace(/&nbsp;/gi, ' ').replace(/\u00A0/g, ' ');
+};
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     const method = editingProduct ? 'PUT' : 'POST';
      const submitData = {
     ...formData,
+    description: cleanDescription(formData.description),
     ingredients: formData.ingredients.join(','), // Convert array to string
   };
     const body = editingProduct
@@ -1010,11 +1014,11 @@ const [htmlContent, setHtmlContent] = useState('');
     <button
       type="button"
       onClick={() => {
-        if (!showHtmlEditor) {
-          setHtmlContent(formData.description);
-        }
-        setShowHtmlEditor(!showHtmlEditor);
-      }}
+  if (!showHtmlEditor) {
+    setHtmlContent(cleanDescription(formData.description));
+  }
+  setShowHtmlEditor(!showHtmlEditor);
+}}
       className="px-3 py-1.5 text-xs font-medium bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--bg-primary)] transition-colors"
     >
       {showHtmlEditor ? 'Hide HTML' : 'View HTML'}
@@ -1086,7 +1090,7 @@ const [htmlContent, setHtmlContent] = useState('');
           onClick={() => {
             setFormData({
               ...formData,
-              description: htmlContent,
+              description: cleanDescription(htmlContent),
             });
             setShowHtmlEditor(false);
             setHtmlContent('');

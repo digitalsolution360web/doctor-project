@@ -108,6 +108,41 @@
   border-bottom: 1px solid var(--border-color) !important;
   background: var(--bg-secondary);
 }
+.ql-toolbar {
+  color: #fff !important;
+}
+
+.ql-toolbar button,
+.ql-toolbar .ql-picker-label,
+.ql-toolbar .ql-picker-item {
+  color: #fff !important;
+}
+
+.ql-toolbar button .ql-stroke {
+  stroke: #fff !important;
+}
+
+.ql-toolbar button .ql-fill {
+  fill: #fff !important;
+}
+
+.ql-toolbar .ql-picker-label .ql-stroke {
+  stroke: #fff !important;
+}
+
+.ql-toolbar .ql-picker-label .ql-fill {
+  fill: #fff !important;
+}
+
+.ql-toolbar button:hover .ql-stroke,
+.ql-toolbar button.ql-active .ql-stroke {
+  stroke: #fff !important;
+}
+
+.ql-toolbar button:hover .ql-fill,
+.ql-toolbar button.ql-active .ql-fill {
+  fill: #fff !important;
+}
 
 .ql-container {
   border: none !important;
